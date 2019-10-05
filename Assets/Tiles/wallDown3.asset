@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a09ccbdf6725d4c6780ce7f4f708e662, type: 3}
+  m_Name: wallDown3
+  m_EditorClassIdentifier: 
+  name: Wall Down 3
+  type: Wall
+  mainSprite: {fileID: -528346872256053761, guid: 0be1ad524f7954aee838cacf4ae17deb,
+    type: 3}
+  lightSourceUp: {fileID: 1569126752971631776, guid: 0be1ad524f7954aee838cacf4ae17deb,
+    type: 3}
+  lightSourceDown: {fileID: -3824334297039997037, guid: 0be1ad524f7954aee838cacf4ae17deb,
+    type: 3}
+  lightSourceLeft: {fileID: -7749690987933555193, guid: 0be1ad524f7954aee838cacf4ae17deb,
+    type: 3}
+  lightSourceRight: {fileID: -852082943869230972, guid: 0be1ad524f7954aee838cacf4ae17deb,
+    type: 3}

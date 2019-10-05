@@ -371,6 +371,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 672323ca866654b65a664654900c9825, type: 2}
   downFacingTiles:
   - {fileID: 11400000, guid: c176b998941b34582bf6bb5fb6267271, type: 2}
+  - {fileID: 11400000, guid: 7910f62436be74281b9e06e59d17ff2a, type: 2}
+  - {fileID: 11400000, guid: 3c218576e8bf6428389cd83406d07751, type: 2}
   acceptsLight: 1
   tile: {fileID: 0}
   lightingUp: {fileID: 2080275774116058599}
