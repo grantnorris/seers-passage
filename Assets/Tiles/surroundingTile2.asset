@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a09ccbdf6725d4c6780ce7f4f708e662, type: 3}
+  m_Name: surroundingTile2
+  m_EditorClassIdentifier: 
+  name: Surrounding Tile 2
+  type: Surround
+  mainSprite: {fileID: -4470739009708327701, guid: 12905d08499a04876abc40540e2955f4,
+    type: 3}
+  lightSourceUp: {fileID: 0}
+  lightSourceDown: {fileID: 0}
+  lightSourceLeft: {fileID: 0}
+  lightSourceRight: {fileID: 0}

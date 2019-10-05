@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a09ccbdf6725d4c6780ce7f4f708e662, type: 3}
+  m_Name: wallNeutral3
+  m_EditorClassIdentifier: 
+  name: Wall Neutral 3
+  type: Wall
+  mainSprite: {fileID: 4080706622582328630, guid: af3a0a6df59034f93b32c8332b55cb03,
+    type: 3}
+  lightSourceUp: {fileID: -6669122935754932970, guid: af3a0a6df59034f93b32c8332b55cb03,
+    type: 3}
+  lightSourceDown: {fileID: -2683309517622856863, guid: af3a0a6df59034f93b32c8332b55cb03,
+    type: 3}
+  lightSourceLeft: {fileID: -7274735579501334880, guid: af3a0a6df59034f93b32c8332b55cb03,
+    type: 3}
+  lightSourceRight: {fileID: 6839575437568775955, guid: af3a0a6df59034f93b32c8332b55cb03,
+    type: 3}
