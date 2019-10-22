@@ -8,7 +8,7 @@ public class Interactable : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Player") {
-            Debug.Log("collided with player");
+            Debug.Log("Interactable ready");
         }
     }
 }

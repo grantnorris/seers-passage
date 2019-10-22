@@ -74,6 +74,7 @@ public class PlayerControl : MonoBehaviour
         Vector2 hitLocation = hit.transform.position;
         float hitDistance = Vector2.Distance(raycastOrigin, hitLocation);
 
+        // If the hit is not an adjacent tile, then move towards it
         if (hitDistance > 1f) {
             targetPos = new Vector2(hitLocation.x + xAdjustment, hitLocation.y + yAdjustment);
 
@@ -103,6 +104,21 @@ public class PlayerControl : MonoBehaviour
                 // If no animator just start moving
                 moving = true;
             }
+        } else if (anim != null) {
+            // Face the direction without moving
+            int directionInt = 0;
+
+            if (direction == "up") {
+                directionInt = 1;
+            } else if (direction == "right") {
+                directionInt = 2;
+            } else if (direction == "down") {
+                directionInt = 3;
+            } else if (direction == "left") {
+                directionInt = 4;
+            }
+
+            anim.SetInteger("directionFacing", directionInt);
         }
     }
 }
