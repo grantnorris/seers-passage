@@ -7,10 +7,12 @@ public class PlayerControl : MonoBehaviour
     public float moveSpeed = 3f;
     public bool moving     = false;
     public bool allowInput = false;
-
     public Animator anim;
     public Animator shadowAnim;
+    public GameObject interactNotice;
+
     Vector3 targetPos;
+    
 
     void Start() {
         allowInput = true;
@@ -119,6 +121,13 @@ public class PlayerControl : MonoBehaviour
             }
 
             anim.SetInteger("directionFacing", directionInt);
+
+            // If the hit tile is interactable
+            Interactable hitInteractable = hit.transform.gameObject.GetComponent<Interactable>();
+
+            if (hitInteractable != null) {
+                hitInteractable.Interact();
+            }
         }
     }
 }
