@@ -353,6 +353,10 @@ MonoBehaviour:
     color: {r: 0.74509805, g: 0.26666668, b: 0.26666668, a: 1}
     prefab: {fileID: 5238897810970912973, guid: 08c5d9c2d9f3f4efe9e0df8362fefd1e,
       type: 3}
+  - name: Flame Spawn
+    color: {r: 0, g: 0.8235294, b: 1, a: 1}
+    prefab: {fileID: 5577575902467771462, guid: 94055102183054b3fa65ed77f99b52e5,
+      type: 3}
 --- !u!4 &700628538
 Transform:
   m_ObjectHideFlags: 0

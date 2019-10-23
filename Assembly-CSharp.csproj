@@ -46,7 +46,9 @@
   </PropertyGroup>
   <ItemGroup>     <Compile Include="Assets\Scripts\BuildMap.cs" />
      <Compile Include="Assets\Scripts\ColorToTile.cs" />
-     <Compile Include="Assets\Scripts\Interactable.cs" />
+     <Compile Include="Assets\Scripts\Interactable\ExitInteractable.cs" />
+     <Compile Include="Assets\Scripts\Interactable\Interactable.cs" />
+     <Compile Include="Assets\Scripts\Interactable\LightInteractable.cs" />
      <Compile Include="Assets\Scripts\LightSource.cs" />
      <Compile Include="Assets\Scripts\PlayerControl.cs" />
      <Compile Include="Assets\Scripts\PlayerSpawn.cs" />
