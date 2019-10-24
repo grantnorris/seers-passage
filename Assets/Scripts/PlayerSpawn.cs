@@ -14,7 +14,7 @@ public class PlayerSpawn : MonoBehaviour
 
             if (player != null) {
                 GameObject playerInstance = Instantiate(player, transform.position, Quaternion.identity);
-                GameManager.instance.player = player;
+                GameManager.instance.player = playerInstance;
 
                 PlayerControl playerControl = playerInstance.GetComponent<PlayerControl>();
 

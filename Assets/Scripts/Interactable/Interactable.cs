@@ -16,7 +16,14 @@ public class Interactable : MonoBehaviour
                 GameObject interactNotice = playerScript.interactNotice;
 
                 if (interactNotice != null) {
+                    Animator interactNoticeAnim = interactNotice.GetComponent<Animator>();
+
                     interactNotice.SetActive(true);
+
+                    if (interactNoticeAnim != null) {
+                        interactNoticeAnim.SetTrigger("open");
+                        Debug.Log("Open interact notice");
+                    }
                 }
             }
         }

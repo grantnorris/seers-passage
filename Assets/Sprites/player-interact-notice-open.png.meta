@@ -1,19 +1,16 @@
 fileFormatVersion: 2
-guid: 9bbce688637524653944ff73c0076e4f
+guid: aba8d08c4e07940b9a8bbfe61860d5dd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5888484867685002752
-    second: light-remove_0
+      213: -2386758021625506503
+    second: player-interact-notice-open_0
   - first:
-      213: -1214437537224290191
-    second: light-remove_1
+      213: -5994757772488100341
+    second: player-interact-notice-open_1
   - first:
-      213: -531224798873074972
-    second: light-remove_2
-  - first:
-      213: 9066596596554998358
-    second: light-remove_3
+      213: -2612020787326510798
+    second: player-interact-notice-open_2
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -110,7 +107,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: light-remove_0
+      name: player-interact-notice-open_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +121,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7cd8345f61ebc402686846a735207ced
-      internalID: -5888484867685002752
+      spriteID: 5c88434e3f75d43478db6064cb104222
+      internalID: -2386758021625506503
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: light-remove_1
+      name: player-interact-notice-open_1
       rect:
         serializedVersion: 2
         x: 16
@@ -145,14 +142,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c9c9d64c2ef7847aeaf3431cb3688be8
-      internalID: -1214437537224290191
+      spriteID: 7853b7836f5ab433cb519f863539a045
+      internalID: -5994757772488100341
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: light-remove_2
+      name: player-interact-notice-open_2
       rect:
         serializedVersion: 2
         x: 32
@@ -166,29 +163,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e210bbe5db6b4589ab10596fa5f0035
-      internalID: -531224798873074972
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: light-remove_3
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 582f4e31a2a5240baa94f189d79692a1
-      internalID: 9066596596554998358
+      spriteID: 2e82d5e29178548ab9c17a9844cb984c
+      internalID: -2612020787326510798
       vertices: []
       indices: 
       edges: []
