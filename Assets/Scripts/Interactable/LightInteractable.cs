@@ -13,6 +13,10 @@ public class LightInteractable : Interactable
     public override void Interact() {
         if (anim != null) {
             anim.SetTrigger("remove");
+
+            if (GameManager.instance.playerControl != null) {
+                GameManager.instance.playerControl.ExpandLightRadius();
+            }
         }
     }
 

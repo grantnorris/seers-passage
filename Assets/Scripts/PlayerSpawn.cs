@@ -13,7 +13,14 @@ public class PlayerSpawn : MonoBehaviour
             instance = this;
 
             if (player != null) {
-                Instantiate(player, transform.position, Quaternion.identity);
+                GameObject playerInstance = Instantiate(player, transform.position, Quaternion.identity);
+                GameManager.instance.player = player;
+
+                PlayerControl playerControl = playerInstance.GetComponent<PlayerControl>();
+
+                if (playerControl != null) {
+                    GameManager.instance.playerControl = playerControl;
+                }
             }
         }
     }

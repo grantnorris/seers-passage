@@ -10,12 +10,17 @@ public class PlayerControl : MonoBehaviour
     public Animator anim;
     public Animator shadowAnim;
     public GameObject interactNotice;
+    public bool lowLight = true;
 
     Vector3 targetPos;
     
 
     void Start() {
         allowInput = true;
+
+        if (shadowAnim != null) {
+            shadowAnim.SetBool("lowLight", true);
+        }
     }
 
     // Update is called once per frame
@@ -26,9 +31,12 @@ public class PlayerControl : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * moveSpeed);
             } else {
                 anim.SetTrigger("stopMoving");
-                shadowAnim.SetBool("lowLight", false);
                 allowInput = true;
                 moving     = false;
+
+                if (shadowAnim != null && !lowLight) {
+                    shadowAnim.SetBool("lowLight", false);
+                }
             }
         } else if (allowInput) {
             if (Input.GetKeyDown("left")) {
@@ -98,10 +106,9 @@ public class PlayerControl : MonoBehaviour
                 anim.SetTrigger("startMoving");
                 anim.SetBool("moving", true);
 
-                if (shadowAnim != null) {
+                if (shadowAnim != null && !lowLight) {
                     shadowAnim.SetBool("lowLight", true);
                 }
-                
             } else {
                 // If no animator just start moving
                 moving = true;
@@ -122,14 +129,20 @@ public class PlayerControl : MonoBehaviour
 
             anim.SetInteger("directionFacing", directionInt);
 
-            Debug.Log("DUN");
-
             // If the hit tile is interactable
             Interactable hitInteractable = hit.transform.gameObject.GetComponent<Interactable>();
 
             if (hitInteractable != null) {
                 hitInteractable.Interact();
             }
+        }
+    }
+
+    public void ExpandLightRadius() {
+        lowLight = false;
+
+        if (shadowAnim != null) {
+            shadowAnim.SetBool("lowLight", false);
         }
     }
 }

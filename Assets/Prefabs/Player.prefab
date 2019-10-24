@@ -171,6 +171,7 @@ MonoBehaviour:
   anim: {fileID: 6474503902810972871}
   shadowAnim: {fileID: 3192679501234720991}
   interactNotice: {fileID: 5375022722324274193}
+  lowLight: 1
 --- !u!50 &7711198450642222242
 Rigidbody2D:
   serializedVersion: 4
