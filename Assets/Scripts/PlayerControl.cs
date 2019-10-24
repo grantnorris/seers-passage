@@ -31,13 +31,13 @@ public class PlayerControl : MonoBehaviour
                 moving     = false;
             }
         } else if (allowInput) {
-            if (Input.GetAxis("Horizontal") < 0) {
+            if (Input.GetKeyDown("left")) {
                 Move("left");
-            } else if (Input.GetAxis("Horizontal") > 0) {
+            } else if (Input.GetKeyDown("right")) {
                 Move("right");
-            } else if (Input.GetAxis("Vertical") > 0) {
+            } else if (Input.GetKeyDown("up")) {
                 Move("up");
-            } else if (Input.GetAxis("Vertical") < 0) {
+            } else if (Input.GetKeyDown("down")) {
                 Move("down");
             }
         }
@@ -121,6 +121,8 @@ public class PlayerControl : MonoBehaviour
             }
 
             anim.SetInteger("directionFacing", directionInt);
+
+            Debug.Log("DUN");
 
             // If the hit tile is interactable
             Interactable hitInteractable = hit.transform.gameObject.GetComponent<Interactable>();

@@ -4,7 +4,19 @@ using UnityEngine;
 
 public class LightInteractable : Interactable
 {
+    Animator anim;
+
+    void Start() {
+        anim = GetComponent<Animator>();
+    }
+
     public override void Interact() {
-        Debug.Log("Interact with light!");
+        if (anim != null) {
+            anim.SetTrigger("remove");
+        }
+    }
+
+    public void Remove() {
+        gameObject.SetActive(false);
     }
 }

@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 6442342302825288439}
   - component: {fileID: 8139296694955690396}
   - component: {fileID: 2867042199749412405}
-  - component: {fileID: 1869641313834803600}
-  - component: {fileID: -8780555564509976961}
   m_Layer: 0
   m_Name: lightSpawn
   m_TagString: Floor
@@ -31,7 +29,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 832903575057077420}
+  - {fileID: 6513944659364919187}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -108,45 +106,7 @@ MonoBehaviour:
   lightingDown: {fileID: 0}
   lightingLeft: {fileID: 0}
   lightingRight: {fileID: 0}
---- !u!61 &1869641313834803600
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5577575902467771462}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!114 &-8780555564509976961
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5577575902467771462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f420ab98e4e044fa8beaabe35c59884, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1001 &4200659646701723074
+--- !u!1001 &7755905501214867197
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -216,13 +176,13 @@ PrefabInstance:
     - target: {fileID: 3586181222119197039, guid: 537f368c9d4c5410492e2b46128f2a26,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 537f368c9d4c5410492e2b46128f2a26, type: 3}
---- !u!4 &832903575057077420 stripped
+--- !u!4 &6513944659364919187 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3586181222119197038, guid: 537f368c9d4c5410492e2b46128f2a26,
     type: 3}
-  m_PrefabInstance: {fileID: 4200659646701723074}
+  m_PrefabInstance: {fileID: 7755905501214867197}
   m_PrefabAsset: {fileID: 0}
