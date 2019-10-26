@@ -141,6 +141,10 @@ public class PlayerControl : MonoBehaviour
     public void ExpandLightRadius() {
         lowLight = false;
 
+        if (anim != null) {
+            anim.SetBool("hasLight", true);
+        }
+
         if (shadowAnim != null) {
             shadowAnim.SetBool("lowLight", false);
         }
