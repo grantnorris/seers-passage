@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class TileDisplay : MonoBehaviour
 {
     public Tile[] neutralTiles;
@@ -22,6 +23,8 @@ public class TileDisplay : MonoBehaviour
         if (rend == null) {
             rend = GetComponent<SpriteRenderer>();
         }
+
+        Initialise();
     }
 
     public void Initialise() {
@@ -39,8 +42,12 @@ public class TileDisplay : MonoBehaviour
             BuildMap buildMap = BuildMap.instance;
 
             if (gameObject.tag != "Floor" && buildMap != null) {
+                Debug.Log("LIGH~T");
+
                 // Check to see if a wall is above
                 GameObject tileUp = buildMap.GetTileByLocation(position.x, position.y + 1);
+
+                Debug.Log("tile up = " + tileUp);
 
                 if (tileUp != null && tileUp.tag == "Floor") {
                     lightingUp.SetActive(true);
@@ -84,7 +91,7 @@ public class TileDisplay : MonoBehaviour
                 // Setup tile sprites
                 rend.sprite = tile.mainSprite;
 
-                rend.material.mainTexture = tile.mainSprite.texture;
+                rend.sharedMaterial.mainTexture = tile.mainSprite.texture;
 
                 if (acceptsLight) {
                     lightingUp.GetComponent<SpriteRenderer>().sprite    = tile.lightSourceUp;

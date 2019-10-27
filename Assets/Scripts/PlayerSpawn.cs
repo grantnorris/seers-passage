@@ -8,7 +8,7 @@ public class PlayerSpawn : MonoBehaviour
 
     public GameObject player;
 
-    void Awake() {
+    void Start() {
         if (instance == null) {
             instance = this;
 

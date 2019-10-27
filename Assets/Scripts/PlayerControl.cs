@@ -13,13 +13,17 @@ public class PlayerControl : MonoBehaviour
     public bool lowLight = true;
 
     Vector3 targetPos;
-    
+    PlayerInteractNotice interactNoticeScript;
 
     void Start() {
         allowInput = true;
 
         if (shadowAnim != null) {
             shadowAnim.SetBool("lowLight", true);
+        }
+
+        if (interactNotice != null) {
+            interactNoticeScript = interactNotice.GetComponent<PlayerInteractNotice>();
         }
     }
 
@@ -147,6 +151,22 @@ public class PlayerControl : MonoBehaviour
 
         if (shadowAnim != null) {
             shadowAnim.SetBool("lowLight", false);
+        }
+    }
+
+    public void OnTriggerEnter2D(Collider2D other) {
+        if (other.tag == "Interactable") {
+            if (interactNoticeScript != null) {
+                interactNoticeScript.Open();
+            }
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other) {
+        if (other.tag == "Interactable") {
+            if (interactNoticeScript != null) {
+                interactNoticeScript.Close();
+            }
         }
     }
 }

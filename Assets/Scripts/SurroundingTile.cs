@@ -17,6 +17,10 @@ public class SurroundingTile : MonoBehaviour
         rend = GetComponent<SpriteRenderer>();
     }
 
+    void Start() {
+        Initialise();
+    }
+
     public void Initialise() {
         if (neutralSprites.Length > 0) {
             sprite = neutralSprites[Random.Range(0, neutralSprites.Length)];

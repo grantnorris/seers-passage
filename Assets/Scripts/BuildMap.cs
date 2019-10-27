@@ -11,22 +11,37 @@ public class BuildMap : MonoBehaviour
 
     public Texture2D map;
     public ColorToTile[] colorMappings;
-    
-    List<TileByLocation> tiles = new List<TileByLocation>();
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    Transform tileParent;
+    
+    public List<TileByLocation> tiles = new List<TileByLocation>();
+
+    void Awake() {
         // Instance setup
         if (BuildMap.instance == null) {
             BuildMap.instance = this;
         }
+    }
 
+    // Start is called before the first frame update
+    void Start()
+    {
+        // Setup mapBuilt event
+        if (mapBuilt == null) {
+            mapBuilt = new UnityEvent();
+        }
+
+        // If there is no parent set, make this the parent
+        if (tileParent == null) {
+            tileParent = transform;
+        }
+    }
+
+    public void Build() {
         if (map != null && colorMappings.Length > 0) {
-            // Setup mapBuilt event
-            if (mapBuilt == null) {
-                mapBuilt = new UnityEvent();
-            }
+            // Set up parent for instantiated tiles
+            tileParent = new GameObject("Tiles").transform;
+            tileParent.SetParent(transform);
 
             // Loop through map pixels and place tiles
             for (int y = 0; y < map.height; y++) {
@@ -39,6 +54,16 @@ public class BuildMap : MonoBehaviour
             if (mapBuilt != null) {
                 mapBuilt.Invoke();
             }
+        }
+    }
+
+    public void Remove() {
+        if (tileParent != null) {
+            DestroyImmediate(tileParent.gameObject);
+        }
+
+        if (tiles.Count > 0) {
+            tiles.Clear();
         }
     }
 
@@ -58,7 +83,7 @@ public class BuildMap : MonoBehaviour
                     colorMapping.prefab,
                     new Vector3(x, y, 0),
                     Quaternion.identity,
-                    transform
+                    tileParent
                 );
                 
                 // Name tile
@@ -87,6 +112,7 @@ public class BuildMap : MonoBehaviour
     }
 }
 
+[System.Serializable]
 public class TileByLocation {
     public GameObject obj;
     public int x;
