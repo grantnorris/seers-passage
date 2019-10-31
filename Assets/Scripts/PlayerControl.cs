@@ -12,6 +12,8 @@ public class PlayerControl : MonoBehaviour
     public GameObject interactNotice;
     public bool lowLight = true;
 
+    CameraShake cameraShake;
+
     Vector3 targetPos;
     PlayerInteractNotice interactNoticeScript;
 
@@ -25,6 +27,8 @@ public class PlayerControl : MonoBehaviour
         if (interactNotice != null) {
             interactNoticeScript = interactNotice.GetComponent<PlayerInteractNotice>();
         }
+
+        cameraShake = Camera.main.GetComponent<CameraShake>();
     }
 
     // Update is called once per frame
@@ -138,6 +142,12 @@ public class PlayerControl : MonoBehaviour
 
             if (hitInteractable != null) {
                 hitInteractable.Interact();
+            } else {
+                // We are moving into a wall, shake the camera
+                if (cameraShake != null) {
+                    Debug.Log("Shake camera ( player control )");
+                    StartCoroutine(cameraShake.Shake(.1f, .1f));
+                }
             }
         }
     }
