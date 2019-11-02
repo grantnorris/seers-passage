@@ -12,8 +12,6 @@ public class PlayerControl : MonoBehaviour
     public GameObject interactNotice;
     public bool lowLight = true;
 
-    CameraShake cameraShake;
-
     Vector3 targetPos;
     PlayerInteractNotice interactNoticeScript;
 
@@ -27,8 +25,6 @@ public class PlayerControl : MonoBehaviour
         if (interactNotice != null) {
             interactNoticeScript = interactNotice.GetComponent<PlayerInteractNotice>();
         }
-
-        cameraShake = Camera.main.GetComponent<CameraShake>();
     }
 
     // Update is called once per frame
@@ -121,6 +117,10 @@ public class PlayerControl : MonoBehaviour
                 // If no animator just start moving
                 moving = true;
             }
+
+            if (GameManager.instance != null) {
+                GameManager.instance.IncrementStepCount();
+            }
         } else if (anim != null) {
             // Face the direction without moving
             int directionInt = 0;
@@ -144,9 +144,8 @@ public class PlayerControl : MonoBehaviour
                 hitInteractable.Interact();
             } else {
                 // We are moving into a wall, shake the camera
-                if (cameraShake != null) {
-                    Debug.Log("Shake camera ( player control )");
-                    StartCoroutine(cameraShake.Shake(.1f, .1f));
+                if (CameraShake.instance != null) {
+                    StartCoroutine(CameraShake.instance.Shake(.1f, .1f));
                 }
             }
         }

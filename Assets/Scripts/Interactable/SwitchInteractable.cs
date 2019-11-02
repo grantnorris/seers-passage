@@ -8,8 +8,6 @@ public class SwitchInteractable : Interactable
     public GameObject target;
 
     public override void Interact() {
-        Debug.Log("interact with switch");
-
         if (anim != null) {
             anim.SetTrigger("interact");
         }
@@ -17,7 +15,13 @@ public class SwitchInteractable : Interactable
         if (target != null) {
             if (target.GetComponent<Gate>()) {
                 // Target is gate tile type
+                // Run animation
                 target.GetComponent<Gate>().Activate();
+                
+                // Shake the camera
+                if (CameraShake.instance != null) {
+                    StartCoroutine(CameraShake.instance.Shake(.8f, .05f));
+                }
             }
         }
     }
