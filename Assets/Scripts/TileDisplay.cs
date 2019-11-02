@@ -42,12 +42,8 @@ public class TileDisplay : MonoBehaviour
             BuildMap buildMap = BuildMap.instance;
 
             if (gameObject.tag != "Floor" && buildMap != null) {
-                Debug.Log("LIGH~T");
-
                 // Check to see if a wall is above
                 GameObject tileUp = buildMap.GetTileByLocation(position.x, position.y + 1);
-
-                Debug.Log("tile up = " + tileUp);
 
                 if (tileUp != null && tileUp.tag == "Floor") {
                     lightingUp.SetActive(true);

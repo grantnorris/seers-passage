@@ -9,7 +9,6 @@ public class PlayerVisual : MonoBehaviour
     public void MoveAfterAnimation() {
         if (playerControl != null) {
             playerControl.moving = true;
-            Debug.Log("start moving");
         }
     }
 
@@ -17,7 +16,6 @@ public class PlayerVisual : MonoBehaviour
         if (playerControl != null) {
             playerControl.moving = false;
             playerControl.anim.SetBool("moving", false);
-            Debug.Log("start moving");
         }
     }
 }

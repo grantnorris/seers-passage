@@ -14,13 +14,17 @@ public class SwitchInteractable : Interactable
 
         if (target != null) {
             if (target.GetComponent<Gate>()) {
+                float animationDuration = .8f;
+
                 // Target is gate tile type
                 // Run animation
                 target.GetComponent<Gate>().Activate();
+
+                StartCoroutine(GameManager.instance.DisablePlayerControlForDuraction(animationDuration));
                 
                 // Shake the camera
                 if (CameraShake.instance != null) {
-                    StartCoroutine(CameraShake.instance.Shake(.8f, .05f));
+                    StartCoroutine(CameraShake.instance.Shake(animationDuration, .05f));
                 }
             }
         }

@@ -42,7 +42,7 @@ public class PlayerControl : MonoBehaviour
                     shadowAnim.SetBool("lowLight", false);
                 }
             }
-        } else if (allowInput) {
+        } else if (allowInput && GameManager.instance.playerControllable) {
             if (Input.GetKeyDown("left")) {
                 Move("left");
             } else if (Input.GetKeyDown("right")) {
