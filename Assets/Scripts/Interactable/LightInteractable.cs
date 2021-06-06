@@ -21,6 +21,8 @@ public class LightInteractable : Interactable
     }
 
     public void Remove() {
-        // gameObject.SetActive(false);
+        this.enabled = false;
+        gameObject.tag = "Untagged";
+        GameManager.instance.playerControl.CloseInteractNotice();
     }
 }

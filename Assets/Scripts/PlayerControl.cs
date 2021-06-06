@@ -168,18 +168,28 @@ public class PlayerControl : MonoBehaviour
     // Display interation notice on trigger enter
     public void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Interactable") {
-            if (interactNoticeScript != null) {
-                interactNoticeScript.Open();
-            }
+            OpenInteractNotice();
         }
     }
 
     // Hide interation notice on trigger enter
     void OnTriggerExit2D(Collider2D other) {
         if (other.tag == "Interactable") {
-            if (interactNoticeScript != null) {
-                interactNoticeScript.Close();
-            }
+            CloseInteractNotice();
+        }
+    }
+
+    // Open interaction notice
+    public void OpenInteractNotice() {
+        if (interactNoticeScript != null) {
+            interactNoticeScript.Open();
+        }
+    }
+
+    // Close interaction notice
+    public void CloseInteractNotice() {
+        if (interactNoticeScript != null) {
+            interactNoticeScript.Close();
         }
     }
 }
