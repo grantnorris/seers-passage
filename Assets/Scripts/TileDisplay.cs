@@ -27,6 +27,7 @@ public class TileDisplay : MonoBehaviour
         Initialise();
     }
 
+    // Initialise by assigning lightsources and tile
     public void Initialise() {
         if (rend == null) {
             rend = GetComponent<SpriteRenderer>();
@@ -36,6 +37,7 @@ public class TileDisplay : MonoBehaviour
         AssignTile();
     }
 
+    // Enable directional light sources based on the surrounding tiles
     void EnableLightSources() {
         if (acceptsLight) {
             Vector2 position  = transform.position;
@@ -74,6 +76,7 @@ public class TileDisplay : MonoBehaviour
         }
     }
 
+    // Assign tile sprites based on surrounding tiles
     void AssignTile() {
         if (rend != null) {
             // Get a tile visual 

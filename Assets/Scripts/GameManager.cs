@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Increase the player's step count by 1
     public void IncrementStepCount() {
         playerStepCount++;
 
@@ -27,7 +28,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public IEnumerator DisablePlayerControlForDuraction(float duration) {
+    // Disable player inputs for a given durations
+    public IEnumerator DisablePlayerControlForDuration(float duration) {
         if (duration > 0f) {
             float elapsed = 0f;
 

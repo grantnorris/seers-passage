@@ -55,6 +55,7 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+    // Move in a given direction
     void Move(string direction) {
         Vector2 raycastDirection = Vector2.zero;
 
@@ -151,6 +152,7 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+    // Expand the light radius of the player
     public void ExpandLightRadius() {
         lowLight = false;
 
@@ -163,6 +165,7 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+    // Display interation notice on trigger enter
     public void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Interactable") {
             if (interactNoticeScript != null) {
@@ -171,6 +174,7 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+    // Hide interation notice on trigger enter
     void OnTriggerExit2D(Collider2D other) {
         if (other.tag == "Interactable") {
             if (interactNoticeScript != null) {

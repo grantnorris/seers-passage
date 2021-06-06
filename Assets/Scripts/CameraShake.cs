@@ -13,6 +13,7 @@ public class CameraShake : MonoBehaviour
         }
     }
 
+    // Shake the camera by a given amount for a specified duration
     public IEnumerator Shake(float duration, float magnitude) {
         Vector3 originPos = transform.position;
         float elapsed     = 0f;

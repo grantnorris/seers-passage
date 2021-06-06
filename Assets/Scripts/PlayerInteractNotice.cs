@@ -13,12 +13,14 @@ public class PlayerInteractNotice : MonoBehaviour
         }
     }
 
+    // Run open animation for visual
     public void Open() {
         if (visual != null) {
             anim.SetTrigger("open");
         }
     }
 
+    // Run close animation for visual
     public void Close() {
         if (visual != null && anim != null) {
             anim.SetTrigger("close");

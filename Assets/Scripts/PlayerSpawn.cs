@@ -5,23 +5,27 @@ using UnityEngine;
 public class PlayerSpawn : MonoBehaviour
 {
     public static PlayerSpawn instance;
-
     public GameObject player;
 
     void Start() {
-        if (instance == null) {
-            instance = this;
+        if (instance != null) {
+            return;
+        }
 
-            if (player != null) {
-                GameObject playerInstance = Instantiate(player, transform.position, Quaternion.identity);
-                GameManager.instance.player = playerInstance;
+        instance = this;
 
-                PlayerControl playerControl = playerInstance.GetComponent<PlayerControl>();
+        CreatePlayer();
+    }
 
-                if (playerControl != null) {
-                    GameManager.instance.playerControl = playerControl;
-                }
-            }
+    // Create player gameobject
+    void CreatePlayer() {
+        GameObject playerInstance = Instantiate(player, transform.position, Quaternion.identity);
+        GameManager.instance.player = playerInstance;
+
+        PlayerControl playerControl = playerInstance.GetComponent<PlayerControl>();
+
+        if (playerControl != null) {
+            GameManager.instance.playerControl = playerControl;
         }
     }
 }

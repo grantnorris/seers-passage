@@ -12,7 +12,8 @@ public class Gate : MonoBehaviour
     void Start() {
         col = GetComponent<Collider2D>();
     }
-
+    
+    // Toggle activated state of gate
     public void Activate() {
         if (!active) {
             if (anim != null) {

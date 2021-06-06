@@ -16,8 +16,8 @@ public class BuildMap : MonoBehaviour
 
     void Awake() {
         // Instance setup
-        if (BuildMap.instance == null) {
-            BuildMap.instance = this;
+        if (instance == null) {
+            instance = this;
         }
     }
 

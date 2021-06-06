@@ -20,7 +20,7 @@ public class SwitchInteractable : Interactable
                 // Run animation
                 target.GetComponent<Gate>().Activate();
 
-                StartCoroutine(GameManager.instance.DisablePlayerControlForDuraction(animationDuration));
+                StartCoroutine(GameManager.instance.DisablePlayerControlForDuration(animationDuration));
                 
                 // Shake the camera
                 if (CameraShake.instance != null) {

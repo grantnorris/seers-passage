@@ -21,6 +21,7 @@ public class SurroundingTile : MonoBehaviour
         Initialise();
     }
 
+    // Initialise
     public void Initialise() {
         if (neutralSprites.Length > 0) {
             sprite = neutralSprites[Random.Range(0, neutralSprites.Length)];
