@@ -58,8 +58,10 @@ public class BuildMap : MonoBehaviour
     }
 
     public void Remove() {
-        if (tileParent != null) {
-            DestroyImmediate(tileParent.gameObject);
+        foreach (Transform child in transform) {
+            if (child.name == "Tiles")     {
+                DestroyImmediate(child.gameObject);
+            }
         }
 
         if (tiles.Count > 0) {
