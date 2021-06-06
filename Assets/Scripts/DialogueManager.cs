@@ -40,8 +40,17 @@ public class DialogueManager : MonoBehaviour
         dialogueBox.SetActive(true);
 
         string sentence = sentences.Dequeue();
+        StartCoroutine("TypeSentence", sentence);
+    }
 
-        DialogueText.text = sentence;
+    // Type sentence into dialogue box
+    IEnumerator TypeSentence(string sentence) {
+        DialogueText.text = "";
+
+        foreach (char letter in sentence.ToCharArray()) {
+            DialogueText.text += letter;
+            yield return null;
+        }
     }
 
     // End dialogue
