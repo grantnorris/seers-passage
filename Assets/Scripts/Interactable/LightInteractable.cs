@@ -21,6 +21,6 @@ public class LightInteractable : Interactable
     }
 
     public void Remove() {
-        gameObject.SetActive(false);
+        // gameObject.SetActive(false);
     }
 }
