@@ -93,7 +93,7 @@ public class BuildMap : MonoBehaviour
                 );
                 
                 // Name tile
-                tile.name = x + ", " + y;
+                tile.name = x + ", " + y + " - " + colorMapping.name;
 
                 // Subscribe to mapBuilt event
                 if (tile.GetComponent<TileDisplay>() != null) {
