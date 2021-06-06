@@ -35,12 +35,22 @@ public class GameManager : MonoBehaviour
 
             while (duration > elapsed) { 
                 elapsed += Time.deltaTime;
-                playerControllable = false;
+                DisablePlayerControl();
 
                 yield return null;
             }
 
-            playerControllable = true;
+            EnablePlayerControl();
         }
+    }
+
+    // Disable player inputs
+    public void DisablePlayerControl() {
+        playerControllable = false;
+    }
+
+    // Enable player inputs
+    public void EnablePlayerControl() {
+        playerControllable = true;
     }
 }

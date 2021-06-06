@@ -21,6 +21,7 @@ public class DialogueManager : MonoBehaviour
     // Start dialogue
     public void StartDialogue(Dialogue dialogue) {
         sentences.Clear();
+        GameManager.instance.DisablePlayerControl();
 
         foreach (string sentence in dialogue.sentences) {
             sentences.Enqueue(sentence.ToUpper());
@@ -45,7 +46,7 @@ public class DialogueManager : MonoBehaviour
 
     // End dialogue
     void EndDialogue() {
-        Debug.Log("end dialogue");
         dialogueBox.SetActive(false);
+        GameManager.instance.EnablePlayerControl();
     }
 }
