@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Events;
 using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
@@ -12,11 +13,18 @@ public class PlayerControl : MonoBehaviour
     public GameObject interactNotice;
     public bool lowLight = true;
 
+    public UnityEvent finishMoving;
+
     Vector3 targetPos;
     PlayerInteractNotice interactNoticeScript;
 
     void Start() {
         allowInput = true;
+        finishMoving = new UnityEvent();
+        
+        if (GameManager.instance != null) {
+            finishMoving.AddListener(GameManager.instance.IncrementStepCount);
+        }
 
         if (shadowAnim != null) {
             shadowAnim.SetBool("lowLight", true);
@@ -40,6 +48,10 @@ public class PlayerControl : MonoBehaviour
 
                 if (shadowAnim != null && !lowLight) {
                     shadowAnim.SetBool("lowLight", false);
+                }
+
+                if (finishMoving != null) {
+                    finishMoving.Invoke();
                 }
             }
         } else if (allowInput && GameManager.instance.playerControllable) {
@@ -117,10 +129,6 @@ public class PlayerControl : MonoBehaviour
             } else {
                 // If no animator just start moving
                 moving = true;
-            }
-
-            if (GameManager.instance != null) {
-                GameManager.instance.IncrementStepCount();
             }
         } else if (anim != null) {
             // Face the direction without moving

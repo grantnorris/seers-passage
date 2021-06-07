@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName="New Tile", menuName="Tile")]
 public class Tile : ScriptableObject
 {
-    public string name;
+    public new string name;
     public string type;
     public Sprite mainSprite;
     public Sprite lightSourceUp;

@@ -21,10 +21,24 @@ public class GameManager : MonoBehaviour
 
     // Increase the player's step count by 1
     public void IncrementStepCount() {
+        int perfectSteps = 7;
+        int goodSteps = 14;
+        int badSteps = 21;
         playerStepCount++;
 
         if (playerStepCountTxt != null) {
             playerStepCountTxt.text = playerStepCount.ToString();
+        }
+
+        if (playerStepCount == perfectSteps && DialogueManager.instance != null) {
+            Dialogue dialogue = new Dialogue(new string[] {"An uneasy presence washes over you."});
+            DialogueManager.instance.StartDialogue(dialogue);
+        } else if (playerStepCount == goodSteps) {
+            Dialogue dialogue = new Dialogue(new string[] {"A pressuring presence weighs you down."});
+            DialogueManager.instance.StartDialogue(dialogue);
+        } else if (playerStepCount == badSteps) {
+            Dialogue dialogue = new Dialogue(new string[] {"A suffocating presence consumes you."});
+            DialogueManager.instance.StartDialogue(dialogue);
         }
     }
 
