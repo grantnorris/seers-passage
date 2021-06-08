@@ -9,6 +9,7 @@ public class DialogueManager : MonoBehaviour
 
     public GameObject dialogueBox;
     public Text DialogueText;
+    public DialogueType[] types;
 
     Queue<string> sentences = new Queue<string>();
 
@@ -25,6 +26,19 @@ public class DialogueManager : MonoBehaviour
 
         foreach (string sentence in dialogue.sentences) {
             sentences.Enqueue(sentence.ToUpper());
+        }
+
+        DialogueType dialogueType = null;
+
+        foreach (DialogueType type in types) {
+            if (type.name == dialogue.type) {
+                dialogueType = type;
+                break;
+            }
+        }
+
+        if (dialogueType != null) {
+            dialogueBox.GetComponent<Image>().sprite = dialogueType.ui;
         }
 
         DisplayNextSentence();
@@ -58,4 +72,10 @@ public class DialogueManager : MonoBehaviour
         dialogueBox.SetActive(false);
         GameManager.instance.EnablePlayerControl();
     }
+}
+
+[System.Serializable]
+public class DialogueType {
+    public string name;
+    public Sprite ui;
 }
