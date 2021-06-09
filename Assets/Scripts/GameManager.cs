@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,33 +11,52 @@ public class GameManager : MonoBehaviour
     public bool playerControllable = false;
 
     int playerStepCount = 0;
+    PlayerHealth playerHealth;
 
     void Awake() {
         if (instance == null) {
             instance = this;
         }
+
+        playerHealth = GetComponent<PlayerHealth>();
     }
 
     // Increase the player's step count by 1
     public void IncrementStepCount() {
-        int perfectSteps = 7;
-        int goodSteps = 14;
-        int badSteps = 21;
+        int perfectSteps = 4;
+        int goodSteps = 6;
+        int badSteps = 8;
         playerStepCount++;
 
         if (playerStepCountTxt != null) {
             playerStepCountTxt.text = playerStepCount.ToString();
         }
 
-        if (playerStepCount == perfectSteps && DialogueManager.instance != null) {
+        if (DialogueManager.instance == null) {
+            return;
+        }
+
+        if (playerStepCount == perfectSteps) {
             Dialogue dialogue = new Dialogue(new string[] {"An uneasy presence washes over you."});
             DialogueManager.instance.StartDialogue(dialogue);
+
+            if (playerHealth != null) {
+                playerHealth.ReduceHealth();
+            }
         } else if (playerStepCount == goodSteps) {
             Dialogue dialogue = new Dialogue(new string[] {"A pressuring presence weighs you down."});
             DialogueManager.instance.StartDialogue(dialogue);
+
+            if (playerHealth != null) {
+                playerHealth.ReduceHealth();
+            }
         } else if (playerStepCount == badSteps) {
             Dialogue dialogue = new Dialogue(new string[] {"A suffocating presence consumes you."});
             DialogueManager.instance.StartDialogue(dialogue);
+
+            if (playerHealth != null) {
+                playerHealth.ReduceHealth();
+            }
         }
     }
 
