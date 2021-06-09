@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public Text playerStepCountTxt;
+    public TMP_Text playerStepCountTxt;
     public GameObject player;
     public PlayerControl playerControl;
     public bool playerControllable = false;
@@ -23,9 +24,9 @@ public class GameManager : MonoBehaviour
 
     // Increase the player's step count by 1
     public void IncrementStepCount() {
-        int perfectSteps = 4;
-        int goodSteps = 6;
-        int badSteps = 8;
+        int perfectSteps = 7;
+        int goodSteps = perfectSteps * 2;
+        int badSteps = perfectSteps * 3;
         playerStepCount++;
 
         if (playerStepCountTxt != null) {
