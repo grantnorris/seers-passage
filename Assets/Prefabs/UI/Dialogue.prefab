@@ -227,6 +227,7 @@ GameObject:
   m_Component:
   - component: {fileID: 190579491499516514}
   - component: {fileID: 190579491499516540}
+  - component: {fileID: 740569553155716071}
   m_Layer: 5
   m_Name: Dialogue
   m_TagString: Untagged
@@ -262,6 +263,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 190579491499516513}
   m_CullTransparentMesh: 1
+--- !u!114 &740569553155716071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190579491499516513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50d8a6ae080be4655a233ea217bba633, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loader: {fileID: 3421151898038716261}
+  box: {fileID: 190579491091063714}
+  text: {fileID: 190579491852829055}
+  arrow: {fileID: 190579491005685792}
 --- !u!1 &190579491561698978
 GameObject:
   m_ObjectHideFlags: 0

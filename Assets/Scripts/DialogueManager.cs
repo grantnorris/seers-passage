@@ -8,10 +8,12 @@ public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager instance;
 
-    public GameObject dialogueUI;
+    public GameObject dialogueParent;
     public DialogueType[] types;
 
-    GameObject dialogueBox;
+    GameObject dialogueUI;
+    DialogueUI dialogueScript;
+
 
     Queue<string> sentences = new Queue<string>();
 
@@ -19,15 +21,14 @@ public class DialogueManager : MonoBehaviour
         if (instance == null) {
             instance = this;
         }
-
-        dialogueUI.SetActive(false);
     }
 
     // Start dialogue
     public void StartDialogue(Dialogue dialogue) {
         sentences.Clear();
         GameManager.instance.DisablePlayerControl();
-        Destroy(dialogueBox);
+        dialogueParent.SetActive(true);
+        Debug.Log("Start dialogue");
 
         foreach (string sentence in dialogue.sentences) {
             sentences.Enqueue(sentence.ToUpper());
@@ -35,36 +36,44 @@ public class DialogueManager : MonoBehaviour
 
         DialogueType dialogueType = DialogueTypeByName(dialogue.type);
 
-        if (dialogueType != null) {
-            dialogueBox = Instantiate(dialogueType.dialogueBoxPrefab);
-            dialogueBox.transform.SetParent(dialogueUI.transform, false);
-        }
-
-        if (dialogueBox == null) {
+        if (dialogueType == null) {
             EndDialogue();
             return;
         }
+
+        dialogueUI = Instantiate(dialogueType.dialogueBoxPrefab);
+        dialogueUI.transform.SetParent(dialogueParent.transform, false);
+        dialogueScript = dialogueUI.GetComponent<DialogueUI>();
+
+        if (dialogueScript == null) {
+            Debug.Log("dialogueScript = null");
+        }
+
+        Debug.Log(dialogueScript);
 
         StartCoroutine("OpenDialogueBox");
     }
 
     // Wait for a small amount of time and then start the dialogue
     IEnumerator OpenDialogueBox() {
-        yield return new WaitForSeconds(.1f);
-        dialogueUI.SetActive(true);
+        dialogueParent.SetActive(true);
 
-        Transform loader = dialogueBox.transform.GetChild(0).Find("Dialogue Box Loader");
+        GameObject loader = dialogueScript.loader;
         RectTransform loaderRect = loader != null ? loader.GetComponent<RectTransform>() : null;
-        Transform dialogueBoxMain = dialogueBox.transform.GetChild(0).Find("Dialogue Box");
+        GameObject box = dialogueScript.box;
 
-        if (loader == null || loaderRect == null || dialogueBoxMain == null) {
+        if (loader == null || loaderRect == null || box == null) {
             DisplayNextSentence();
             yield break;
         }
 
+        loader.SetActive(true);
+        box.SetActive(false);
+
         Vector2 loaderSize = loaderRect.sizeDelta;
-        loader.gameObject.SetActive(true);
-        dialogueBoxMain.gameObject.SetActive(false);
+        loaderRect.sizeDelta = Vector2.zero;
+        
+        yield return new WaitForSeconds(.1f);
 
         float time = 0f;
         float speed = 4f;
@@ -72,13 +81,13 @@ public class DialogueManager : MonoBehaviour
         // Animate loader
         while (time < 1f) {
             time += Time.deltaTime * speed;
-            loaderRect.sizeDelta = Vector2.Lerp(new Vector2(0,0), loaderSize, time);
+            loaderRect.sizeDelta = Vector2.Lerp(Vector2.zero, loaderSize, time);
             yield return null;
         }
 
         // Swap loader out with actual dialogue box
         loader.gameObject.SetActive(false);
-        dialogueBoxMain.gameObject.SetActive(true);
+        box.gameObject.SetActive(true);
 
         DisplayNextSentence();
     }
@@ -90,7 +99,9 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        dialogueBox.SetActive(true);
+        dialogueParent.GetComponent<Button>().enabled = false;
+        dialogueUI.SetActive(true);
+        dialogueScript.arrow.SetActive(false);
 
         string sentence = sentences.Dequeue();
         StartCoroutine("TypeSentence", sentence);
@@ -98,10 +109,9 @@ public class DialogueManager : MonoBehaviour
 
     // Type sentence into dialogue box
     IEnumerator TypeSentence(string sentence) {
-        TMP_Text textUi = dialogueBox.GetComponentInChildren<TMP_Text>(true);
+        TMP_Text textUi = dialogueScript.text;
 
         if (textUi == null) {
-            Debug.Log("no text ui found");
             yield break;
         }
 
@@ -111,15 +121,25 @@ public class DialogueManager : MonoBehaviour
             textUi.text += letter;
             yield return new WaitForSeconds(0.025f);
         }
+
+        yield return new WaitForSeconds(0.25f);
+
+        AllowContinue();
+    }
+
+    // Enable continue button and display continue arrow graphic
+    void AllowContinue() {
+        dialogueScript.arrow.SetActive(true);
+        dialogueParent.GetComponent<Button>().enabled = true;
     }
 
     // End dialogue
     void EndDialogue() {
-        if (dialogueBox != null) {
-            Destroy(dialogueBox);
+        if (dialogueUI != null) {
+            Destroy(dialogueUI);
         }
 
-        dialogueUI.SetActive(false);
+        dialogueParent.SetActive(false);
         GameManager.instance.EnablePlayerControl();
     }
 
