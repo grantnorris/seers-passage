@@ -33,19 +33,11 @@ public class DialogueManager : MonoBehaviour
             sentences.Enqueue(sentence.ToUpper());
         }
 
-        DialogueType dialogueType = null;
+        DialogueType dialogueType = DialogueTypeByName(dialogue.type);
 
-        foreach (DialogueType type in types) {
-            if (type.name == dialogue.type) {
-                dialogueType = type;
-
-                if (type.dialogueBoxPrefab != null && dialogueUI != null) {
-                    dialogueBox = Instantiate(type.dialogueBoxPrefab);
-                    dialogueBox.transform.SetParent(dialogueUI.transform, false);
-                }
-
-                break;
-            }
+        if (dialogueType != null) {
+            dialogueBox = Instantiate(dialogueType.dialogueBoxPrefab);
+            dialogueBox.transform.SetParent(dialogueUI.transform, false);
         }
 
         if (dialogueBox == null) {
@@ -53,13 +45,41 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        StartCoroutine("WaitAndStartDialogue");
+        StartCoroutine("OpenDialogueBox");
     }
 
     // Wait for a small amount of time and then start the dialogue
-    IEnumerator WaitAndStartDialogue() {
-        yield return new WaitForSeconds(.5f);
+    IEnumerator OpenDialogueBox() {
+        yield return new WaitForSeconds(.1f);
         dialogueUI.SetActive(true);
+
+        Transform loader = dialogueBox.transform.GetChild(0).Find("Dialogue Box Loader");
+        RectTransform loaderRect = loader != null ? loader.GetComponent<RectTransform>() : null;
+        Transform dialogueBoxMain = dialogueBox.transform.GetChild(0).Find("Dialogue Box");
+
+        if (loader == null || loaderRect == null || dialogueBoxMain == null) {
+            DisplayNextSentence();
+            yield break;
+        }
+
+        Vector2 loaderSize = loaderRect.sizeDelta;
+        loader.gameObject.SetActive(true);
+        dialogueBoxMain.gameObject.SetActive(false);
+
+        float time = 0f;
+        float speed = 4f;
+
+        // Animate loader
+        while (time < 1f) {
+            time += Time.deltaTime * speed;
+            loaderRect.sizeDelta = Vector2.Lerp(new Vector2(0,0), loaderSize, time);
+            yield return null;
+        }
+
+        // Swap loader out with actual dialogue box
+        loader.gameObject.SetActive(false);
+        dialogueBoxMain.gameObject.SetActive(true);
+
         DisplayNextSentence();
     }
 
@@ -101,6 +121,17 @@ public class DialogueManager : MonoBehaviour
 
         dialogueUI.SetActive(false);
         GameManager.instance.EnablePlayerControl();
+    }
+
+    // Get dialogue type by name
+    DialogueType DialogueTypeByName(string name) {
+        foreach (DialogueType type in types) {
+            if (type.name == name) {
+                return type;
+            }
+        }
+
+        return null;
     }
 }
 
