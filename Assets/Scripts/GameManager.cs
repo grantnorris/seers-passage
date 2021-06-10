@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
                 playerHealth.ReduceHealth();
             }
         } else if (playerStepCount == goodSteps) {
-            Dialogue dialogue = new Dialogue(new string[] {"A pressuring presence weighs you down."});
+            Dialogue dialogue = new Dialogue(new string[] {"A pressuring presence weighs on you."});
             DialogueManager.instance.StartDialogue(dialogue);
 
             if (playerHealth != null) {
@@ -59,6 +59,11 @@ public class GameManager : MonoBehaviour
                 playerHealth.ReduceHealth();
             }
         }
+    }
+
+    // Player step count
+    public int StepCount() {
+        return playerStepCount;
     }
 
     // Disable player inputs for a given durations

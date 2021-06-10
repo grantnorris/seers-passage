@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LightInteractable : Interactable
 {
+    public Dialogue pickupDialogue;
+
     Animator anim;
 
     void Start() {
@@ -18,6 +20,16 @@ public class LightInteractable : Interactable
                 GameManager.instance.playerControl.ExpandLightRadius();
             }
         }
+
+        StartDialogue();
+    }
+
+    void StartDialogue() {
+        if (DialogueManager.instance == null) {
+            return;
+        }
+
+        DialogueManager.instance.StartDialogue(pickupDialogue);
     }
 
     public void Remove() {

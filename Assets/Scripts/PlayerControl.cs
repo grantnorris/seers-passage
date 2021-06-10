@@ -26,6 +26,10 @@ public class PlayerControl : MonoBehaviour
             finishMoving.AddListener(GameManager.instance.IncrementStepCount);
         }
 
+        if (DialogueTrigger.instance != null && DialogueTrigger.instance.stepTriggers.Length > 0) {
+            finishMoving.AddListener(DialogueTrigger.instance.StepTriggers);
+        }
+
         if (shadowAnim != null) {
             shadowAnim.SetBool("lowLight", true);
         }

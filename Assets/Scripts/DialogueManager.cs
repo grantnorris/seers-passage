@@ -28,7 +28,6 @@ public class DialogueManager : MonoBehaviour
         sentences.Clear();
         GameManager.instance.DisablePlayerControl();
         dialogueParent.SetActive(true);
-        Debug.Log("Start dialogue");
 
         foreach (string sentence in dialogue.sentences) {
             sentences.Enqueue(sentence.ToUpper());
@@ -44,12 +43,6 @@ public class DialogueManager : MonoBehaviour
         dialogueUI = Instantiate(dialogueType.dialogueBoxPrefab);
         dialogueUI.transform.SetParent(dialogueParent.transform, false);
         dialogueScript = dialogueUI.GetComponent<DialogueUI>();
-
-        if (dialogueScript == null) {
-            Debug.Log("dialogueScript = null");
-        }
-
-        Debug.Log(dialogueScript);
 
         StartCoroutine("OpenDialogueBox");
     }
