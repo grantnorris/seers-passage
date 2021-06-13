@@ -8,10 +8,21 @@ public class UIController : MonoBehaviour
     public CanvasGroup footerUI;
 
     void Start() {
-        // if (headUI != null) {
-        //     headUI.alpha = 0f;
-        //     footerUI.alpha = 0f;
-        // }
+        Init();
+    }
+
+    void Init() {
+        if (headUI == null || footerUI == null) {
+            return;
+        }
+
+        headUI.alpha = 0f;
+        footerUI.alpha = 0f;
+        GameManager.instance.levelStart.AddListener(StartTransitionInUi);
+    }
+
+    void StartTransitionInUi() {
+        StartCoroutine("TransitionInUI");
     }
 
     // Transition UI In

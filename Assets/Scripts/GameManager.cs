@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
 
     // Transition view in
     IEnumerator TransitionInView() {
+        Time.timeScale = 0;
+
         if (viewShaderMat == null) {
             yield break;
         }
@@ -43,12 +45,14 @@ public class GameManager : MonoBehaviour
         viewShaderMat.SetFloat("TransitionProgress", 0f);
 
         while (progress < 0f) {
-            progress += Time.deltaTime * speed;
+            progress += Time.unscaledDeltaTime * speed;
             viewShaderMat.SetFloat("TransitionProgress", progress);
             yield return null;
         }
 
         viewShaderMat.SetFloat("TransitionProgress", 0f);
+
+        Time.timeScale = 1;
 
         if (levelStart != null) {
             levelStart.Invoke();

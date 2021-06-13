@@ -38,11 +38,8 @@ public class DialogueTrigger : MonoBehaviour
     }
 
     public void StepTriggers() {
-        Debug.Log("step triggers");
-
         foreach (StepDialogueTrigger trigger in stepTriggers) {
             if (GameManager.instance.StepCount() == trigger.steps) {
-                Debug.Log("yep, this trigger should go off");
                 DialogueManager.instance.StartDialogue(trigger.dialogue);
             }
         }
