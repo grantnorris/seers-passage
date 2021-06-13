@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,9 +12,11 @@ public class GameManager : MonoBehaviour
     public PlayerControl playerControl;
     public bool playerControllable = false;
     public Material viewShaderMat;
+    public UnityEvent levelStart;
 
     int playerStepCount = 0;
     PlayerHealth playerHealth;
+    UIController uiController;
 
     void Awake() {
         if (instance == null) {
@@ -21,31 +24,37 @@ public class GameManager : MonoBehaviour
         }
 
         playerHealth = GetComponent<PlayerHealth>();
+        uiController = GetComponent<UIController>();
     }
 
     void Start() {
-        StartCoroutine("TransitionIn");
+        StartCoroutine("TransitionInView");
     }
 
-    IEnumerator TransitionIn() {
+    // Transition view in
+    IEnumerator TransitionInView() {
         if (viewShaderMat == null) {
             yield break;
         }
 
-        float time = -.8f;
-        float speed = 2f;
+        float progress = -1f;
+        float speed = .5f;
 
         viewShaderMat.SetFloat("TransitionProgress", 0f);
 
-        while (time < 1f) {
-            time += Time.deltaTime * speed;
-            viewShaderMat.SetFloat("TransitionProgress", time);
+        while (progress < 0f) {
+            progress += Time.deltaTime * speed;
+            viewShaderMat.SetFloat("TransitionProgress", progress);
             yield return null;
         }
 
-        viewShaderMat.SetFloat("TransitionProgress", 1f);
-    }
+        viewShaderMat.SetFloat("TransitionProgress", 0f);
 
+        if (levelStart != null) {
+            levelStart.Invoke();
+        }
+    }
+    
     // Increase the player's step count by 1
     public void IncrementStepCount() {
         int perfectSteps = 7;

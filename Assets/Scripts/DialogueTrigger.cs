@@ -18,18 +18,21 @@ public class DialogueTrigger : MonoBehaviour
         }
 
         if (onStartDialogue.sentences.Length > 0) {
-            GameManager.instance.DisablePlayerControl();
-            StartCoroutine("StartDialogue");
+            GameManager.instance.levelStart.AddListener(OnStartDialogue);
         }
+    }
+
+    // Initial dialogue to play on level start
+    public void OnStartDialogue() {
+        GameManager.instance.DisablePlayerControl();
+        StartDialogue();
     }
     
     // Start dialogue
-    IEnumerator StartDialogue() {
+    void StartDialogue() {
         if (DialogueManager.instance == null) {
-            yield break;
+            return;
         }
-
-        yield return new WaitForSeconds(1f);
 
         DialogueManager.instance.StartDialogue(onStartDialogue);
     }
