@@ -1,18 +1,18 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public TMP_Text playerStepCountTxt;
     public GameObject player;
     public PlayerControl playerControl;
     public bool playerControllable = false;
     public Material viewShaderMat;
+    [HideInInspector]
     public UnityEvent levelStart;
+    [HideInInspector]
+    public UnityEvent stepped;
 
     int playerStepCount = 0;
     PlayerHealth playerHealth;
@@ -69,10 +69,6 @@ public class GameManager : MonoBehaviour
         int badSteps = perfectSteps * 3;
         playerStepCount++;
 
-        if (playerStepCountTxt != null) {
-            playerStepCountTxt.text = playerStepCount.ToString();
-        }
-
         if (DialogueManager.instance == null) {
             return;
         }
@@ -98,6 +94,10 @@ public class GameManager : MonoBehaviour
             if (playerHealth != null) {
                 playerHealth.ReduceHealth();
             }
+        }
+
+        if (stepped != null) {
+            stepped.Invoke();
         }
     }
 
