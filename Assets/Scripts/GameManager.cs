@@ -39,20 +39,23 @@ public class GameManager : MonoBehaviour
             yield break;
         }
 
-        float progress = -1f;
-        float speed = .5f;
+        float progress = 0f;
+        float seconds = 1.5f;
 
-        viewShaderMat.SetFloat("TransitionProgress", 0f);
+        viewShaderMat.SetFloat("TransitionProgress", -1f);
 
-        while (progress < 0f) {
-            progress += Time.unscaledDeltaTime * speed;
-            viewShaderMat.SetFloat("TransitionProgress", progress);
+        while (progress <= 1f) {
+            progress += Time.unscaledDeltaTime / seconds;
+            float val = Mathf.Lerp(-1f, 0f, Mathf.SmoothStep(0f, 1f, progress));
+            viewShaderMat.SetFloat("TransitionProgress", val);
             yield return null;
         }
 
         viewShaderMat.SetFloat("TransitionProgress", 0f);
 
         Time.timeScale = 1;
+
+        yield return new WaitForSeconds(.25f);
 
         if (levelStart != null) {
             levelStart.Invoke();
