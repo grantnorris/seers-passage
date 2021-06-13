@@ -9,10 +9,6 @@ public class CameraManager : MonoBehaviour
     Camera mainCam;
     RenderTexture renderTex;
 
-    void update() {
-        Debug.Log("orth size main = " + mainCam.orthographicSize);
-    }
-
     // Start is called before the first frame update
     void Start()
     {
@@ -23,32 +19,24 @@ public class CameraManager : MonoBehaviour
             renderTex = playerCam.targetTexture;
         }
 
-        StartCoroutine("SetUpPlayerCam");
+        SetUpPlayerCam();
     }
 
     // Set up player cam and render texture
-    IEnumerator SetUpPlayerCam() {
-        Debug.Log("setup player cam");
-
-        yield return null;
-
+    void SetUpPlayerCam() {
         if (mainCam == null || playerCam == null || renderTex == null || renderTexObj == null) {
-            yield break;
+            return;
         }
 
         int screenWidth = Screen.width;
         int screenHeight = Screen.height;
         float aspectRatio = (float)screenWidth / (float)screenHeight;
+        float worldUnitScreenHeight = mainCam.orthographicSize * 2.0f;
+        float wordUnitScreenWidth = worldUnitScreenHeight * aspectRatio;
         playerCam.orthographicSize = mainCam.orthographicSize * .75f;
         playerCam.aspect = aspectRatio;
         renderTex.width = screenWidth;
         renderTex.height = screenHeight;
-
-        float worldUnitScreenHeight = mainCam.orthographicSize * 2.0f;
-        float wordUnitScreenWidth = worldUnitScreenHeight * aspectRatio;
-
         renderTexObj.transform.localScale = new Vector3(wordUnitScreenWidth, worldUnitScreenHeight, 1);
-
-        Debug.Log("orth size main = " + mainCam.orthographicSize);
     }
 }

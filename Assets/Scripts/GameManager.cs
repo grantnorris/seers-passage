@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public PlayerControl playerControl;
     public bool playerControllable = false;
+    public Material viewShaderMat;
 
     int playerStepCount = 0;
     PlayerHealth playerHealth;
@@ -20,6 +21,29 @@ public class GameManager : MonoBehaviour
         }
 
         playerHealth = GetComponent<PlayerHealth>();
+    }
+
+    void Start() {
+        StartCoroutine("TransitionIn");
+    }
+
+    IEnumerator TransitionIn() {
+        if (viewShaderMat == null) {
+            yield break;
+        }
+
+        float time = -.8f;
+        float speed = 2f;
+
+        viewShaderMat.SetFloat("TransitionProgress", 0f);
+
+        while (time < 1f) {
+            time += Time.deltaTime * speed;
+            viewShaderMat.SetFloat("TransitionProgress", time);
+            yield return null;
+        }
+
+        viewShaderMat.SetFloat("TransitionProgress", 1f);
     }
 
     // Increase the player's step count by 1

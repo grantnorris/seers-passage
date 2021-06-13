@@ -74,7 +74,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - TransitionProgress: 1.85
+    - TransitionProgress: 1
     - Vector1_5677C5A3: 0
     - Vector1_6911B524: 0
     - _AlphaClip: 0
@@ -100,6 +100,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
+    - TransitionColor: {r: 0.20000002, g: 0.20000002, b: 0.20000002, a: 1}
     - Vector2_6B378F0B: {r: 0, g: 0, b: 0, a: 0}
     - Vector2_B3AF9803: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
