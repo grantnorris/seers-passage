@@ -24,6 +24,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - TransitionTexture:
+        m_Texture: {fileID: 2800000, guid: e869b61bfd0c04e5aab718d84f0f99f2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -70,6 +74,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - TransitionProgress: 0.73
     - Vector1_5677C5A3: 0
     - Vector1_6911B524: 0
     - _AlphaClip: 0
