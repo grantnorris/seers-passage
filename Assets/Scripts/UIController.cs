@@ -1,12 +1,16 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
+    public GameObject UI;
     public CanvasGroup headUI;
     public CanvasGroup footerUI;
     public TMP_Text playerStepCountTxt;
+    public GameObject heartbreakPrefab;
+    public GameObject healthUI;
 
     void Start() {
         Init();
@@ -87,5 +91,72 @@ public class UIController : MonoBehaviour
         playerStepCountTxt.text = steps;
         txtRect.position = txtRectPos;
         playerStepCountTxt.color = txtColor;
+    }
+
+    // Display heartbreak animation
+    public void BreakHeart() {
+        if (heartbreakPrefab == null) {
+            return;
+        }
+
+        StartCoroutine("BreakHeartAnimation");
+    }
+
+    IEnumerator BreakHeartAnimation() {
+        GameObject prefab = Instantiate(heartbreakPrefab, UI.transform);
+
+        yield return new WaitForSeconds(1f);
+
+        Destroy(prefab);
+        UpdateHealthUI();
+        StepCountDialogue();
+    }
+
+    public void StepCountDialogue() {
+        int perfectSteps = 2;
+        int goodSteps = perfectSteps * 2;
+        int badSteps = perfectSteps * 3;
+        int stepCount = GameManager.instance.StepCount();
+        
+        if (stepCount == perfectSteps) {
+            Dialogue dialogue = new Dialogue(new string[] {"An uneasy presence washes over you."});
+            DialogueManager.instance.StartDialogue(dialogue);
+        } else if (stepCount == goodSteps) {
+            Dialogue dialogue = new Dialogue(new string[] {"A pressuring presence weighs on you."});
+            DialogueManager.instance.StartDialogue(dialogue);
+        } else if (stepCount == badSteps) {
+            Dialogue dialogue = new Dialogue(new string[] {"A suffocating presence consumes you."});
+            DialogueManager.instance.StartDialogue(dialogue);
+        }
+    }
+
+    // Update health UI icon display
+    void UpdateHealthUI() {
+        if (healthUI == null) {
+            return;
+        }
+
+        Image img = null;
+
+        switch (GameManager.instance.playerHealth.Health())
+        {
+        case 2:
+            img = healthUI.transform.GetChild(0).GetComponent<Image>();
+            break;
+        case 1:
+            img = healthUI.transform.GetChild(1).GetComponent<Image>();
+            break;
+        case 0:
+            img = healthUI.transform.GetChild(2).GetComponent<Image>();
+            break;
+        }
+
+        if (img == null) {
+            return;
+        }
+
+        Color color = img.color;
+        color.a = .5f;
+        img.color = color;
     }
 }

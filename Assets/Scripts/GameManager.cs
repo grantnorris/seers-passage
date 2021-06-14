@@ -13,10 +13,12 @@ public class GameManager : MonoBehaviour
     public UnityEvent levelStart;
     [HideInInspector]
     public UnityEvent stepped;
+    [HideInInspector]
+    public PlayerHealth playerHealth;
+    [HideInInspector]
+    public UIController uiController;
 
     int playerStepCount = 0;
-    PlayerHealth playerHealth;
-    UIController uiController;
 
     void Awake() {
         if (instance == null) {
@@ -64,40 +66,29 @@ public class GameManager : MonoBehaviour
     
     // Increase the player's step count by 1
     public void IncrementStepCount() {
-        int perfectSteps = 7;
-        int goodSteps = perfectSteps * 2;
-        int badSteps = perfectSteps * 3;
         playerStepCount++;
 
         if (DialogueManager.instance == null) {
             return;
         }
 
-        if (playerStepCount == perfectSteps) {
-            Dialogue dialogue = new Dialogue(new string[] {"An uneasy presence washes over you."});
-            DialogueManager.instance.StartDialogue(dialogue);
-
-            if (playerHealth != null) {
-                playerHealth.ReduceHealth();
-            }
-        } else if (playerStepCount == goodSteps) {
-            Dialogue dialogue = new Dialogue(new string[] {"A pressuring presence weighs on you."});
-            DialogueManager.instance.StartDialogue(dialogue);
-
-            if (playerHealth != null) {
-                playerHealth.ReduceHealth();
-            }
-        } else if (playerStepCount == badSteps) {
-            Dialogue dialogue = new Dialogue(new string[] {"A suffocating presence consumes you."});
-            DialogueManager.instance.StartDialogue(dialogue);
-
-            if (playerHealth != null) {
-                playerHealth.ReduceHealth();
-            }
-        }
+        StepCountDialogue();
 
         if (stepped != null) {
             stepped.Invoke();
+        }
+    }
+
+    public void StepCountDialogue() {
+        int perfectSteps = 2;
+        int goodSteps = perfectSteps * 2;
+        int badSteps = perfectSteps * 3;
+        
+        if (playerStepCount == perfectSteps || playerStepCount == goodSteps || playerStepCount == badSteps) {
+            if (playerHealth != null) {
+                playerHealth.ReduceHealth();
+                uiController.BreakHeart();
+            }
         }
     }
 
