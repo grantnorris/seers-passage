@@ -23,6 +23,12 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.Return)) {
+            DisplayNextSentence();
+        }
+    }
+
     // Start dialogue
     public void StartDialogue(Dialogue dialogue) {
         sentences.Clear();
