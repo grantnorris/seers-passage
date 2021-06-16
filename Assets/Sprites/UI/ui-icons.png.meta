@@ -8,6 +8,15 @@ TextureImporter:
   - first:
       213: 8570997658530816355
     second: ui-icons_1
+  - first:
+      213: 4958941780694939350
+    second: ui-icons_2
+  - first:
+      213: 6863257297431002287
+    second: ui-icons_3
+  - first:
+      213: -353455313736509995
+    second: ui-icons_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -146,6 +155,69 @@ TextureImporter:
       bones: []
       spriteID: 3612f6795fc42f670800000000000000
       internalID: 8570997658530816355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-icons_2
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 5
+        width: 3
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d63a24a643b1d440800000000000000
+      internalID: 4958941780694939350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-icons_3
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 5
+        width: 3
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fac7b7f16203f3f50800000000000000
+      internalID: 6863257297431002287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-icons_4
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 5
+        width: 3
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d5d2ccc346481bf0800000000000000
+      internalID: -353455313736509995
       vertices: []
       indices: 
       edges: []
