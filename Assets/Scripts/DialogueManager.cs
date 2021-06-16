@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Events;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -10,10 +11,10 @@ public class DialogueManager : MonoBehaviour
 
     public GameObject dialogueParent;
     public DialogueType[] types;
+    public UnityEvent dialogueEnded;
 
     GameObject dialogueUI;
     DialogueUI dialogueScript;
-
 
     Queue<string> sentences = new Queue<string>();
 
@@ -42,7 +43,7 @@ public class DialogueManager : MonoBehaviour
         DialogueType dialogueType = DialogueTypeByName(dialogue.type);
 
         if (dialogueType == null) {
-            EndDialogue();
+            StartCoroutine("EndDialogue");
             return;
         }
 
@@ -78,7 +79,7 @@ public class DialogueManager : MonoBehaviour
         float speed = 4f;
 
         // Animate loader
-        while (time < 1f) {
+        while (time <= 1f) {
             time += Time.deltaTime * speed;
             loaderRect.sizeDelta = Vector2.Lerp(Vector2.zero, loaderSize, time);
             yield return null;
@@ -94,7 +95,7 @@ public class DialogueManager : MonoBehaviour
     // Display next sentence
     public void DisplayNextSentence() {
         if (sentences.Count == 0) {
-            EndDialogue();
+            StartCoroutine("EndDialogue");
             return;
         }
 
@@ -128,14 +129,39 @@ public class DialogueManager : MonoBehaviour
 
     // Enable continue button and display continue arrow graphic
     void AllowContinue() {
-        dialogueScript.arrow.SetActive(true);
+        if (dialogueScript.arrow != null) {
+            dialogueScript.arrow.SetActive(true);
+        }
+
         dialogueParent.GetComponent<Button>().enabled = true;
     }
 
     // End dialogue
-    void EndDialogue() {
+    IEnumerator EndDialogue() {
         if (dialogueUI != null) {
+            GameObject loader = dialogueScript.loader;
+            RectTransform loaderRect = loader != null ? loader.GetComponent<RectTransform>() : null;
+            GameObject box = dialogueScript.box;
+
+            loader.SetActive(true);
+            box.SetActive(false);
+            yield return new WaitForSeconds(.1f);
+
+            float time = 0f;
+            float speed = 4f;
+
+            // Animate loader
+            while (time <= 1f) {
+                time += Time.deltaTime * speed;
+                loaderRect.sizeDelta = Vector2.Lerp(loaderRect.sizeDelta, Vector2.zero, time);
+                yield return null;
+            }
+
             Destroy(dialogueUI);
+        }
+
+        if (dialogueEnded != null) {
+            dialogueEnded.Invoke();
         }
 
         dialogueParent.SetActive(false);

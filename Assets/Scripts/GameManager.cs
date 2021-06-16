@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
         if (playerStepCount == perfectSteps || playerStepCount == goodSteps || playerStepCount == badSteps) {
             if (playerHealth != null) {
                 playerHealth.ReduceHealth();
-                uiController.BreakHeart();
+                uiController.StartBreakHeart();
             }
         }
     }

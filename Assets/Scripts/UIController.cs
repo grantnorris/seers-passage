@@ -11,6 +11,8 @@ public class UIController : MonoBehaviour
     public TMP_Text playerStepCountTxt;
     public GameObject heartbreakPrefab;
     public GameObject healthUI;
+    
+    GameObject heartbreakUI;
 
     void Start() {
         Init();
@@ -94,22 +96,61 @@ public class UIController : MonoBehaviour
     }
 
     // Display heartbreak animation
-    public void BreakHeart() {
+    public void StartBreakHeart() {
         if (heartbreakPrefab == null) {
             return;
         }
 
-        StartCoroutine("BreakHeartAnimation");
+        StartCoroutine("StartBreakHeartAnimation");
     }
 
-    IEnumerator BreakHeartAnimation() {
-        GameObject prefab = Instantiate(heartbreakPrefab, UI.transform);
-
-        yield return new WaitForSeconds(1f);
-
-        Destroy(prefab);
-        UpdateHealthUI();
+    IEnumerator StartBreakHeartAnimation() {
         StepCountDialogue();
+        heartbreakUI = Instantiate(heartbreakPrefab, UI.transform);
+
+        RectTransform uiRect = heartbreakUI.GetComponent<RectTransform>();
+        Vector2 uiRectSize = uiRect.sizeDelta;
+        uiRect.sizeDelta = Vector2.zero;
+
+        float time = 0f;
+        float speed = 4f;
+
+        // Animate ui
+        while (time <= 1f) {
+            time += Time.deltaTime * speed;
+            uiRect.sizeDelta = Vector2.Lerp(Vector2.zero, uiRectSize, time);
+            yield return null;
+        }
+
+        uiRect.sizeDelta = uiRectSize;
+        DialogueManager.instance.dialogueEnded.AddListener(EndBreakHeart);
+    }
+
+    public void EndBreakHeart() {
+        StartCoroutine("EndBreakHeartAnimation");
+        DialogueManager.instance.dialogueEnded.RemoveListener(EndBreakHeart);
+    }
+
+    IEnumerator EndBreakHeartAnimation() {
+        if (heartbreakUI != null) {
+            heartbreakUI.GetComponent<Animator>().SetTrigger("Break");
+            yield return new WaitForSeconds(1f);
+
+            RectTransform uiRect = heartbreakUI.GetComponent<RectTransform>();
+            float time = 0f;
+            float speed = 4f;
+
+            // Animate ui
+            while (time <= 1f) {
+                time += Time.deltaTime * speed;
+                uiRect.sizeDelta = Vector2.Lerp(uiRect.sizeDelta, Vector2.zero, time);
+                yield return null;
+            }
+
+            Destroy(heartbreakUI);
+        }
+        
+        UpdateHealthUI();
     }
 
     public void StepCountDialogue() {
