@@ -11,6 +11,7 @@ public class UIController : MonoBehaviour
     public TMP_Text playerStepCountTxt;
     public GameObject heartbreakPrefab;
     public GameObject healthUI;
+    public GameObject torchUI;
     
     GameObject heartbreakUI;
 
@@ -127,8 +128,8 @@ public class UIController : MonoBehaviour
     }
 
     public void EndBreakHeart() {
-        StartCoroutine("EndBreakHeartAnimation");
         DialogueManager.instance.dialogueEnded.RemoveListener(EndBreakHeart);
+        StartCoroutine("EndBreakHeartAnimation");
     }
 
     IEnumerator EndBreakHeartAnimation() {
@@ -154,7 +155,7 @@ public class UIController : MonoBehaviour
     }
 
     public void StepCountDialogue() {
-        int perfectSteps = 2;
+        int perfectSteps = 7;
         int goodSteps = perfectSteps * 2;
         int badSteps = perfectSteps * 3;
         int stepCount = GameManager.instance.StepCount();
@@ -199,5 +200,18 @@ public class UIController : MonoBehaviour
         Color color = img.color;
         color.a = .5f;
         img.color = color;
+    }
+
+    // Highlight torch ui and enable animation
+    public void activateTorchUI() {
+        if (torchUI == null) {
+            return;
+        }
+
+        Image torchImage = torchUI.GetComponent<Image>();
+        Color torchColor = torchImage.color;
+        torchColor.a = 1;
+        torchImage.color = torchColor;
+        torchUI.GetComponent<Animator>().enabled = true;
     }
 }

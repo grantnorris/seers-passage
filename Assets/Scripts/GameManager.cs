@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void StepCountDialogue() {
-        int perfectSteps = 2;
+        int perfectSteps = 7;
         int goodSteps = perfectSteps * 2;
         int badSteps = perfectSteps * 3;
         

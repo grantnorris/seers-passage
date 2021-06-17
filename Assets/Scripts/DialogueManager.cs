@@ -11,11 +11,11 @@ public class DialogueManager : MonoBehaviour
 
     public GameObject dialogueParent;
     public DialogueType[] types;
+    [HideInInspector]
     public UnityEvent dialogueEnded;
 
     GameObject dialogueUI;
     DialogueUI dialogueScript;
-
     Queue<string> sentences = new Queue<string>();
 
     void Awake() {
