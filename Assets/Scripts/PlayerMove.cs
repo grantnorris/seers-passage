@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.Events;
 using UnityEngine;
 
-public class PlayerControl : MonoBehaviour
+public class PlayerMove : MonoBehaviour
 {
     public float moveSpeed = 3f;
     public bool moving     = false;

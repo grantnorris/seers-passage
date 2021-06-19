@@ -24,7 +24,7 @@ public class DialogueTrigger : MonoBehaviour
 
     // Initial dialogue to play on level start
     public void OnStartDialogue() {
-        GameManager.instance.DisablePlayerControl();
+        GameManager.instance.DisablePlayerMove();
         StartDialogue();
     }
     

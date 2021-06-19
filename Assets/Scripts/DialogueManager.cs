@@ -33,7 +33,7 @@ public class DialogueManager : MonoBehaviour
     // Start dialogue
     public void StartDialogue(Dialogue dialogue) {
         sentences.Clear();
-        GameManager.instance.DisablePlayerControl();
+        GameManager.instance.DisablePlayerMove();
         dialogueParent.SetActive(true);
 
         foreach (string sentence in dialogue.sentences) {
@@ -165,7 +165,7 @@ public class DialogueManager : MonoBehaviour
         }
 
         dialogueParent.SetActive(false);
-        GameManager.instance.EnablePlayerControl();
+        GameManager.instance.EnablePlayerMove();
     }
 
     // Get dialogue type by name

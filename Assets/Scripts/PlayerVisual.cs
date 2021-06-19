@@ -4,20 +4,24 @@ using UnityEngine;
 
 public class PlayerVisual : MonoBehaviour
 {
-    public PlayerControl playerControl;
+    PlayerMove PlayerMove;
+
+    void Start() {
+        PlayerMove = GetComponentInParent<PlayerMove>();
+    }
 
     // Move player after initial animation
     public void MoveAfterAnimation() {
-        if (playerControl != null) {
-            playerControl.moving = true;
+        if (PlayerMove != null) {
+            PlayerMove.moving = true;
         }
     }
 
     // Reset player moving flag and end the moving animation
     public void StopMovingAnimation() {
-        if (playerControl != null) {
-            playerControl.moving = false;
-            playerControl.anim.SetBool("moving", false);
+        if (PlayerMove != null) {
+            PlayerMove.moving = false;
+            PlayerMove.anim.SetBool("moving", false);
         }
     }
 }

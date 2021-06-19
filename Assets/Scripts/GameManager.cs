@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public GameObject player;
-    public PlayerControl playerControl;
+    public PlayerMove PlayerMove;
     public bool playerControllable = false;
     public Material viewShaderMat;
     [HideInInspector]
@@ -98,28 +98,28 @@ public class GameManager : MonoBehaviour
     }
 
     // Disable player inputs for a given durations
-    public IEnumerator DisablePlayerControlForDuration(float duration) {
+    public IEnumerator DisablePlayerMoveForDuration(float duration) {
         if (duration > 0f) {
             float elapsed = 0f;
 
             while (duration > elapsed) { 
                 elapsed += Time.deltaTime;
-                DisablePlayerControl();
+                DisablePlayerMove();
 
                 yield return null;
             }
 
-            EnablePlayerControl();
+            EnablePlayerMove();
         }
     }
 
     // Disable player inputs
-    public void DisablePlayerControl() {
+    public void DisablePlayerMove() {
         playerControllable = false;
     }
 
     // Enable player inputs
-    public void EnablePlayerControl() {
+    public void EnablePlayerMove() {
         playerControllable = true;
     }
 }
