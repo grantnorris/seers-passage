@@ -5,6 +5,6 @@ using UnityEngine;
 public class ExitInteractable : Interactable
 {
     public override void Interact() {
-        Debug.Log("exit interact!");
+        GameManager.instance.FinishGame();
     }
 }

@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public PlayerMove playerMove;
     public PlayerControl playerControl;
-    public Material viewShaderMat;
+    public ScreenTransitions screenTransitions;
     [HideInInspector]
     public UnityEvent levelStart = new UnityEvent();
     [HideInInspector]
@@ -27,41 +27,7 @@ public class GameManager : MonoBehaviour
 
         playerHealth = GetComponent<PlayerHealth>();
         uiController = GetComponent<UIController>();
-    }
-
-    void Start() {
-        StartCoroutine("TransitionInView");
-    }
-
-    // Transition view in
-    IEnumerator TransitionInView() {
-        Time.timeScale = 0;
-
-        if (viewShaderMat == null) {
-            yield break;
-        }
-
-        float progress = 0f;
-        float seconds = 1.5f;
-
-        viewShaderMat.SetFloat("TransitionProgress", -1f);
-
-        while (progress <= 1f) {
-            progress += Time.unscaledDeltaTime / seconds;
-            float val = Mathf.Lerp(-1f, 0f, Mathf.SmoothStep(0f, 1f, progress));
-            viewShaderMat.SetFloat("TransitionProgress", val);
-            yield return null;
-        }
-
-        viewShaderMat.SetFloat("TransitionProgress", 0f);
-
-        Time.timeScale = 1;
-
-        yield return new WaitForSeconds(.25f);
-
-        if (levelStart != null) {
-            levelStart.Invoke();
-        }
+        screenTransitions = GetComponent<ScreenTransitions>();
     }
     
     // Increase the player's step count by 1
@@ -121,5 +87,10 @@ public class GameManager : MonoBehaviour
     // Enable player inputs
     public void EnablePlayerMove() {
         playerControl.AllowInput();
+    }
+
+    public void FinishGame() {
+        playerControl.DisallowInput();
+        screenTransitions.StartTransitionViewOut();
     }
 }

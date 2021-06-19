@@ -20,12 +20,20 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - IntroTransition:
+        m_Texture: {fileID: 2800000, guid: e4e5a691b472b4814acf8e21ae59ee35, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - OutroTransition:
+        m_Texture: {fileID: 2800000, guid: d6a21f68a3a224f0c81de8f301f1ebac, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - Texture2D_DBCB9B6F:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - TransitionTexture:
-        m_Texture: {fileID: 2800000, guid: e4e5a691b472b4814acf8e21ae59ee35, type: 3}
+        m_Texture: {fileID: 2800000, guid: d6a21f68a3a224f0c81de8f301f1ebac, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -74,6 +82,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - IntroProgress: 0
+    - OutroProgress: 0
     - TransitionProgress: 0
     - Vector1_5677C5A3: 0
     - Vector1_6911B524: 0
