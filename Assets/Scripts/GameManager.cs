@@ -92,5 +92,6 @@ public class GameManager : MonoBehaviour
     public void FinishGame() {
         playerControl.DisallowInput();
         screenTransitions.StartTransitionViewOut();
+        uiController.DisplayOutroCard();
     }
 }

@@ -8,6 +8,7 @@ public class UIController : MonoBehaviour
     public GameObject UI;
     public CanvasGroup headUI;
     public CanvasGroup footerUI;
+    public GameObject outroUI;
     public TMP_Text playerStepCountTxt;
     public GameObject heartbreakPrefab;
     public GameObject healthUI;
@@ -41,21 +42,48 @@ public class UIController : MonoBehaviour
             yield break;
         }
 
-        float progress = 0f;
-        float speed = 2f;
-
         headUI.alpha = 0f;
         footerUI.alpha = 0f;
 
-        while (progress < 1f) {
-            progress += Time.deltaTime * speed;
-            headUI.alpha = progress;
-            footerUI.alpha = progress;
+        float time = 0f;
+        float seconds = 2f;
+
+        while (time <= 1f) {
+            time += Time.deltaTime / seconds;
+            headUI.alpha = Mathf.Lerp(0f, 1f, time);
+            footerUI.alpha = Mathf.Lerp(0f, 1f, time);
             yield return null;
         }
 
         headUI.alpha = 1f;
         footerUI.alpha = 1f;
+    }
+
+    // Transition UI out
+    public IEnumerator TransitionToOutro() {
+        if (headUI == null || footerUI == null) {
+            yield break;
+        }
+
+        headUI.alpha = 1f;
+        footerUI.alpha = 1f;
+
+        float time = 0f;
+        float seconds = 1f;
+
+        while (time <= 1f) {
+            time += Time.deltaTime / seconds;
+            headUI.alpha = Mathf.Lerp(1f, 0f, time);
+            footerUI.alpha = Mathf.Lerp(1f, 0f, time);
+            yield return null;
+        }
+
+        headUI.alpha = 0f;
+        footerUI.alpha = 0f;
+
+        yield return new WaitForSeconds(.5f);
+
+        outroUI.SetActive(true);
     }
 
     // Start UpdateStepCountUI coroutine
@@ -114,11 +142,11 @@ public class UIController : MonoBehaviour
         uiRect.sizeDelta = Vector2.zero;
 
         float time = 0f;
-        float speed = 4f;
+        float seconds = 4f;
 
         // Animate ui
         while (time <= 1f) {
-            time += Time.deltaTime * speed;
+            time += Time.deltaTime / seconds;
             uiRect.sizeDelta = Vector2.Lerp(Vector2.zero, uiRectSize, time);
             yield return null;
         }
@@ -203,7 +231,7 @@ public class UIController : MonoBehaviour
     }
 
     // Highlight torch ui and enable animation
-    public void activateTorchUI() {
+    public void ActivateTorchUI() {
         if (torchUI == null) {
             return;
         }
@@ -213,5 +241,9 @@ public class UIController : MonoBehaviour
         torchColor.a = 1;
         torchImage.color = torchColor;
         torchUI.GetComponent<Animator>().enabled = true;
+    }
+
+    public void DisplayOutroCard() {
+        StartCoroutine("TransitionToOutro");
     }
 }

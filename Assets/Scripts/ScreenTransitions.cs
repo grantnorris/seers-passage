@@ -21,14 +21,14 @@ public class ScreenTransitions : MonoBehaviour
             yield break;
         }
 
-        float progress = 0f;
+        float time = 0f;
         float seconds = 1.5f;
 
         viewShaderMat.SetFloat("IntroProgress", -1f);
 
-        while (progress <= 1f) {
-            progress += Time.unscaledDeltaTime / seconds;
-            float val = Mathf.Lerp(-1f, 0f, Mathf.SmoothStep(0f, 1f, progress));
+        while (time <= 1f) {
+            time += Time.unscaledDeltaTime / seconds;
+            float val = Mathf.Lerp(-1f, 0f, Mathf.SmoothStep(0f, 1f, time));
             viewShaderMat.SetFloat("IntroProgress", val);
             yield return null;
         }
@@ -50,26 +50,28 @@ public class ScreenTransitions : MonoBehaviour
 
     // Transition view out
     IEnumerator TransitionViewOut() {
-        Time.timeScale = 0;
+        // Time.timeScale = 0;
 
         if (viewShaderMat == null) {
             yield break;
         }
 
-        float progress = 0f;
+        float time = 0f;
         float seconds = 2f;
 
         viewShaderMat.SetFloat("OutroProgress", -.1f);
 
-        while (progress <= 1f) {
-            progress += Time.unscaledDeltaTime / seconds;
-            float val = Mathf.Lerp(0f, 1f, progress);
+        while (time <= 1f) {
+            time += Time.unscaledDeltaTime / seconds;
+            float val = Mathf.Lerp(0f, 1f, time);
             viewShaderMat.SetFloat("OutroProgress", val);
             yield return null;
         }
 
         viewShaderMat.SetFloat("OutroProgress", 1f);
 
-        Time.timeScale = 1;
+        // Time.timeScale = 1;
+
+        GameManager.instance.uiController.DisplayOutroCard();
     }
 }

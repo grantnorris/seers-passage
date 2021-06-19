@@ -18,7 +18,7 @@ public class LightInteractable : Interactable
 
             if (GameManager.instance.playerMove != null) {
                 GameManager.instance.playerMove.ExpandLightRadius();
-                GameManager.instance.uiController.activateTorchUI();
+                GameManager.instance.uiController.ActivateTorchUI();
             }
         }
 
