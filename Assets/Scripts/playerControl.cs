@@ -6,7 +6,7 @@ public class PlayerControl : MonoBehaviour
 {
     bool allowInput;
     bool dragging;
-    Touch dragStart;
+    Vector2 dragStart;
     PlayerMove playerMove;
 
     // Start is called before the first frame update
@@ -45,30 +45,41 @@ public class PlayerControl : MonoBehaviour
     }
 
     void Drag() {
-        Vector2 startPos = dragStart.position;
-        Vector2 dragPos = Input.touches[0].position;
+        Vector2 dragPos = Camera.main.ScreenToWorldPoint(Input.touches[0].position);
+        float dragThreshold = 1f;
 
-        float xDif = Mathf.Abs(startPos.x - dragPos.x);
-        float yDif = Mathf.Abs(startPos.y - dragPos.y);
+        float xDif = Mathf.Abs(dragStart.x - dragPos.x);
+        float yDif = Mathf.Abs(dragStart.y - dragPos.y);
+        string direction;
+
+        if (xDif <= dragThreshold && yDif <= dragThreshold) {
+            return;
+        }
 
         if (xDif > yDif) {
-            if (startPos.x > dragPos.x) {
-                Debug.Log("dragging left");
+            if (dragStart.x > dragPos.x) {
+                // Dragging left
+                direction = "left";
             } else {
-                Debug.Log("dragging right");
+                // Dragging right
+                direction = "right";
             }
         } else {
-            if (startPos.y > dragPos.y) {
-                Debug.Log("dragging down");
+            if (dragStart.y > dragPos.y) {
+                // Dragging down
+                direction = "down";
             } else {
-                Debug.Log("dragging up");
+                // Dragging top
+                direction = "up";
             }
         }
+
+        playerMove.Move(direction);
     }
 
     void StartDragging() {
         dragging = true;
-        dragStart = Input.touches[0];
+        dragStart = Camera.main.ScreenToWorldPoint(Input.touches[0].position);
     }
 
     public void AllowInput() {
