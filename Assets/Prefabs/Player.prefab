@@ -170,7 +170,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 11
   moving: 0
-  allowInput: 0
   anim: {fileID: 6474503902810972871}
   shadowAnim: {fileID: 3192679501234720991}
   interactNotice: {fileID: 9184305964603778872}

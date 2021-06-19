@@ -6,8 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public GameObject player;
-    public PlayerMove PlayerMove;
-    public bool playerControllable = false;
+    public PlayerMove playerMove;
+    public PlayerControl playerControl;
     public Material viewShaderMat;
     [HideInInspector]
     public UnityEvent levelStart = new UnityEvent();
@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour
         return playerStepCount;
     }
 
-    // Disable player inputs for a given durations
+    // Disable player inputs for a given duration
     public IEnumerator DisablePlayerMoveForDuration(float duration) {
         if (duration > 0f) {
             float elapsed = 0f;
@@ -115,11 +115,11 @@ public class GameManager : MonoBehaviour
 
     // Disable player inputs
     public void DisablePlayerMove() {
-        playerControllable = false;
+        playerControl.DisallowInput();
     }
 
     // Enable player inputs
     public void EnablePlayerMove() {
-        playerControllable = true;
+        playerControl.AllowInput();
     }
 }

@@ -14,12 +14,12 @@ public class PlayerMove : MonoBehaviour
     [HideInInspector]
     public UnityEvent finishMoving = new UnityEvent();
 
-    playerControl playerControl;
+    PlayerControl playerControl;
     Vector3 targetPos;
     PlayerInteractNotice interactNoticeScript;
 
     void Start() {
-        playerControl = GetComponent<playerControl>();
+        playerControl = GetComponent<PlayerControl>();
         
         if (GameManager.instance != null) {
             finishMoving.AddListener(GameManager.instance.IncrementStepCount);

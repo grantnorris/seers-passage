@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerControl : MonoBehaviour
+public class PlayerControl : MonoBehaviour
 {
     bool allowInput;
     PlayerMove playerMove;
@@ -17,7 +17,7 @@ public class playerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (allowInput && GameManager.instance.playerControllable) {
+        if (allowInput) {
             if (Input.GetKeyDown("left")) {
                 playerMove.Move("left");
             } else if (Input.GetKeyDown("right")) {

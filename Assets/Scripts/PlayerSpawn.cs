@@ -20,12 +20,11 @@ public class PlayerSpawn : MonoBehaviour
     // Create player gameobject
     void CreatePlayer() {
         GameObject playerInstance = Instantiate(player, transform.position, Quaternion.identity);
-        GameManager.instance.player = playerInstance;
-
         PlayerMove PlayerMove = playerInstance.GetComponent<PlayerMove>();
+        PlayerControl PlayerControl = playerInstance.GetComponent<PlayerControl>();
 
-        if (PlayerMove != null) {
-            GameManager.instance.PlayerMove = PlayerMove;
-        }
+        GameManager.instance.player = playerInstance;
+        GameManager.instance.playerMove = PlayerMove;
+        GameManager.instance.playerControl = PlayerControl;
     }
 }

@@ -16,8 +16,8 @@ public class LightInteractable : Interactable
         if (anim != null) {
             anim.SetTrigger("remove");
 
-            if (GameManager.instance.PlayerMove != null) {
-                GameManager.instance.PlayerMove.ExpandLightRadius();
+            if (GameManager.instance.playerMove != null) {
+                GameManager.instance.playerMove.ExpandLightRadius();
                 GameManager.instance.uiController.activateTorchUI();
             }
         }
@@ -36,6 +36,6 @@ public class LightInteractable : Interactable
     public void Remove() {
         this.enabled = false;
         gameObject.tag = "Untagged";
-        GameManager.instance.PlayerMove.CloseInteractNotice();
+        GameManager.instance.playerMove.CloseInteractNotice();
     }
 }
