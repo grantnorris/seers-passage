@@ -10,9 +10,9 @@ public class GameManager : MonoBehaviour
     public bool playerControllable = false;
     public Material viewShaderMat;
     [HideInInspector]
-    public UnityEvent levelStart;
+    public UnityEvent levelStart = new UnityEvent();
     [HideInInspector]
-    public UnityEvent stepped;
+    public UnityEvent stepped = new UnityEvent();
     [HideInInspector]
     public PlayerHealth playerHealth;
     [HideInInspector]

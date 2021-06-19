@@ -12,7 +12,7 @@ public class DialogueManager : MonoBehaviour
     public GameObject dialogueParent;
     public DialogueType[] types;
     [HideInInspector]
-    public UnityEvent dialogueEnded;
+    public UnityEvent dialogueEnded = new UnityEvent();
 
     GameObject dialogueUI;
     DialogueUI dialogueScript;

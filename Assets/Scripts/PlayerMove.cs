@@ -7,20 +7,19 @@ public class PlayerMove : MonoBehaviour
 {
     public float moveSpeed = 3f;
     public bool moving     = false;
-    public bool allowInput = false;
     public Animator anim;
     public Animator shadowAnim;
     public GameObject interactNotice;
     public bool lowLight = true;
+    [HideInInspector]
+    public UnityEvent finishMoving = new UnityEvent();
 
-    public UnityEvent finishMoving;
-
+    playerControl playerControl;
     Vector3 targetPos;
     PlayerInteractNotice interactNoticeScript;
 
     void Start() {
-        allowInput = true;
-        finishMoving = new UnityEvent();
+        playerControl = GetComponent<playerControl>();
         
         if (GameManager.instance != null) {
             finishMoving.AddListener(GameManager.instance.IncrementStepCount);
@@ -47,7 +46,7 @@ public class PlayerMove : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * moveSpeed);
             } else {
                 anim.SetTrigger("stopMoving");
-                allowInput = true;
+                playerControl.AllowInput();
                 moving     = false;
 
                 if (shadowAnim != null && !lowLight) {
@@ -58,21 +57,11 @@ public class PlayerMove : MonoBehaviour
                     finishMoving.Invoke();
                 }
             }
-        } else if (allowInput && GameManager.instance.playerControllable) {
-            if (Input.GetKeyDown("left")) {
-                Move("left");
-            } else if (Input.GetKeyDown("right")) {
-                Move("right");
-            } else if (Input.GetKeyDown("up")) {
-                Move("up");
-            } else if (Input.GetKeyDown("down")) {
-                Move("down");
-            }
         }
     }
 
     // Move in a given direction
-    void Move(string direction) {
+    public void Move(string direction) {
         Vector2 raycastDirection = Vector2.zero;
 
         float xAdjustment = 0;
@@ -109,32 +98,27 @@ public class PlayerMove : MonoBehaviour
         if (hitDistance > 1f) {
             targetPos = new Vector2(hitLocation.x + xAdjustment, hitLocation.y + yAdjustment);
 
-            if (anim != null) {
-                int directionInt = 0;
+            int directionInt = 0;
 
-                if (direction == "up") {
-                    directionInt = 1;
-                } else if (direction == "right") {
-                    directionInt = 2;
-                } else if (direction == "down") {
-                    directionInt = 3;
-                } else if (direction == "left") {
-                    directionInt = 4;
-                }
-
-                allowInput = false;
-                anim.SetInteger("directionFacing", directionInt);
-                anim.SetTrigger("startMoving");
-                anim.SetBool("moving", true);
-
-                if (shadowAnim != null && !lowLight) {
-                    shadowAnim.SetBool("lowLight", true);
-                }
-            } else {
-                // If no animator just start moving
-                moving = true;
+            if (direction == "up") {
+                directionInt = 1;
+            } else if (direction == "right") {
+                directionInt = 2;
+            } else if (direction == "down") {
+                directionInt = 3;
+            } else if (direction == "left") {
+                directionInt = 4;
             }
-        } else if (anim != null) {
+
+            playerControl.DisallowInput();
+            anim.SetInteger("directionFacing", directionInt);
+            anim.SetTrigger("startMoving");
+            anim.SetBool("moving", true);
+
+            if (shadowAnim != null && !lowLight) {
+                shadowAnim.SetBool("lowLight", true);
+            }
+        } else {
             // Face the direction without moving
             int directionInt = 0;
 
