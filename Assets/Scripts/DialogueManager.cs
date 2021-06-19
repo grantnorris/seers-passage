@@ -109,21 +109,37 @@ public class DialogueManager : MonoBehaviour
 
     // Type sentence into dialogue box
     IEnumerator TypeSentence(string sentence) {
-        TMP_Text textUi = dialogueScript.text;
+        TMP_Text txtUI = dialogueScript.text;
+        Color txtColor = new Color(204, 204, 204, 1);
 
-        if (textUi == null) {
+        if (txtUI == null) {
             yield break;
         }
 
-        textUi.text = "";
+        txtUI.SetText(sentence);
+        txtUI.color = new Color(204, 204, 204, 0);
+        txtUI.ForceMeshUpdate();
 
-        foreach (char letter in sentence.ToCharArray()) {
-            textUi.text += letter;
-            yield return new WaitForSeconds(0.025f);
+        TMP_TextInfo textInfo = txtUI.textInfo;
+        int charCount = textInfo.characterCount;
+
+        for (int i = 0; i < charCount; ++i) {
+            TMP_CharacterInfo charInfo = textInfo.characterInfo[i];
+            int index = charInfo.vertexIndex;
+        
+            if (!charInfo.isVisible) {
+                continue;
+            }
+        
+            for (int c = 0; c < 4; c++) {
+                txtUI.textInfo.meshInfo[charInfo.materialReferenceIndex].colors32[index + c] = txtColor;
+            }
+            
+            textInfo.meshInfo[0].mesh.vertices = textInfo.meshInfo[0].vertices;
+            txtUI.UpdateVertexData();
+            yield return new WaitForSeconds(.025f);
         }
-
-        yield return new WaitForSeconds(0.25f);
-
+        
         AllowContinue();
     }
 

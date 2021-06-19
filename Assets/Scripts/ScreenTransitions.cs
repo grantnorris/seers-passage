@@ -68,10 +68,8 @@ public class ScreenTransitions : MonoBehaviour
             yield return null;
         }
 
-        viewShaderMat.SetFloat("OutroProgress", 0f);
+        viewShaderMat.SetFloat("OutroProgress", 1f);
 
         Time.timeScale = 1;
-
-        yield return new WaitForSeconds(.25f);
     }
 }
