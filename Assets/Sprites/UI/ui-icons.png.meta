@@ -17,6 +17,9 @@ TextureImporter:
   - first:
       213: -353455313736509995
     second: ui-icons_4
+  - first:
+      213: 8702158854281849464
+    second: ui-icons_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -218,6 +221,27 @@ TextureImporter:
       bones: []
       spriteID: 5d5d2ccc346481bf0800000000000000
       internalID: -353455313736509995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-icons_5
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 4
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87a6d783f5744c870800000000000000
+      internalID: 8702158854281849464
       vertices: []
       indices: 
       edges: []
