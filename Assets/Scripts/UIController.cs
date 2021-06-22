@@ -21,12 +21,9 @@ public class UIController : MonoBehaviour
     }
 
     void Init() {
-        if (headUI == null || footerUI == null) {
-            return;
-        }
-
         headUI.alpha = 0f;
         footerUI.alpha = 0f;
+        playerStepCountTxt.text = "0";
         GameManager.instance.levelStart.AddListener(StartTransitionInUi);
         GameManager.instance.stepped.AddListener(StartUpdateStepCountUI);
     }
@@ -46,7 +43,7 @@ public class UIController : MonoBehaviour
         footerUI.alpha = 0f;
 
         float time = 0f;
-        float seconds = 2f;
+        float seconds = .5f;
 
         while (time <= 1f) {
             time += Time.deltaTime / seconds;
@@ -78,10 +75,10 @@ public class UIController : MonoBehaviour
             yield return null;
         }
 
-        headUI.alpha = 0f;
-        footerUI.alpha = 0f;
+        headUI.gameObject.SetActive(false);
+        footerUI.gameObject.SetActive(false);
 
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(1.5f);
 
         outroUI.SetActive(true);
     }
@@ -142,7 +139,7 @@ public class UIController : MonoBehaviour
         uiRect.sizeDelta = Vector2.zero;
 
         float time = 0f;
-        float seconds = 4f;
+        float seconds = .25f;
 
         // Animate ui
         while (time <= 1f) {
@@ -167,11 +164,11 @@ public class UIController : MonoBehaviour
 
             RectTransform uiRect = heartbreakUI.GetComponent<RectTransform>();
             float time = 0f;
-            float speed = 4f;
+            float seconds = .25f;
 
             // Animate ui
             while (time <= 1f) {
-                time += Time.deltaTime * speed;
+                time += Time.deltaTime / seconds;
                 uiRect.sizeDelta = Vector2.Lerp(uiRect.sizeDelta, Vector2.zero, time);
                 yield return null;
             }

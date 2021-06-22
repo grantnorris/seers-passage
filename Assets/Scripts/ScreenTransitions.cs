@@ -50,8 +50,6 @@ public class ScreenTransitions : MonoBehaviour
 
     // Transition view out
     IEnumerator TransitionViewOut() {
-        // Time.timeScale = 0;
-
         if (viewShaderMat == null) {
             yield break;
         }
