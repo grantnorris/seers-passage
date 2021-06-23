@@ -47,6 +47,12 @@ TextureImporter:
   - first:
       213: 4855485048825876835
     second: ornate-frame_14
+  - first:
+      213: -7326191619324501702
+    second: ornate-frame_15
+  - first:
+      213: -3274525087591833313
+    second: ornate-frame_16
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -458,6 +464,48 @@ TextureImporter:
       bones: []
       spriteID: 3619c7b2de5226340800000000000000
       internalID: 4855485048825876835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ornate-frame_15
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 0
+        width: 44
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 15, y: 22, z: 15, w: 20}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3128bdb983245a90800000000000000
+      internalID: -7326191619324501702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ornate-frame_16
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 0
+        width: 44
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 15, y: 22, z: 15, w: 20}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f11ebf138cc8e82d0800000000000000
+      internalID: -3274525087591833313
       vertices: []
       indices: 
       edges: []
