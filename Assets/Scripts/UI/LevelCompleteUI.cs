@@ -7,6 +7,8 @@ using TMPro;
 public class LevelCompleteUI : MonoBehaviour
 {
     [SerializeField]
+    GameObject frame;
+    [SerializeField]
     GameObject hearts;
     [SerializeField]
     Sprite heartSolid;
@@ -26,8 +28,7 @@ public class LevelCompleteUI : MonoBehaviour
         SetHearts();
         SetScoreText();
         SetTorchAnimators();
-        continueUI.alpha = 0f;
-        StartCoroutine("AnimateObjects");
+        frame.GetComponent<Animator>().enabled = false;
     }
     
     void SetHearts() {
@@ -36,18 +37,19 @@ public class LevelCompleteUI : MonoBehaviour
         }
 
         int counter = 0;
+        Debug.Log("player health = " + playerHealth);
 
         foreach (Image img in hearts.GetComponentsInChildren<Image>()) {
             counter++;
+            Debug.Log("Check heart " + counter);
 
             if (playerHealth < counter) {
-                img.sprite = heartOutline;
+                img.GetComponent<SpriteRenderer>().sprite = heartOutline;
+                Debug.Log(counter + " heart should be outline");
             }
 
             img.sprite = heartSolid;
         }
-
-        hearts.SetActive(false);
     }
 
     void SetScoreText() {
@@ -70,7 +72,6 @@ public class LevelCompleteUI : MonoBehaviour
         }
 
         scoreTxt.SetText(txt.ToUpper());
-        scoreTxt.gameObject.SetActive(false);
     }
 
     void SetTorchAnimators() {
@@ -80,78 +81,13 @@ public class LevelCompleteUI : MonoBehaviour
         }
     }
 
-    IEnumerator AnimateObjects() {
-        // Wait for frame animation to happen
-        yield return new WaitForSeconds(1.25f);
-        yield return StartCoroutine("AnimateHearts");
-        yield return StartCoroutine("AnimateScoreText");
-        EnableTorches();
-        yield return new WaitForSeconds(.5f);
-        StartCoroutine("AnimateContinue");
-    }
-
-    IEnumerator AnimateHearts() {
-        hearts.SetActive(true);
-        List<GameObject> heartObjs = new List<GameObject>();
-
-        foreach (Transform heart in hearts.transform) {
-            heartObjs.Add(heart.gameObject);
-            heart.gameObject.SetActive(false);
-        }
-
-        foreach (GameObject heart in heartObjs) {
-            heart.SetActive(true);   
-
-            Vector3 finishScale = heart.transform.localScale;
-            Vector3 startScale = finishScale * 1.5f;
-
-            float time = 0f;
-            float seconds = .25f;
-
-            while (time <= 1f) {
-                time += Time.deltaTime / seconds;
-                heart.transform.localScale = Vector3.Lerp(startScale, finishScale, time);
-                yield return null;
-            }
-
-            heart.transform.localScale = finishScale;
-        }
-    }
-
-    IEnumerator AnimateScoreText() {
-        scoreTxt.gameObject.SetActive(true);   
-
-        Vector3 finishScale = scoreTxt.transform.localScale;
-        Vector3 startScale = finishScale * 1.5f;
-
-        float time = 0f;
-        float seconds = .25f;
-
-        while (time <= 1f) {
-            time += Time.deltaTime / seconds;
-            scoreTxt.transform.localScale = Vector3.Lerp(startScale, finishScale, time);
-            yield return null;
-        }
-
-        scoreTxt.transform.localScale = finishScale;
+    void EnableFrame() {
+        frame.GetComponent<Animator>().enabled = true;
     }
     
     void EnableTorches() {
         foreach (Animator anim in torchAnimators) {
             anim.enabled = true;
         }
-    }
-
-    IEnumerator AnimateContinue() {
-        float time = 0f;
-        float seconds = 1f;
-
-        while (time <= 1f) {
-            time += Time.deltaTime / seconds;
-            continueUI.alpha = Mathf.Lerp(0f, 1f, time);
-            yield return null;
-        }
-
-        continueUI.alpha = 1f;
     }
 }
