@@ -97,7 +97,7 @@ public class UIController : MonoBehaviour
         string steps = GameManager.instance.StepCount().ToString();
         RectTransform txtRect = playerStepCountTxt.GetComponent<RectTransform>();
         Vector3 txtRectPos = txtRect.position;
-        GameObject tempTxtObj = Instantiate(playerStepCountTxt.gameObject, footerUI.transform);
+        GameObject tempTxtObj = Instantiate(playerStepCountTxt.gameObject, playerStepCountTxt.transform.parent);
         RectTransform tempTxtRect = tempTxtObj.GetComponent<RectTransform>();
         TMP_Text tempTxt = tempTxtObj.GetComponent<TMP_Text>();
         tempTxt.text = steps;

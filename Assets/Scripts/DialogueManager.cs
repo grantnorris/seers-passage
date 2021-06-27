@@ -37,7 +37,7 @@ public class DialogueManager : MonoBehaviour
         dialogueParent.SetActive(true);
 
         foreach (string sentence in dialogue.sentences) {
-            sentences.Enqueue(sentence.ToUpper());
+            sentences.Enqueue(sentence);
         }
 
         DialogueType dialogueType = DialogueTypeByName(dialogue.type);
