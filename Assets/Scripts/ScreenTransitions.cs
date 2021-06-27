@@ -40,7 +40,7 @@ public class ScreenTransitions : MonoBehaviour
         yield return new WaitForSeconds(.25f);
 
         if (GameManager.instance.levelStart != null) {
-            GameManager.instance.levelStart.Invoke();
+            // GameManager.instance.levelStart.Invoke();
         }
     }
 

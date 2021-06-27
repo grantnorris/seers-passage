@@ -24,63 +24,7 @@ public class UIController : MonoBehaviour
         headUI.alpha = 0f;
         footerUI.alpha = 0f;
         playerStepCountTxt.text = "0";
-        GameManager.instance.levelStart.AddListener(StartTransitionInUi);
         GameManager.instance.stepped.AddListener(StartUpdateStepCountUI);
-    }
-
-    // Start the TransitionInUI coroutine
-    void StartTransitionInUi() {
-        StartCoroutine("TransitionInUI");
-    }
-
-    // Transition UI In
-    public IEnumerator TransitionInUI() {
-        if (headUI == null || footerUI == null) {
-            yield break;
-        }
-
-        headUI.alpha = 0f;
-        footerUI.alpha = 0f;
-
-        float time = 0f;
-        float seconds = .5f;
-
-        while (time <= 1f) {
-            time += Time.deltaTime / seconds;
-            headUI.alpha = Mathf.Lerp(0f, 1f, time);
-            footerUI.alpha = Mathf.Lerp(0f, 1f, time);
-            yield return null;
-        }
-
-        headUI.alpha = 1f;
-        footerUI.alpha = 1f;
-    }
-
-    // Transition UI out
-    public IEnumerator TransitionToOutro() {
-        if (headUI == null || footerUI == null) {
-            yield break;
-        }
-
-        headUI.alpha = 1f;
-        footerUI.alpha = 1f;
-
-        float time = 0f;
-        float seconds = 1f;
-
-        while (time <= 1f) {
-            time += Time.deltaTime / seconds;
-            headUI.alpha = Mathf.Lerp(1f, 0f, time);
-            footerUI.alpha = Mathf.Lerp(1f, 0f, time);
-            yield return null;
-        }
-
-        headUI.gameObject.SetActive(false);
-        footerUI.gameObject.SetActive(false);
-
-        yield return new WaitForSeconds(1.5f);
-
-        outroUI.SetActive(true);
     }
 
     // Start UpdateStepCountUI coroutine

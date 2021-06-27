@@ -29,6 +29,11 @@ public class GameManager : MonoBehaviour
         uiController = GetComponent<UIController>();
         screenTransitions = GetComponent<ScreenTransitions>();
     }
+
+    // Invoke the levelStart unity event
+    public void StartLevel() {
+        GameManager.instance.levelStart.Invoke();
+    }
     
     // Increase the player's step count by 1
     public void IncrementStepCount() {
