@@ -34,16 +34,16 @@ public class DragUI : MonoBehaviour
 
         switch (direction)
         {
-            case "up":
-            rotation = 90;
-            break;
-
-            case "down":
+            case "right":
             rotation = 270;
             break;
 
-            case "left":
+            case "down":
             rotation = 180;
+            break;
+
+            case "left":
+            rotation = 90;
             break;
         }
 
