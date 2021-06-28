@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public PlayerMove playerMove;
     public PlayerControl playerControl;
     public ScreenTransitions screenTransitions;
+    public DragUI dragUI;
     [HideInInspector]
     public UnityEvent levelStart = new UnityEvent();
     [HideInInspector]

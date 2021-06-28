@@ -46,15 +46,10 @@ public class PlayerControl : MonoBehaviour
 
     void Drag() {
         Vector2 dragPos = Camera.main.ScreenToWorldPoint(Input.touches[0].position);
-        float dragThreshold = 1f;
-
+        float dragThreshold = 3f;
         float xDif = Mathf.Abs(dragStart.x - dragPos.x);
         float yDif = Mathf.Abs(dragStart.y - dragPos.y);
         string direction;
-
-        if (xDif <= dragThreshold && yDif <= dragThreshold) {
-            return;
-        }
 
         if (xDif > yDif) {
             if (dragStart.x > dragPos.x) {
@@ -64,6 +59,11 @@ public class PlayerControl : MonoBehaviour
                 // Dragging right
                 direction = "right";
             }
+
+            if (xDif <= dragThreshold) {
+                GameManager.instance.dragUI.Display(xDif / dragThreshold, dragStart, direction);
+                return;
+            }
         } else {
             if (dragStart.y > dragPos.y) {
                 // Dragging down
@@ -72,8 +72,14 @@ public class PlayerControl : MonoBehaviour
                 // Dragging top
                 direction = "up";
             }
+
+            if (yDif <= dragThreshold) {
+                GameManager.instance.dragUI.Display(yDif / dragThreshold, dragStart, direction);
+                return;
+            }
         }
 
+        GameManager.instance.dragUI.Reset();
         playerMove.Move(direction);
     }
 
