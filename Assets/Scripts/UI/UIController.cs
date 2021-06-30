@@ -120,7 +120,7 @@ public class UIController : MonoBehaviour
             Destroy(heartbreakUI);
         }
         
-        UpdateHealthUI();
+        HealthUI.instance.Update();
     }
 
     public void StepCountDialogue() {
@@ -139,36 +139,6 @@ public class UIController : MonoBehaviour
             Dialogue dialogue = new Dialogue(new string[] {"A suffocating presence consumes you."});
             DialogueManager.instance.StartDialogue(dialogue);
         }
-    }
-
-    // Update health UI icon display
-    void UpdateHealthUI() {
-        if (healthUI == null) {
-            return;
-        }
-
-        Image img = null;
-
-        switch (GameManager.instance.playerHealth.Health())
-        {
-        case 2:
-            img = healthUI.transform.GetChild(0).GetComponent<Image>();
-            break;
-        case 1:
-            img = healthUI.transform.GetChild(1).GetComponent<Image>();
-            break;
-        case 0:
-            img = healthUI.transform.GetChild(2).GetComponent<Image>();
-            break;
-        }
-
-        if (img == null) {
-            return;
-        }
-
-        Color color = img.color;
-        color.a = .5f;
-        img.color = color;
     }
 
     // Highlight torch ui and enable animation

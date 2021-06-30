@@ -11,6 +11,7 @@ public class PlayerHealth : MonoBehaviour
         return health;
     }
 
+    // Reduce health by 1
     public void ReduceHealth() {
         health--;
 
