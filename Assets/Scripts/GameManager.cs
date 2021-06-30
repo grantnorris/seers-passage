@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     public PlayerHealth playerHealth;
     [HideInInspector]
     public UIController uiController;
+    [HideInInspector]
+    public AudioManager audioManager;
 
     int playerStepCount = 0;
 
@@ -29,6 +31,7 @@ public class GameManager : MonoBehaviour
         playerHealth = GetComponent<PlayerHealth>();
         uiController = GetComponent<UIController>();
         screenTransitions = GetComponent<ScreenTransitions>();
+        audioManager = GetComponent<AudioManager>();
     }
 
     // Invoke the levelStart unity event

@@ -47,7 +47,7 @@ public class PlayerMove : MonoBehaviour
             } else {
                 anim.SetTrigger("stopMoving");
                 playerControl.AllowInput();
-                moving     = false;
+                moving = false;
 
                 if (shadowAnim != null && !lowLight) {
                     shadowAnim.SetBool("lowLight", false);
@@ -142,6 +142,7 @@ public class PlayerMove : MonoBehaviour
             } else {
                 // We are moving into a wall, shake the camera
                 if (CameraShake.instance != null) {
+                    GameManager.instance.audioManager.Play("Movement Failed");
                     StartCoroutine(CameraShake.instance.Shake(.1f, .1f));
                 }
             }

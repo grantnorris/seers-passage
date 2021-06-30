@@ -56,6 +56,9 @@ public class DialogueManager : MonoBehaviour
 
     // Wait for a small amount of time and then start the dialogue
     IEnumerator OpenDialogueBox() {
+        // Play audio clip
+        GameManager.instance.audioManager.Play("Dialogue Open");
+
         dialogueParent.SetActive(true);
 
         GameObject loader = dialogueScript.loader;
@@ -89,14 +92,19 @@ public class DialogueManager : MonoBehaviour
         loader.gameObject.SetActive(false);
         box.gameObject.SetActive(true);
 
-        DisplayNextSentence();
+        DisplayNextSentence(false);
     }
 
     // Display next sentence
-    public void DisplayNextSentence() {
+    public void DisplayNextSentence(bool playSound = true) {
         if (sentences.Count == 0) {
             StartCoroutine("EndDialogue");
             return;
+        }
+
+        if (playSound) {
+            // Play audio clip
+            GameManager.instance.audioManager.Play("Dialogue Open");
         }
 
         dialogueParent.GetComponent<Button>().enabled = false;
@@ -154,6 +162,9 @@ public class DialogueManager : MonoBehaviour
 
     // End dialogue
     IEnumerator EndDialogue() {
+        // Play audio clip
+        GameManager.instance.audioManager.Play("Dialogue Close");
+
         if (dialogueUI != null) {
             GameObject loader = dialogueScript.loader;
             RectTransform loaderRect = loader != null ? loader.GetComponent<RectTransform>() : null;
