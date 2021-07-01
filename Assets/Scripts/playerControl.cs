@@ -7,6 +7,7 @@ public class PlayerControl : MonoBehaviour
     bool allowInput;
     bool dragging;
     Vector2 dragStart;
+    string moveDirection;
     PlayerMove playerMove;
 
     // Start is called before the first frame update
@@ -30,6 +31,8 @@ public class PlayerControl : MonoBehaviour
                 } else {
                     StartDragging();
                 }
+            } else if (dragging) {
+                StopDragging();
             } else if (Input.GetKeyDown("left")) {
                 playerMove.Move("left");
             } else if (Input.GetKeyDown("right")) {
@@ -60,8 +63,10 @@ public class PlayerControl : MonoBehaviour
                 direction = "right";
             }
 
+            GameManager.instance.dragUI.Display(xDif / dragThreshold, dragStart, direction);
+
             if (xDif <= dragThreshold) {
-                GameManager.instance.dragUI.Display(xDif / dragThreshold, dragStart, direction);
+                moveDirection = null;
                 return;
             }
         } else {
@@ -73,19 +78,28 @@ public class PlayerControl : MonoBehaviour
                 direction = "up";
             }
 
+            GameManager.instance.dragUI.Display(yDif / dragThreshold, dragStart, direction);
+
             if (yDif <= dragThreshold) {
-                GameManager.instance.dragUI.Display(yDif / dragThreshold, dragStart, direction);
+                moveDirection = null;
                 return;
             }
         }
 
-        GameManager.instance.dragUI.Reset();
-        playerMove.Move(direction);
+        moveDirection = direction;
     }
 
     void StartDragging() {
         dragging = true;
         dragStart = Camera.main.ScreenToWorldPoint(Input.touches[0].position);
+    }
+
+    void StopDragging() {
+        GameManager.instance.dragUI.Reset();
+
+        if (moveDirection != null) {
+            playerMove.Move(moveDirection);
+        }
     }
 
     public void AllowInput() {

@@ -7,30 +7,34 @@ public class DragUI : MonoBehaviour
 {
     [SerializeField]
     Sprite[] sprites;
-    [SerializeField]
     Sprite defaultSprite;
-    Image img;
+    [SerializeField]
+    Image arrowImg;
+    Animator anim;
 
     void Start() {
-        img = GetComponent<Image>();
+        anim = GetComponent<Animator>();
 
-        if (img == null) {
+        if (arrowImg == null) {
             return;
         }
         
-        defaultSprite = img.sprite;
+        defaultSprite = arrowImg.sprite;
     }
 
     public void Display(float amount, Vector2 position, string direction) {
-        if (img == null) {
+        if (arrowImg == null) {
             return;
         }
 
-        amount = amount > 1 ? 1 : amount;
-
         int spriteIndex = Mathf.RoundToInt(sprites.Length * amount);
-        spriteIndex = spriteIndex == 0 ? 1 : spriteIndex;
         int rotation = 0;
+
+        if (spriteIndex <= 0) {
+            spriteIndex = 1;
+        } else if (spriteIndex > sprites.Length) {
+            spriteIndex = sprites.Length;
+        }
 
         switch (direction)
         {
@@ -47,16 +51,30 @@ public class DragUI : MonoBehaviour
             break;
         }
 
-        transform.rotation = Quaternion.Euler(0, 0, rotation);
-        img.sprite = sprites[spriteIndex - 1];
-    }
+        arrowImg.transform.rotation = Quaternion.Euler(0, 0, rotation);
+        arrowImg.sprite = sprites[spriteIndex - 1];
 
-    public void Reset() {
-        if (img == null) {
+        if (anim == null) {
             return;
         }
 
-        img.sprite = defaultSprite;
+        if (spriteIndex == sprites.Length) {
+            anim.SetBool("Locked", true);
+        } else {
+            anim.SetBool("Locked", false);
+        }
+    }
+
+    public void Reset() {
+        if (arrowImg == null) {
+            return;
+        }
+
+        arrowImg.sprite = defaultSprite;
         transform.rotation = Quaternion.identity;
+
+        if (anim != null) {
+            anim.SetBool("Locked", false);
+        }
     }
 }
