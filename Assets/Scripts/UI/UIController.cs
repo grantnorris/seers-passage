@@ -104,7 +104,12 @@ public class UIController : MonoBehaviour
     IEnumerator EndBreakHeartAnimation() {
         if (heartbreakUI != null) {
             heartbreakUI.GetComponent<Animator>().SetTrigger("Break");
-            yield return new WaitForSeconds(1.1f);
+
+            yield return new WaitForSeconds(.2f);
+
+            GameManager.instance.audioManager.Play("Player Hurt");
+
+            yield return new WaitForSeconds(.9f);
 
             RectTransform uiRect = heartbreakUI.GetComponent<RectTransform>();
             float time = 0f;
