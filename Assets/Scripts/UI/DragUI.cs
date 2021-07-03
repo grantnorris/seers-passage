@@ -56,6 +56,7 @@ public class DragUI : MonoBehaviour
         }
 
         arrowImg.sprite = sprites[spriteIndex - 1];
+        arrowImg.color = new Color(arrowImg.color.r, arrowImg.color.g, arrowImg.color.b, amount);
         arrowImg.transform.rotation = Quaternion.Euler(0, 0, rotation);
 
         if (anim == null) {

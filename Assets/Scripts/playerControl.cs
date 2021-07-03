@@ -64,10 +64,15 @@ public class PlayerControl : MonoBehaviour
             return;
         }
 
+        float minDrag = .5f;
         float dragThreshold = 3f;
         float xDif = Mathf.Abs(dragStart.x - dragPos.x);
         float yDif = Mathf.Abs(dragStart.y - dragPos.y);
         string direction;
+
+        if (xDif < minDrag && yDif < minDrag) {
+            return;
+        }
 
         if (xDif > yDif) {
             if (dragStart.x > dragPos.x) {
