@@ -5,7 +5,7 @@ using UnityEngine;
 public class KeyInteractable : Interactable
 {
     public override void Interact() {
-        Debug.Log("KEY!!");
         GetComponent<Animator>().SetBool("Interacted", true);
+        Inventory.instance.Add(new InventoryItem("Key"));
     }
 }

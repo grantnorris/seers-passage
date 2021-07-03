@@ -18,6 +18,7 @@ public class LightInteractable : Interactable
             GameManager.instance.audioManager.Play("Light Torch");
             GameManager.instance.playerMove.ExpandLightRadius();
             GameManager.instance.uiController.ActivateTorchUI();
+            Inventory.instance.Add(new InventoryItem("Torch"));
         }
 
         StartDialogue();
