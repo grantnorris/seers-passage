@@ -38,6 +38,10 @@ public class DragUI : MonoBehaviour
 
         switch (direction)
         {
+            case "up":
+            rotation = 0;
+            break;
+
             case "right":
             rotation = 270;
             break;
@@ -51,8 +55,8 @@ public class DragUI : MonoBehaviour
             break;
         }
 
-        arrowImg.transform.rotation = Quaternion.Euler(0, 0, rotation);
         arrowImg.sprite = sprites[spriteIndex - 1];
+        arrowImg.transform.rotation = Quaternion.Euler(0, 0, rotation);
 
         if (anim == null) {
             return;
@@ -65,16 +69,42 @@ public class DragUI : MonoBehaviour
         }
     }
 
-    public void Reset() {
-        if (arrowImg == null) {
+    public void ApplyDirection(string direction) {
+        if (direction == null) {
             return;
         }
 
-        arrowImg.sprite = defaultSprite;
-        transform.rotation = Quaternion.identity;
+        string animationTrigger = "";
 
-        if (anim != null) {
-            anim.SetBool("Locked", false);
+        switch (direction)
+            {
+            case "up":
+            animationTrigger = "ApplyUp";
+            break;
+
+            case "right":
+            animationTrigger = "ApplyRight";
+            break;
+
+            case "down":
+            animationTrigger = "ApplyDown";
+            break;
+
+            case "left":
+            animationTrigger = "ApplyLeft";
+            break;
         }
+
+        anim.SetTrigger(animationTrigger);
+    }
+
+    public void Reset() {
+        ResetArrowSprite();
+        transform.rotation = Quaternion.identity;
+        anim.SetBool("Locked", false);
+    }
+
+    public void ResetArrowSprite() {
+        arrowImg.sprite = defaultSprite;
     }
 }

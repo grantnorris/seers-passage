@@ -31,6 +31,12 @@ public class PlayerControl : MonoBehaviour
                 } else {
                     StartDragging();
                 }
+            } else if (Input.GetMouseButton(0)) {
+                if (dragging) {
+                    Drag();
+                } else {
+                    StartDragging();
+                }
             } else if (dragging) {
                 StopDragging();
             } else if (Input.GetKeyDown("left")) {
@@ -41,14 +47,23 @@ public class PlayerControl : MonoBehaviour
                 playerMove.Move("up");
             } else if (Input.GetKeyDown("down")) {
                 playerMove.Move("down");
-            } else {
-                dragging = false;
             }
         }
     }
 
     void Drag() {
-        Vector2 dragPos = Camera.main.ScreenToWorldPoint(Input.touches[0].position);
+        Vector2 dragPos = Vector2.zero;
+
+        if (Input.touchCount > 0) {
+            dragPos = Camera.main.ScreenToWorldPoint(Input.touches[0].position);
+        } else {
+            dragPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        }
+
+        if (dragPos == Vector2.zero) {
+            return;
+        }
+
         float dragThreshold = 3f;
         float xDif = Mathf.Abs(dragStart.x - dragPos.x);
         float yDif = Mathf.Abs(dragStart.y - dragPos.y);
@@ -91,15 +106,25 @@ public class PlayerControl : MonoBehaviour
 
     void StartDragging() {
         dragging = true;
-        dragStart = Camera.main.ScreenToWorldPoint(Input.touches[0].position);
+
+        if (Input.touchCount > 0) {
+            dragStart = Camera.main.ScreenToWorldPoint(Input.touches[0].position);
+        } else {
+            dragStart = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        }
     }
 
     void StopDragging() {
-        GameManager.instance.dragUI.Reset();
+        dragging = false;
 
-        if (moveDirection != null) {
-            playerMove.Move(moveDirection);
+        if (moveDirection == null) {
+            GameManager.instance.dragUI.Reset();
+            return;
         }
+
+        GameManager.instance.dragUI.ApplyDirection(moveDirection);
+        playerMove.Move(moveDirection);
+        moveDirection = null;
     }
 
     public void AllowInput() {

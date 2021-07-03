@@ -15,11 +15,9 @@ public class LightInteractable : Interactable
     public override void Interact() {
         if (anim != null) {
             anim.SetTrigger("remove");
-
-            if (GameManager.instance.playerMove != null) {
-                GameManager.instance.playerMove.ExpandLightRadius();
-                GameManager.instance.uiController.ActivateTorchUI();
-            }
+            GameManager.instance.audioManager.Play("Light Torch");
+            GameManager.instance.playerMove.ExpandLightRadius();
+            GameManager.instance.uiController.ActivateTorchUI();
         }
 
         StartDialogue();

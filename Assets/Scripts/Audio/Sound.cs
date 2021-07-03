@@ -9,4 +9,5 @@ public class Sound
     public AudioClip clip;
     [HideInInspector]
     public AudioSource source;
+    public bool loop;
 }
