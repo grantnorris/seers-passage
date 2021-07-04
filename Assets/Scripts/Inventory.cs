@@ -7,6 +7,8 @@ public class Inventory : MonoBehaviour
 {
     public static Inventory instance;
 
+    public GameObject UIprefab;
+
     List<InventoryItem> items = new List<InventoryItem>();
     
     // Start is called before the first frame update
@@ -19,12 +21,13 @@ public class Inventory : MonoBehaviour
 
     // Add an item to the inventory
     public void Add(InventoryItem item) {
+        item.ui = Instantiate(UIprefab, transform);
         items.Add(item);
-        Debug.Log("added " + item.name + " to the inventory");
     }
 
     // Remove an item from the inventory
-    public void Remove(InventoryItem item) {
+    void Remove(InventoryItem item) {
+        Destroy(item.ui);
         items.Remove(item);
     }
 

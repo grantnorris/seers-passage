@@ -11,6 +11,11 @@ public class LockInteractable : Interactable
             return;
         }
 
+        if (!Inventory.instance.Use("Key")) {
+            DialogueManager.instance.StartDialogue(new Dialogue(new string[] {"There's a padlock here, the key must be around somewhere."}));
+            return;
+        }
+
         float animationDuration = .8f;
 
         // Run animation
