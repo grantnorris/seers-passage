@@ -7,8 +7,6 @@ public class Inventory : MonoBehaviour
 {
     public static Inventory instance;
 
-    public GameObject UIprefab;
-
     List<InventoryItem> items = new List<InventoryItem>();
     
     // Start is called before the first frame update
@@ -21,7 +19,7 @@ public class Inventory : MonoBehaviour
 
     // Add an item to the inventory
     public void Add(InventoryItem item) {
-        item.ui = Instantiate(UIprefab, transform);
+        item.ui = Instantiate(item.UiPrefab, transform);
         items.Add(item);
     }
 

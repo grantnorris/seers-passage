@@ -1,11 +1,9 @@
 using UnityEngine;
 
-public class InventoryItem
+[CreateAssetMenu(fileName = "New Inventory Item", menuName = "Inventory Item")]
+public class InventoryItem : ScriptableObject
 {
-    public string name;
+    [HideInInspector]
     public GameObject ui;
-
-    public InventoryItem(string newName) {
-        name = newName;
-    }
+    public GameObject UiPrefab;
 }

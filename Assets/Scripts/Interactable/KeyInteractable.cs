@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class KeyInteractable : Interactable
 {
+    [SerializeField]
+    InventoryItem item;
+
     public override void Interact() {
         GetComponent<Animator>().SetBool("Interacted", true);
-        Inventory.instance.Add(new InventoryItem("Key"));
+
+        if (item == null) {
+            return;
+        }
+        
+        Inventory.instance.Add(item);
     }
 }
