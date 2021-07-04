@@ -15,6 +15,10 @@ public class Gate : MonoBehaviour
     
     // Toggle activated state of gate
     public void Activate() {
+        if (!anim.isActiveAndEnabled) {
+            anim.enabled = true;
+        }
+
         if (!active) {
             if (anim != null) {
                 anim.SetTrigger("activate");
