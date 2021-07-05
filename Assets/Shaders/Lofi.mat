@@ -82,7 +82,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - IntroProgress: 0
+    - IntroProgress: -0.33884263
     - OutroProgress: -0.1
     - TransitionProgress: 0
     - Vector1_5677C5A3: 0

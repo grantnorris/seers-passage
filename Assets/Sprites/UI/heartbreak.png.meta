@@ -159,7 +159,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
+        width: 31
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -178,9 +178,9 @@ TextureImporter:
       name: heartbreak_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 31
         y: 0
-        width: 32
+        width: 31
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -199,9 +199,9 @@ TextureImporter:
       name: heartbreak_2
       rect:
         serializedVersion: 2
-        x: 64
+        x: 62
         y: 0
-        width: 32
+        width: 31
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -220,9 +220,9 @@ TextureImporter:
       name: heartbreak_3
       rect:
         serializedVersion: 2
-        x: 96
+        x: 93
         y: 0
-        width: 32
+        width: 31
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -241,9 +241,9 @@ TextureImporter:
       name: heartbreak_4
       rect:
         serializedVersion: 2
-        x: 128
+        x: 124
         y: 0
-        width: 32
+        width: 31
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -262,9 +262,9 @@ TextureImporter:
       name: heartbreak_5
       rect:
         serializedVersion: 2
-        x: 160
+        x: 155
         y: 0
-        width: 32
+        width: 31
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -283,9 +283,9 @@ TextureImporter:
       name: heartbreak_6
       rect:
         serializedVersion: 2
-        x: 192
+        x: 186
         y: 0
-        width: 32
+        width: 31
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -304,9 +304,9 @@ TextureImporter:
       name: heartbreak_7
       rect:
         serializedVersion: 2
-        x: 224
+        x: 217
         y: 0
-        width: 32
+        width: 31
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -325,9 +325,9 @@ TextureImporter:
       name: heartbreak_8
       rect:
         serializedVersion: 2
-        x: 256
+        x: 248
         y: 0
-        width: 32
+        width: 31
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -346,9 +346,9 @@ TextureImporter:
       name: heartbreak_9
       rect:
         serializedVersion: 2
-        x: 288
+        x: 279
         y: 0
-        width: 32
+        width: 31
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -367,9 +367,9 @@ TextureImporter:
       name: heartbreak_10
       rect:
         serializedVersion: 2
-        x: 320
+        x: 310
         y: 0
-        width: 32
+        width: 31
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -388,9 +388,9 @@ TextureImporter:
       name: heartbreak_11
       rect:
         serializedVersion: 2
-        x: 352
+        x: 341
         y: 0
-        width: 32
+        width: 31
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -409,9 +409,9 @@ TextureImporter:
       name: heartbreak_12
       rect:
         serializedVersion: 2
-        x: 384
+        x: 372
         y: 0
-        width: 32
+        width: 31
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -430,9 +430,9 @@ TextureImporter:
       name: heartbreak_13
       rect:
         serializedVersion: 2
-        x: 416
+        x: 403
         y: 0
-        width: 32
+        width: 31
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -451,9 +451,9 @@ TextureImporter:
       name: heartbreak_14
       rect:
         serializedVersion: 2
-        x: 448
+        x: 434
         y: 0
-        width: 32
+        width: 31
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -472,9 +472,9 @@ TextureImporter:
       name: heartbreak_15
       rect:
         serializedVersion: 2
-        x: 480
+        x: 465
         y: 0
-        width: 32
+        width: 31
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -493,9 +493,9 @@ TextureImporter:
       name: heartbreak_16
       rect:
         serializedVersion: 2
-        x: 512
+        x: 496
         y: 0
-        width: 32
+        width: 31
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
