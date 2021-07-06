@@ -22,13 +22,13 @@ public class ScreenTransitions : MonoBehaviour
         }
 
         float time = 0f;
-        float seconds = 1.5f;
+        float seconds = 2.25f;
 
         viewShaderMat.SetFloat("IntroProgress", -1f);
 
         while (time <= 1f) {
             time += Time.unscaledDeltaTime / seconds;
-            float val = Mathf.Lerp(-1f, 0f, Mathf.SmoothStep(0f, 1f, time));
+            float val = Mathf.Lerp(-1f, 0f, Mathf.SmoothStep(0f, 1f, Mathf.SmoothStep(0f, 1f, time)));
             viewShaderMat.SetFloat("IntroProgress", val);
             yield return null;
         }
