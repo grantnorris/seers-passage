@@ -6,8 +6,7 @@ using UnityEngine.UI;
 public class UIController : MonoBehaviour
 {
     public GameObject UI;
-    public CanvasGroup headUI;
-    public CanvasGroup footerUI;
+    public GameObject gameUI;
     public GameObject outroUI;
     public TMP_Text playerStepCountTxt;
     public GameObject heartbreakPrefab;
@@ -21,8 +20,6 @@ public class UIController : MonoBehaviour
     }
 
     void Init() {
-        headUI.alpha = 0f;
-        footerUI.alpha = 0f;
         playerStepCountTxt.text = "0";
         GameManager.instance.stepped.AddListener(StartUpdateStepCountUI);
     }
@@ -161,5 +158,13 @@ public class UIController : MonoBehaviour
 
     public void DisplayOutroCard() {
         StartCoroutine("TransitionToOutro");
+    }
+
+    IEnumerator TransitionToOutro() {
+        yield return new WaitForSeconds(2.2f);
+        gameUI.GetComponent<Animator>().SetTrigger("TransitionOut");
+        yield return new WaitForSeconds(.35f);
+        gameUI.SetActive(false);
+        outroUI.SetActive(true);
     }
 }

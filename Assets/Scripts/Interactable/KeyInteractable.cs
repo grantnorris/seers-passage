@@ -15,5 +15,12 @@ public class KeyInteractable : Interactable
         }
         
         Inventory.instance.Add(item);
+        Remove();
+    }
+
+    public void Remove() {
+        this.enabled = false;
+        gameObject.tag = "Untagged";
+        GameManager.instance.playerMove.CloseInteractNotice();
     }
 }
