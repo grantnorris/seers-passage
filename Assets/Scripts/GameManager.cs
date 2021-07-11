@@ -58,12 +58,24 @@ public class GameManager : MonoBehaviour
     public void StepCountDialogue() {
         int goodSteps = perfectSteps * 2;
         int badSteps = perfectSteps * 3;
-
-        Debug.Log("steps = " + playerStepCount + "perfect steps = " + perfectSteps);
         
         if (playerStepCount == perfectSteps || playerStepCount == goodSteps || playerStepCount == badSteps) {
             uiController.StartBreakHeart();
         }
+    }
+
+    // Currentl player step score string
+    public string StepScore() {
+        int goodSteps = perfectSteps * 2;
+        int badSteps = perfectSteps * 3;
+
+        if (playerStepCount >= perfectSteps && playerStepCount < goodSteps) {
+            return "Good";
+        } else if (playerStepCount >= goodSteps) {
+            return "Bad";
+        }
+
+        return "Perfect";
     }
 
     // Player step count

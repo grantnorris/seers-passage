@@ -17,10 +17,15 @@ public class UIController : MonoBehaviour
     GameObject heartbreakPrefab;
     [SerializeField]
     GameObject healthUI;
-    
     GameObject heartbreakUI;
     [SerializeField]
     GameObject loseUI;
+    [SerializeField]
+    Color perfectStepColor;
+    [SerializeField]
+    Color goodStepColor;
+    [SerializeField]
+    Color badStepColor;
 
     void Start() {
         Init();
@@ -42,29 +47,38 @@ public class UIController : MonoBehaviour
             yield break;
         }
 
-        string steps = GameManager.instance.StepCount().ToString();
+        int steps = GameManager.instance.StepCount();
         RectTransform txtRect = playerStepCountTxt.GetComponent<RectTransform>();
         Vector3 txtRectPos = txtRect.position;
         GameObject tempTxtObj = Instantiate(playerStepCountTxt.gameObject, playerStepCountTxt.transform.parent);
         RectTransform tempTxtRect = tempTxtObj.GetComponent<RectTransform>();
         TMP_Text tempTxt = tempTxtObj.GetComponent<TMP_Text>();
-        tempTxt.text = steps;
-        Color txtColor = playerStepCountTxt.color;
+        tempTxt.text = steps.ToString();
+        Color txtColor = perfectStepColor;
         float time = 0f;
         float seconds = .25f;
+        string stepScore = GameManager.instance.StepScore();
+
+        if (stepScore == "Good") {
+            // Orange
+            txtColor = goodStepColor;
+        } else if (stepScore == "Bad") {
+            // Red
+            txtColor = badStepColor;
+        }
 
         while (time <= 1f) {
             time += Time.unscaledDeltaTime / seconds;
             float smoothTime = Mathf.SmoothStep(0f, 1f, time);
             txtRect.position = Vector3.Lerp(txtRectPos, txtRectPos - new Vector3(0, .5f, 0), smoothTime);
             tempTxtRect.position = Vector3.Lerp(txtRectPos + new Vector3(0, .5f, 0), txtRectPos, smoothTime);
-            tempTxt.color = Color.Lerp(new Color(txtColor.r, txtColor.r, txtColor.g, 0), txtColor, smoothTime);
-            playerStepCountTxt.color = Color.Lerp(txtColor, new Color(txtColor.r, txtColor.r, txtColor.g, 0), smoothTime);
+            tempTxt.color = Color.Lerp(new Color(txtColor.r, txtColor.g, txtColor.b, 0), txtColor, smoothTime);
+            playerStepCountTxt.color = Color.Lerp(playerStepCountTxt.color, new Color(playerStepCountTxt.color.r, playerStepCountTxt.color.g, playerStepCountTxt.color.b, 0), smoothTime);
             yield return null;
         }
         
-        Destroy(tempTxt);
-        playerStepCountTxt.text = steps;
+        Destroy(tempTxt.gameObject);
+        playerStepCountTxt.text = steps.ToString();
         txtRect.position = txtRectPos;
         playerStepCountTxt.color = txtColor;
     }
