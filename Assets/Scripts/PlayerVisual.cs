@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerVisual : MonoBehaviour
 {
     PlayerMove PlayerMove;
+    [SerializeField]
+    Animator shadowAnim;
 
     void Start() {
         PlayerMove = GetComponentInParent<PlayerMove>();
@@ -12,16 +14,36 @@ public class PlayerVisual : MonoBehaviour
 
     // Move player after initial animation
     public void MoveAfterAnimation() {
-        if (PlayerMove != null) {
-            PlayerMove.moving = true;
+        if (PlayerMove == null) {
+            return;
         }
+
+        PlayerMove.moving = true;
     }
 
     // Reset player moving flag and end the moving animation
     public void StopMovingAnimation() {
-        if (PlayerMove != null) {
-            PlayerMove.moving = false;
-            PlayerMove.anim.SetBool("moving", false);
+        if (PlayerMove == null) {
+            return;
         }
+
+        PlayerMove.moving = false;
+        PlayerMove.anim.SetBool("moving", false);
+    }
+
+    public void DisableAnimator() {
+        if (PlayerMove == null) {
+            return;
+        }
+
+        PlayerMove.enabled = false;
+    }
+
+    public void LowLight() {
+        if (shadowAnim == null) {
+            return;
+        }
+
+        shadowAnim.SetBool("lowLight", true);
     }
 }

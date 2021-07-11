@@ -122,6 +122,7 @@ public class UIController : MonoBehaviour
             Destroy(heartbreakUI);
         }
         
+        GameManager.instance.playerHealth.ReduceHealth();
         HealthUI.instance.Update();
     }
 

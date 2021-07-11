@@ -22,6 +22,6 @@ public class PlayerHealth : MonoBehaviour
     
     // End the game 
     void Die() {
-        Debug.Log("player dead");
+        GameManager.instance.player.transform.Find("Visual").GetComponent<Animator>().SetBool("dead", true);
     }
 }
