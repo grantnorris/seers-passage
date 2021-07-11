@@ -15,6 +15,9 @@ public class LightInteractable : Interactable
     }
 
     public override void Interact() {
+        gameObject.tag = "Untagged";
+        GameManager.instance.playerMove.CloseInteractNotice();
+
         if (anim != null) {
             anim.SetTrigger("remove");
             GameManager.instance.audioManager.Play("Light Torch");
@@ -29,6 +32,7 @@ public class LightInteractable : Interactable
         }
 
         StartDialogue();
+        Remove();
     }
 
     void StartDialogue() {
@@ -41,7 +45,5 @@ public class LightInteractable : Interactable
 
     public void Remove() {
         this.enabled = false;
-        gameObject.tag = "Untagged";
-        GameManager.instance.playerMove.CloseInteractNotice();
     }
 }

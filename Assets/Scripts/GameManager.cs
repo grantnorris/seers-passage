@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public UIController uiController;
     [HideInInspector]
     public AudioManager audioManager;
+    public int perfectSteps = 3;
 
     int playerStepCount = 0;
 
@@ -55,14 +56,13 @@ public class GameManager : MonoBehaviour
     }
 
     public void StepCountDialogue() {
-        int perfectSteps = 7;
         int goodSteps = perfectSteps * 2;
         int badSteps = perfectSteps * 3;
+
+        Debug.Log("steps = " + playerStepCount + "perfect steps = " + perfectSteps);
         
         if (playerStepCount == perfectSteps || playerStepCount == goodSteps || playerStepCount == badSteps) {
-            if (playerHealth != null) {
-                uiController.StartBreakHeart();
-            }
+            uiController.StartBreakHeart();
         }
     }
 

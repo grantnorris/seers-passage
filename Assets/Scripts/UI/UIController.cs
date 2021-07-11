@@ -127,7 +127,7 @@ public class UIController : MonoBehaviour
     }
 
     public void StepCountDialogue() {
-        int perfectSteps = 7;
+        int perfectSteps = GameManager.instance.perfectSteps;
         int goodSteps = perfectSteps * 2;
         int badSteps = perfectSteps * 3;
         int stepCount = GameManager.instance.StepCount();
@@ -167,5 +167,14 @@ public class UIController : MonoBehaviour
         yield return new WaitForSeconds(.35f);
         gameUI.SetActive(false);
         outroUI.SetActive(true);
+    }
+
+    public void DisplayLoseUI() {
+        StartCoroutine("TransitionLoseUI");
+    }
+
+    IEnumerator TransitionLoseUI() {
+        yield return new WaitForSeconds(2.2f);
+        gameUI.GetComponent<Animator>().SetTrigger("TransitionOut");
     }
 }

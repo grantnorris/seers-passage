@@ -31,11 +31,12 @@ public class PlayerVisual : MonoBehaviour
         PlayerMove.anim.SetBool("moving", false);
     }
 
-    public void DisableAnimator() {
+    public void Die() {
         if (PlayerMove == null) {
             return;
         }
 
+        GameManager.instance.uiController.DisplayLoseUI();
         PlayerMove.enabled = false;
     }
 
