@@ -22,7 +22,6 @@ public class LightInteractable : Interactable
             anim.SetTrigger("remove");
             GameManager.instance.audioManager.Play("Light Torch");
             GameManager.instance.playerMove.ExpandLightRadius();
-            GameManager.instance.uiController.ActivateTorchUI();
 
             if (item == null) {
                 return;

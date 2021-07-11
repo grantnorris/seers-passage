@@ -5,15 +5,22 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
-    public GameObject UI;
-    public GameObject gameUI;
-    public GameObject outroUI;
-    public TMP_Text playerStepCountTxt;
-    public GameObject heartbreakPrefab;
-    public GameObject healthUI;
-    public GameObject torchUI;
+    [SerializeField]
+    GameObject UI;
+    [SerializeField]
+    GameObject gameUI;
+    [SerializeField]
+    GameObject outroUI;
+    [SerializeField]
+    TMP_Text playerStepCountTxt;
+    [SerializeField]
+    GameObject heartbreakPrefab;
+    [SerializeField]
+    GameObject healthUI;
     
     GameObject heartbreakUI;
+    [SerializeField]
+    GameObject loseUI;
 
     void Start() {
         Init();
@@ -144,19 +151,6 @@ public class UIController : MonoBehaviour
         }
     }
 
-    // Highlight torch ui and enable animation
-    public void ActivateTorchUI() {
-        if (torchUI == null) {
-            return;
-        }
-
-        Image torchImage = torchUI.GetComponent<Image>();
-        Color torchColor = torchImage.color;
-        torchColor.a = 1;
-        torchImage.color = torchColor;
-        torchUI.GetComponent<Animator>().enabled = true;
-    }
-
     public void DisplayOutroCard() {
         StartCoroutine("TransitionToOutro");
     }
@@ -174,7 +168,8 @@ public class UIController : MonoBehaviour
     }
 
     IEnumerator TransitionLoseUI() {
-        yield return new WaitForSeconds(2.2f);
         gameUI.GetComponent<Animator>().SetTrigger("TransitionOut");
+        yield return new WaitForSeconds(.5f);
+        loseUI.SetActive(true);
     }
 }
