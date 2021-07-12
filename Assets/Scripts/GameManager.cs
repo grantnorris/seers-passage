@@ -113,5 +113,6 @@ public class GameManager : MonoBehaviour
         playerControl.DisallowInput();
         screenTransitions.StartTransitionViewOut();
         uiController.DisplayOutroCard();
+        playerMove.CloseInteractNotice();
     }
 }

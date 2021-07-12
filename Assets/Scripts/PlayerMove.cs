@@ -164,9 +164,7 @@ public class PlayerMove : MonoBehaviour
 
     // Display interation notice on trigger enter
     public void OnTriggerEnter2D(Collider2D other) {
-        Debug.Log("collide with " + other.tag);
         if (other.tag == "Interactable") {
-            Debug.Log("Collide with interactable");
             OpenInteractNotice();
         }
     }
