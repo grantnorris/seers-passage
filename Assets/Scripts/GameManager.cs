@@ -109,10 +109,22 @@ public class GameManager : MonoBehaviour
         playerControl.AllowInput();
     }
 
+    // Start the death senquence
+    public void StartDie() {
+        playerMove.enabled = false;
+        playerMove.interactNoticeScript.Close();
+        player.transform.Find("Visual").GetComponent<Animator>().SetBool("dead", true);
+    }
+
+    // End the death sequence
+    public void EndDie() {
+        GameManager.instance.uiController.DisplayLoseUI();
+    }
+
+    // Finish the level successfully
     public void FinishGame() {
         playerControl.DisallowInput();
         screenTransitions.StartTransitionViewOut();
         uiController.DisplayOutroCard();
-        playerMove.CloseInteractNotice();
     }
 }

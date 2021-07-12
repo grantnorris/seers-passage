@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerInteractNotice : MonoBehaviour
 {
@@ -25,5 +23,10 @@ public class PlayerInteractNotice : MonoBehaviour
         if (visual != null && anim != null) {
             anim.SetTrigger("close");
         }
+    }
+
+    public void Disable() {
+        Debug.Log("disable interact notice");
+        gameObject.SetActive(false);
     }
 }

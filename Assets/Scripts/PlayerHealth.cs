@@ -16,12 +16,7 @@ public class PlayerHealth : MonoBehaviour
         health--;
 
         if (health <= 0) {
-            Die();
+            GameManager.instance.StartDie();
         }
-    }
-    
-    // End the game 
-    void Die() {
-        GameManager.instance.player.transform.Find("Visual").GetComponent<Animator>().SetBool("dead", true);
     }
 }

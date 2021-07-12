@@ -32,12 +32,7 @@ public class PlayerVisual : MonoBehaviour
     }
 
     public void Die() {
-        if (PlayerMove == null) {
-            return;
-        }
-
-        GameManager.instance.uiController.DisplayLoseUI();
-        PlayerMove.enabled = false;
+        GameManager.instance.EndDie();
     }
 
     public void LowLight() {

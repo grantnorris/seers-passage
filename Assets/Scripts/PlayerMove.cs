@@ -13,10 +13,11 @@ public class PlayerMove : MonoBehaviour
     public bool lowLight = true;
     [HideInInspector]
     public UnityEvent finishMoving = new UnityEvent();
+    [HideInInspector]
+    public PlayerInteractNotice interactNoticeScript;
 
     PlayerControl playerControl;
     Vector3 targetPos;
-    PlayerInteractNotice interactNoticeScript;
 
     void Start() {
         playerControl = GetComponent<PlayerControl>();

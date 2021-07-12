@@ -44,6 +44,12 @@ TextureImporter:
   - first:
       213: 7168645623447531613
     second: ui-icons_13
+  - first:
+      213: -7738851850406567865
+    second: ui-icons_14
+  - first:
+      213: 4003025335428327057
+    second: ui-icons_15
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -149,7 +155,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 4
-        y: 20
+        y: 50
         width: 7
         height: 6
       alignment: 0
@@ -170,7 +176,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 22
-        y: 21
+        y: 51
         width: 3
         height: 6
       alignment: 0
@@ -191,7 +197,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 38
-        y: 21
+        y: 51
         width: 3
         height: 6
       alignment: 0
@@ -212,7 +218,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 54
-        y: 21
+        y: 51
         width: 3
         height: 6
       alignment: 0
@@ -233,7 +239,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 70
-        y: 21
+        y: 51
         width: 3
         height: 6
       alignment: 0
@@ -254,7 +260,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 84
-        y: 20
+        y: 50
         width: 7
         height: 6
       alignment: 0
@@ -275,7 +281,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 102
-        y: 21
+        y: 51
         width: 3
         height: 5
       alignment: 0
@@ -296,7 +302,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 6
-        y: 6
+        y: 36
         width: 3
         height: 6
       alignment: 0
@@ -317,7 +323,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 22
-        y: 8
+        y: 38
         width: 3
         height: 7
       alignment: 0
@@ -338,7 +344,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 38
-        y: 8
+        y: 38
         width: 3
         height: 7
       alignment: 0
@@ -359,7 +365,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 54
-        y: 8
+        y: 38
         width: 3
         height: 7
       alignment: 0
@@ -380,7 +386,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 70
-        y: 8
+        y: 38
         width: 3
         height: 7
       alignment: 0
@@ -401,7 +407,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 86
-        y: 8
+        y: 38
         width: 3
         height: 7
       alignment: 0
@@ -422,11 +428,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 97
-        y: 4
+        y: 34
         width: 13
         height: 14
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -434,6 +440,48 @@ TextureImporter:
       bones: []
       spriteID: d50bf32a6352c7360800000000000000
       internalID: 7168645623447531613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-icons_14
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 16
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74064278e331a9490800000000000000
+      internalID: -7738851850406567865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-icons_15
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 19
+        width: 14
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1962819655a9d8730800000000000000
+      internalID: 4003025335428327057
       vertices: []
       indices: 
       edges: []
