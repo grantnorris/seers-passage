@@ -144,7 +144,7 @@ public class UIController : MonoBehaviour
         }
         
         GameManager.instance.playerHealth.ReduceHealth();
-        HealthUI.instance.Update();
+        HealthUI.instance.UpdateUI();
     }
 
     public void StepCountDialogue() {

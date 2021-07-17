@@ -28,7 +28,7 @@ public class HealthUI : MonoBehaviour
     }
 
     // Update UI to reflect health
-    public void Update() {
+    public void UpdateUI() {
         Image img = null;
 
         switch (GameManager.instance.playerHealth.Health())
