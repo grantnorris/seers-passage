@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class scrollHighlight : MonoBehaviour
+public class ScrollHighlight : MonoBehaviour
 {
-    [SerializeField]
     List<ScrollHighlightItem> items = new List<ScrollHighlightItem>();
     [SerializeField]
     Transform content;
@@ -79,20 +78,5 @@ public class scrollHighlight : MonoBehaviour
                 item.group.alpha = 0;
             }
         }
-    }
-}
-
-[System.Serializable]
-public class ScrollHighlightItem {
-    public GameObject gameobject;
-    public float pos;
-    public float height;
-    public CanvasGroup group;
-
-    public ScrollHighlightItem(GameObject newGameobject, float newPos, float newHeight, CanvasGroup newGroup) {
-        gameobject = newGameobject;
-        pos = newPos;
-        height = newHeight;
-        group = newGroup;
     }
 }
