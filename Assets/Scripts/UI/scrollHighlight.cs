@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class scrollHighlight : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class scrollHighlight : MonoBehaviour
     [SerializeField]
     Transform content;
     float viewportCenter;
+    float viewportSize;
 
     void Start() {
         StartCoroutine("Init");
@@ -20,22 +22,33 @@ public class scrollHighlight : MonoBehaviour
         // Wait a frame for other UI scripts to initialise
         yield return null;
 
-        float contentSize = content.GetComponent<RectTransform>().sizeDelta.y;
-        float viewportSize = GetComponent<RectTransform>().rect.height;
+        float viewportHeight = GetComponent<RectTransform>().rect.height;
+        int topPadding = Mathf.RoundToInt((viewportHeight / 2) - (content.GetChild(0).GetComponent<RectTransform>().sizeDelta.y / 2));
+        int bottomPadding = Mathf.RoundToInt((viewportHeight / 2) - (content.GetChild(content.childCount - 1).GetComponent<RectTransform>().sizeDelta.y / 2));
+        int spacing = topPadding;
+        VerticalLayoutGroup contentLayout = content.GetComponent<VerticalLayoutGroup>();
+        contentLayout.padding = new RectOffset(0, 0, topPadding, bottomPadding);
+        contentLayout.spacing = spacing;
 
-        if (contentSize <= viewportSize) {
-            yield return false;
-        }
+        // Wait a frame for other UI scripts to initialise
+        yield return null;
 
-        viewportCenter = (viewportSize / 2) / contentSize;
-
-        Debug.Log("viewport size = " + viewportSize);
-        Debug.Log("viewport center = " + viewportCenter);
+        float contentHeight = content.GetComponent<RectTransform>().sizeDelta.y - viewportHeight;
+        viewportSize = viewportHeight / contentHeight;
+        viewportCenter = viewportSize / 2;
 
         foreach (Transform child in content) {
             GameObject obj = child.gameObject;
-            float pos = (obj.GetComponent<RectTransform>().anchoredPosition.y * -1) / contentSize;
-            items.Add(new ScrollHighlightItem(obj, pos));
+            RectTransform rect = obj.GetComponent<RectTransform>();
+            float pos = (rect.anchoredPosition.y * -1) / contentHeight;
+            float height = rect.sizeDelta.y / contentHeight;
+            CanvasGroup group = child.GetComponent<CanvasGroup>();
+            items.Add(new ScrollHighlightItem(
+                obj,
+                pos,
+                height,
+                group
+            ));
         }
     }
 
@@ -44,21 +57,28 @@ public class scrollHighlight : MonoBehaviour
             return;
         }
 
-        float scrollPos = 1 - pos.y;
+        float scrollPos = (1 - pos.y);
 
         foreach (ScrollHighlightItem item in items) {
-            CanvasGroup group = item.gameobject.GetComponent<CanvasGroup>();
+            if (item.group == null) {
+                continue;
+            }
 
-            if (group != null) {
-                if (scrollPos + viewportCenter > item.pos) {
-                    group.alpha = 1;
-                } else {
-                    group.alpha = 0;
+            // Debug.Log("trigger point = " + scrollPos + ", item pos = " + item.pos);
+            
+            if (scrollPos + viewportSize >= item.pos) {
+                float distanceFromCenter = Mathf.Abs((item.pos + (item.height / 2)) - (scrollPos + viewportCenter));
+                float alpha = 1 - (distanceFromCenter / viewportCenter);
+
+                if (alpha < 0) {
+                    alpha = 0;
                 }
+
+                item.group.alpha = alpha;
+            } else {
+                item.group.alpha = 0;
             }
         }
-
-        Debug.Log(scrollPos);
     }
 }
 
@@ -66,9 +86,13 @@ public class scrollHighlight : MonoBehaviour
 public class ScrollHighlightItem {
     public GameObject gameobject;
     public float pos;
+    public float height;
+    public CanvasGroup group;
 
-    public ScrollHighlightItem(GameObject newGameobject, float newPos) {
+    public ScrollHighlightItem(GameObject newGameobject, float newPos, float newHeight, CanvasGroup newGroup) {
         gameobject = newGameobject;
         pos = newPos;
+        height = newHeight;
+        group = newGroup;
     }
 }
