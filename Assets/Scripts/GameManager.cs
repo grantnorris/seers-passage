@@ -5,6 +5,10 @@ using UnityEngine.Events;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    
+    [HideInInspector]
+    public Level level;
+    public GameObject levelParent;
     public GameObject player;
     public PlayerMove playerMove;
     public PlayerControl playerControl;
@@ -28,11 +32,32 @@ public class GameManager : MonoBehaviour
         if (instance == null) {
             instance = this;
         }
+    }
 
+    public void Start() {
         playerHealth = GetComponent<PlayerHealth>();
         uiController = GetComponent<UIController>();
         screenTransitions = GetComponent<ScreenTransitions>();
         audioManager = GetComponent<AudioManager>();
+
+        level = SceneSwitcher.instance.level;
+
+        Debug.Log("level = " + level.name);
+
+        if (level == null || level.prefab == null) {
+            return;
+        }
+
+        Instantiate(level.prefab);
+    }
+
+    public void SetPlayer(GameObject p, PlayerMove pMove, PlayerControl pControl) {
+        player = p;
+        playerMove = pMove;
+        playerControl = pControl;
+        Debug.Log("set player");
+        Debug.Log("player = " + player);
+        CameraManager.instance.Init();
     }
 
     // Invoke the levelStart unity event

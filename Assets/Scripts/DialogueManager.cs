@@ -32,7 +32,6 @@ public class DialogueManager : MonoBehaviour
 
     // Start dialogue
     public void StartDialogue(Dialogue dialogue) {
-        Debug.Log("start dialogue");
         sentences.Clear();
         GameManager.instance.DisablePlayerMove();
         dialogueParent.SetActive(true);
@@ -61,7 +60,6 @@ public class DialogueManager : MonoBehaviour
 
     // Wait for a small amount of time and then start the dialogue
     IEnumerator OpenDialogueBox() {
-        Debug.Log("open dialogue box");
         // Play audio clip
         GameManager.instance.audioManager.Play("Dialogue Open");
 
@@ -103,7 +101,6 @@ public class DialogueManager : MonoBehaviour
 
     // Display next sentence
     public void DisplayNextSentence(bool playSound = true) {
-        Debug.Log("display sentence");
         if (sentences.Count == 0) {
             Debug.Log("no sentences");
             StartCoroutine("EndDialogue");
@@ -120,7 +117,6 @@ public class DialogueManager : MonoBehaviour
         dialogueScript.arrow.SetActive(false);
 
         string sentence = sentences.Dequeue();
-        Debug.Log("sentence = " + sentence);
         StartCoroutine("TypeSentence", sentence);
     }
 

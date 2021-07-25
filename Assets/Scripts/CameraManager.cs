@@ -4,16 +4,30 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
+    public static CameraManager instance;
+
     public GameObject renderTexObj;
     Camera playerCam;
     Camera mainCam;
     RenderTexture renderTex;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake() {
+        if (instance == null) {
+            instance = this;
+        }
+    }
+
+    public void Init()
     {
         mainCam = Camera.main;
-        playerCam = GameManager.instance.player.GetComponentInChildren<Camera>();
+        GameObject player = GameManager.instance.player;
+
+        if (player == null) {
+            Debug.LogWarning("No player set in gamemanager");
+            return;
+        }
+
+        playerCam = player.GetComponentInChildren<Camera>();
 
         if (playerCam != null) {
             renderTex = playerCam.targetTexture;
@@ -24,6 +38,7 @@ public class CameraManager : MonoBehaviour
 
     // Set up player cam and render texture
     void SetUpPlayerCam() {
+
         if (mainCam == null || playerCam == null || renderTex == null || renderTexObj == null) {
             return;
         }

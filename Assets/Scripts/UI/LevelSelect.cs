@@ -36,5 +36,6 @@ public class LevelSelect : MonoBehaviour
 
     public void SelectLevel(Level level) {
         Debug.Log("Select level - " + level.name);
+        SceneSwitcher.instance.LoadLevel(level);
     }
 }
