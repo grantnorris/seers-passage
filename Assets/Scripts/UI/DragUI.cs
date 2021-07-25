@@ -31,7 +31,7 @@ public class DragUI : MonoBehaviour
         int rotation = 0;
 
         if (spriteIndex <= 0) {
-            spriteIndex = 1;
+            spriteIndex = 0;
         } else if (spriteIndex > sprites.Length) {
             spriteIndex = sprites.Length;
         }

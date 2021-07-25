@@ -9,12 +9,14 @@ public class PlayerControl : MonoBehaviour
     Vector2 dragStart;
     string moveDirection;
     PlayerMove playerMove;
+    DragUI dragUI;
 
     // Start is called before the first frame update
     void Start()
     {
         playerMove = GetComponent<PlayerMove>();
         allowInput = true;
+        dragUI = GameManager.instance.dragUI;
     }
 
     // Update is called once per frame
@@ -71,6 +73,7 @@ public class PlayerControl : MonoBehaviour
         string direction;
 
         if (xDif < minDrag && yDif < minDrag) {
+            dragUI.Reset();
             return;
         }
 
@@ -83,7 +86,7 @@ public class PlayerControl : MonoBehaviour
                 direction = "right";
             }
 
-            GameManager.instance.dragUI.Display(xDif / dragThreshold, dragStart, direction);
+            dragUI.Display(xDif / dragThreshold, dragStart, direction);
 
             if (xDif <= dragThreshold) {
                 moveDirection = null;
@@ -98,7 +101,7 @@ public class PlayerControl : MonoBehaviour
                 direction = "up";
             }
 
-            GameManager.instance.dragUI.Display(yDif / dragThreshold, dragStart, direction);
+            dragUI.Display(yDif / dragThreshold, dragStart, direction);
 
             if (yDif <= dragThreshold) {
                 moveDirection = null;
@@ -127,7 +130,7 @@ public class PlayerControl : MonoBehaviour
             return;
         }
 
-        GameManager.instance.dragUI.ApplyDirection(moveDirection);
+        dragUI.ApplyDirection(moveDirection);
         playerMove.Move(moveDirection);
         moveDirection = null;
     }
