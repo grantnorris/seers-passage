@@ -30,7 +30,7 @@ public class JournalInteractable : Interactable
     }
 
     public void CloseJournal() {
-        DialogueManager.instance.dialogueEnded.RemoveListener(CloseJournal);
         anim.SetBool("Open", false);
+        DialogueManager.instance.dialogueEnded.RemoveListener(CloseJournal);
     }
 }
