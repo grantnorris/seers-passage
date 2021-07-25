@@ -25,6 +25,9 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public AudioManager audioManager;
     public int perfectSteps = 3;
+    [SerializeField]
+    [Tooltip("Used for dev purposes if the level scene is played directly.")]
+    Level fallbackLevel;
 
     int playerStepCount = 0;
 
@@ -40,9 +43,7 @@ public class GameManager : MonoBehaviour
         screenTransitions = GetComponent<ScreenTransitions>();
         audioManager = GetComponent<AudioManager>();
 
-        level = SceneSwitcher.instance.level;
-
-        Debug.Log("level = " + level.name);
+        level = SceneSwitcher.instance != null ? SceneSwitcher.instance.level : fallbackLevel;
 
         if (level == null || level.prefab == null) {
             return;
