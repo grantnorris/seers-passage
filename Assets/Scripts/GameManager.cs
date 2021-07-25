@@ -56,8 +56,8 @@ public class GameManager : MonoBehaviour
         }
 
         if (SceneSwitcher.instance == null) {
-            SceneSwitcher ss = new GameObject("Scene Switcher").AddComponent<SceneSwitcher>();
-            ss.level = level;
+            // Create scene switcher if not present (via loading level scene directly [dev])
+            new GameObject("Scene Switcher").AddComponent<SceneSwitcher>().level = level;
         }
 
         stepThreshold = level.stepThreshold;
@@ -167,5 +167,10 @@ public class GameManager : MonoBehaviour
     // Retry level via UI
     public void RetryLevel() {
         SceneSwitcher.instance.ReloadLevel();
+    }
+
+    // Return to level select via UI or finish game
+    public void ReturnToLevelSelect() {
+        SceneSwitcher.instance.LoadLevelSelect();
     }
 }

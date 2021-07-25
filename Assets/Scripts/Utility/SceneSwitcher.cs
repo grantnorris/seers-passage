@@ -25,4 +25,8 @@ public class SceneSwitcher : MonoBehaviour
     public void ReloadLevel() {
         SceneManager.LoadScene("Level");
     }
+
+    public void LoadLevelSelect() {
+        SceneManager.LoadScene("Level Select");
+    }
 }
