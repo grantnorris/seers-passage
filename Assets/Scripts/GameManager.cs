@@ -8,9 +8,11 @@ public class GameManager : MonoBehaviour
     
     [HideInInspector]
     public Level level;
-    public GameObject levelParent;
+    [HideInInspector]
     public GameObject player;
+    [HideInInspector]
     public PlayerMove playerMove;
+    [HideInInspector]
     public PlayerControl playerControl;
     public ScreenTransitions screenTransitions;
     public DragUI dragUI;
@@ -24,7 +26,8 @@ public class GameManager : MonoBehaviour
     public UIController uiController;
     [HideInInspector]
     public AudioManager audioManager;
-    public int perfectSteps = 3;
+    [HideInInspector]
+    public int stepThreshold;
     [SerializeField]
     [Tooltip("Used for dev purposes if the level scene is played directly.")]
     Level fallbackLevel;
@@ -42,13 +45,22 @@ public class GameManager : MonoBehaviour
         uiController = GetComponent<UIController>();
         screenTransitions = GetComponent<ScreenTransitions>();
         audioManager = GetComponent<AudioManager>();
+        SetupLevel();
+    }
 
+    void SetupLevel() {
         level = SceneSwitcher.instance != null ? SceneSwitcher.instance.level : fallbackLevel;
 
         if (level == null || level.prefab == null) {
             return;
         }
 
+        if (SceneSwitcher.instance == null) {
+            SceneSwitcher ss = new GameObject("Scene Switcher").AddComponent<SceneSwitcher>();
+            ss.level = level;
+        }
+
+        stepThreshold = level.stepThreshold;
         Instantiate(level.prefab);
     }
 
@@ -56,8 +68,6 @@ public class GameManager : MonoBehaviour
         player = p;
         playerMove = pMove;
         playerControl = pControl;
-        Debug.Log("set player");
-        Debug.Log("player = " + player);
         CameraManager.instance.Init();
     }
 
@@ -82,20 +92,20 @@ public class GameManager : MonoBehaviour
     }
 
     public void StepCountDialogue() {
-        int goodSteps = perfectSteps * 2;
-        int badSteps = perfectSteps * 3;
+        int goodSteps = stepThreshold * 2;
+        int badSteps = stepThreshold * 3;
         
-        if (playerStepCount == perfectSteps || playerStepCount == goodSteps || playerStepCount == badSteps) {
+        if (playerStepCount == stepThreshold || playerStepCount == goodSteps || playerStepCount == badSteps) {
             uiController.StartBreakHeart();
         }
     }
 
     // Currentl player step score string
     public string StepScore() {
-        int goodSteps = perfectSteps * 2;
-        int badSteps = perfectSteps * 3;
+        int goodSteps = stepThreshold * 2;
+        int badSteps = stepThreshold * 3;
 
-        if (playerStepCount >= perfectSteps && playerStepCount < goodSteps) {
+        if (playerStepCount >= stepThreshold && playerStepCount < goodSteps) {
             return "Good";
         } else if (playerStepCount >= goodSteps) {
             return "Bad";
@@ -152,5 +162,10 @@ public class GameManager : MonoBehaviour
         playerControl.DisallowInput();
         screenTransitions.StartTransitionViewOut();
         uiController.DisplayOutroCard();
+    }
+
+    // Retry level via UI
+    public void RetryLevel() {
+        SceneSwitcher.instance.ReloadLevel();
     }
 }

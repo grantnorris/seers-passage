@@ -148,12 +148,12 @@ public class UIController : MonoBehaviour
     }
 
     public void StepCountDialogue() {
-        int perfectSteps = GameManager.instance.perfectSteps;
-        int goodSteps = perfectSteps * 2;
-        int badSteps = perfectSteps * 3;
+        int stepThreshold = GameManager.instance.stepThreshold;
+        int goodSteps = stepThreshold * 2;
+        int badSteps = stepThreshold * 3;
         int stepCount = GameManager.instance.StepCount();
         
-        if (stepCount == perfectSteps) {
+        if (stepCount == stepThreshold) {
             Dialogue dialogue = new Dialogue(new string[] {"An uneasy presence washes over you."});
             DialogueManager.instance.StartDialogue(dialogue);
         } else if (stepCount == goodSteps) {

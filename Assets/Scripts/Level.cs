@@ -4,6 +4,8 @@ using UnityEngine;
 public class Level : ScriptableObject
 {
     public GameObject prefab;
-    [Header("Displayed in the UI")]
+    [Tooltip("Displayed in the UI")]
     public string floorNumber;
+    [Tooltip("The lowest number of steps the level can be completed in – used for scoring.")]
+    public int stepThreshold;
 }
