@@ -8,6 +8,8 @@ public class UIController : MonoBehaviour
     [SerializeField]
     GameObject UI;
     [SerializeField]
+    GameObject introUI;
+    [SerializeField]
     GameObject gameUI;
     [SerializeField]
     GameObject outroUI;
@@ -34,6 +36,20 @@ public class UIController : MonoBehaviour
     void Init() {
         playerStepCountTxt.text = "0";
         GameManager.instance.stepped.AddListener(StartUpdateStepCountUI);
+
+        if (introUI != null) {
+            introUI.SetActive(true);
+
+            if (gameUI != null) {
+                gameUI.SetActive(false);
+            }
+        }
+    }
+
+    public void DisplayGameUI() {
+        if (gameUI != null) {
+            gameUI.SetActive(true);
+        }
     }
 
     // Start UpdateStepCountUI coroutine

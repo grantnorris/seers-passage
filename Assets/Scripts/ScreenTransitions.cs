@@ -6,8 +6,7 @@ public class ScreenTransitions : MonoBehaviour
 {
     public Material viewShaderMat;
 
-    // Start is called before the first frame update
-    void Start()
+    public void StartTransitionViewIn()
     {
         viewShaderMat.SetFloat("OutroProgress", -.1f);
         StartCoroutine("TransitionViewIn");
@@ -39,9 +38,7 @@ public class ScreenTransitions : MonoBehaviour
 
         yield return new WaitForSeconds(.25f);
 
-        if (GameManager.instance.levelStart != null) {
-            // GameManager.instance.levelStart.Invoke();
-        }
+        GameManager.instance.uiController.DisplayGameUI();
     }
 
     public void StartTransitionViewOut() {
