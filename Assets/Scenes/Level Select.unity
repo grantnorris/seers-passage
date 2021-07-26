@@ -130,6 +130,23 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1384652633}
     m_Modifications:
+    - target: {fileID: 3951658310567783546, guid: bd1a2eea4a49f4f9b9b27b7d629d4691,
+        type: 3}
+      propertyPath: levels.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3951658310567783546, guid: bd1a2eea4a49f4f9b9b27b7d629d4691,
+        type: 3}
+      propertyPath: levels.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0b97333b6a69c463d9c1d12f9e593a18,
+        type: 2}
+    - target: {fileID: 3951658310567783546, guid: bd1a2eea4a49f4f9b9b27b7d629d4691,
+        type: 3}
+      propertyPath: levels.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 6f5791eca6ea74ac7bf3f35f1b4cf9b5,
+        type: 2}
     - target: {fileID: 6722653900588308135, guid: bd1a2eea4a49f4f9b9b27b7d629d4691,
         type: 3}
       propertyPath: m_Enabled

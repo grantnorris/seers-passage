@@ -8,7 +8,8 @@ public class BuildMap : MonoBehaviour
     public static BuildMap instance;
 
     public UnityEvent mapBuilt;
-    public Texture2D map;
+    public Sprite map;
+    Texture2D mapTex;
     public ColorToTile[] colorMappings;
     public List<TileByLocation> tiles = new List<TileByLocation>();
 
@@ -35,19 +36,34 @@ public class BuildMap : MonoBehaviour
         }
     }
 
+    Texture2D texFromSprite() {
+        Texture2D croppedTexture = new Texture2D( (int)map.rect.width, (int)map.rect.height );
+        Color[] pixels = map.texture.GetPixels(
+            (int)map.textureRect.x, 
+            (int)map.textureRect.y, 
+            (int)map.textureRect.width, 
+            (int)map.textureRect.height
+        );
+        croppedTexture.SetPixels( pixels );
+        croppedTexture.Apply();
+        return croppedTexture;
+    }
+
     // Creates tile objects for a given map image
     public void Build() {
         // Remove any existing tiles
         Remove();
 
         if (map != null && colorMappings.Length > 0) {
+            mapTex = texFromSprite();
+
             // Set up parent for instantiated tiles
             tileParent = new GameObject("Tiles").transform;
             tileParent.SetParent(transform);
 
             // Loop through map pixels and place tiles
-            for (int y = 0; y < map.height; y++) {
-                for (int x = 0; x < map.width; x++) {
+            for (int y = 0; y < mapTex.height; y++) {
+                for (int x = 0; x < mapTex.width; x++) {
                     PlaceTile(x, y);
                 }
             }
@@ -74,7 +90,7 @@ public class BuildMap : MonoBehaviour
 
     // Create a tile object at a given set of coordinates
     void PlaceTile(int x, int y) {
-        Color pixelColor = map.GetPixel(x, y);
+        Color pixelColor = mapTex.GetPixel(x, y);
 
         // Pixel is transparent, so stop
         if (pixelColor.a == 0) {

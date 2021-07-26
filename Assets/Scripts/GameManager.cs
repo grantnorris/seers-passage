@@ -161,7 +161,6 @@ public class GameManager : MonoBehaviour
     public void FinishGame() {
         playerControl.DisallowInput();
         screenTransitions.StartTransitionViewOut();
-        uiController.DisplayOutroCard();
     }
 
     // Retry level via UI
@@ -172,5 +171,16 @@ public class GameManager : MonoBehaviour
     // Return to level select via UI or finish game
     public void ReturnToLevelSelect() {
         SceneSwitcher.instance.LoadLevelSelect();
+    }
+
+    // Load the next level if there is one
+    public void NextLevel() {
+        if (level.nextLevel == null) {
+            // Load level select if there is not a next level
+            SceneSwitcher.instance.LoadLevelSelect();
+            return;
+        }
+
+        SceneSwitcher.instance.LoadLevel(level.nextLevel);
     }
 }

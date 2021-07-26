@@ -65,8 +65,6 @@ public class ScreenTransitions : MonoBehaviour
 
         viewShaderMat.SetFloat("OutroProgress", 1f);
 
-        // Time.timeScale = 1;
-
-        GameManager.instance.uiController.DisplayOutroCard();
+        GameManager.instance.NextLevel();
     }
 }
