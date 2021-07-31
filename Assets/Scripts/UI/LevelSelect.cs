@@ -10,12 +10,14 @@ public class LevelSelect : MonoBehaviour
     public Level[] levels;
     public GameObject content;
     public GameObject itemPrefab;
+    Animator anim;
 
     void Awake() {
         if (instance == null) {
             instance = this;
         }
 
+        anim = GetComponent<Animator>();
         Init();
     }
 
@@ -32,6 +34,13 @@ public class LevelSelect : MonoBehaviour
 
     public void SelectLevel(Level level) {
         Debug.Log("Select level - " + level.name);
+        StartCoroutine("TransitionOut", level);
+    }
+
+    IEnumerator TransitionOut(Level level) {
+        anim.SetTrigger("Out");
+
+        yield return new WaitForSeconds(1f);
         SceneSwitcher.instance.LoadLevel(level);
     }
 }
