@@ -10,7 +10,10 @@ public class LevelSelectItem : MonoBehaviour
     [SerializeField]
     TMP_Text floorNumTxt;
     [SerializeField]
-    Button button;
+    Button retryBtn;
+    [SerializeField]
+    Button newFloorBtn;
+    bool levelComplete = false;
 
     // Start is called before the first frame update
     public void Setup(Level lvl)
@@ -20,6 +23,11 @@ public class LevelSelectItem : MonoBehaviour
         }
 
         level = lvl;
+        levelComplete = level.complete;
+
+        // Enable relevant button based on if the level has alreadty been completed
+        retryBtn.gameObject.SetActive(levelComplete);
+        newFloorBtn.gameObject.SetActive(!levelComplete);
 
         SetLevelName();
         SetButtonOnClick();
@@ -38,6 +46,7 @@ public class LevelSelectItem : MonoBehaviour
             return;
         }
 
-        button.onClick.AddListener(delegate {LevelSelect.instance.SelectLevel(level);});
+        Button btn = levelComplete ? retryBtn : newFloorBtn;
+        btn.onClick.AddListener(delegate {LevelSelect.instance.SelectLevel(level);});
     }
 }
