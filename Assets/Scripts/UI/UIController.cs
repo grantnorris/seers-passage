@@ -18,6 +18,8 @@ public class UIController : MonoBehaviour
     [SerializeField]
     GameObject heartbreakPrefab;
     [SerializeField]
+    TMP_Text floorNameUI;
+    [SerializeField]
     GameObject healthUI;
     GameObject heartbreakUI;
     [SerializeField]
@@ -44,12 +46,22 @@ public class UIController : MonoBehaviour
                 gameUI.SetActive(false);
             }
         }
+
+        SetFloorNameUI();
     }
 
     public void DisplayGameUI() {
         if (gameUI != null) {
             gameUI.SetActive(true);
         }
+    }
+
+    void SetFloorNameUI() {
+        if (floorNameUI == null || SceneSwitcher.instance == null) {
+            return;
+        }
+
+        floorNameUI.SetText(SceneSwitcher.instance.level.name);
     }
 
     // Start UpdateStepCountUI coroutine

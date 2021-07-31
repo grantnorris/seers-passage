@@ -274,8 +274,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: {fileID: 0}
   floorNumTxt: {fileID: 956322050050671985}
+  subtitleTxt: {fileID: 956322049116128521}
   retryBtn: {fileID: 1485734703412728603}
   newFloorBtn: {fileID: 956322049913197849}
+  levelStats: {fileID: 956322049015185513}
 --- !u!1 &956322048503468313
 GameObject:
   m_ObjectHideFlags: 0
@@ -729,7 +731,7 @@ GameObject:
   - component: {fileID: 956322049116128534}
   - component: {fileID: 956322049116128521}
   m_Layer: 5
-  m_Name: Floor Complete
+  m_Name: Subtitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

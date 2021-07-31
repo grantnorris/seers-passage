@@ -6814,6 +6814,7 @@ MonoBehaviour:
   playerStepCountTxt: {fileID: 183167213}
   heartbreakPrefab: {fileID: 3690728761557128189, guid: 23d4660b9fbcc49e385e50b95eae35a8,
     type: 3}
+  floorNameUI: {fileID: 723852040}
   healthUI: {fileID: 1581433530}
   loseUI: {fileID: 1559640855}
   perfectStepColor: {r: 0.6862745, g: 0.9372549, b: 0.43529412, a: 1}
