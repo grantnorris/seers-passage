@@ -7,6 +7,8 @@ public class SceneSwitcher : MonoBehaviour
 
     [HideInInspector]
     public Level level = null;
+    [HideInInspector]
+    public Level prevLevel = null;
 
     void Awake() {
         if (instance == null) {
@@ -27,6 +29,8 @@ public class SceneSwitcher : MonoBehaviour
     }
 
     public void LoadLevelSelect() {
+        prevLevel = level;
+        level = null;
         SceneManager.LoadScene("Level Select");
     }
 }

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4b72fafb507f47558026b31d0e7ed71, type: 3}
-  m_Name: Floor 2
+  m_Name: Floor 4
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1290491398476916805, guid: 3547c48d9fdc544d78301884f6d0ff88, type: 3}
-  floorNumber: 2
-  stepThreshold: 99
-  previousLevel: {fileID: 11400000, guid: 0b97333b6a69c463d9c1d12f9e593a18, type: 2}
-  nextLevel: {fileID: 11400000, guid: 25439e1342eef4ab091800c29231623e, type: 2}
+  prefab: {fileID: 0}
+  floorNumber: 
+  stepThreshold: 0
+  previousLevel: {fileID: 0}
+  nextLevel: {fileID: 0}
   complete: 0

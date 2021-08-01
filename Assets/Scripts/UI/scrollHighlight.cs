@@ -52,6 +52,9 @@ public class ScrollHighlight : MonoBehaviour
     }
 
     public void UpdateScroll(Vector2 pos) {
+        Debug.Log("scroll pos = ");
+        Debug.Log(pos);
+
         if (items.Count == 0) {
             return;
         }
@@ -62,8 +65,6 @@ public class ScrollHighlight : MonoBehaviour
             if (item.group == null) {
                 continue;
             }
-
-            // Debug.Log("trigger point = " + scrollPos + ", item pos = " + item.pos);
             
             if (scrollPos + viewportSize >= item.pos) {
                 float distanceFromCenter = Mathf.Abs((item.pos + (item.height / 2)) - (scrollPos + viewportCenter));

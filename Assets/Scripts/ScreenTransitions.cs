@@ -65,6 +65,6 @@ public class ScreenTransitions : MonoBehaviour
 
         viewShaderMat.SetFloat("OutroProgress", 1f);
 
-        GameManager.instance.NextLevel();
+        GameManager.instance.ReturnToLevelSelect();
     }
 }

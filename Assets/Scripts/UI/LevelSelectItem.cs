@@ -29,9 +29,9 @@ public class LevelSelectItem : MonoBehaviour
         level = lvl;
         levelComplete = level.complete;
 
-        // Enable relevant button based on if the level has alreadty been completed
+        // Enable relevant button based on if the level has already been completed
         levelStats.gameObject.SetActive(levelComplete);
-        newFloorBtn.gameObject.SetActive(!levelComplete);
+        newFloorBtn.gameObject.SetActive(!levelComplete && level.previousLevel != null && level.previousLevel.complete ? true : false);
 
         SetLevelName();
         SetSubtitleText();
