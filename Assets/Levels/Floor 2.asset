@@ -16,3 +16,4 @@ MonoBehaviour:
   floorNumber: 2
   stepThreshold: 99
   nextLevel: {fileID: 0}
+  complete: 0
