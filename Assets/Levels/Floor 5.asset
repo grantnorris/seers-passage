@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Floor 5
   m_EditorClassIdentifier: 
   prefab: {fileID: 0}
-  floorNumber: 
+  floorNumber: 5
   stepThreshold: 0
-  previousLevel: {fileID: 0}
-  nextLevel: {fileID: 0}
+  previousLevel: {fileID: 11400000, guid: da4f9216c6f774b5aaca73ee7bb92b3a, type: 2}
+  nextLevel: {fileID: 11400000, guid: f04fb0acf0ce04a6697eeeea01e686da, type: 2}
   complete: 0
