@@ -120,20 +120,7 @@ public class PlayerMove : MonoBehaviour
                 shadowAnim.SetBool("lowLight", true);
             }
         } else {
-            // Face the direction without moving
-            int directionInt = 0;
-
-            if (direction == "up") {
-                directionInt = 1;
-            } else if (direction == "right") {
-                directionInt = 2;
-            } else if (direction == "down") {
-                directionInt = 3;
-            } else if (direction == "left") {
-                directionInt = 4;
-            }
-
-            anim.SetInteger("directionFacing", directionInt);
+            FaceDirection(direction);
 
             // If the hit tile is interactable
             Interactable hitInteractable = (hit.transform.tag == "Interactable" ? hit.transform.gameObject.GetComponent<Interactable>() : null);
@@ -148,6 +135,23 @@ public class PlayerMove : MonoBehaviour
                 }
             }
         }
+    }
+
+    // Face direction without moving
+    public void FaceDirection(string direction) {
+        int directionInt = 0;
+
+        if (direction == "up") {
+            directionInt = 1;
+        } else if (direction == "right") {
+            directionInt = 2;
+        } else if (direction == "down") {
+            directionInt = 3;
+        } else if (direction == "left") {
+            directionInt = 4;
+        }
+
+        anim.SetInteger("directionFacing", directionInt);
     }
 
     // Expand the light radius of the player
