@@ -52,9 +52,6 @@ public class ScrollHighlight : MonoBehaviour
     }
 
     public void UpdateScroll(Vector2 pos) {
-        Debug.Log("scroll pos = ");
-        Debug.Log(pos);
-
         if (items.Count == 0) {
             return;
         }
@@ -79,5 +76,45 @@ public class ScrollHighlight : MonoBehaviour
                 item.group.alpha = 0;
             }
         }
+    }
+
+    // Focus a given item
+    public void FocusItem(GameObject item) {
+        Canvas.ForceUpdateCanvases();
+        RectTransform contentRect = content.GetComponent<RectTransform>();
+        contentRect.anchoredPosition = new Vector2(0, ItemPosition(item));
+    }
+
+    // Animates focus to the next item
+    public IEnumerator FocusNextItem(GameObject curItem) {
+        int curIndex = curItem.transform.GetSiblingIndex();
+        Transform parent = curItem.transform.parent;
+
+        if (parent == null || parent.childCount <= curIndex + 1) {
+            yield break;
+        }
+  
+        GameObject nextItem = parent.GetChild(curIndex + 1).gameObject;
+        RectTransform contentRect = content.GetComponent<RectTransform>();
+        
+        float time = 0f;
+        float seconds = .5f;
+        Vector2 startPos = contentRect.anchoredPosition;
+        Vector2 endPos = new Vector2(startPos.x, ItemPosition(nextItem));
+
+        while (time <= 1f) {
+            time += Time.deltaTime / seconds;
+            contentRect.anchoredPosition = Vector2.Lerp(startPos, endPos, Mathf.SmoothStep(0, 1, time));
+            yield return null;
+        }
+
+        contentRect.anchoredPosition = endPos;
+    }
+
+    // Y position of a given item
+    float ItemPosition(GameObject item) {
+        RectTransform outerRect = GetComponent<RectTransform>();
+        RectTransform currentItemRect = item.GetComponent<RectTransform>();
+        return (currentItemRect.anchoredPosition.y * -1) - (outerRect.rect.height / 2) + (currentItemRect.rect.height / 2);
     }
 }
