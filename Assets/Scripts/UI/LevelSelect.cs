@@ -59,10 +59,44 @@ public class LevelSelect : MonoBehaviour
 
         Canvas.ForceUpdateCanvases();
         RectTransform contentRect = content.GetComponent<RectTransform>();
+        contentRect.anchoredPosition = new Vector2(0, ItemPosition(item));
+
+        yield return new WaitForSeconds(1f);
+
+        if (SceneSwitcher.instance.prevLevel != null) {
+            StartCoroutine("FocusNextLevel", item);
+        }
+    }
+
+    IEnumerator FocusNextLevel(GameObject curItem) {
+        int curIndex = curItem.transform.GetSiblingIndex();
+        Transform parent = curItem.transform.parent;
+
+        if (parent == null || parent.childCount <= curIndex + 1) {
+            yield break;
+        }
+  
+        GameObject nextItem = parent.GetChild(curIndex + 1).gameObject;
+        RectTransform contentRect = content.GetComponent<RectTransform>();
+        
+        float time = 0f;
+        float seconds = .5f;
+        Vector2 startPos = contentRect.anchoredPosition;
+        Vector2 endPos = new Vector2(startPos.x, ItemPosition(nextItem));
+
+        while (time <= 1f) {
+            time += Time.deltaTime / seconds;
+            contentRect.anchoredPosition = Vector2.Lerp(startPos, endPos, Mathf.SmoothStep(0, 1, time));
+            yield return null;
+        }
+
+        contentRect.anchoredPosition = endPos;
+    }
+
+    float ItemPosition(GameObject item) {
         RectTransform outerRect = GetComponent<RectTransform>();
-        RectTransform itemRect = item.GetComponent<RectTransform>();
-        float pos = (itemRect.anchoredPosition.y * -1) - (outerRect.rect.height / 2) + (itemRect.rect.height / 2);
-        contentRect.anchoredPosition = new Vector2(0, pos);
+        RectTransform currentItemRect = item.GetComponent<RectTransform>();
+        return (currentItemRect.anchoredPosition.y * -1) - (outerRect.rect.height / 2) + (currentItemRect.rect.height / 2);
     }
 
     public void SelectLevel(Level level) {
