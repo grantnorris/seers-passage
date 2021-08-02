@@ -171,6 +171,7 @@ GameObject:
   - component: {fileID: 956322048417310941}
   - component: {fileID: 956322048417310942}
   - component: {fileID: 4402065278133826159}
+  - component: {fileID: 2692757319772497938}
   m_Layer: 5
   m_Name: Level Select Item
   m_TagString: Untagged
@@ -278,6 +279,25 @@ MonoBehaviour:
   retryBtn: {fileID: 1485734703412728603}
   newFloorBtn: {fileID: 956322049913197849}
   levelStats: {fileID: 956322049015185513}
+--- !u!95 &2692757319772497938
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956322048417310928}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 75739db4869894314923152eb0b4c485, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &956322048503468313
 GameObject:
   m_ObjectHideFlags: 0
@@ -1949,6 +1969,7 @@ GameObject:
   - component: {fileID: 956322049913197927}
   - component: {fileID: 956322049913197926}
   - component: {fileID: 956322049913197849}
+  - component: {fileID: 4649893078263740470}
   m_Layer: 5
   m_Name: New Button
   m_TagString: Untagged
@@ -2060,6 +2081,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!225 &4649893078263740470
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956322049913197851}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &956322050050671987
 GameObject:
   m_ObjectHideFlags: 0

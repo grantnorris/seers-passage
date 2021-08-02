@@ -98,7 +98,7 @@ public class ScrollHighlight : MonoBehaviour
         RectTransform contentRect = content.GetComponent<RectTransform>();
         
         float time = 0f;
-        float seconds = .5f;
+        float seconds = 1f;
         Vector2 startPos = contentRect.anchoredPosition;
         Vector2 endPos = new Vector2(startPos.x, ItemPosition(nextItem));
 
