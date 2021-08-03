@@ -6,6 +6,20 @@ public static class SaveSystem
 {
     static string path = Path.Combine(Application.persistentDataPath, "data.sp");
 
+    public static void UpdateLevelScore(Level level, LevelScore score) {
+        ProgressData data = LoadProgress();
+        Level[] levels = GameLevels.levels;
+
+        for (int i = 0; i < levels.Length; i++) {
+            if (levels[i] == level) {
+                data.scores[i] = score;
+            }
+        }
+
+        SaveProgress(data);
+        Debug.Log("updated level score");
+    }
+
     // Save progress
     public static void SaveProgress(ProgressData data) {
         BinaryFormatter formatter = new BinaryFormatter();
@@ -26,7 +40,7 @@ public static class SaveSystem
         FileStream stream = new FileStream(path, FileMode.Open);
         ProgressData data = formatter.Deserialize(stream) as ProgressData;
         stream.Close();
-        Debug.Log("loaded data, score = " + data.score);
+        Debug.Log("progress loaded");
         return data;
     }
 }
