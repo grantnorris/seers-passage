@@ -48,6 +48,16 @@ public class GameManager : MonoBehaviour
         SetupLevel();
     }
 
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.P)) {
+            Debug.Log("try to save");
+            SaveSystem.SaveProgress(new ProgressData((int)Time.time));
+        } else if (Input.GetKeyDown(KeyCode.L)) {
+            Debug.Log("try to load");
+            SaveSystem.LoadProgress();
+        }
+    }
+
     void SetupLevel() {
         level = SceneSwitcher.instance != null ? SceneSwitcher.instance.level : fallbackLevel;
 
