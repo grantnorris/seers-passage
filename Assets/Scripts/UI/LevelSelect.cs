@@ -7,9 +7,10 @@ public class LevelSelect : MonoBehaviour
 {
     public static LevelSelect instance;
 
-    public Level[] levels;
     public GameObject content;
     public GameObject itemPrefab;
+
+    Level[] levels;
     Animator anim;
     ScrollRect scrollRect;
     ScrollHighlight scrollHighlight;
@@ -19,6 +20,7 @@ public class LevelSelect : MonoBehaviour
             instance = this;
         }
 
+        levels = GameLevels.levels;
         anim = GetComponent<Animator>();
         scrollRect = GetComponent<ScrollRect>();
         scrollHighlight = GetComponent<ScrollHighlight>();
@@ -31,7 +33,7 @@ public class LevelSelect : MonoBehaviour
         }
 
         GameObject itemToFocus = null;
-        Level prevLvl = SceneSwitcher.instance != null ? SceneSwitcher.instance.prevLevel : null;
+        Level levelJustPlayed = SceneSwitcher.instance != null ? SceneSwitcher.instance.prevLevel : null;
         
         foreach (Level level in levels) {
             if (level == null) {
@@ -40,8 +42,9 @@ public class LevelSelect : MonoBehaviour
 
             GameObject item = Instantiate(itemPrefab, content.transform);
             item.GetComponent<LevelSelectItem>().Setup(level);
+            Level prevLevel = GameLevels.PreviousLevel(level);
 
-            if (prevLvl == level || (prevLvl == null && level.previousLevel != null && level.previousLevel.complete)) {
+            if (levelJustPlayed == level || (levelJustPlayed == null && prevLevel != null && prevLevel.complete)) {
                 itemToFocus = item;
             }
         }
