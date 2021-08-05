@@ -9,10 +9,11 @@ public class ProgressData
 
     public ProgressData() {
         Level[] levels = GameLevels.levels;
-        LevelScore[] scores = new LevelScore[levels.Length];
+        scores = new LevelScore[levels.Length];
     }
 }
 
+[System.Serializable]
 public class LevelScore {
     public int hearts;
     public int steps;
@@ -22,5 +23,21 @@ public class LevelScore {
         hearts = newHearts;
         steps = newSteps;
         time = newTime;
+    }
+
+    public string Score() {
+        switch (hearts)
+        {
+            case 3 :
+            return "Perfect!";
+            
+            case 2 :
+            return "Great!";
+            
+            case 1 :
+            return "Good";
+        }
+
+        return null;
     }
 }

@@ -21,6 +21,10 @@ public class ScrollHighlight : MonoBehaviour
         // Wait a frame for other UI scripts to initialise
         yield return null;
 
+        if (content.childCount < 1) {
+            yield break;
+        }
+
         float viewportHeight = GetComponent<RectTransform>().rect.height;
         int topPadding = Mathf.RoundToInt((viewportHeight / 2) - (content.GetChild(0).GetComponent<RectTransform>().sizeDelta.y / 2));
         int bottomPadding = Mathf.RoundToInt((viewportHeight / 2) - (content.GetChild(content.childCount - 1).GetComponent<RectTransform>().sizeDelta.y / 2));

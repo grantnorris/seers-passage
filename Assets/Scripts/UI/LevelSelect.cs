@@ -26,25 +26,30 @@ public class LevelSelect : MonoBehaviour
         scrollHighlight = GetComponent<ScrollHighlight>();
         Init();
     }
-
+    
     void Init() {
         if (levels.Length < 1 || content == null || itemPrefab == null) {
             return;
         }
 
+        ProgressData progressData = SaveSystem.ProgressData();
         GameObject itemToFocus = null;
         Level levelJustPlayed = SceneSwitcher.instance != null ? SceneSwitcher.instance.prevLevel : null;
         
-        foreach (Level level in levels) {
+        for (int i = 0; i < levels.Length; i++) {
+            Level level = levels[i];
+
             if (level == null) {
                 continue;
             }
 
+            LevelScore score = progressData.scores[i];
             GameObject item = Instantiate(itemPrefab, content.transform);
             item.GetComponent<LevelSelectItem>().Setup(level);
             Level prevLevel = GameLevels.PreviousLevel(level);
+            bool prevLevelCompleted = SaveSystem.LevelScore(prevLevel) != null ? true : false;
 
-            if (levelJustPlayed == level || (levelJustPlayed == null && prevLevel != null && prevLevel.complete)) {
+            if (levelJustPlayed == level || (levelJustPlayed == null && prevLevel != null && prevLevelCompleted)) {
                 itemToFocus = item;
             }
         }

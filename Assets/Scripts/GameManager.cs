@@ -51,10 +51,10 @@ public class GameManager : MonoBehaviour
     void Update() {
         if (Input.GetKeyDown(KeyCode.P)) {
             Debug.Log("try to save");
-            SaveSystem.SaveProgress(new ProgressData((int)Time.time));
+            // SaveSystem.SaveProgress(new ProgressData());
         } else if (Input.GetKeyDown(KeyCode.L)) {
             Debug.Log("try to load");
-            SaveSystem.LoadProgress();
+            // SaveSystem.LoadProgress();
         }
     }
 
@@ -171,6 +171,13 @@ public class GameManager : MonoBehaviour
     public void FinishGame() {
         playerControl.DisallowInput();
         screenTransitions.StartTransitionViewOut();
+        LevelScore score = new LevelScore(
+            playerHealth.Health(),
+            playerStepCount,
+            38000
+        );
+
+        SaveSystem.UpdateLevelScore(level, score);
     }
 
     // Retry level via UI
@@ -181,16 +188,5 @@ public class GameManager : MonoBehaviour
     // Return to level select via UI or finish game
     public void ReturnToLevelSelect() {
         SceneSwitcher.instance.LoadLevelSelect();
-    }
-
-    // Load the next level if there is one
-    public void NextLevel() {
-        if (level.nextLevel == null) {
-            // Load level select if there is not a next level
-            SceneSwitcher.instance.LoadLevelSelect();
-            return;
-        }
-
-        SceneSwitcher.instance.LoadLevel(level.nextLevel);
     }
 }

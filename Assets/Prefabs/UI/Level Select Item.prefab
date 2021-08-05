@@ -279,6 +279,9 @@ MonoBehaviour:
   retryBtn: {fileID: 1485734703412728603}
   newFloorBtn: {fileID: 956322049913197849}
   levelStats: {fileID: 956322049015185513}
+  scoreTxt: {fileID: 956322048503468391}
+  stepsTxt: {fileID: 956322049782105244}
+  timeTxt: {fileID: 956322049185235725}
 --- !u!95 &2692757319772497938
 Animator:
   serializedVersion: 3

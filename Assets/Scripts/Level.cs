@@ -8,7 +8,4 @@ public class Level : ScriptableObject
     public string floorNumber;
     [Tooltip("The lowest number of steps the level can be completed in – used for scoring.")]
     public int stepThreshold;
-    public Level previousLevel;
-    public Level nextLevel;
-    public bool complete;
 }

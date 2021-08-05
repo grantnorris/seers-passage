@@ -17,7 +17,15 @@ public class LevelSelectItem : MonoBehaviour
     Button newFloorBtn;
     [SerializeField]
     GameObject levelStats;
+    [SerializeField]
+    TMP_Text scoreTxt;
+    [SerializeField]
+    TMP_Text stepsTxt;
+    [SerializeField]
+    TMP_Text timeTxt;
+
     bool levelComplete = false;
+    LevelScore score;
 
     // Start is called before the first frame update
     public void Setup(Level lvl)
@@ -27,15 +35,24 @@ public class LevelSelectItem : MonoBehaviour
         }
 
         level = lvl;
-        levelComplete = level.complete;
+        score = SaveSystem.LevelScore(level);
+        levelComplete = SaveSystem.LevelScore(level) != null ? true : false;
+        
+        Level prevLevel = GameLevels.PreviousLevel(level);
+        bool prevLevelComplete = prevLevel != null && SaveSystem.LevelScore(prevLevel) != null ? true : false;
 
         // Enable relevant button based on if the level has already been completed
         levelStats.gameObject.SetActive(levelComplete);
-        newFloorBtn.gameObject.SetActive(!levelComplete && level.previousLevel != null && level.previousLevel.complete ? true : false);
+        newFloorBtn.gameObject.SetActive(!levelComplete && (prevLevel == null || prevLevelComplete) ? true : false);
 
         SetLevelName();
         SetSubtitleText();
         SetButtonOnClick();
+
+        if (score != null) {
+            SetScoreText();
+            SetStepsText();
+        }
     }
 
     void SetLevelName() {
@@ -52,8 +69,33 @@ public class LevelSelectItem : MonoBehaviour
         }
 
         string txt = levelComplete ? "Floor\nComplete" : "Floor\nIncomplete";
-
         subtitleTxt.SetText(txt);
+    }
+
+    void SetScoreText() {
+        if (scoreTxt == null) {
+            return;
+        }
+
+        scoreTxt.SetText(score.Score());
+    }
+
+    void SetStepsText() {
+        if (stepsTxt == null) {
+            return;
+        }
+
+        stepsTxt.SetText(score.steps.ToString());
+    }
+
+    void SetTimeText() {
+        if (timeTxt == null) {
+            return;
+        }
+
+        float time = score.time;
+
+        timeTxt.SetText(time.ToString());
     }
 
     void SetButtonOnClick() {
