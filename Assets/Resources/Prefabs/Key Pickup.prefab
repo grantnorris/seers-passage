@@ -219,7 +219,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2936491994708073449, guid: 0a92607ffc6d04463b46f2e44bc68b07,
+  m_Sprite: {fileID: -7360323005471336529, guid: 0a92607ffc6d04463b46f2e44bc68b07,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -249,7 +249,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3886be439e2b849d3bd8713f03af79a9, type: 2}
   downFacingTiles: []
   acceptsLight: 0
-  tile: {fileID: 11400000, guid: 3886be439e2b849d3bd8713f03af79a9, type: 2}
+  tile: {fileID: 11400000, guid: 1625edfe73e4647dd998160767b461ce, type: 2}
   lightingUp: {fileID: 0}
   lightingDown: {fileID: 0}
   lightingLeft: {fileID: 0}

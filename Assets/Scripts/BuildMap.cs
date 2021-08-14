@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine.Events;
 using UnityEngine;
+using UnityEditor;
+using UnityEngine.SceneManagement;
 
 public class BuildMap : MonoBehaviour
 {
@@ -124,12 +126,10 @@ public class BuildMap : MonoBehaviour
         foreach (ColorToTile colorMapping in mappings) {
             if (pixelColor == colorMapping.color && colorMapping.prefab) {
                 // Instantiate tile
-                GameObject tile = Instantiate(
-                    colorMapping.prefab,
-                    new Vector3(x, y, 0),
-                    Quaternion.identity,
-                    tileParent
-                );
+                GameObject tile = PrefabUtility.InstantiatePrefab(colorMapping.prefab) as GameObject;
+                tile.transform.position = new Vector3(x, y, 0);
+                tile.transform.rotation = Quaternion.identity;
+                tile.transform.SetParent(tileParent);
                 
                 // Name tile
                 tile.name = x + ", " + y + " - " + colorMapping.name;
