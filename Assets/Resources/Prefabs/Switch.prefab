@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 6442342302825288439}
   - component: {fileID: 8139296694955690396}
   m_Layer: 0
-  m_Name: Floor With Switch
+  m_Name: Switch
   m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

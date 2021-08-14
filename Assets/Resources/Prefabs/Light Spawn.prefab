@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8139296694955690396}
   - component: {fileID: 2867042199749412405}
   m_Layer: 0
-  m_Name: lightSpawn
+  m_Name: Light Spawn
   m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
