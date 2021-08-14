@@ -3,8 +3,6 @@ using UnityEngine;
 public class LockInteractable : Interactable
 {
     public override void Interact() {
-        // Inventory.instance.Remove(new InventoryItem("Key"));
-
         Gate gate = GetComponent<Gate>();
 
         if (!gate) {

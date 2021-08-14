@@ -6768,7 +6768,7 @@ MonoBehaviour:
   uiController: {fileID: 0}
   audioManager: {fileID: 0}
   stepThreshold: 0
-  fallbackLevel: {fileID: 11400000, guid: 6f5791eca6ea74ac7bf3f35f1b4cf9b5, type: 2}
+  fallbackLevel: {fileID: 11400000, guid: df47884f7c5544da4b0eb2e9e7a6fdf9, type: 2}
 --- !u!4 &777035134
 Transform:
   m_ObjectHideFlags: 0

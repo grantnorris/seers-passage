@@ -7,11 +7,12 @@ public class BuildMap : MonoBehaviour
 {
     public static BuildMap instance;
 
+    [HideInInspector]
     public UnityEvent mapBuilt;
     public Sprite map;
-    Texture2D mapTex;
     public ColorToTile[] colorMappings;
     public List<TileByLocation> tiles = new List<TileByLocation>();
+    Texture2D mapTex;
 
     Transform tileParent;
 
@@ -36,6 +37,22 @@ public class BuildMap : MonoBehaviour
         }
     }
 
+    ColorToTile[] ColorMappings() {
+        return colorMappings;
+        // return new ColorToTile[] {
+        //     new ColorToTile(
+        //         "floor",
+        //         new Color32(255, 255, 255, 1),
+        //         Resources.Load<GameObject>("Prefabs/Floor")
+        //     ),
+        //     new ColorToTile(
+        //         "wall",
+        //         new Color32(0, 0, 0, 1),
+        //         Resources.Load<GameObject>("Prefabs/Wall Tile")
+        //     )
+        // };
+    }
+
     Texture2D texFromSprite() {
         Texture2D croppedTexture = new Texture2D( (int)map.rect.width, (int)map.rect.height );
         Color[] pixels = map.texture.GetPixels(
@@ -51,10 +68,16 @@ public class BuildMap : MonoBehaviour
 
     // Creates tile objects for a given map image
     public void Build() {
+        if (instance == null) {
+            instance = this;
+        }
+
         // Remove any existing tiles
         Remove();
 
-        if (map != null && colorMappings.Length > 0) {
+        ColorToTile[] mappings = ColorMappings();
+
+        if (map != null && mappings.Length > 0) {
             mapTex = texFromSprite();
 
             // Set up parent for instantiated tiles
@@ -64,7 +87,7 @@ public class BuildMap : MonoBehaviour
             // Loop through map pixels and place tiles
             for (int y = 0; y < mapTex.height; y++) {
                 for (int x = 0; x < mapTex.width; x++) {
-                    PlaceTile(x, y);
+                    PlaceTile(x, y, mappings);
                 }
             }
 
@@ -89,7 +112,7 @@ public class BuildMap : MonoBehaviour
     }
 
     // Create a tile object at a given set of coordinates
-    void PlaceTile(int x, int y) {
+    void PlaceTile(int x, int y, ColorToTile[] mappings) {
         Color pixelColor = mapTex.GetPixel(x, y);
 
         // Pixel is transparent, so stop
@@ -98,7 +121,7 @@ public class BuildMap : MonoBehaviour
         }
 
         // Loop through color mappings and create the relevant tile
-        foreach (ColorToTile colorMapping in colorMappings) {
+        foreach (ColorToTile colorMapping in mappings) {
             if (pixelColor == colorMapping.color && colorMapping.prefab) {
                 // Instantiate tile
                 GameObject tile = Instantiate(
@@ -119,6 +142,9 @@ public class BuildMap : MonoBehaviour
                 }
 
                 tiles.Add(new TileByLocation(tile, x, y));
+                break;
+            } else if (pixelColor == colorMapping.color && colorMapping.prefab == null) {
+                Debug.Log("no prefab for tile");
             }
         }
     }
