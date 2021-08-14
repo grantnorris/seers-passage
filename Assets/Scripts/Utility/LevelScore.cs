@@ -44,4 +44,11 @@ public class LevelScore {
 
         return true;
     }
+
+    // Score time formatted for UI
+    public string FormattedTime() {
+        int mins = (int)(time / 60);
+        int seconds = (int)(time - (mins * 60));
+        return mins.ToString("00") + ":" + seconds.ToString("00");
+    }
 }

@@ -52,6 +52,7 @@ public class LevelSelectItem : MonoBehaviour
         if (score != null) {
             SetScoreText();
             SetStepsText();
+            SetTimeText();
         }
     }
 
@@ -93,9 +94,7 @@ public class LevelSelectItem : MonoBehaviour
             return;
         }
 
-        float time = score.time;
-
-        timeTxt.SetText(time.ToString());
+        timeTxt.SetText(score.FormattedTime());
     }
 
     void SetButtonOnClick() {

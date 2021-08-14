@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     [Tooltip("Used for dev purposes if the level scene is played directly.")]
     Level fallbackLevel;
+    float time;
 
     int playerStepCount = 0;
 
@@ -49,6 +50,8 @@ public class GameManager : MonoBehaviour
     }
 
     void Update() {
+        time = Time.time;
+
         if (Input.GetKeyDown(KeyCode.P)) {
             Debug.Log("try to save");
             // SaveSystem.SaveProgress(new ProgressData());
@@ -174,7 +177,7 @@ public class GameManager : MonoBehaviour
         LevelScore score = new LevelScore(
             playerHealth.Health(),
             playerStepCount,
-            38000
+            time
         );
 
         if (LevelScore.ScoreIsBetter(score, SaveSystem.LevelScore(level))) {
