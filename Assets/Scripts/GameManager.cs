@@ -177,7 +177,9 @@ public class GameManager : MonoBehaviour
             38000
         );
 
-        SaveSystem.UpdateLevelScore(level, score);
+        if (LevelScore.ScoreIsBetter(score, SaveSystem.LevelScore(level))) {
+            SaveSystem.UpdateLevelScore(level, score);
+        }
     }
 
     // Retry level via UI
