@@ -5903,6 +5903,7 @@ GameObject:
   - component: {fileID: 412938186}
   - component: {fileID: 412938188}
   - component: {fileID: 412938187}
+  - component: {fileID: 412938189}
   m_Layer: 5
   m_Name: Volume Slider
   m_TagString: Untagged
@@ -5970,6 +5971,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 412938185}
   m_CullTransparentMesh: 1
+--- !u!225 &412938189
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412938185}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &465268700
 GameObject:
   m_ObjectHideFlags: 0
@@ -6445,7 +6458,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4291611852
+    rgba: 231525580
   m_fontColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -8209,6 +8222,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Resume Button
       objectReference: {fileID: 0}
+    - target: {fileID: 3071343218643738898, guid: d82d434d5fed645d1a495ffd6d3114f2,
+        type: 3}
+      propertyPath: m_Alpha
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4785372904425216283, guid: d82d434d5fed645d1a495ffd6d3114f2,
         type: 3}
       propertyPath: m_Pivot.x
@@ -8232,7 +8250,7 @@ PrefabInstance:
     - target: {fileID: 4785372904425216283, guid: d82d434d5fed645d1a495ffd6d3114f2,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4785372904425216283, guid: d82d434d5fed645d1a495ffd6d3114f2,
         type: 3}
@@ -8242,12 +8260,12 @@ PrefabInstance:
     - target: {fileID: 4785372904425216283, guid: d82d434d5fed645d1a495ffd6d3114f2,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4785372904425216283, guid: d82d434d5fed645d1a495ffd6d3114f2,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 200
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4785372904425216283, guid: d82d434d5fed645d1a495ffd6d3114f2,
         type: 3}
@@ -8292,12 +8310,12 @@ PrefabInstance:
     - target: {fileID: 4785372904425216283, guid: d82d434d5fed645d1a495ffd6d3114f2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4785372904425216283, guid: d82d434d5fed645d1a495ffd6d3114f2,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -22.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4785372904425216283, guid: d82d434d5fed645d1a495ffd6d3114f2,
         type: 3}
@@ -8505,6 +8523,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Quit Button
       objectReference: {fileID: 0}
+    - target: {fileID: 3071343218643738898, guid: d82d434d5fed645d1a495ffd6d3114f2,
+        type: 3}
+      propertyPath: m_Alpha
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4785372904425216283, guid: d82d434d5fed645d1a495ffd6d3114f2,
         type: 3}
       propertyPath: m_Pivot.x
@@ -8528,7 +8551,7 @@ PrefabInstance:
     - target: {fileID: 4785372904425216283, guid: d82d434d5fed645d1a495ffd6d3114f2,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4785372904425216283, guid: d82d434d5fed645d1a495ffd6d3114f2,
         type: 3}
@@ -8538,12 +8561,12 @@ PrefabInstance:
     - target: {fileID: 4785372904425216283, guid: d82d434d5fed645d1a495ffd6d3114f2,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4785372904425216283, guid: d82d434d5fed645d1a495ffd6d3114f2,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 200
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4785372904425216283, guid: d82d434d5fed645d1a495ffd6d3114f2,
         type: 3}
@@ -8588,12 +8611,12 @@ PrefabInstance:
     - target: {fileID: 4785372904425216283, guid: d82d434d5fed645d1a495ffd6d3114f2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4785372904425216283, guid: d82d434d5fed645d1a495ffd6d3114f2,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -77.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4785372904425216283, guid: d82d434d5fed645d1a495ffd6d3114f2,
         type: 3}
@@ -8909,7 +8932,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1417072939
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -9048,9 +9071,9 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1446957937}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a047bb714982e4db1b5b923174aa4cb9, type: 2}
+  m_Controller: {fileID: 9100000, guid: a073372fc42254dfe954bdb9dde64eea, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -9239,7 +9262,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4285525935
+    rgba: 7335855
   m_fontColor: {r: 0.6862745, g: 0.9372549, b: 0.43529412, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -9636,19 +9659,7 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: UpdateVolume
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1696288503
 MonoBehaviour:
   m_ObjectHideFlags: 0

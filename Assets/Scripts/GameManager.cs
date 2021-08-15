@@ -28,7 +28,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     [Tooltip("Used for dev purposes if the level scene is played directly.")]
     Level fallbackLevel;
-    float time;
+    float time = 0f;
+    bool paused;
 
     int playerStepCount = 0;
 
@@ -45,7 +46,9 @@ public class GameManager : MonoBehaviour
     }
 
     void Update() {
-        time = Time.time;
+        if (!paused) {
+            time += Time.deltaTime;
+        }
 
         if (Input.GetKeyDown(KeyCode.P)) {
             Debug.Log("try to save");
@@ -188,21 +191,20 @@ public class GameManager : MonoBehaviour
 
     // Return to level select via UI or finish game
     public void ReturnToLevelSelect() {
-        Time.timeScale = 1; // Reset timescale incase we're switching from a paused game state
         SceneSwitcher.instance.LoadLevelSelect();
     }
 
     // Pause game and display UI
     public void PauseGame() {
         DisablePlayerMove();
-        Time.timeScale = 0;
+        paused = true;
         uiController.DisplayPauseUI();
     }
 
     // Unpause game and hide UI
     public void UnpauseGame() {
         EnablePlayerMove();
-        Time.timeScale = 1;
+        paused = false;
         uiController.HidePauseUI();
     }
 }

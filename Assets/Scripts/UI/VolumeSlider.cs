@@ -16,7 +16,6 @@ public class VolumeSlider : MonoBehaviour
     }
 
     void SetHandlePosition() {
-        Debug.Log("set handle position");
         if (AudioManager.instance != null || slider != null) {
             float volume = AudioManager.instance.masterVolume;
 

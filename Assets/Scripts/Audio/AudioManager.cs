@@ -20,7 +20,6 @@ public class AudioManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(this.gameObject);
         masterVolume = PlayerPrefs.GetFloat("masterVolume");
-        Debug.Log("master volume = " + masterVolume);
         CreateSources();
         Play("Theme");
     }
@@ -49,7 +48,6 @@ public class AudioManager : MonoBehaviour
     }
 
     public void UpdateVolume(System.Single volume) {
-        Debug.Log("update volume");
         masterVolume = volume;
         PlayerPrefs.SetFloat("masterVolume", volume);
 
