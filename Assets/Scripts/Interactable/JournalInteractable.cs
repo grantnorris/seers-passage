@@ -25,6 +25,10 @@ public class JournalInteractable : Interactable
             return;
         }
 
+        if (dialogue.type == null) {
+            dialogue.type = "journal";
+        }
+
         DialogueManager.instance.StartDialogue(dialogue);
         DialogueManager.instance.dialogueEnded.AddListener(CloseJournal);
     }

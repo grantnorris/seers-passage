@@ -6855,6 +6855,10 @@ MonoBehaviour:
     ui: {fileID: 21300000, guid: 52a10f331599241688df2e4dec70b7bd, type: 3}
     dialogueBoxPrefab: {fileID: 5670670893291877007, guid: f3c1c9544856647779499c466d2b198a,
       type: 3}
+  - name: journal
+    ui: {fileID: 21300000, guid: be6f07d9273814934b34741995156533, type: 3}
+    dialogueBoxPrefab: {fileID: 7175482657335419396, guid: 74611c73a7158435f941465bc879508d,
+      type: 3}
   dialogueEnded:
     m_PersistentCalls:
       m_Calls: []
