@@ -15,7 +15,7 @@ public class PlayerControl : MonoBehaviour
     void Start()
     {
         playerMove = GetComponent<PlayerMove>();
-        allowInput = true;
+        allowInput = false;
         dragUI = GameManager.instance.dragUI;
     }
 

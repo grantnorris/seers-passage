@@ -86,6 +86,7 @@ public class GameManager : MonoBehaviour
 
     // Invoke the levelStart unity event
     public void StartLevel() {
+        EnablePlayerMove();
         GameManager.instance.levelStart.Invoke();
     }
     

@@ -102,7 +102,6 @@ public class DialogueManager : MonoBehaviour
     // Display next sentence
     public void DisplayNextSentence(bool playSound = true) {
         if (sentences.Count == 0) {
-            Debug.Log("no sentences");
             StartCoroutine("EndDialogue");
             return;
         }
