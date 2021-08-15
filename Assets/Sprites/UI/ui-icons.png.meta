@@ -50,6 +50,9 @@ TextureImporter:
   - first:
       213: 4003025335428327057
     second: ui-icons_15
+  - first:
+      213: 4571991556467336244
+    second: ui-icons_17
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -482,6 +485,48 @@ TextureImporter:
       bones: []
       spriteID: 1962819655a9d8730800000000000000
       internalID: 4003025335428327057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-icons_16
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 20
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 711746d1a9cbe20c0800000000000000
+      internalID: -4598530799394590441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-icons_17
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 21
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 434225fd81af27f30800000000000000
+      internalID: 4571991556467336244
       vertices: []
       indices: 
       edges: []
