@@ -22,7 +22,6 @@ public class GameManager : MonoBehaviour
     public UnityEvent stepped = new UnityEvent();
     [HideInInspector]
     public PlayerHealth playerHealth;
-    [HideInInspector]
     public UIController uiController;
     [HideInInspector]
     public AudioManager audioManager;
@@ -43,7 +42,6 @@ public class GameManager : MonoBehaviour
 
     public void Start() {
         playerHealth = GetComponent<PlayerHealth>();
-        uiController = GetComponent<UIController>();
         screenTransitions = GetComponent<ScreenTransitions>();
         audioManager = GetComponent<AudioManager>();
         SetupLevel();
@@ -193,6 +191,19 @@ public class GameManager : MonoBehaviour
 
     // Return to level select via UI or finish game
     public void ReturnToLevelSelect() {
+        Time.timeScale = 1; // Reset timescale incase we're switching from a paused game state
         SceneSwitcher.instance.LoadLevelSelect();
+    }
+
+    // Pause game and display UI
+    public void PauseGame() {
+        Time.timeScale = 0;
+        uiController.DisplayPauseUI();
+    }
+
+    // Unpause game and hide UI
+    public void UnpauseGame() {
+        Time.timeScale = 1;
+        uiController.HidePauseUI();
     }
 }

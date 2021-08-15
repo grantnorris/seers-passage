@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
@@ -30,6 +29,8 @@ public class UIController : MonoBehaviour
     Color goodStepColor;
     [SerializeField]
     Color badStepColor;
+    [SerializeField]
+    GameObject PauseUI;
 
     void Start() {
         Init();
@@ -213,5 +214,13 @@ public class UIController : MonoBehaviour
         gameUI.GetComponent<Animator>().SetTrigger("TransitionOut");
         yield return new WaitForSeconds(.5f);
         loseUI.SetActive(true);
+    }
+
+    public void DisplayPauseUI() {
+        PauseUI.SetActive(true);
+    }
+
+    public void HidePauseUI() {
+        PauseUI.SetActive(false);
     }
 }
