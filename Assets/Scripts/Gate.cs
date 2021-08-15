@@ -6,11 +6,18 @@ public class Gate : MonoBehaviour
 {
     public Animator anim;
     public bool active;
+    [SerializeField]
+    [Tooltip("Will cause the gate to activate after each player movement.")]
+    bool flipFlops;
 
     Collider2D col;
 
     void Start() {
         col = GetComponent<Collider2D>();
+
+        if (flipFlops) {
+            GameManager.instance.stepped.AddListener(Activate);
+        }
     }
     
     // Toggle activated state of gate
