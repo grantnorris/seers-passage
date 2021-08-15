@@ -1,14 +1,18 @@
 using UnityEngine;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
+    float masterVolume = 1f;
 
     // Start is called before the first frame update
     void Awake()
     {
         CreateSources();
+        Play("Theme");
     }
 
     void CreateSources() {
@@ -18,7 +22,7 @@ public class AudioManager : MonoBehaviour
 
         foreach (Sound sound in sounds) {
             sound.source = gameObject.AddComponent<AudioSource>();
-            sound.source.volume = sound.volume;
+            sound.source.volume = sound.volume * masterVolume;
             sound.source.clip = sound.clip;
             sound.source.loop = sound.loop;
         }
@@ -32,5 +36,13 @@ public class AudioManager : MonoBehaviour
         }
 
         sound.source.Play();
+    }
+
+    public void UpdateVolume(System.Single volume) {
+        masterVolume = volume;
+
+        foreach (Sound sound in sounds) {
+            sound.source.volume = sound.volume * masterVolume;
+        }
     }
 }
