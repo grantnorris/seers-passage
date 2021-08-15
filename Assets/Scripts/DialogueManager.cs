@@ -61,7 +61,7 @@ public class DialogueManager : MonoBehaviour
     // Wait for a small amount of time and then start the dialogue
     IEnumerator OpenDialogueBox() {
         // Play audio clip
-        GameManager.instance.audioManager.Play("Dialogue Open");
+        AudioManager.instance.Play("Dialogue Open");
 
         dialogueParent.SetActive(true);
 
@@ -108,7 +108,7 @@ public class DialogueManager : MonoBehaviour
 
         if (playSound) {
             // Play audio clip
-            GameManager.instance.audioManager.Play("Dialogue Open");
+            AudioManager.instance.Play("Dialogue Open");
         }
 
         dialogueParent.GetComponent<Button>().enabled = false;
@@ -167,7 +167,7 @@ public class DialogueManager : MonoBehaviour
     // End dialogue
     IEnumerator EndDialogue() {
         // Play audio clip
-        GameManager.instance.audioManager.Play("Dialogue Close");
+        AudioManager.instance.Play("Dialogue Close");
 
         if (dialogueUI != null) {
             GameObject loader = dialogueScript.loader;

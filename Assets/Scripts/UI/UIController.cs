@@ -154,7 +154,7 @@ public class UIController : MonoBehaviour
 
             yield return new WaitForSeconds(.2f);
 
-            GameManager.instance.audioManager.Play("Player Hurt");
+            AudioManager.instance.Play("Player Hurt");
 
             yield return new WaitForSeconds(.9f);
 

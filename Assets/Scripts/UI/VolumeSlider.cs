@@ -1,0 +1,32 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class VolumeSlider : MonoBehaviour
+{
+    Slider slider;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        slider = GetComponent<Slider>();
+        SetHandlePosition();
+        SetListener();
+    }
+
+    void SetHandlePosition() {
+        Debug.Log("set handle position");
+        if (AudioManager.instance != null || slider != null) {
+            float volume = AudioManager.instance.masterVolume;
+
+            slider.value = volume;
+        }
+    }
+
+    void SetListener() {
+        if (AudioManager.instance != null) {
+            slider.onValueChanged.AddListener(delegate {AudioManager.instance.UpdateVolume(slider.value);});
+        }
+    }
+}

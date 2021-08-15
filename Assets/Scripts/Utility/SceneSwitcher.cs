@@ -11,16 +11,23 @@ public class SceneSwitcher : MonoBehaviour
     public Level prevLevel = null;
 
     void Awake() {
-        if (instance == null) {
-            SceneSwitcher.instance = this;
+        if (instance != null) {
+            Destroy(this.gameObject);
+            return;
         }
 
+        instance = this;
         DontDestroyOnLoad(this.gameObject);
+    }
+
+    void Start() {
+        if (instance != null && instance != this) {
+            Destroy(this.gameObject);
+        }
     }
 
     public void LoadLevel(Level lvl) {
         level = lvl;
-
         SceneManager.LoadScene("Level");
     }
 

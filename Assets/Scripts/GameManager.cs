@@ -24,8 +24,6 @@ public class GameManager : MonoBehaviour
     public PlayerHealth playerHealth;
     public UIController uiController;
     [HideInInspector]
-    public AudioManager audioManager;
-    [HideInInspector]
     public int stepThreshold;
     [SerializeField]
     [Tooltip("Used for dev purposes if the level scene is played directly.")]
@@ -43,7 +41,6 @@ public class GameManager : MonoBehaviour
     public void Start() {
         playerHealth = GetComponent<PlayerHealth>();
         screenTransitions = GetComponent<ScreenTransitions>();
-        audioManager = GetComponent<AudioManager>();
         SetupLevel();
     }
 

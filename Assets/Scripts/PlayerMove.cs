@@ -130,7 +130,7 @@ public class PlayerMove : MonoBehaviour
             } else {
                 // We are moving into a wall, shake the camera
                 if (CameraShake.instance != null) {
-                    GameManager.instance.audioManager.Play("Movement Failed");
+                    AudioManager.instance.Play("Movement Failed");
                     StartCoroutine(CameraShake.instance.Shake(.1f, .1f));
                 }
             }

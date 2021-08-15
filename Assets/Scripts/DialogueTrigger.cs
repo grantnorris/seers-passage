@@ -17,19 +17,13 @@ public class DialogueTrigger : MonoBehaviour
             instance = this;
         }
 
-        if (onStartDialogue.sentences.Length > 0) {
-            GameManager.instance.levelStart.AddListener(OnStartDialogue);
-        }
+        // if (onStartDialogue.sentences.Length > 0) {
+        //     GameManager.instance.levelStart.AddListener(OnStartDialogue);
+        // }
     }
 
     // Initial dialogue to play on level start
     public void OnStartDialogue() {
-        GameManager.instance.DisablePlayerMove();
-        StartDialogue();
-    }
-    
-    // Start dialogue
-    void StartDialogue() {
         if (DialogueManager.instance == null) {
             return;
         }
@@ -37,6 +31,7 @@ public class DialogueTrigger : MonoBehaviour
         DialogueManager.instance.StartDialogue(onStartDialogue);
     }
 
+    // Step count based triggers
     public void StepTriggers() {
         foreach (StepDialogueTrigger trigger in stepTriggers) {
             if (GameManager.instance.StepCount() == trigger.steps) {
