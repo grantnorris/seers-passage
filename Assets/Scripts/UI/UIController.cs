@@ -30,7 +30,7 @@ public class UIController : MonoBehaviour
     [SerializeField]
     Color badStepColor;
     [SerializeField]
-    GameObject PauseUI;
+    PauseUI pauseUI;
 
     void Start() {
         Init();
@@ -217,10 +217,18 @@ public class UIController : MonoBehaviour
     }
 
     public void DisplayPauseUI() {
-        PauseUI.SetActive(true);
+        if (pauseUI == null) {
+            return;
+        }
+
+        pauseUI.TransitionIn();
     }
 
     public void HidePauseUI() {
-        PauseUI.SetActive(false);
+        if (pauseUI == null) {
+            return;
+        }
+
+        pauseUI.TransitionOut();
     }
 }
