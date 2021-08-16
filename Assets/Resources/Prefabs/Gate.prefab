@@ -46,6 +46,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -150,6 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 1231706192144309693}
   active: 0
+  flipFlops: 0
 --- !u!1 &8005553298250364773
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,6 +163,7 @@ GameObject:
   - component: {fileID: 6920505978923709303}
   - component: {fileID: 6884155854954576781}
   - component: {fileID: 1231706192144309693}
+  - component: {fileID: 3032428489337384049}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -193,6 +196,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -253,3 +257,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3032428489337384049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8005553298250364773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7d779c65b2c14dbda8495d97063197b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -35,6 +35,7 @@ public class Gate : MonoBehaviour
                 col.enabled = false;
             }
 
+            AudioManager.instance.Play("Grinding");
             active = true;
         } else {
             if (anim != null) {

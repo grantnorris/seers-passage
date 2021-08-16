@@ -6,7 +6,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
 
     public Sound[] sounds;
-
+    [HideInInspector]
     public float masterVolume = 1f;
 
     // Start is called before the first frame update
@@ -45,6 +45,16 @@ public class AudioManager : MonoBehaviour
         }
 
         sound.source.Play();
+    }
+
+    public void Stop(string name) {
+        Sound sound = Array.Find(sounds, sound => sound.name == name);
+
+        if (sound == null) {
+            return;
+        }
+
+        sound.source.Stop();
     }
 
     public void UpdateVolume(System.Single volume) {
