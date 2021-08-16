@@ -74,3 +74,9 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: ca5267aa8e9c54f148fbe1fbbd42fb9d, type: 3}
     source: {fileID: 0}
     loop: 1
+  - name: Key Pickup
+    volume: 0.15
+    clip: {fileID: 8300000, guid: 1dd248ffde0d040eab30403f3c8a2610, type: 3}
+    source: {fileID: 0}
+    loop: 0
+  masterVolume: 1
