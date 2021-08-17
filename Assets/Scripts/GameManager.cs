@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public UnityEvent levelStart = new UnityEvent();
     [HideInInspector]
+    public UnityEvent playerSet = new UnityEvent();
+    [HideInInspector]
     public UnityEvent stepped = new UnityEvent();
     [HideInInspector]
     public PlayerHealth playerHealth;
@@ -79,7 +81,7 @@ public class GameManager : MonoBehaviour
         player = p;
         playerMove = pMove;
         playerControl = pControl;
-        CameraManager.instance.Init();
+        playerSet.Invoke();
     }
 
     // Invoke the levelStart unity event

@@ -7,7 +7,7 @@ public class CameraManager : MonoBehaviour
     public static CameraManager instance;
 
     public GameObject renderTexObj;
-    Camera playerCam;
+    public Camera playerCam;
     Camera mainCam;
     RenderTexture renderTex;
 
@@ -15,6 +15,10 @@ public class CameraManager : MonoBehaviour
         if (instance == null) {
             instance = this;
         }
+    }
+
+    void Start() {
+        GameManager.instance.playerSet.AddListener(Init);
     }
 
     public void Init()
@@ -27,7 +31,7 @@ public class CameraManager : MonoBehaviour
             return;
         }
 
-        playerCam = player.GetComponentInChildren<Camera>();
+        // playerCam = player.GetComponentInChildren<Camera>();
 
         if (playerCam != null) {
             renderTex = playerCam.targetTexture;

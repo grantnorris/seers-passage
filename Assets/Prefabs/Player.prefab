@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a28961d88dfbb4a61899a7d6f965bbb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 11
+  moveSpeed: 9
   moving: 0
   anim: {fileID: 6474503902810972871}
   shadowAnim: {fileID: 3192679501234720991}
@@ -178,6 +178,7 @@ MonoBehaviour:
   finishMoving:
     m_PersistentCalls:
       m_Calls: []
+  interactNoticeScript: {fileID: 0}
 --- !u!114 &3050750517887313122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,7 +324,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7711198451208918383
 Transform:
   m_ObjectHideFlags: 0
