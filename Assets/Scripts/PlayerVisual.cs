@@ -42,4 +42,8 @@ public class PlayerVisual : MonoBehaviour
 
         shadowAnim.SetBool("lowLight", true);
     }
+
+    public void MoveSound() {
+        AudioManager.instance.Play("Player Move");
+    }
 }

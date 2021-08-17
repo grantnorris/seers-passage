@@ -96,7 +96,12 @@ MonoBehaviour:
     loop: 0
   - name: Heart Break
     volume: 0.257
-    clip: {fileID: 8300000, guid: c47e2d627c4394227a986263e89aa5b8, type: 3}
+    clip: {fileID: 8300000, guid: 80006172cc53c47838247e0007502565, type: 3}
+    source: {fileID: 0}
+    loop: 0
+  - name: Player Move
+    volume: 0.042
+    clip: {fileID: 8300000, guid: dfb7de33293e942299a68655c1dadf65, type: 3}
     source: {fileID: 0}
     loop: 0
   masterVolume: 1
