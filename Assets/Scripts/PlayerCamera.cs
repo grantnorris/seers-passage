@@ -8,8 +8,6 @@ public class PlayerCamera : MonoBehaviour
 
     Transform player;
     Vector3 targetPos;
-    Vector3 camPos;
-    float time = 0f;
     Vector3 velocity = Vector3.zero;
 
     // Start is called before the first frame update
