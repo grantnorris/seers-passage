@@ -104,4 +104,14 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: dfb7de33293e942299a68655c1dadf65, type: 3}
     source: {fileID: 0}
     loop: 0
+  - name: Death
+    volume: 0.721
+    clip: {fileID: 8300000, guid: 497709c84b4414c298243f8c8dbf033f, type: 3}
+    source: {fileID: 0}
+    loop: 0
+  - name: Flame Ambience
+    volume: 0.03
+    clip: {fileID: 8300000, guid: e347fe5b746d3492eb34ae558fb35e35, type: 3}
+    source: {fileID: 0}
+    loop: 1
   masterVolume: 1

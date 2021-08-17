@@ -9468,6 +9468,7 @@ GameObject:
   - component: {fileID: 1559640859}
   - component: {fileID: 1559640858}
   - component: {fileID: 1559640857}
+  - component: {fileID: 1559640861}
   m_Layer: 5
   m_Name: Lose UI
   m_TagString: Untagged
@@ -9564,6 +9565,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1559640855}
   m_CullTransparentMesh: 1
+--- !u!114 &1559640861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1559640855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59bd055f15cef4e4eb2f15c1a4e89158, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1581433530
 GameObject:
   m_ObjectHideFlags: 0
@@ -9957,13 +9970,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4586526026850378223, guid: d995abd790ad7495a94bb71e9d7dc510,
         type: 3}
-      propertyPath: sounds.Array.data[11].loop
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4586526026850378223, guid: d995abd790ad7495a94bb71e9d7dc510,
-        type: 3}
-      propertyPath: sounds.Array.data[11].volume
-      value: 0.128
+      propertyPath: sounds.Array.data[6].volume
+      value: 0.07
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d995abd790ad7495a94bb71e9d7dc510, type: 3}
