@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6442342302825288439}
   - component: {fileID: 8139296694955690396}
-  - component: {fileID: 2867042199749412405}
+  - component: {fileID: -1016143575280134899}
   m_Layer: 0
   m_Name: Floor
   m_TagString: Floor
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2867042199749412405
+--- !u!114 &-1016143575280134899
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,7 +94,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5577575902467771462}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01513faf293ce422cb720d88d9f11eeb, type: 3}
+  m_Script: {fileID: 11500000, guid: 591dfa778523a488f8c81ad4b36758be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   neutralTiles:
@@ -108,3 +108,9 @@ MonoBehaviour:
   lightingDown: {fileID: 0}
   lightingLeft: {fileID: 0}
   lightingRight: {fileID: 0}
+  topDetailSprites:
+  - {fileID: -4035374506323536914, guid: 77c4487e43bce44e88369494dc3bce6e, type: 3}
+  - {fileID: 2983514293905979718, guid: 77c4487e43bce44e88369494dc3bce6e, type: 3}
+  - {fileID: -4574723634159132, guid: 77c4487e43bce44e88369494dc3bce6e, type: 3}
+  - {fileID: -1726278750276599442, guid: 77c4487e43bce44e88369494dc3bce6e, type: 3}
+  hasDetails: 0

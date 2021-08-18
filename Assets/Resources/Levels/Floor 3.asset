@@ -12,9 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b72fafb507f47558026b31d0e7ed71, type: 3}
   m_Name: Floor 3
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 2593904522363898433, guid: 8fdb582ff17cc4f5a83deaa5b3c227d8, type: 3}
   floorNumber: 3
-  stepThreshold: 0
-  previousLevel: {fileID: 11400000, guid: 6f5791eca6ea74ac7bf3f35f1b4cf9b5, type: 2}
-  nextLevel: {fileID: 11400000, guid: da4f9216c6f774b5aaca73ee7bb92b3a, type: 2}
-  complete: 0
+  stepThreshold: 4
