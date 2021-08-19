@@ -14,9 +14,8 @@ public class FloorTileDisplay : TileDisplay
     List<Sprite> downDetailSprites = new List<Sprite>();
     [SerializeField]
     List<Sprite> leftDetailSprites = new List<Sprite>();
-    // [HideInInspector]
+    [HideInInspector]
     public bool hasPuddle = false;
-    [SerializeField]
     string adjacentPuddles = "";
     [SerializeField]
     bool hasDetails;
@@ -110,8 +109,7 @@ public class FloorTileDisplay : TileDisplay
                 }            
             }
             // Chance to create puddle
-        } else if (Random.Range(0, 100) <= 50) {
-            Debug.Log("has puddle");
+        } else if (Random.Range(0, 100) <= 25) {
             hasPuddle = true;
         }
     }
@@ -140,6 +138,12 @@ public class FloorTileDisplay : TileDisplay
                 detail.AddComponent<SpriteRenderer>().sprite = sprite;
             }
         } else {
+            Sprite sprite = PuddleSprite();
+
+            if (sprite == null) {
+                yield break;
+            }
+
             GameObject puddle = new GameObject();
             Transform detailTransform = puddle.transform;
             puddle.name = "Puddle";
@@ -147,7 +151,6 @@ public class FloorTileDisplay : TileDisplay
             detailTransform.localPosition = Vector3.zero;
             SpriteRenderer rend = puddle.AddComponent<SpriteRenderer>();
             SpriteMask spriteMask = puddle.AddComponent<SpriteMask>();
-            Sprite sprite = PuddleSprite();
             rend.sprite = sprite;
             rend.sortingOrder = -2;
             spriteMask.sprite = sprite;
@@ -241,12 +244,13 @@ public class FloorTileDisplay : TileDisplay
         adjacentPuddles += tileDownDisplay != null && tileDownDisplay.hasPuddle ? "1" : "0";
         adjacentPuddles += tileLeftDisplay != null && tileLeftDisplay.hasPuddle ? "1" : "0";
 
-        Debug.Log("adjacent puddles = " + adjacentPuddles);
-
         switch (adjacentPuddles)
         {
             case "0000":
-            sprite = puddleSprites[0];
+            // Lower chance of displayer unconnected puddles
+            if (Random.Range(0, 100) <= 25) {
+                sprite = puddleSprites[0];
+            }
             break;
 
             case "1000":
