@@ -7,7 +7,7 @@ public class PlayerMove : MonoBehaviour
 {
     public float moveSpeed = 3f;
     public bool moving     = false;
-    public Animator anim;
+    public Animator[] anims;
     public Animator shadowAnim;
     public GameObject interactNotice;
     public bool lowLight = true;
@@ -46,7 +46,10 @@ public class PlayerMove : MonoBehaviour
             if (transform.position != targetPos) {
                 transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * moveSpeed);
             } else {
-                anim.SetTrigger("stopMoving");
+                foreach (Animator anim in anims) {
+                    anim.SetTrigger("stopMoving");
+                }
+
                 playerControl.AllowInput();
                 moving = false;
 
@@ -112,9 +115,11 @@ public class PlayerMove : MonoBehaviour
             }
 
             playerControl.DisallowInput();
-            anim.SetInteger("directionFacing", directionInt);
-            anim.SetTrigger("startMoving");
-            anim.SetBool("moving", true);
+            foreach (Animator anim in anims) {
+                anim.SetInteger("directionFacing", directionInt);
+                anim.SetTrigger("startMoving");
+                anim.SetBool("moving", true);
+            }
 
             if (shadowAnim != null && !lowLight) {
                 shadowAnim.SetBool("lowLight", true);
@@ -151,14 +156,16 @@ public class PlayerMove : MonoBehaviour
             directionInt = 4;
         }
 
-        anim.SetInteger("directionFacing", directionInt);
+        foreach (Animator anim in anims) {
+            anim.SetInteger("directionFacing", directionInt);
+        }
     }
 
     // Expand the light radius of the player
     public void ExpandLightRadius() {
         lowLight = false;
 
-        if (anim != null) {
+        foreach (Animator anim in anims) {
             anim.SetBool("hasLight", true);
         }
 

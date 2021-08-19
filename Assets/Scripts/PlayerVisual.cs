@@ -28,7 +28,10 @@ public class PlayerVisual : MonoBehaviour
         }
 
         PlayerMove.moving = false;
-        PlayerMove.anim.SetBool("moving", false);
+
+        foreach (Animator anim in PlayerMove.anims) {
+            anim.SetBool("moving", false);
+        }
     }
 
     public void Die() {

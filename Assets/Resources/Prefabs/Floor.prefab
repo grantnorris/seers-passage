@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 4562469129879969737, guid: 0a92607ffc6d04463b46f2e44bc68b07,
+  m_Sprite: {fileID: -2936491994708073449, guid: 0a92607ffc6d04463b46f2e44bc68b07,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -103,11 +103,28 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3886be439e2b849d3bd8713f03af79a9, type: 2}
   downFacingTiles: []
   acceptsLight: 0
-  tile: {fileID: 11400000, guid: cd4a1f85e2ea6455bb08febb6dc16964, type: 2}
+  tile: {fileID: 11400000, guid: 3886be439e2b849d3bd8713f03af79a9, type: 2}
   lightingUp: {fileID: 0}
   lightingDown: {fileID: 0}
   lightingLeft: {fileID: 0}
   lightingRight: {fileID: 0}
+  puddleSprites:
+  - {fileID: 2694999094060727155, guid: 326d1d879dae242f99b1603036d9a08a, type: 3}
+  - {fileID: 8588896679985209131, guid: 326d1d879dae242f99b1603036d9a08a, type: 3}
+  - {fileID: 4427620187494149935, guid: 326d1d879dae242f99b1603036d9a08a, type: 3}
+  - {fileID: 4178428243427758257, guid: 326d1d879dae242f99b1603036d9a08a, type: 3}
+  - {fileID: -2811070998096910730, guid: 326d1d879dae242f99b1603036d9a08a, type: 3}
+  - {fileID: -7053037933156000310, guid: 326d1d879dae242f99b1603036d9a08a, type: 3}
+  - {fileID: -5995258140446397083, guid: 326d1d879dae242f99b1603036d9a08a, type: 3}
+  - {fileID: 8947449587815630031, guid: 326d1d879dae242f99b1603036d9a08a, type: 3}
+  - {fileID: -4712180814800368865, guid: 326d1d879dae242f99b1603036d9a08a, type: 3}
+  - {fileID: 518422184035126517, guid: 326d1d879dae242f99b1603036d9a08a, type: 3}
+  - {fileID: 7833276103934969224, guid: 326d1d879dae242f99b1603036d9a08a, type: 3}
+  - {fileID: -377425582913046374, guid: 326d1d879dae242f99b1603036d9a08a, type: 3}
+  - {fileID: 1183661965982366665, guid: 326d1d879dae242f99b1603036d9a08a, type: 3}
+  - {fileID: -1706126348679390355, guid: 326d1d879dae242f99b1603036d9a08a, type: 3}
+  - {fileID: 5681848314199875603, guid: 326d1d879dae242f99b1603036d9a08a, type: 3}
+  - {fileID: 5982050027252688012, guid: 326d1d879dae242f99b1603036d9a08a, type: 3}
   topDetailSprites:
   - {fileID: -4035374506323536914, guid: 77c4487e43bce44e88369494dc3bce6e, type: 3}
   - {fileID: 2983514293905979718, guid: 77c4487e43bce44e88369494dc3bce6e, type: 3}
@@ -128,4 +145,8 @@ MonoBehaviour:
   - {fileID: -7296204007701324513, guid: 77c4487e43bce44e88369494dc3bce6e, type: 3}
   - {fileID: -9153696997401589156, guid: 77c4487e43bce44e88369494dc3bce6e, type: 3}
   - {fileID: -8796520157913258223, guid: 77c4487e43bce44e88369494dc3bce6e, type: 3}
-  hasDetails: 0
+  hasPuddle: 1
+  hasTopDetails: 0
+  hasRightDetails: 0
+  hasBottomDetails: 0
+  hasLeftDetails: 0
