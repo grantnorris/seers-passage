@@ -9,6 +9,7 @@ public class Gate : MonoBehaviour
     [SerializeField]
     [Tooltip("Will cause the gate to activate after each player movement.")]
     bool flipFlops;
+    public float volume = 1f;
 
     Collider2D col;
 
@@ -19,12 +20,23 @@ public class Gate : MonoBehaviour
             GameManager.instance.stepped.AddListener(Activate);
         }
     }
+
+    // Update sound effects volume based on distance from player
+    void UpdateVolume() {
+        Debug.Log("player pos = " + GameManager.instance.player.transform.position);
+        float playerDistance = Vector3.Distance(GameManager.instance.player.transform.position, transform.position);
+        volume = Mathf.Max(1 - ((playerDistance - 1f) * .1f), .25f);
+        Debug.Log("gate distance from player = " + playerDistance);
+        Debug.Log("gate volume = " + volume);
+    }
     
     // Toggle activated state of gate
     public void Activate() {
         if (!anim.isActiveAndEnabled) {
             anim.enabled = true;
         }
+
+        UpdateVolume();
 
         if (!active) {
             if (anim != null) {
@@ -35,7 +47,7 @@ public class Gate : MonoBehaviour
                 col.enabled = false;
             }
 
-            AudioManager.instance.Play("Grinding");
+            AudioManager.instance.Play("Grinding", volume);
             active = true;
         } else {
             if (anim != null) {

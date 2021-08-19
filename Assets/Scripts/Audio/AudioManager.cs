@@ -37,13 +37,13 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void Play(string name) {
+    public void Play(string name, float playVolume = 1f) {
         Sound sound = Array.Find(sounds, sound => sound.name == name);
 
         if (sound == null) {
             return;
         }
-
+        sound.source.volume = (sound.volume * masterVolume) * playVolume;
         sound.source.Play();
     }
 
