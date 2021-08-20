@@ -108,9 +108,18 @@ public class FloorTileDisplay : TileDisplay
                     break;
                 }            
             }
+        } else {
             // Chance to create puddle
-        } else if (Random.Range(0, 100) <= 25) {
-            hasPuddle = true;
+            int puddleChance = 10;
+
+            // More likely if adjacent tiles have already been assigned puddles
+            if ((tileUpDisplay != null && tileUpDisplay.hasPuddle) || (tileLeftDisplay != null && tileLeftDisplay.hasPuddle)) {
+                puddleChance = 75;
+            }
+
+            if (Random.Range(0, 100) <= puddleChance) {
+                hasPuddle = true;
+            }
         }
     }
 
