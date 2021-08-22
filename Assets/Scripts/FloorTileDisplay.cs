@@ -110,16 +110,16 @@ public class FloorTileDisplay : TileDisplay
             }
         } else {
             // Chance to create puddle
-            int puddleChance = 10;
+            int puddleChance = 50;
 
-            // More likely if adjacent tiles have already been assigned puddles
-            if ((tileUpDisplay != null && tileUpDisplay.hasPuddle) || (tileLeftDisplay != null && tileLeftDisplay.hasPuddle)) {
-                puddleChance = 75;
-            }
+            // // More likely if adjacent tiles have already been assigned puddles
+            // if ((tileUpDisplay != null && tileUpDisplay.hasPuddle) || (tileLeftDisplay != null && tileLeftDisplay.hasPuddle)) {
+            //     puddleChance = 25;
+            // }
 
-            if (Random.Range(0, 100) <= puddleChance) {
-                hasPuddle = true;
-            }
+            // if (Random.Range(0, 100) <= puddleChance) {
+            //     hasPuddle = true;
+            // }
         }
     }
 
@@ -256,10 +256,7 @@ public class FloorTileDisplay : TileDisplay
         switch (adjacentPuddles)
         {
             case "0000":
-            // Lower chance of displayer unconnected puddles
-            if (Random.Range(0, 100) <= 25) {
-                sprite = puddleSprites[0];
-            }
+            // Don't display unconnected singular puddles
             break;
 
             case "1000":
