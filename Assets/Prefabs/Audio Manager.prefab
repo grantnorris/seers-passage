@@ -114,4 +114,14 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: e347fe5b746d3492eb34ae558fb35e35, type: 3}
     source: {fileID: 0}
     loop: 1
+  - name: Player Move In
+    volume: 0.17
+    clip: {fileID: 8300000, guid: 4d17364d6c5644ed19a08a86529d9ea0, type: 3}
+    source: {fileID: 0}
+    loop: 0
+  - name: Player Move Out
+    volume: 0.149
+    clip: {fileID: 8300000, guid: 2add8027e7a464c4aada80226493ba87, type: 3}
+    source: {fileID: 0}
+    loop: 0
   masterVolume: 1
