@@ -30,13 +30,13 @@ public class SurroundingTile : MonoBehaviour
                 rend.sprite = sprite;
             }
 
-            BuildMap buildMap = BuildMap.instance;
+            Map map = Map.instance;
             Vector2 position  = transform.position;
 
-            GameObject tileUp    = buildMap.GetTileByLocation(position.x, position.y + 1);
-            GameObject tileDown  = buildMap.GetTileByLocation(position.x, position.y - 1);
-            GameObject tileLeft  = buildMap.GetTileByLocation(position.x - 1, position.y);
-            GameObject tileRight = buildMap.GetTileByLocation(position.x + 1, position.y);
+            GameObject tileUp    = map.GetTile(position.x, position.y + 1);
+            GameObject tileDown  = map.GetTile(position.x, position.y - 1);
+            GameObject tileLeft  = map.GetTile(position.x - 1, position.y);
+            GameObject tileRight = map.GetTile(position.x + 1, position.y);
 
             List<Sprite> sprites = new List<Sprite>();
 

@@ -34,10 +34,10 @@ public class FloorTileDisplay : TileDisplay
 
     public override void Initialise() {
         base.Initialise();
-        tileUpDisplay = tileUp.GetComponent<FloorTileDisplay>();
-        tileRightDisplay = tileRight.GetComponent<FloorTileDisplay>();
-        tileDownDisplay = tileDown.GetComponent<FloorTileDisplay>();
-        tileLeftDisplay = tileLeft.GetComponent<FloorTileDisplay>();
+        tileUpDisplay = (tileUp != null ? tileUp.GetComponent<FloorTileDisplay>() : null);
+        tileRightDisplay = (tileRight != null ? tileRight.GetComponent<FloorTileDisplay>() : null);
+        tileDownDisplay = (tileDown != null ? tileDown.GetComponent<FloorTileDisplay>() : null);
+        tileLeftDisplay = (tileLeft != null ? tileLeft.GetComponent<FloorTileDisplay>() : null);
         hasDetails = false;
         hasPuddle = false;
         AssignDetails();
@@ -110,7 +110,7 @@ public class FloorTileDisplay : TileDisplay
             }
         } else {
             // Chance to create puddle
-            int puddleChance = 50;
+            // int puddleChance = 50;
 
             // // More likely if adjacent tiles have already been assigned puddles
             // if ((tileUpDisplay != null && tileUpDisplay.hasPuddle) || (tileLeftDisplay != null && tileLeftDisplay.hasPuddle)) {

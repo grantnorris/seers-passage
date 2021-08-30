@@ -45,11 +45,11 @@ public class TileDisplay : MonoBehaviour
 
     void SurroundingTiles() {
         Vector2 position  = transform.position;
-        BuildMap buildMap = BuildMap.instance;
-        tileUp = buildMap.GetTileByLocation(position.x, position.y + 1);
-        tileDown = buildMap.GetTileByLocation(position.x, position.y - 1);
-        tileLeft = buildMap.GetTileByLocation(position.x - 1, position.y);
-        tileRight = buildMap.GetTileByLocation(position.x + 1, position.y);
+        Map map = Map.instance;
+        tileUp = map.GetTile(position.x, position.y + 1);
+        tileDown = map.GetTile(position.x, position.y - 1);
+        tileLeft = map.GetTile(position.x - 1, position.y);
+        tileRight = map.GetTile(position.x + 1, position.y);
     }
 
     // Enable directional light sources based on the surrounding tiles
