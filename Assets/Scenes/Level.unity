@@ -9660,6 +9660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59bd055f15cef4e4eb2f15c1a4e89158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  subtitleText: {fileID: 1394809737}
 --- !u!1 &1581433530
 GameObject:
   m_ObjectHideFlags: 0

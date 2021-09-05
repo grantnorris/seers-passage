@@ -1,9 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class LoseUI : MonoBehaviour
 {
+    [SerializeField]
+    TMP_Text subtitleText;
+
+    void Start() {
+        if (subtitleText != null) {
+            subtitleText.SetText(GameManager.instance.level.name);
+        }
+    }
+
     public void PlayDeathSound() {
         AudioManager.instance.Stop("Theme");
         AudioManager.instance.Play("Death");
