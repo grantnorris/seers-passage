@@ -23,7 +23,8 @@ public class CanvasGyro : MonoBehaviour
             return;
         }
 
-        rect.offsetMin = new Vector2(gyro.attitude.y * movement, gyro.attitude.x * movement);
+        rect.offsetMin = new Vector2(gyro.attitude.y * movement, 0);
+        rect.offsetMax = new Vector2(gyro.attitude.y * movement, 0);
 
         Debug.Log("input.gyro.attitude: " + gyro.attitude);
 
