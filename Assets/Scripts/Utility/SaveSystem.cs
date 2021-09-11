@@ -11,6 +11,8 @@ public static class SaveSystem
     static Level[] levels = GameLevels.levels;
 
     public static void UpdateLevelScore(Level level, LevelScore score) {
+        Debug.Log("update level score");
+
         for (int i = 0; i < levels.Length; i++) {
             if (levels[i] == level) {
                 progressData.scores[i] = score;
@@ -21,6 +23,10 @@ public static class SaveSystem
     }
 
     public static LevelScore LevelScore(Level level) {
+        if (level == null) {
+            return null;
+        }
+
         for (int i = 0; i < levels.Length; i++) {
             if (levels[i] == level) {
                 return progressData.scores[i];
@@ -45,6 +51,8 @@ public static class SaveSystem
 
     // Load progress
     static ProgressData LoadProgress() {
+        Debug.Log("load progress");
+
         if (!File.Exists(path)) {
             Debug.Log("no data found to load, create new data");
             return new ProgressData();
@@ -56,5 +64,11 @@ public static class SaveSystem
         stream.Close();
         Debug.Log("progress loaded");
         return data;
+    }
+
+    public static void DeleteProgress() {
+        Debug.Log("delete saved data");
+        File.Delete(path);
+        progressData = new ProgressData();
     }
 }

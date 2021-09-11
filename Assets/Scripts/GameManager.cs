@@ -58,6 +58,9 @@ public class GameManager : MonoBehaviour
         } else if (Input.GetKeyDown(KeyCode.L)) {
             Debug.Log("try to load");
             // SaveSystem.LoadProgress();
+        } else if (Input.GetKeyDown(KeyCode.K)) {
+            Debug.Log("try to delete progress");
+            SaveSystem.DeleteProgress();
         }
     }
 
@@ -181,7 +184,9 @@ public class GameManager : MonoBehaviour
             time
         );
 
-        if (LevelScore.ScoreIsBetter(score, SaveSystem.LevelScore(level))) {
+        LevelScore prevScore = SaveSystem.LevelScore(level);
+
+        if (prevScore == null || LevelScore.ScoreIsBetter(score, prevScore)) {
             SaveSystem.UpdateLevelScore(level, score);
         }
     }
