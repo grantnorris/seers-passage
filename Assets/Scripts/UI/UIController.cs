@@ -154,7 +154,7 @@ public class UIController : MonoBehaviour
 
             yield return new WaitForSeconds(.2f);
 
-            AudioManager.instance.Play("Heart Break");
+            AudioManager.instance.PlayOneShot("Heart Break");
 
             yield return new WaitForSeconds(.9f);
 

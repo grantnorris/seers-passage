@@ -44,89 +44,106 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: Dialogue Open
-    volume: 0.1
-    clip: {fileID: 8300000, guid: 35ed9aa04bafa4f01ba6ee357c90f8f9, type: 3}
-    source: {fileID: 0}
-    loop: 0
-  - name: Dialogue Close
-    volume: 0.1
-    clip: {fileID: 8300000, guid: ead4b7ecaf74b4f918127ce7e7ce541c, type: 3}
-    source: {fileID: 0}
-    loop: 0
-  - name: Movement Failed
-    volume: 0.15
-    clip: {fileID: 8300000, guid: a67f23b821c404354b95152c154b7f09, type: 3}
-    source: {fileID: 0}
-    loop: 0
-  - name: Player Hurt
-    volume: 0.1
-    clip: {fileID: 8300000, guid: 7c72f3878fa0d48839897fb766ec2cb0, type: 3}
-    source: {fileID: 0}
-    loop: 0
-  - name: Light Torch
-    volume: 0.03
-    clip: {fileID: 8300000, guid: 8f32183da0eb149829083f4514dffb5c, type: 3}
-    source: {fileID: 0}
-    loop: 0
   - name: Theme
     volume: 1
     clip: {fileID: 8300000, guid: ca5267aa8e9c54f148fbe1fbbd42fb9d, type: 3}
     source: {fileID: 0}
     loop: 1
+    oneShot: 0
+  - name: Dialogue Open
+    volume: 0.1
+    clip: {fileID: 8300000, guid: 35ed9aa04bafa4f01ba6ee357c90f8f9, type: 3}
+    source: {fileID: 0}
+    loop: 0
+    oneShot: 1
+  - name: Dialogue Close
+    volume: 0.1
+    clip: {fileID: 8300000, guid: ead4b7ecaf74b4f918127ce7e7ce541c, type: 3}
+    source: {fileID: 0}
+    loop: 0
+    oneShot: 1
+  - name: Type Dialogue
+    volume: 0.01
+    clip: {fileID: 8300000, guid: 77df6adb14a5f49a8824a8a358f33536, type: 3}
+    source: {fileID: 0}
+    loop: 0
+    oneShot: 1
+  - name: Movement Failed
+    volume: 0.15
+    clip: {fileID: 8300000, guid: a67f23b821c404354b95152c154b7f09, type: 3}
+    source: {fileID: 0}
+    loop: 0
+    oneShot: 1
+  - name: Player Hurt
+    volume: 0.1
+    clip: {fileID: 8300000, guid: 7c72f3878fa0d48839897fb766ec2cb0, type: 3}
+    source: {fileID: 0}
+    loop: 0
+    oneShot: 1
+  - name: Light Torch
+    volume: 0.03
+    clip: {fileID: 8300000, guid: 8f32183da0eb149829083f4514dffb5c, type: 3}
+    source: {fileID: 0}
+    loop: 0
+    oneShot: 1
   - name: Key Pickup
     volume: 0.04
     clip: {fileID: 8300000, guid: 1dd248ffde0d040eab30403f3c8a2610, type: 3}
     source: {fileID: 0}
     loop: 0
+    oneShot: 1
   - name: Grinding Start
     volume: 0.1
     clip: {fileID: 8300000, guid: a536ed164aca8414dabdabb13fb85add, type: 3}
     source: {fileID: 0}
     loop: 0
+    oneShot: 1
   - name: Grinding
     volume: 0.1
     clip: {fileID: 8300000, guid: 118ff3c8ab3164540be67d80d1fbd9a2, type: 3}
     source: {fileID: 0}
     loop: 1
+    oneShot: 0
   - name: Grinding End
     volume: 0.1
     clip: {fileID: 8300000, guid: c47e2d627c4394227a986263e89aa5b8, type: 3}
     source: {fileID: 0}
     loop: 0
+    oneShot: 1
   - name: Heart Break
     volume: 0.075
     clip: {fileID: 8300000, guid: 80006172cc53c47838247e0007502565, type: 3}
     source: {fileID: 0}
     loop: 0
+    oneShot: 1
   - name: Death
     volume: 0.5
     clip: {fileID: 8300000, guid: 497709c84b4414c298243f8c8dbf033f, type: 3}
     source: {fileID: 0}
     loop: 0
+    oneShot: 0
   - name: Flame Ambience
     volume: 0.02
     clip: {fileID: 8300000, guid: e347fe5b746d3492eb34ae558fb35e35, type: 3}
     source: {fileID: 0}
     loop: 1
+    oneShot: 0
   - name: Player Move In
     volume: 0.05
     clip: {fileID: 8300000, guid: 2add8027e7a464c4aada80226493ba87, type: 3}
     source: {fileID: 0}
     loop: 0
+    oneShot: 1
   - name: Player Move
     volume: 0.02
     clip: {fileID: 8300000, guid: dfb7de33293e942299a68655c1dadf65, type: 3}
     source: {fileID: 0}
     loop: 0
+    oneShot: 1
   - name: Player Move Out
     volume: 0.05
     clip: {fileID: 8300000, guid: 2add8027e7a464c4aada80226493ba87, type: 3}
     source: {fileID: 0}
     loop: 0
-  - name: Type Dialogue
-    volume: 0.05
-    clip: {fileID: 8300000, guid: b9fb21e1166134e85b602f1684477b01, type: 3}
-    source: {fileID: 0}
-    loop: 0
+    oneShot: 1
   masterVolume: 1

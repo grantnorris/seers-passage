@@ -20,7 +20,7 @@ public class LightInteractable : Interactable
 
         if (anim != null) {
             anim.SetTrigger("remove");
-            AudioManager.instance.Play("Light Torch");
+            AudioManager.instance.PlayOneShot("Light Torch");
             GameManager.instance.playerMove.ExpandLightRadius();
 
             if (item == null) {

@@ -15,7 +15,7 @@ public class KeyInteractable : Interactable
         }
         
         Inventory.instance.Add(item);
-        AudioManager.instance.Play("Key Pickup");
+        AudioManager.instance.PlayOneShot("Key Pickup");
         Remove();
     }
 

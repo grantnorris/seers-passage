@@ -11,5 +11,6 @@ public class Sound
     public AudioSource source;
     [Tooltip("Ignored if One Shot is true")]
     public bool loop;
+    [Tooltip("If true, a dedicated audio source will not be created for this sound")]
     public bool oneShot;
 }

@@ -47,14 +47,14 @@ public class PlayerVisual : MonoBehaviour
     }
 
     public void MoveInSound() {
-        AudioManager.instance.Play("Player Move In");
+        AudioManager.instance.PlayOneShot("Player Move In");
     }
 
     public void MoveSound() {
-        AudioManager.instance.Play("Player Move");
+        AudioManager.instance.PlayOneShot("Player Move");
     }
 
     public void MoveOutSound() {
-        AudioManager.instance.Play("Player Move Out");
+        AudioManager.instance.PlayOneShot("Player Move Out");
     }
 }
