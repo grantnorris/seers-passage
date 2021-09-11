@@ -101,6 +101,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1625edfe73e4647dd998160767b461ce, type: 2}
   - {fileID: 11400000, guid: cd4a1f85e2ea6455bb08febb6dc16964, type: 2}
   - {fileID: 11400000, guid: 3886be439e2b849d3bd8713f03af79a9, type: 2}
+  - {fileID: 11400000, guid: 2a45fe554b92d416d9ac90a0479d1356, type: 2}
+  - {fileID: 11400000, guid: d3f574223d1154bd59af809ac271f3ca, type: 2}
+  - {fileID: 11400000, guid: d38ba8cc8e47e4b3d8e0dd2cd8c6b117, type: 2}
+  - {fileID: 11400000, guid: ba5fde9d5d7db45d69731012516b7d03, type: 2}
+  - {fileID: 11400000, guid: 717d89ae495c14ba08960fe455301945, type: 2}
   downFacingTiles: []
   acceptsLight: 0
   tile: {fileID: 11400000, guid: cd4a1f85e2ea6455bb08febb6dc16964, type: 2}
