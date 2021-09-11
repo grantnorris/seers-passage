@@ -7,7 +7,7 @@ public class AudioManager : MonoBehaviour
 
     public Sound[] sounds;
     [HideInInspector]
-    public float masterVolume = 1f;
+    public float masterVolume = .8f;
 
     // Start is called before the first frame update
     void Awake()
@@ -20,6 +20,11 @@ public class AudioManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(this.gameObject);
         masterVolume = PlayerPrefs.GetFloat("masterVolume");
+
+        if (masterVolume == default) {
+            PlayerPrefs.SetFloat("masterVolume", masterVolume);
+        }
+
         CreateSources();
         Play("Theme");
     }
