@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b72fafb507f47558026b31d0e7ed71, type: 3}
   m_Name: Floor 1
   m_EditorClassIdentifier: 
-  ID: 1
   prefab: {fileID: 130667570368573275, guid: 712b66a104bf940f1929129756d8c5c1, type: 3}
   floorNumber: 1
   stepThreshold: 99

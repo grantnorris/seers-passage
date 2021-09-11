@@ -184,6 +184,11 @@ public class DialogueManager : MonoBehaviour
             // Animate loader
             while (time <= 1f) {
                 time += Time.deltaTime * speed;
+                
+                if (loaderRect == null) {
+                    break;
+                }
+
                 loaderRect.sizeDelta = Vector2.Lerp(loaderRect.sizeDelta, Vector2.zero, time);
                 yield return null;
             }
