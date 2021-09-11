@@ -145,7 +145,7 @@ public class DialogueManager : MonoBehaviour
         
             for (int c = 0; c < 4; c++) {
                 txtUI.textInfo.meshInfo[charInfo.materialReferenceIndex].colors32[index + c] = txtColor;
-                AudioManager.instance.Play("Type Dialogue");
+                AudioManager.instance.PlayOneShot("Type Dialogue");
             }
             
             textInfo.meshInfo[0].mesh.vertices = textInfo.meshInfo[0].vertices;

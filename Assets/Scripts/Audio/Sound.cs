@@ -9,5 +9,7 @@ public class Sound
     public AudioClip clip;
     [HideInInspector]
     public AudioSource source;
+    [Tooltip("Ignored if One Shot is true")]
     public bool loop;
+    public bool oneShot;
 }
