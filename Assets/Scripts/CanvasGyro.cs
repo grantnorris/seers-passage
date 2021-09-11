@@ -47,7 +47,6 @@ public class CanvasGyro : MonoBehaviour
         }
 
         curOffset = Mathf.SmoothDamp(curOffset, Mathf.Clamp(offset, -maxOffset, maxOffset), ref velocity, .15f);
-        Debug.Log("curoffset = " + curOffset);
 
         rect.offsetMin = new Vector2(curOffset, 0);
         rect.offsetMax = new Vector2(curOffset, 0);

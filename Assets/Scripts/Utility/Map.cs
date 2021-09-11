@@ -16,12 +16,27 @@ public class Map : MonoBehaviour
     public List<TileLocation> tiles = new List<TileLocation>();
 
     void Awake() {
+        if (tileParent == null && transform.childCount > 0) {
+            tileParent = transform.GetChild(0);
+        }
+
         SetInstance();
+        SetTiles();
     }
 
     public void SetInstance() {
         if (instance == null) {
             instance = this;
+        }
+    }
+
+    void SetTiles() {
+        if (tileParent == null) {
+            return;
+        }
+
+        foreach (Transform child in tileParent) {
+            tiles.Add(new TileLocation(child.gameObject, (int)child.position.x, (int)child.position.y));
         }
     }
 
