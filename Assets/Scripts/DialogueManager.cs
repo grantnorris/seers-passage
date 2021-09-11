@@ -145,6 +145,7 @@ public class DialogueManager : MonoBehaviour
         
             for (int c = 0; c < 4; c++) {
                 txtUI.textInfo.meshInfo[charInfo.materialReferenceIndex].colors32[index + c] = txtColor;
+                AudioManager.instance.Play("Type Dialogue");
             }
             
             textInfo.meshInfo[0].mesh.vertices = textInfo.meshInfo[0].vertices;
@@ -184,7 +185,7 @@ public class DialogueManager : MonoBehaviour
             // Animate loader
             while (time <= 1f) {
                 time += Time.deltaTime * speed;
-                
+
                 if (loaderRect == null) {
                     break;
                 }
