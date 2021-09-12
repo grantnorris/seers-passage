@@ -19,4 +19,18 @@ public class GateVisual : MonoBehaviour
         AudioManager.instance.Stop("Grinding");
         AudioManager.instance.PlayOneShot("Grinding End", gate.volume);
     }
+
+    public void FinishUnlock() {
+        // Run animation
+        gate.Activate();
+
+        float animationDuration = .8f;
+
+        StartCoroutine(GameManager.instance.DisablePlayerMoveForDuration(animationDuration));
+        
+        // Shake the camera
+        if (CameraShake.instance != null) {
+            StartCoroutine(CameraShake.instance.Shake(animationDuration, .05f));
+        }
+    }
 }

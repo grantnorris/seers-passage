@@ -22,16 +22,6 @@ public class LockInteractable : Interactable
             return;
         }
 
-        float animationDuration = .8f;
-
-        // Run animation
-        gate.Activate();
-
-        StartCoroutine(GameManager.instance.DisablePlayerMoveForDuration(animationDuration));
-        
-        // Shake the camera
-        if (CameraShake.instance != null) {
-            StartCoroutine(CameraShake.instance.Shake(animationDuration, .05f));
-        }
+        gate.anim.SetBool("locked", false);
     }
 }

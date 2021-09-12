@@ -17,6 +17,21 @@ TextureImporter:
   - first:
       213: -871195598416721402
     second: gate-locked_4
+  - first:
+      213: -7128934640926502966
+    second: gate-locked_5
+  - first:
+      213: 6240447066696474142
+    second: gate-locked_6
+  - first:
+      213: 9029811131421767950
+    second: gate-locked_7
+  - first:
+      213: -6461160768445032588
+    second: gate-locked_8
+  - first:
+      213: 6981733626986877214
+    second: gate-locked_9
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -218,6 +233,111 @@ TextureImporter:
       bones: []
       spriteID: 60acc721834e8e3f0800000000000000
       internalID: -871195598416721402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gate-locked_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acf499cf6bfe01d90800000000000000
+      internalID: -7128934640926502966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gate-locked_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1e521a3b858a9650800000000000000
+      internalID: 6240447066696474142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gate-locked_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e09334dc165505d70800000000000000
+      internalID: 9029811131421767950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gate-locked_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 477d42883885556a0800000000000000
+      internalID: -6461160768445032588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gate-locked_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e11d3f03eb914e060800000000000000
+      internalID: 6981733626986877214
       vertices: []
       indices: 
       edges: []
