@@ -2,10 +2,18 @@ using UnityEngine;
 
 public class LockInteractable : Interactable
 {
-    public override void Interact() {
-        Gate gate = GetComponent<Gate>();
+    Gate gate;
 
-        if (!gate) {
+    void Start() {
+        gate = GetComponent<Gate>();
+
+        if (gate != null && gate.anim != null) {
+            gate.anim.SetBool("locked", true);
+        }  
+    }
+
+    public override void Interact() {
+        if (gate == null) {
             return;
         }
 
