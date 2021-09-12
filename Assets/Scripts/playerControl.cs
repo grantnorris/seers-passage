@@ -40,6 +40,7 @@ public class PlayerControl : MonoBehaviour
                     StartDragging();
                 }
             } else if (dragging) {
+                PlayerCamera.instance.UpdateOffset(Vector3.zero);
                 StopDragging();
             } else if (Input.GetKeyDown("left")) {
                 playerMove.Move("left");
@@ -87,6 +88,8 @@ public class PlayerControl : MonoBehaviour
             }
 
             dragUI.Display(xDif / dragThreshold, dragStart, direction);
+            float camOffset = Mathf.Clamp(xDif / dragThreshold * (direction == "left" ? -1 : 1), -.25f, .25f);
+            PlayerCamera.instance.UpdateOffset(new Vector3(camOffset, 0, 0));
 
             if (xDif <= dragThreshold) {
                 moveDirection = null;
@@ -102,6 +105,8 @@ public class PlayerControl : MonoBehaviour
             }
 
             dragUI.Display(yDif / dragThreshold, dragStart, direction);
+            float camOffset = Mathf.Clamp(yDif / dragThreshold * (direction == "down" ? -1 : 1), -.25f, .25f);
+            PlayerCamera.instance.UpdateOffset(new Vector3(0, camOffset, 0));
 
             if (yDif <= dragThreshold) {
                 moveDirection = null;
