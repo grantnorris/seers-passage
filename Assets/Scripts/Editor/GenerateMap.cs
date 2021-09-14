@@ -27,7 +27,6 @@ public class GenerateMap : Editor
     }
 
     ColorToTile[] ColorMappings() {
-        // return colorMappings;
         return new ColorToTile[] {
             new ColorToTile(
                 "Floor",
@@ -112,8 +111,6 @@ public class GenerateMap : Editor
 
     // Creates tile objects for a given map image
     public void Build() {
-        // Remove any existing tiles
-        Remove();
         ColorToTile[] mappings = ColorMappings();
         map.SetInstance();
 
@@ -121,9 +118,11 @@ public class GenerateMap : Editor
             mapTex = texFromSprite();
 
             // Set up parent for instantiated tiles
-            tileParent = new GameObject("Tiles").transform;
-            tileParent.SetParent(map.transform);
-            map.tileParent = tileParent;
+            if (tileParent == null) {
+                tileParent = new GameObject("Tiles").transform;
+                tileParent.SetParent(map.transform);
+                map.tileParent = tileParent;
+            }
 
             // Loop through map pixels and place tiles
             for (int y = 0; y < mapTex.height; y++) {
@@ -152,22 +151,53 @@ public class GenerateMap : Editor
             return;
         }
 
-        // Loop through color mappings and create the relevant tile
-        foreach (ColorToTile colorMapping in mappings) {
-            if (pixelColor == colorMapping.color && colorMapping.prefab) {
-                // Instantiate tile
-                GameObject tile = PrefabUtility.InstantiatePrefab(colorMapping.prefab) as GameObject;
-                tile.transform.position = new Vector3(x, y, 0);
-                tile.transform.rotation = Quaternion.identity;
-                tile.transform.SetParent(tileParent);
-                
-                // Name tile
-                tile.name = x + ", " + y + " - " + colorMapping.name;
+        ColorToTile colorMapping = ColorMapping(pixelColor);
 
-                break;
-            } else if (pixelColor == colorMapping.color && colorMapping.prefab == null) {
-                Debug.Log("no prefab for tile");
-            }
+        if (colorMapping == null) {
+            return;
         }
+
+        GameObject curTile = TileAtPosition(new Vector3(x, y, 0));
+
+        if (curTile != null && PrefabUtility.GetCorrespondingObjectFromSource(curTile) == colorMapping.prefab) {
+            Debug.Log("curtile found, And prefab is the same! " + colorMapping.prefab.name);
+            return;
+        }
+
+
+        Destroy(curTile);
+        GameObject tile = PrefabUtility.InstantiatePrefab(colorMapping.prefab) as GameObject;
+        tile.transform.position = new Vector3(x, y, 0);
+        tile.transform.rotation = Quaternion.identity;
+        tile.transform.SetParent(tileParent);
+        tile.name = x + ", " + y + " - " + colorMapping.name;
+    }
+
+    ColorToTile ColorMapping(Color color) {
+        if (color == null) {
+            return null;
+        }
+
+        foreach (ColorToTile colorMapping in ColorMappings()) {
+            if (color != colorMapping.color) {
+                continue;
+            }
+            
+            return colorMapping;
+        }
+
+        return null;
+    }
+
+    GameObject TileAtPosition(Vector3 pos) {
+        foreach (Transform child in tileParent) {
+            if (child.position != pos) {
+                continue;
+            }
+
+            return child.gameObject;
+        }
+
+        return null;
     }
 }
