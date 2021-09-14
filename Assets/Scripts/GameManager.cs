@@ -159,6 +159,10 @@ public class GameManager : MonoBehaviour
 
     // Enable player inputs
     public void EnablePlayerMove() {
+        if (playerControl == null) {
+            return;
+        }
+
         playerControl.AllowInput();
     }
 
