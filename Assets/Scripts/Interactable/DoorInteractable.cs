@@ -37,6 +37,10 @@ public class DoorInteractable : Interactable
 
     void MovePlayer() {
         Vector3 targetPos = siblingDoor.transform.position + siblingDoor.Direction();
-        GameManager.instance.player.transform.position = targetPos;
+        Transform playerTransform = GameManager.instance.player.transform;
+        Transform camTransform = PlayerCamera.instance.transform;
+
+        playerTransform.position = new Vector3(targetPos.x, targetPos.y, playerTransform.position.z);
+        camTransform.position = new Vector3(targetPos.x, targetPos.y, camTransform.position.z);
     }
 }

@@ -88,6 +88,11 @@ public class GenerateMap : Editor
                 "Gate Locked",
                 new Color(0.4039216f, 0.2901961f, 0.2f, 1),
                 Resources.Load<GameObject>("Prefabs/Gate Locked")
+            ),
+            new ColorToTile(
+                "Door",
+                new Color(1, 0.3529412f, 0.3529412f, 1),
+                Resources.Load<GameObject>("Prefabs/Door")
             )
         };
     }
