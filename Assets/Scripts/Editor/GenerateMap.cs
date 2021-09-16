@@ -160,12 +160,14 @@ public class GenerateMap : Editor
         GameObject curTile = TileAtPosition(new Vector3(x, y, 0));
 
         if (curTile != null && PrefabUtility.GetCorrespondingObjectFromSource(curTile) == colorMapping.prefab) {
-            Debug.Log("curtile found, And prefab is the same! " + colorMapping.prefab.name);
             return;
         }
 
+        if (curTile != null) {
+            Debug.Log("replace " + curTile.name + " with " + colorMapping.name);
+        }
 
-        Destroy(curTile);
+        DestroyImmediate(curTile);
         GameObject tile = PrefabUtility.InstantiatePrefab(colorMapping.prefab) as GameObject;
         tile.transform.position = new Vector3(x, y, 0);
         tile.transform.rotation = Quaternion.identity;

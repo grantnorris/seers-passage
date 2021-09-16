@@ -14,6 +14,9 @@ public class Map : MonoBehaviour
     public Transform tileParent;
     [HideInInspector]
     public List<TileLocation> tiles = new List<TileLocation>();
+    [Tooltip("This value is used for nothing, this is simply a checkbox to trigger the prefab save.")]
+    [SerializeField]
+    bool save = false;
 
     void Awake() {
         if (tileParent == null && transform.childCount > 0) {
