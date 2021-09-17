@@ -8,7 +8,7 @@ public class ScreenTransitions : MonoBehaviour
 
     public void StartTransitionViewIn()
     {
-        viewShaderMat.SetFloat("OutroProgress", -.1f);
+        viewShaderMat.SetFloat("NoiseAmount", -.1f);
         StartCoroutine("TransitionViewIn");
     }
 
@@ -23,16 +23,16 @@ public class ScreenTransitions : MonoBehaviour
         float time = 0f;
         float seconds = 2.25f;
 
-        viewShaderMat.SetFloat("IntroProgress", -1f);
+        viewShaderMat.SetFloat("CrossfadeAmount", -1f);
 
         while (time <= 1f) {
             time += Time.unscaledDeltaTime / seconds;
             float val = Mathf.Lerp(-1f, 0f, Mathf.SmoothStep(0f, 1f, Mathf.SmoothStep(0f, 1f, time)));
-            viewShaderMat.SetFloat("IntroProgress", val);
+            viewShaderMat.SetFloat("CrossfadeAmount", val);
             yield return null;
         }
 
-        viewShaderMat.SetFloat("IntroProgress", 0f);
+        viewShaderMat.SetFloat("CrossfadeAmount", 0f);
 
         Time.timeScale = 1;
 
@@ -54,17 +54,56 @@ public class ScreenTransitions : MonoBehaviour
         float time = 0f;
         float seconds = 2f;
 
-        viewShaderMat.SetFloat("OutroProgress", -.1f);
+        viewShaderMat.SetFloat("NoiseAmount", -.1f);
 
         while (time <= 1f) {
             time += Time.unscaledDeltaTime / seconds;
             float val = Mathf.Lerp(0f, 1f, time);
-            viewShaderMat.SetFloat("OutroProgress", val);
+            viewShaderMat.SetFloat("NoiseAmount", val);
             yield return null;
         }
 
-        viewShaderMat.SetFloat("OutroProgress", 1f);
+        viewShaderMat.SetFloat("NoiseAmount", 1f);
 
         GameManager.instance.ReturnToLevelSelect();
+    }
+
+    // Transition door
+    public IEnumerator TransitionDoor(DoorInteractable door) {
+        // Time.timeScale = 0;
+
+        if (viewShaderMat == null || door == null) {
+            yield break;
+        }
+
+        // GameManager.instance.playerMove.ReduceLightRadius();
+        float time = 0f;
+        float seconds = .3f;
+
+        viewShaderMat.SetFloat("CrossfadeAmount", 0);
+
+        while (time <= 1f) {
+            time += Time.unscaledDeltaTime / seconds;
+            float val = Mathf.Lerp(-.1f, 1.1f, Mathf.SmoothStep(0f, 1f, Mathf.SmoothStep(0f, 1f, time)));
+            viewShaderMat.SetFloat("NoiseAmount", val);
+            yield return null;
+        }
+
+        viewShaderMat.SetFloat("NoiseAmount", 1.1f);
+
+        door.MovePlayer();
+        time = 0f;
+        // GameManager.instance.playerMove.ExpandLightRadius();
+
+        while (time <= 1f) {
+            time += Time.unscaledDeltaTime / seconds;
+            float val = Mathf.Lerp(1.1f, -.1f, Mathf.SmoothStep(0f, 1f, Mathf.SmoothStep(0f, 1f, time)));
+            viewShaderMat.SetFloat("NoiseAmount", val);
+            yield return null;
+        }
+
+        viewShaderMat.SetFloat("NoiseAmount", -.1f);
+
+        // Time.timeScale = 1;
     }
 }

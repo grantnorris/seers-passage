@@ -16,7 +16,7 @@ public class DoorInteractable : Interactable
             return;
         }
 
-        MovePlayer();
+        StartCoroutine(GameManager.instance.screenTransitions.TransitionDoor(this));
     }
 
     public Vector3 Direction() {
@@ -35,7 +35,7 @@ public class DoorInteractable : Interactable
         }
     }
 
-    void MovePlayer() {
+    public void MovePlayer() {
         Vector3 targetPos = siblingDoor.transform.position + siblingDoor.Direction();
         Transform playerTransform = GameManager.instance.player.transform;
         Transform camTransform = PlayerCamera.instance.transform;

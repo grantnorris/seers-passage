@@ -161,17 +161,33 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    // Expand the light radius of the player
-    public void ExpandLightRadius() {
+    // Adds light to player
+    public void AddLight() {
         lowLight = false;
 
         foreach (Animator anim in anims) {
             anim.SetBool("hasLight", true);
         }
 
-        if (shadowAnim != null) {
-            shadowAnim.SetBool("lowLight", false);
+        ExpandLightRadius();
+    }
+
+    // Reduce the light radius of the player
+    public void ReduceLightRadius() {
+        if (shadowAnim == null) {
+            return;
         }
+
+        shadowAnim.SetBool("lowLight", true);
+    }
+
+    // Expand the light radius of the player
+    public void ExpandLightRadius() {
+        if (shadowAnim == null || lowLight) {
+            return;
+        }
+
+        shadowAnim.SetBool("lowLight", false);
     }
 
     // Display interation notice on trigger enter
