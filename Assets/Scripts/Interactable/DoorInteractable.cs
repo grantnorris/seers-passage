@@ -19,7 +19,11 @@ public class DoorInteractable : Interactable
         StartCoroutine(GameManager.instance.screenTransitions.TransitionDoor(this));
     }
 
-    public Vector3 Direction() {
+    public string Direction() {
+        return direction;
+    }
+
+    public Vector3 DirectionVector() {
         switch (direction)
         {
             case "up":
@@ -36,11 +40,12 @@ public class DoorInteractable : Interactable
     }
 
     public void MovePlayer() {
-        Vector3 targetPos = siblingDoor.transform.position + siblingDoor.Direction();
+        Vector3 targetPos = siblingDoor.transform.position + siblingDoor.DirectionVector();
         Transform playerTransform = GameManager.instance.player.transform;
         Transform camTransform = PlayerCamera.instance.transform;
 
         playerTransform.position = new Vector3(targetPos.x, targetPos.y, playerTransform.position.z);
         camTransform.position = new Vector3(targetPos.x, targetPos.y, camTransform.position.z);
+        GameManager.instance.playerMove.FaceDirection(siblingDoor.Direction());
     }
 }

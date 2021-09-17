@@ -52,7 +52,7 @@ public class ScreenTransitions : MonoBehaviour
         }
 
         float time = 0f;
-        float seconds = 2f;
+        float seconds = .5f;
 
         viewShaderMat.SetFloat("NoiseAmount", -.1f);
 
