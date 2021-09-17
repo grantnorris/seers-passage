@@ -70,13 +70,11 @@ public class ScreenTransitions : MonoBehaviour
 
     // Transition door
     public IEnumerator TransitionDoor(DoorInteractable door) {
-        // Time.timeScale = 0;
-
         if (viewShaderMat == null || door == null) {
             yield break;
         }
 
-        // GameManager.instance.playerMove.ReduceLightRadius();
+        GameManager.instance.playerMove.StopWatchingInteractableChanges();
         float time = 0f;
         float seconds = .3f;
 
@@ -93,7 +91,6 @@ public class ScreenTransitions : MonoBehaviour
 
         door.MovePlayer();
         time = 0f;
-        // GameManager.instance.playerMove.ExpandLightRadius();
 
         while (time <= 1f) {
             time += Time.unscaledDeltaTime / seconds;
@@ -103,7 +100,6 @@ public class ScreenTransitions : MonoBehaviour
         }
 
         viewShaderMat.SetFloat("NoiseAmount", -.1f);
-
-        // Time.timeScale = 1;
+        GameManager.instance.playerMove.StartWatchingInteractableChanges();
     }
 }

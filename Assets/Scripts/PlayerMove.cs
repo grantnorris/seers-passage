@@ -15,6 +15,7 @@ public class PlayerMove : MonoBehaviour
     public UnityEvent finishMoving = new UnityEvent();
     [HideInInspector]
     public PlayerInteractNotice interactNoticeScript;
+    bool watchingInteractableChanges = true;
 
     PlayerControl playerControl;
     Vector3 targetPos;
@@ -192,29 +193,41 @@ public class PlayerMove : MonoBehaviour
 
     // Display interation notice on trigger enter
     public void OnTriggerEnter2D(Collider2D other) {
-        if (other.tag == "Interactable") {
+        if (other.tag == "Interactable" && watchingInteractableChanges) {
             OpenInteractNotice();
         }
     }
 
     // Hide interation notice on trigger enter
     void OnTriggerExit2D(Collider2D other) {
-        if (other.tag == "Interactable") {
+        if (other.tag == "Interactable" && watchingInteractableChanges) {
             CloseInteractNotice();
         }
     }
 
     // Open interaction notice
     public void OpenInteractNotice() {
-        if (interactNoticeScript != null) {
-            interactNoticeScript.Open();
+        if (interactNoticeScript == null) {
+            return;
         }
+
+        interactNoticeScript.Open();
     }
 
     // Close interaction notice
     public void CloseInteractNotice() {
-        if (interactNoticeScript != null) {
-            interactNoticeScript.Close();
+        if (interactNoticeScript == null) {
+            return;
         }
+
+        interactNoticeScript.Close();
+    }
+
+    public void StopWatchingInteractableChanges() {
+        watchingInteractableChanges = false;
+    }
+
+    public void StartWatchingInteractableChanges() {
+        watchingInteractableChanges = true;
     }
 }

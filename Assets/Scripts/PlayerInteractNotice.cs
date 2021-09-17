@@ -13,7 +13,7 @@ public class PlayerInteractNotice : MonoBehaviour
 
     // Run open animation for visual
     public void Open() {
-        if (visual != null) {
+        if (visual != null && anim != null) {
             anim.SetTrigger("open");
         }
     }

@@ -20,8 +20,16 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - CrossfadeTexture:
+        m_Texture: {fileID: 2800000, guid: e4e5a691b472b4814acf8e21ae59ee35, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - IntroTransition:
         m_Texture: {fileID: 2800000, guid: e4e5a691b472b4814acf8e21ae59ee35, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - NoiseTexture:
+        m_Texture: {fileID: 2800000, guid: 7df0583d6e3564956ac3f3d5fb9b9300, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - OutroTransition:
@@ -82,7 +90,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - CrossfadeAmount: 0
     - IntroProgress: 0
+    - NoiseAmount: 1
     - OutroProgress: -0.1
     - TransitionProgress: 0
     - Vector1_5677C5A3: 0
