@@ -75,6 +75,8 @@ public class ScreenTransitions : MonoBehaviour
         }
 
         GameManager.instance.playerMove.StopWatchingInteractableChanges();
+        GameManager.instance.playerMove.ReduceLightRadius();
+
         float time = 0f;
         float seconds = .3f;
 
@@ -91,6 +93,8 @@ public class ScreenTransitions : MonoBehaviour
 
         door.MovePlayer();
         time = 0f;
+        
+        GameManager.instance.playerMove.ExpandLightRadius();
 
         while (time <= 1f) {
             time += Time.unscaledDeltaTime / seconds;
