@@ -29,29 +29,24 @@ public class HealthUI : MonoBehaviour
 
     // Update UI to reflect health
     public void UpdateUI() {
-        Image img = null;
+        Animator anim = null;
 
         switch (GameManager.instance.playerHealth.Health())
         {
         case 2:
-            img = transform.GetChild(2).GetComponent<Image>();
+            anim = transform.GetChild(2).GetComponent<Animator>();
+            anim.SetTrigger("Remove");
             break;
         case 1:
-            img = transform.GetChild(1).GetComponent<Image>();
+            anim = transform.GetChild(1).GetComponent<Animator>();
             transform.GetChild(0).GetComponent<Animator>().SetBool("Flash", true);
+            anim.SetTrigger("Remove");
             break;
         case 0:
-            img = transform.GetChild(0).GetComponent<Image>();
+            anim = transform.GetChild(0).GetComponent<Animator>();
             transform.GetChild(0).GetComponent<Animator>().SetBool("Flash", false);
-            img.GetComponent<Animator>().enabled = false;
+            anim.SetTrigger("Remove");
             break;
         }
-
-        if (img == null) {
-            return;
-        }
-
-        img.color = Color.white;
-        img.sprite = heartEmptySprite;
     }
 }
