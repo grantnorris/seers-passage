@@ -174,6 +174,10 @@ public class UIController : MonoBehaviour
         
         GameManager.instance.playerHealth.ReduceHealth();
         HealthUI.instance.UpdateUI();
+
+        if (GameManager.instance.playerHealth.Health() == 1) {
+            playerStepCountTxt.GetComponent<Animator>().SetBool("Flash", true);
+        }
     }
 
     public void StepCountDialogue() {
