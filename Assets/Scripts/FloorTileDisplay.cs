@@ -110,16 +110,16 @@ public class FloorTileDisplay : TileDisplay
             }
         } else {
             // Chance to create puddle
-            // int puddleChance = 50;
+            int puddleChance = 50;
 
-            // // More likely if adjacent tiles have already been assigned puddles
-            // if ((tileUpDisplay != null && tileUpDisplay.hasPuddle) || (tileLeftDisplay != null && tileLeftDisplay.hasPuddle)) {
-            //     puddleChance = 25;
-            // }
+            // More likely if adjacent tiles have already been assigned puddles
+            if ((tileUpDisplay != null && tileUpDisplay.hasPuddle) || (tileLeftDisplay != null && tileLeftDisplay.hasPuddle)) {
+                puddleChance = 25;
+            }
 
-            // if (Random.Range(0, 100) <= puddleChance) {
-            //     hasPuddle = true;
-            // }
+            if (Random.Range(0, 100) <= puddleChance) {
+                hasPuddle = true;
+            }
         }
     }
 

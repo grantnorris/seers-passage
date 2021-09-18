@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 4562469129879969737, guid: 0a92607ffc6d04463b46f2e44bc68b07,
+  m_Sprite: {fileID: 6448704257479296127, guid: 0a92607ffc6d04463b46f2e44bc68b07,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -108,7 +108,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 717d89ae495c14ba08960fe455301945, type: 2}
   downFacingTiles: []
   acceptsLight: 0
-  tile: {fileID: 11400000, guid: cd4a1f85e2ea6455bb08febb6dc16964, type: 2}
+  tile: {fileID: 11400000, guid: d38ba8cc8e47e4b3d8e0dd2cd8c6b117, type: 2}
   lightingUp: {fileID: 0}
   lightingDown: {fileID: 0}
   lightingLeft: {fileID: 0}
@@ -150,7 +150,7 @@ MonoBehaviour:
   - {fileID: -7296204007701324513, guid: 77c4487e43bce44e88369494dc3bce6e, type: 3}
   - {fileID: -9153696997401589156, guid: 77c4487e43bce44e88369494dc3bce6e, type: 3}
   - {fileID: -8796520157913258223, guid: 77c4487e43bce44e88369494dc3bce6e, type: 3}
-  hasPuddle: 1
+  hasPuddle: 0
   hasDetails: 0
   hasTopDetails: 0
   hasRightDetails: 0

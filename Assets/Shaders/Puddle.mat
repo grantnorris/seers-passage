@@ -94,6 +94,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - MovementSpeed: 0.025
+    - RefractionAmount: 0.05
+    - RefractionSpeed: 3.18
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
