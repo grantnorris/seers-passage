@@ -38,9 +38,11 @@ public class HealthUI : MonoBehaviour
             break;
         case 1:
             img = transform.GetChild(1).GetComponent<Image>();
+            transform.GetChild(0).GetComponent<Animator>().SetBool("Flash", true);
             break;
         case 0:
             img = transform.GetChild(0).GetComponent<Image>();
+            transform.GetChild(0).GetComponent<Animator>().SetBool("Flash", false);
             break;
         }
 
@@ -49,5 +51,6 @@ public class HealthUI : MonoBehaviour
         }
 
         img.sprite = heartEmptySprite;
+        img.color = Color.white;
     }
 }
