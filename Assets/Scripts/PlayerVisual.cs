@@ -34,6 +34,12 @@ public class PlayerVisual : MonoBehaviour
         }
     }
 
+    public void StartDie() {
+        foreach (Animator anim in PlayerMove.anims) {
+            anim.SetBool("dead", true);
+        }
+    }
+
     public void Die() {
         GameManager.instance.EndDie();
     }

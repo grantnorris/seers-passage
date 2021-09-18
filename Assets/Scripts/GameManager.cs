@@ -170,7 +170,7 @@ public class GameManager : MonoBehaviour
     public void StartDie() {
         DisablePlayerMove();
         playerMove.interactNoticeScript.Close();
-        player.transform.Find("Visual").GetComponent<Animator>().SetBool("dead", true);
+        player.transform.Find("Visual").GetComponent<PlayerVisual>().StartDie();
     }
 
     // End the death sequence
