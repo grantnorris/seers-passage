@@ -92,7 +92,7 @@ Material:
     m_Floats:
     - CrossfadeAmount: 0
     - IntroProgress: 0
-    - NoiseAmount: -0.1
+    - NoiseAmount: 1
     - OutroProgress: -0.1
     - TransitionProgress: 0
     - Vector1_5677C5A3: 0
