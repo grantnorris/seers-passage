@@ -69,7 +69,6 @@ public class PlayerSteps : MonoBehaviour
     public void SetStepThreshold(int steps) {
         stepThreshold = steps;
         stepCount = stepThreshold * 3;
-        print("step threshold = " + stepThreshold);
     }
 
     public int StepThreshold() {
