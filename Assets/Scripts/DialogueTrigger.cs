@@ -34,7 +34,7 @@ public class DialogueTrigger : MonoBehaviour
     // Step count based triggers
     public void StepTriggers() {
         foreach (StepDialogueTrigger trigger in stepTriggers) {
-            if (GameManager.instance.StepCount() == trigger.steps) {
+            if (GameManager.instance.player.steps.StepCount() == trigger.steps) {
                 DialogueManager.instance.StartDialogue(trigger.dialogue);
             }
         }

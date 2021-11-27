@@ -245,8 +245,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7711198450642222240}
+  - component: {fileID: 5343585342551474483}
   - component: {fileID: 7711198450642222243}
   - component: {fileID: 3050750517887313122}
+  - component: {fileID: 1564366424597275814}
   - component: {fileID: 6863724753988907883}
   - component: {fileID: 5991927560898329408}
   m_Layer: 2
@@ -274,6 +276,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5343585342551474483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7711198450642222246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 818d483ce062c491489834ca66f0aef3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  control: {fileID: 3050750517887313122}
+  move: {fileID: 7711198450642222243}
+  steps: {fileID: 1564366424597275814}
 --- !u!114 &7711198450642222243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -310,6 +327,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ae1cbd73a79a4c3d9abb5c77de4b420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1564366424597275814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7711198450642222246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6ce9752046004d1687a29ba4c66b52c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stepped:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!60 &6863724753988907883
 PolygonCollider2D:
   m_ObjectHideFlags: 0

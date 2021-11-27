@@ -38,7 +38,6 @@ public class UIController : MonoBehaviour
 
     void Init() {
         playerStepCountTxt.text = "0";
-        GameManager.instance.stepped.AddListener(StartUpdateStepCountUI);
 
         if (introUI != null) {
             introUI.SetActive(true);
@@ -76,7 +75,7 @@ public class UIController : MonoBehaviour
             yield break;
         }
 
-        int steps = GameManager.instance.StepCount();
+        int steps = GameManager.instance.player.steps.StepCount();
         RectTransform txtRect = playerStepCountTxt.GetComponent<RectTransform>();
         Vector3 txtRectPos = txtRect.position;
         GameObject tempTxtObj = Instantiate(playerStepCountTxt.gameObject, playerStepCountTxt.transform.parent);
@@ -86,7 +85,7 @@ public class UIController : MonoBehaviour
         Color txtColor = perfectStepColor;
         float time = 0f;
         float seconds = .25f;
-        string stepScore = GameManager.instance.StepScore();
+        string stepScore = GameManager.instance.player.steps.StepScore();
 
         if (stepScore == "Good") {
             // Orange
@@ -181,10 +180,10 @@ public class UIController : MonoBehaviour
     }
 
     public void StepCountDialogue() {
-        int stepThreshold = GameManager.instance.stepThreshold;
+        int stepThreshold = GameManager.instance.player.steps.StepThreshold();
         int goodSteps = stepThreshold * 2;
         int badSteps = stepThreshold * 3;
-        int stepCount = GameManager.instance.StepCount();
+        int stepCount = GameManager.instance.player.steps.StepCount();
         
         if (stepCount == stepThreshold) {
             Dialogue dialogue = new Dialogue(new string[] {"An uneasy presence washes over you."});

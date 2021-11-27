@@ -8,32 +8,19 @@ public class GameManager : MonoBehaviour
     
     [HideInInspector]
     public Level level;
-    [HideInInspector]
-    public GameObject player;
-    [HideInInspector]
-    public PlayerMove playerMove;
-    [HideInInspector]
-    public PlayerControl playerControl;
+    public Player player;
     public ScreenTransitions screenTransitions;
     public DragUI dragUI;
     [HideInInspector]
     public UnityEvent levelStart = new UnityEvent();
     [HideInInspector]
-    public UnityEvent playerSet = new UnityEvent();
-    [HideInInspector]
-    public UnityEvent stepped = new UnityEvent();
-    [HideInInspector]
     public PlayerHealth playerHealth;
     public UIController uiController;
-    [HideInInspector]
-    public int stepThreshold;
     [SerializeField]
     [Tooltip("Used for dev purposes if the level scene is played directly.")]
     Level fallbackLevel;
     float time = 0f;
     bool paused;
-
-    int playerStepCount = 0;
 
     void Awake() {
         if (instance == null) {
@@ -76,15 +63,8 @@ public class GameManager : MonoBehaviour
             new GameObject("Scene Switcher").AddComponent<SceneSwitcher>().level = level;
         }
 
-        stepThreshold = level.stepThreshold;
+        player.steps.SetStepThreshold(level.stepThreshold);
         Instantiate(level.prefab);
-    }
-
-    public void SetPlayer(GameObject p, PlayerMove pMove, PlayerControl pControl) {
-        player = p;
-        playerMove = pMove;
-        playerControl = pControl;
-        playerSet.Invoke();
     }
 
     // Invoke the levelStart unity event
@@ -93,49 +73,6 @@ public class GameManager : MonoBehaviour
         GameManager.instance.levelStart.Invoke();
     }
     
-    // Increase the player's step count by 1
-    public void IncrementStepCount() {
-        playerStepCount++;
-
-        if (DialogueManager.instance == null) {
-            return;
-        }
-
-        StepCountDialogue();
-
-        if (stepped != null) {
-            stepped.Invoke();
-        }
-    }
-
-    public void StepCountDialogue() {
-        int goodSteps = stepThreshold * 2;
-        int badSteps = stepThreshold * 3;
-        
-        if (playerStepCount == stepThreshold || playerStepCount == goodSteps || playerStepCount == badSteps) {
-            uiController.StartBreakHeart();
-        }
-    }
-
-    // Currentl player step score string
-    public string StepScore() {
-        int goodSteps = stepThreshold * 2;
-        int badSteps = stepThreshold * 3;
-
-        if (playerStepCount >= stepThreshold && playerStepCount < goodSteps) {
-            return "Good";
-        } else if (playerStepCount >= goodSteps) {
-            return "Bad";
-        }
-
-        return "Perfect";
-    }
-
-    // Player step count
-    public int StepCount() {
-        return playerStepCount;
-    }
-
     // Disable player inputs for a given duration
     public IEnumerator DisablePlayerMoveForDuration(float duration) {
         if (duration > 0f) {
@@ -154,22 +91,22 @@ public class GameManager : MonoBehaviour
 
     // Disable player inputs
     public void DisablePlayerMove() {
-        playerControl.DisallowInput();
+        player.control.DisallowInput();
     }
 
     // Enable player inputs
     public void EnablePlayerMove() {
-        if (playerControl == null) {
+        if (player.control == null) {
             return;
         }
 
-        playerControl.AllowInput();
+        player.control.AllowInput();
     }
 
     // Start the death senquence
     public void StartDie() {
         DisablePlayerMove();
-        playerMove.interactNoticeScript.Close();
+        player.move.interactNoticeScript.Close();
         player.transform.Find("Visual").GetComponent<PlayerVisual>().StartDie();
     }
 
@@ -180,11 +117,11 @@ public class GameManager : MonoBehaviour
 
     // Finish the level successfully
     public void FinishGame() {
-        playerControl.DisallowInput();
+        player.control.DisallowInput();
         screenTransitions.StartTransitionViewOut();
         LevelScore score = new LevelScore(
             playerHealth.Health(),
-            playerStepCount,
+            player.steps.StepCount(),
             time
         );
 

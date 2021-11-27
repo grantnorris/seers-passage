@@ -18,13 +18,13 @@ public class CameraManager : MonoBehaviour
     }
 
     void Start() {
-        GameManager.instance.playerSet.AddListener(Init);
+        Init();
     }
 
     public void Init()
     {
         mainCam = Camera.main;
-        GameObject player = GameManager.instance.player;
+        GameObject player = GameManager.instance.player.gameObject;
 
         if (player == null) {
             Debug.LogWarning("No player set in gamemanager");

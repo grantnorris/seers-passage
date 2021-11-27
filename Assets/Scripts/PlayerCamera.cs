@@ -21,11 +21,11 @@ public class PlayerCamera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.instance.playerSet.AddListener(Init);
+        Init();
     }
 
     void Init() {
-        player = GameManager.instance.player.transform;
+        player = GameManager.instance.player.gameObject.transform;
         targetPos = new Vector3(player.position.x, player.position.y, transform.position.z);
         transform.position = targetPos;
     }

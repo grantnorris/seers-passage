@@ -8,13 +8,16 @@ public class PlayerControl : MonoBehaviour
     bool dragging;
     Vector2 dragStart;
     string moveDirection;
-    PlayerMove playerMove;
+    Player player;
     DragUI dragUI;
+
+    void Awake() {
+        player = GetComponent<Player>();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        playerMove = GetComponent<PlayerMove>();
         allowInput = false;
         dragUI = GameManager.instance.dragUI;
     }
@@ -43,13 +46,13 @@ public class PlayerControl : MonoBehaviour
                 PlayerCamera.instance.UpdateOffset(Vector3.zero);
                 StopDragging();
             } else if (Input.GetKeyDown("left")) {
-                playerMove.Move("left");
+                player.move.Move("left");
             } else if (Input.GetKeyDown("right")) {
-                playerMove.Move("right");
+                player.move.Move("right");
             } else if (Input.GetKeyDown("up")) {
-                playerMove.Move("up");
+                player.move.Move("up");
             } else if (Input.GetKeyDown("down")) {
-                playerMove.Move("down");
+                player.move.Move("down");
             }
         }
     }
@@ -136,7 +139,7 @@ public class PlayerControl : MonoBehaviour
         }
 
         dragUI.ApplyDirection(moveDirection);
-        playerMove.Move(moveDirection);
+        player.move.Move(moveDirection);
         moveDirection = null;
     }
 

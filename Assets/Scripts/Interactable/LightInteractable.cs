@@ -16,12 +16,12 @@ public class LightInteractable : Interactable
 
     public override void Interact() {
         gameObject.tag = "Untagged";
-        GameManager.instance.playerMove.CloseInteractNotice();
+        GameManager.instance.player.move.CloseInteractNotice();
 
         if (anim != null) {
             anim.SetTrigger("remove");
             AudioManager.instance.PlayOneShot("Light Torch");
-            GameManager.instance.playerMove.AddLight();
+            GameManager.instance.player.move.AddLight();
 
             if (item == null) {
                 return;

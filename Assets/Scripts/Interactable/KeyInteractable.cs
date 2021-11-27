@@ -22,6 +22,6 @@ public class KeyInteractable : Interactable
     public void Remove() {
         this.enabled = false;
         gameObject.tag = "Untagged";
-        GameManager.instance.playerMove.CloseInteractNotice();
+        GameManager.instance.player.move.CloseInteractNotice();
     }
 }

@@ -21,13 +21,11 @@ public class PlayerSpawn : MonoBehaviour
 
     // Create player gameobject
     void CreatePlayer() {
-        GameObject playerInstance = Instantiate(player, transform.position, Quaternion.identity);
-        PlayerMove playerMove = playerInstance.GetComponent<PlayerMove>();
-        PlayerControl playerControl = playerInstance.GetComponent<PlayerControl>();
-        GameManager.instance.SetPlayer(playerInstance, playerMove, playerControl);
+        Player player = GameManager.instance.player;
+        player.SetInitialPosition(transform.position);
 
         if (initialDirection == "up" || initialDirection == "left" || initialDirection == "right") {
-            playerMove.FaceDirection(initialDirection);
+            player.move.FaceDirection(initialDirection);
         }
     }
 }

@@ -17,16 +17,14 @@ public class PlayerMove : MonoBehaviour
     public PlayerInteractNotice interactNoticeScript;
     bool watchingInteractableChanges = true;
 
-    PlayerControl playerControl;
+    Player player;
     Vector3 targetPos;
 
-    void Start() {
-        playerControl = GetComponent<PlayerControl>();
-        
-        if (GameManager.instance != null) {
-            finishMoving.AddListener(GameManager.instance.IncrementStepCount);
-        }
+    void Awake() {
+        player = GetComponent<Player>();
+    }
 
+    void Start() {
         if (DialogueTrigger.instance != null && DialogueTrigger.instance.stepTriggers.Length > 0) {
             finishMoving.AddListener(DialogueTrigger.instance.StepTriggers);
         }
@@ -51,7 +49,7 @@ public class PlayerMove : MonoBehaviour
                     anim.SetTrigger("stopMoving");
                 }
 
-                playerControl.AllowInput();
+                player.control.AllowInput();
                 moving = false;
 
                 if (shadowAnim != null && !lowLight) {
@@ -115,7 +113,7 @@ public class PlayerMove : MonoBehaviour
                 directionInt = 4;
             }
 
-            playerControl.DisallowInput();
+            player.control.DisallowInput();
             foreach (Animator anim in anims) {
                 anim.SetInteger("directionFacing", directionInt);
                 anim.SetTrigger("startMoving");

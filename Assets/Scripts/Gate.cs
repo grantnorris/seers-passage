@@ -17,13 +17,13 @@ public class Gate : MonoBehaviour
         col = GetComponent<Collider2D>();
 
         if (flipFlops) {
-            GameManager.instance.stepped.AddListener(Activate);
+            GameManager.instance.player.steps.stepped.AddListener(Activate);
         }
     }
 
     // Update sound effects volume based on distance from player
     void UpdateVolume() {
-        float playerDistance = Vector3.Distance(GameManager.instance.player.transform.position, transform.position);
+        float playerDistance = Vector3.Distance(GameManager.instance.player.gameObject.transform.position, transform.position);
         volume = Mathf.Max(1 - ((playerDistance - 1f) * .1f), .25f);
     }
     
