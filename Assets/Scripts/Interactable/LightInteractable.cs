@@ -16,7 +16,7 @@ public class LightInteractable : Interactable
 
     public override void Interact() {
         gameObject.tag = "Untagged";
-        GameManager.instance.player.move.CloseInteractNotice();
+        GameManager.instance.player.interaction.CloseInteractNotice();
 
         if (anim != null) {
             anim.SetTrigger("remove");

@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour
     // Start the death senquence
     public void StartDie() {
         DisablePlayerMove();
-        player.move.interactNoticeScript.Close();
+        player.interaction.interactNoticeScript.Close();
         player.transform.Find("Visual").GetComponent<PlayerVisual>().StartDie();
     }
 

@@ -9,13 +9,9 @@ public class PlayerMove : MonoBehaviour
     public bool moving     = false;
     public Animator[] anims;
     public Animator shadowAnim;
-    public GameObject interactNotice;
     public bool lowLight = true;
     [HideInInspector]
     public UnityEvent finishMoving = new UnityEvent();
-    [HideInInspector]
-    public PlayerInteractNotice interactNoticeScript;
-    bool watchingInteractableChanges = true;
 
     Player player;
     Vector3 targetPos;
@@ -31,10 +27,6 @@ public class PlayerMove : MonoBehaviour
 
         if (shadowAnim != null) {
             shadowAnim.SetBool("lowLight", true);
-        }
-
-        if (interactNotice != null) {
-            interactNoticeScript = interactNotice.GetComponent<PlayerInteractNotice>();
         }
     }
 
@@ -114,6 +106,7 @@ public class PlayerMove : MonoBehaviour
             }
 
             player.control.DisallowInput();
+            
             foreach (Animator anim in anims) {
                 anim.SetInteger("directionFacing", directionInt);
                 anim.SetTrigger("startMoving");
@@ -187,45 +180,5 @@ public class PlayerMove : MonoBehaviour
         }
 
         shadowAnim.SetBool("lowLight", false);
-    }
-
-    // Display interation notice on trigger enter
-    public void OnTriggerEnter2D(Collider2D other) {
-        if (other.tag == "Interactable" && watchingInteractableChanges) {
-            OpenInteractNotice();
-        }
-    }
-
-    // Hide interation notice on trigger enter
-    void OnTriggerExit2D(Collider2D other) {
-        if (other.tag == "Interactable" && watchingInteractableChanges) {
-            CloseInteractNotice();
-        }
-    }
-
-    // Open interaction notice
-    public void OpenInteractNotice() {
-        if (interactNoticeScript == null) {
-            return;
-        }
-
-        interactNoticeScript.Open();
-    }
-
-    // Close interaction notice
-    public void CloseInteractNotice() {
-        if (interactNoticeScript == null) {
-            return;
-        }
-
-        interactNoticeScript.Close();
-    }
-
-    public void StopWatchingInteractableChanges() {
-        watchingInteractableChanges = false;
-    }
-
-    public void StartWatchingInteractableChanges() {
-        watchingInteractableChanges = true;
     }
 }

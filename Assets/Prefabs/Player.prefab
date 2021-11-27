@@ -248,6 +248,7 @@ GameObject:
   - component: {fileID: 5343585342551474483}
   - component: {fileID: 7711198450642222243}
   - component: {fileID: 3050750517887313122}
+  - component: {fileID: 8885077412494140976}
   - component: {fileID: 1564366424597275814}
   - component: {fileID: 6493356155549242738}
   - component: {fileID: 6863724753988907883}
@@ -291,8 +292,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   control: {fileID: 3050750517887313122}
   move: {fileID: 7711198450642222243}
+  interaction: {fileID: 8885077412494140976}
   steps: {fileID: 1564366424597275814}
-  health: {fileID: 0}
+  health: {fileID: 6493356155549242738}
 --- !u!114 &7711198450642222243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,12 +313,10 @@ MonoBehaviour:
   - {fileID: 6474503902810972871}
   - {fileID: 1875015336144940645}
   shadowAnim: {fileID: 3192679501234720991}
-  interactNotice: {fileID: 9184305964603778872}
   lowLight: 1
   finishMoving:
     m_PersistentCalls:
       m_Calls: []
-  interactNoticeScript: {fileID: 0}
 --- !u!114 &3050750517887313122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,6 +329,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ae1cbd73a79a4c3d9abb5c77de4b420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8885077412494140976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7711198450642222246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23740957f119f4b4dab9c0ba89edb826, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactNotice: {fileID: 9184305964603778872}
+  interactNoticeScript: {fileID: 0}
 --- !u!114 &1564366424597275814
 MonoBehaviour:
   m_ObjectHideFlags: 0

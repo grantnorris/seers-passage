@@ -74,7 +74,7 @@ public class ScreenTransitions : MonoBehaviour
             yield break;
         }
 
-        GameManager.instance.player.move.StopWatchingInteractableChanges();
+        GameManager.instance.player.interaction.StopWatchingInteractableChanges();
         GameManager.instance.player.move.ReduceLightRadius();
 
         float time = 0f;
@@ -104,6 +104,6 @@ public class ScreenTransitions : MonoBehaviour
         }
 
         viewShaderMat.SetFloat("NoiseAmount", -.1f);
-        GameManager.instance.player.move.StartWatchingInteractableChanges();
+        GameManager.instance.player.interaction.StartWatchingInteractableChanges();
     }
 }
