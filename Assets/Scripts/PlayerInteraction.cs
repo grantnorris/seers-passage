@@ -27,8 +27,6 @@ public class PlayerInteraction : MonoBehaviour
     }
 
     void UpdateInteractionNotice() {
-        print("update interaction notice");
-
         if (interactionColliders.Count > 0) {
             OpenInteractNotice();
         } else {
