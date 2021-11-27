@@ -14,19 +14,18 @@ public class PlayerInteractNotice : MonoBehaviour
     // Run open animation for visual
     public void Open() {
         if (visual != null && anim != null) {
-            anim.SetTrigger("open");
+            anim.SetBool("open", true);
         }
     }
 
     // Run close animation for visual
     public void Close() {
         if (visual != null && anim != null) {
-            anim.SetTrigger("close");
+            anim.SetBool("open", false);
         }
     }
 
     public void Disable() {
-        Debug.Log("disable interact notice");
         gameObject.SetActive(false);
     }
 }

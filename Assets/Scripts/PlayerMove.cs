@@ -106,6 +106,7 @@ public class PlayerMove : MonoBehaviour
             }
 
             player.control.DisallowInput();
+            player.interaction.CloseInteractNotice();
             
             foreach (Animator anim in anims) {
                 anim.SetInteger("directionFacing", directionInt);

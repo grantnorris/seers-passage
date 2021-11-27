@@ -343,6 +343,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactNotice: {fileID: 9184305964603778872}
   interactNoticeScript: {fileID: 0}
+  interactionColliders: []
 --- !u!114 &1564366424597275814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -395,14 +396,18 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.51, y: 0.45}
-      - {x: -0.45, y: 0.51}
-      - {x: 0.45, y: 0.51}
-      - {x: 0.51, y: 0.45}
-      - {x: 0.51, y: -0.45}
-      - {x: 0.45, y: -0.51}
-      - {x: -0.45, y: -0.51}
-      - {x: -0.51, y: -0.45}
+    - - {x: -0.6, y: 0.4}
+      - {x: -0.4, y: 0.4}
+      - {x: -0.4, y: 0.6}
+      - {x: 0.4, y: 0.6}
+      - {x: 0.4, y: 0.4}
+      - {x: 0.6, y: 0.4}
+      - {x: 0.6, y: -0.4}
+      - {x: 0.4, y: -0.4}
+      - {x: 0.4, y: -0.6}
+      - {x: -0.4, y: -0.6}
+      - {x: -0.4, y: -0.4}
+      - {x: -0.6, y: -0.4}
 --- !u!50 &5991927560898329408
 Rigidbody2D:
   serializedVersion: 4
