@@ -31,7 +31,7 @@ public class HealthUI : MonoBehaviour
     public void UpdateUI() {
         Animator anim = null;
 
-        switch (GameManager.instance.playerHealth.Health())
+        switch (GameManager.instance.player.health.Health())
         {
         case 2:
             anim = transform.GetChild(2).GetComponent<Animator>();

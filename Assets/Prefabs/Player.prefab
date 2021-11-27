@@ -249,6 +249,7 @@ GameObject:
   - component: {fileID: 7711198450642222243}
   - component: {fileID: 3050750517887313122}
   - component: {fileID: 1564366424597275814}
+  - component: {fileID: 6493356155549242738}
   - component: {fileID: 6863724753988907883}
   - component: {fileID: 5991927560898329408}
   m_Layer: 2
@@ -291,6 +292,7 @@ MonoBehaviour:
   control: {fileID: 3050750517887313122}
   move: {fileID: 7711198450642222243}
   steps: {fileID: 1564366424597275814}
+  health: {fileID: 0}
 --- !u!114 &7711198450642222243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,6 +344,18 @@ MonoBehaviour:
   stepped:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6493356155549242738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7711198450642222246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8201d457ba00e420a8498fda162949d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!60 &6863724753988907883
 PolygonCollider2D:
   m_ObjectHideFlags: 0

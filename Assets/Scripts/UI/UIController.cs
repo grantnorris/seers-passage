@@ -37,7 +37,7 @@ public class UIController : MonoBehaviour
     }
 
     void Init() {
-        playerStepCountTxt.text = "0";
+        playerStepCountTxt.text = GameManager.instance.player.steps.StepCount().ToString();
 
         if (introUI != null) {
             introUI.SetActive(true);
@@ -171,30 +171,33 @@ public class UIController : MonoBehaviour
             Destroy(heartbreakUI);
         }
         
-        GameManager.instance.playerHealth.ReduceHealth();
+        GameManager.instance.player.health.ReduceHealth();
         HealthUI.instance.UpdateUI();
 
-        if (GameManager.instance.playerHealth.Health() == 1) {
+        if (GameManager.instance.player.health.Health() == 1) {
             playerStepCountTxt.GetComponent<Animator>().SetBool("Flash", true);
         }
     }
 
     public void StepCountDialogue() {
-        int stepThreshold = GameManager.instance.player.steps.StepThreshold();
-        int goodSteps = stepThreshold * 2;
-        int badSteps = stepThreshold * 3;
-        int stepCount = GameManager.instance.player.steps.StepCount();
-        
-        if (stepCount == stepThreshold) {
-            Dialogue dialogue = new Dialogue(new string[] {"An uneasy presence washes over you."});
-            DialogueManager.instance.StartDialogue(dialogue);
-        } else if (stepCount == goodSteps) {
-            Dialogue dialogue = new Dialogue(new string[] {"A pressuring presence weighs on you."});
-            DialogueManager.instance.StartDialogue(dialogue);
-        } else if (stepCount == badSteps) {
-            Dialogue dialogue = new Dialogue(new string[] {"A suffocating presence consumes you."});
-            DialogueManager.instance.StartDialogue(dialogue);
+        Dialogue dialogue = null;
+
+        switch (GameManager.instance.player.steps.currentStepThreshold())
+        {
+            case 1:
+            dialogue = new Dialogue(new string[] {"An uneasy presence washes over you."});
+            break;
+
+            case 2:
+            dialogue = new Dialogue(new string[] {"A pressuring presence weighs on you."});
+            break;
+
+            case 3:
+            dialogue = new Dialogue(new string[] {"A suffocating presence consumes you."});
+            break;
         }
+
+        DialogueManager.instance.StartDialogue(dialogue);
     }
 
     public void DisplayOutroCard() {

@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public UnityEvent levelStart = new UnityEvent();
     [HideInInspector]
-    public PlayerHealth playerHealth;
     public UIController uiController;
     [SerializeField]
     [Tooltip("Used for dev purposes if the level scene is played directly.")]
@@ -29,7 +28,6 @@ public class GameManager : MonoBehaviour
     }
 
     public void Start() {
-        playerHealth = GetComponent<PlayerHealth>();
         screenTransitions = GetComponent<ScreenTransitions>();
         SetupLevel();
     }
@@ -120,7 +118,7 @@ public class GameManager : MonoBehaviour
         player.control.DisallowInput();
         screenTransitions.StartTransitionViewOut();
         LevelScore score = new LevelScore(
-            playerHealth.Health(),
+            player.health.Health(),
             player.steps.StepCount(),
             time
         );

@@ -24,7 +24,7 @@ public class LevelCompleteUI : MonoBehaviour
     int playerHealth;
 
     void Awake() {
-        playerHealth = GameManager.instance.playerHealth.Health();
+        playerHealth = GameManager.instance.player.health.Health();
         SetHearts();
         SetScoreText();
         SetTorchAnimators();

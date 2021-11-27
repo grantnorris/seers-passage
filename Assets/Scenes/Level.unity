@@ -5485,6 +5485,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5343585342551474483, guid: c994c6158c32445579946184d78bf163,
+        type: 3}
+      propertyPath: health
+      value: 
+      objectReference: {fileID: 1160806710}
     - target: {fileID: 7711198450642222240, guid: c994c6158c32445579946184d78bf163,
         type: 3}
       propertyPath: m_RootOrder
@@ -7684,7 +7689,6 @@ GameObject:
   m_Component:
   - component: {fileID: 777035134}
   - component: {fileID: 777035133}
-  - component: {fileID: 777035135}
   - component: {fileID: 777035138}
   - component: {fileID: 777035137}
   - component: {fileID: 777035139}
@@ -7714,10 +7718,6 @@ MonoBehaviour:
   levelStart:
     m_PersistentCalls:
       m_Calls: []
-  playerSet:
-    m_PersistentCalls:
-      m_Calls: []
-  playerHealth: {fileID: 0}
   uiController: {fileID: 215396602}
   fallbackLevel: {fileID: 11400000, guid: df47884f7c5544da4b0eb2e9e7a6fdf9, type: 2}
 --- !u!4 &777035134
@@ -7734,18 +7734,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &777035135
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 777035132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8201d457ba00e420a8498fda162949d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &777035137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8680,6 +8668,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 818d483ce062c491489834ca66f0aef3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1160806710 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6493356155549242738, guid: c994c6158c32445579946184d78bf163,
+    type: 3}
+  m_PrefabInstance: {fileID: 239367142}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8201d457ba00e420a8498fda162949d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1164925775
 GameObject:
   m_ObjectHideFlags: 0
@@ -9556,7 +9556,7 @@ Transform:
   m_GameObject: {fileID: 1417072938}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 99, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2

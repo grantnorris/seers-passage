@@ -22,7 +22,7 @@ public class PlayerSteps : MonoBehaviour
 
     // Increase the player's step count by 1
     public void IncrementStepCount() {
-        stepCount++;
+        stepCount--;
 
         if (DialogueManager.instance == null) {
             return;
@@ -37,25 +37,27 @@ public class PlayerSteps : MonoBehaviour
 
     public void StepCountDialogue() {
         int goodSteps = stepThreshold * 2;
-        int badSteps = stepThreshold * 3;
+        int badSteps = stepThreshold;
+        int die = 0;
         
-        if (stepCount == stepThreshold || stepCount == goodSteps || stepCount == badSteps) {
+        if (stepCount == goodSteps || stepCount == badSteps || stepCount == die) {
             GameManager.instance.uiController.StartBreakHeart();
         }
     }
 
     // Currentl player step score string
     public string StepScore() {
-        int goodSteps = stepThreshold * 2;
-        int badSteps = stepThreshold * 3;
-
-        if (stepCount >= stepThreshold && stepCount < goodSteps) {
+        switch (currentStepThreshold())
+        {
+            case 2:
             return "Good";
-        } else if (stepCount >= goodSteps) {
-            return "Bad";
-        }
 
-        return "Perfect";
+            case 3:
+            return "Bad";
+
+            default:
+            return"Perfect";
+        }
     }
 
     // Player step count
@@ -66,9 +68,21 @@ public class PlayerSteps : MonoBehaviour
     // Set the level step threshold
     public void SetStepThreshold(int steps) {
         stepThreshold = steps;
+        stepCount = stepThreshold * 3;
+        print("step threshold = " + stepThreshold);
     }
 
     public int StepThreshold() {
         return stepThreshold;
+    }
+
+    public int currentStepThreshold() {
+        if (stepCount >= stepThreshold * 2) {
+            return 1;
+        } else if (stepCount >= stepThreshold) {
+            return 2;
+        } else {
+            return 3;
+        }
     }
 }
