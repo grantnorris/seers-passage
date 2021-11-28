@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
     // Invoke the levelStart unity event
     public void StartLevel() {
         EnablePlayerMove();
-        GameManager.instance.levelStart.Invoke();
+        levelStart.Invoke();
     }
     
     // Disable player inputs for a given duration
