@@ -23,5 +23,6 @@ public class LockInteractable : Interactable
         }
 
         gate.anim.SetBool("locked", false);
+        AudioManager.instance.PlayOneShot("Key Pickup");
     }
 }
