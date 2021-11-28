@@ -120,13 +120,14 @@ public class GameManager : MonoBehaviour
         LevelScore score = new LevelScore(
             player.health.Health(),
             player.steps.StepCount(),
-            time
+            time,
+            level.id
         );
 
         LevelScore prevScore = SaveSystem.LevelScore(level);
 
         if (prevScore == null || LevelScore.ScoreIsBetter(score, prevScore)) {
-            SaveSystem.UpdateLevelScore(level, score);
+            SaveSystem.UpdateLevelScore(score);
         }
     }
 

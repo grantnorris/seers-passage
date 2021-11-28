@@ -5,11 +5,13 @@ public class LevelScore {
     public int hearts;
     public int steps;
     public float time;
+    public string levelId;
 
-    public LevelScore(int newHearts, int newSteps, float newTime) {
+    public LevelScore(int newHearts, int newSteps, float newTime, string newLevelId) {
         hearts = newHearts;
         steps = newSteps;
         time = newTime;
+        levelId = newLevelId;
     }
 
     public string Score() {

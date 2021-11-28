@@ -10,7 +10,7 @@ public class LevelSelect : MonoBehaviour
     public GameObject content;
     public GameObject itemPrefab;
 
-    Level[] levels;
+    Chapter[] chapters;
     Animator anim;
     ScrollRect scrollRect;
     ScrollHighlight scrollHighlight;
@@ -20,7 +20,7 @@ public class LevelSelect : MonoBehaviour
             instance = this;
         }
 
-        levels = GameLevels.levels;
+        chapters = GameLevels.chapters;
         anim = GetComponent<Animator>();
         scrollRect = GetComponent<ScrollRect>();
         scrollHighlight = GetComponent<ScrollHighlight>();
@@ -28,7 +28,7 @@ public class LevelSelect : MonoBehaviour
     }
     
     void Init() {
-        if (levels.Length < 1 || content == null || itemPrefab == null) {
+        if (chapters.Length < 1 || content == null || itemPrefab == null) {
             return;
         }
 
@@ -36,21 +36,23 @@ public class LevelSelect : MonoBehaviour
         GameObject itemToFocus = null;
         Level levelJustPlayed = SceneSwitcher.instance != null ? SceneSwitcher.instance.prevLevel : null;
         
-        for (int i = 0; i < levels.Length; i++) {
-            Level level = levels[i];
+        for (int c = 0; c < chapters.Length; c++) {
+            for (int l = 0; l < chapters[c].levels.Length; l++) {
+                Level level = chapters[c].levels[l];
 
-            if (level == null) {
-                continue;
-            }
+                if (level == null) {
+                    continue;
+                }
 
-            LevelScore score = progressData.scores[i];
-            GameObject item = Instantiate(itemPrefab, content.transform);
-            item.GetComponent<LevelSelectItem>().Setup(level);
-            Level prevLevel = GameLevels.PreviousLevel(level);
-            bool prevLevelCompleted = SaveSystem.LevelScore(prevLevel) != null ? true : false;
+                LevelScore score = progressData.GetScore(level);
+                GameObject item = Instantiate(itemPrefab, content.transform);
+                item.GetComponent<LevelSelectItem>().Setup(level);
+                Level prevLevel = GameLevels.PreviousLevel(level);
+                bool prevLevelCompleted = SaveSystem.LevelScore(prevLevel) != null ? true : false;
 
-            if (levelJustPlayed == level || (levelJustPlayed == null && prevLevel != null && prevLevelCompleted)) {
-                itemToFocus = item;
+                if (levelJustPlayed == level || (levelJustPlayed == null && prevLevel != null && prevLevelCompleted)) {
+                    itemToFocus = item;
+                }
             }
         }
         

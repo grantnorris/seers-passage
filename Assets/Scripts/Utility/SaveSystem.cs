@@ -8,16 +8,11 @@ public static class SaveSystem
 {
     static string path = Path.Combine(Application.persistentDataPath, "data.sp");
     static ProgressData progressData = LoadProgress();
-    static Level[] levels = GameLevels.levels;
+    static Chapter[] chapters = GameLevels.chapters;
 
-    public static void UpdateLevelScore(Level level, LevelScore score) {
+    public static void UpdateLevelScore(LevelScore score) {
         Debug.Log("update level score");
-
-        for (int i = 0; i < levels.Length; i++) {
-            if (levels[i] == level) {
-                progressData.scores[i] = score;
-            }
-        }
+        progressData.UpdateScore(score);
 
         SaveProgress(progressData);
     }
@@ -27,13 +22,7 @@ public static class SaveSystem
             return null;
         }
 
-        for (int i = 0; i < levels.Length; i++) {
-            if (levels[i] == level) {
-                return progressData.scores[i];
-            }
-        }
-
-        return null;
+        return progressData.GetScore(level);
     }
 
     public static ProgressData ProgressData() {
@@ -58,12 +47,18 @@ public static class SaveSystem
             return new ProgressData();
         }
 
-        BinaryFormatter formatter = new BinaryFormatter();
-        FileStream stream = new FileStream(path, FileMode.Open);
-        ProgressData data = formatter.Deserialize(stream) as ProgressData;
-        stream.Close();
-        Debug.Log("progress loaded");
-        return data;
+        try {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+            ProgressData data = formatter.Deserialize(stream) as ProgressData;
+            stream.Close();
+            Debug.Log("progress loaded");
+            return data;
+        } catch (System.Exception) {
+            Debug.LogWarning("Could NOT load data correctly. Creating new data instead.");
+            return new ProgressData();
+            throw;
+        }
     }
 
     public static void DeleteProgress() {
