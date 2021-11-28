@@ -44,7 +44,7 @@ public class PlayerInteraction : MonoBehaviour
         List<Collider2D> colsToRemove = new List<Collider2D>();
 
         foreach (Collider2D col in interactionColliders) {
-            if (col != null && col.gameObject && col.tag == "Interactable") {
+            if (col != null && col.gameObject && col.tag == "Interactable" && Vector3.Distance(col.transform.position, player.transform.position) < 2) {
                 continue;
             }
 
