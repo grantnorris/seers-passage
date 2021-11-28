@@ -27,10 +27,32 @@ public class PlayerInteraction : MonoBehaviour
     }
 
     void UpdateInteractionNotice() {
+        CheckForDestroyedColliders();
+        
         if (interactionColliders.Count > 0) {
             OpenInteractNotice();
         } else {
             CloseInteractNotice();
+        }
+    }
+
+    void CheckForDestroyedColliders() {
+        if (interactionColliders.Count == 0) {
+            return;
+        }
+
+        List<Collider2D> colsToRemove = new List<Collider2D>();
+
+        foreach (Collider2D col in interactionColliders) {
+            if (col != null && col.gameObject && col.tag == "Interactable") {
+                continue;
+            }
+
+            colsToRemove.Add(col);
+        }
+
+        foreach (Collider2D col in colsToRemove) {
+            interactionColliders.Remove(col);
         }
     }
 
