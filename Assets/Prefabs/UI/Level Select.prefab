@@ -181,6 +181,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   content: {fileID: 6722653900972952026}
+  subtitlePrefab: {fileID: 927341811673834320, guid: f52958e2b38c24bf9b4cb59e9ea06c7e,
+    type: 3}
   itemPrefab: {fileID: 956322048417310928, guid: a63ab6c6b3ddd460fb65e2562a21b33d,
     type: 3}
 --- !u!1 &6722653900972952026

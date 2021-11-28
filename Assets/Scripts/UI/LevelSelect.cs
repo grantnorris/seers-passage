@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class LevelSelect : MonoBehaviour
 {
     public static LevelSelect instance;
 
     public GameObject content;
+    public GameObject subtitlePrefab;
     public GameObject itemPrefab;
 
     Chapter[] chapters;
@@ -37,6 +39,11 @@ public class LevelSelect : MonoBehaviour
         Level levelJustPlayed = SceneSwitcher.instance != null ? SceneSwitcher.instance.prevLevel : null;
         
         for (int c = 0; c < chapters.Length; c++) {
+            if (chapters[c].levels.Length > 0) {
+                GameObject subtitle = Instantiate(subtitlePrefab, content.transform);
+                subtitle.GetComponent<TMP_Text>().SetText(chapters[c].name);
+            }
+
             for (int l = 0; l < chapters[c].levels.Length; l++) {
                 Level level = chapters[c].levels[l];
 
