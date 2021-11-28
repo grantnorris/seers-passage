@@ -36,4 +36,8 @@ public class PauseUI : MonoBehaviour
     public void Hide() {
         gameObject.SetActive(false);
     }
+
+    public void Quit() {
+        GameManager.instance.ReturnToLevelSelect();
+    }
 }
