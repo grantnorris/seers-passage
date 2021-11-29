@@ -6,10 +6,12 @@ using UnityEngine.UI;
 public class ScrollHighlight : MonoBehaviour
 {
     List<ScrollHighlightItem> items = new List<ScrollHighlightItem>();
+    List<ScrollHighlightSubtitle> subtitles = new List<ScrollHighlightSubtitle>();
     [SerializeField]
     Transform content;
     float viewportCenter;
     float viewportSize;
+    float contentHeight;
 
     void Start() {
         StartCoroutine("Init");
@@ -36,23 +38,50 @@ public class ScrollHighlight : MonoBehaviour
         // Wait a frame for other UI scripts to initialise
         yield return null;
 
-        float contentHeight = content.GetComponent<RectTransform>().sizeDelta.y - viewportHeight;
+        contentHeight = content.GetComponent<RectTransform>().sizeDelta.y - viewportHeight;
         viewportSize = viewportHeight / contentHeight;
         viewportCenter = viewportSize / 2;
 
         foreach (Transform child in content) {
-            GameObject obj = child.gameObject;
-            RectTransform rect = obj.GetComponent<RectTransform>();
-            float pos = (rect.anchoredPosition.y * -1) / contentHeight;
-            float height = rect.sizeDelta.y / contentHeight;
-            CanvasGroup group = child.GetComponent<CanvasGroup>();
-            items.Add(new ScrollHighlightItem(
-                obj,
-                pos,
-                height,
-                group
-            ));
+            if (child.GetComponent<ScrollHighlightSubtitle>() != null) {
+                CreateSubtitle(child);
+            } else {
+                CreateItem(child);
+            }
         }
+
+        // Add the end sticking point for each subtitle (based on the next subtitle after it)
+        for (int i = 0; i < subtitles.Count - 1; i++) {
+            subtitles[i].stickEnd = subtitles[i + 1].stickStart - subtitles[i].height;
+        }
+    }
+
+    void CreateItem(Transform item) {
+        GameObject obj = item.gameObject;
+        RectTransform rect = obj.GetComponent<RectTransform>();
+        float pos = (rect.anchoredPosition.y * -1) / contentHeight;
+        float height = rect.sizeDelta.y / contentHeight;
+        CanvasGroup group = item.GetComponent<CanvasGroup>();
+        items.Add(new ScrollHighlightItem(
+            obj,
+            pos,
+            height,
+            group
+        ));
+    }
+
+    void CreateSubtitle(Transform item) {
+        GameObject obj = item.gameObject;
+        RectTransform rect = obj.GetComponent<RectTransform>();
+        float pos = (rect.anchoredPosition.y * -1) / contentHeight;
+        float height = rect.sizeDelta.y / contentHeight;
+        ScrollHighlightSubtitle subtitle = item.GetComponent<ScrollHighlightSubtitle>();
+
+        subtitle.gameobject = obj;
+        subtitle.pos = pos;
+        subtitle.height = height;
+        subtitle.stickStart = pos - height;
+        subtitles.Add(subtitle);
     }
 
     public void UpdateScroll(Vector2 pos) {
@@ -78,6 +107,25 @@ public class ScrollHighlight : MonoBehaviour
                 item.group.alpha = alpha;
             } else {
                 item.group.alpha = 0;
+            }
+        }
+
+        foreach (ScrollHighlightSubtitle subtitle in subtitles) {
+            if (scrollPos < subtitle.stickStart) {
+                subtitle.textObjRect.anchoredPosition = new Vector2(
+                    subtitle.textObjRect.anchoredPosition.x,
+                    0
+                );
+            } else if (subtitle.stickEnd != 0 && scrollPos > subtitle.stickEnd) {
+                subtitle.textObjRect.anchoredPosition = new Vector2(
+                    subtitle.textObjRect.anchoredPosition.x,
+                    ((contentHeight * (subtitle.stickEnd - subtitle.pos)) + subtitle.textObjRect.rect.height) * -1
+                );
+            } else if (scrollPos >= subtitle.stickStart) {
+                subtitle.textObjRect.anchoredPosition = new Vector2(
+                    subtitle.textObjRect.anchoredPosition.x,
+                    ((contentHeight * (scrollPos - subtitle.pos)) + subtitle.textObjRect.rect.height) * -1
+                );
             }
         }
     }

@@ -41,7 +41,7 @@ public class LevelSelect : MonoBehaviour
         for (int c = 0; c < chapters.Length; c++) {
             if (chapters[c].levels.Length > 0) {
                 GameObject subtitle = Instantiate(subtitlePrefab, content.transform);
-                subtitle.GetComponent<TMP_Text>().SetText(chapters[c].name);
+                subtitle.GetComponentInChildren<TMP_Text>().SetText(chapters[c].name);
             }
 
             for (int l = 0; l < chapters[c].levels.Length; l++) {
