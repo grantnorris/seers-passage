@@ -18,8 +18,8 @@ public class TipManager : MonoBehaviour
             "Interactables",
             new Dialogue(
                 new string[] {
-                    "Tip: Some objects can be interacted with,",
-                    "this will be indicated by an exclaimation mark above your head.",
+                    "Tip: Some objects can be interacted with, this will be indicated by an",
+                    "exclaimation mark above your head.",
                     "To interact with an object, drag in it's direction."
                 },
                 ""
@@ -29,7 +29,39 @@ public class TipManager : MonoBehaviour
             "Light Sources",
             new Dialogue(
                 new string[] {
-                    "Tip: You'll be able to see much more of your surroundings when holding a lightsource, they're worth searching for!",
+                    "Tip: You'll be able to see much more of your surroundings when holding a lightsource,",
+                    "they're worth searching for!",
+                },
+                ""
+            )
+        ),
+        new Tip(
+            "Keys",
+            new Dialogue(
+                new string[] {
+                    "Tip: Keys are single-use consumable items which can be used to",
+                    "reach blocked off areas!",
+                },
+                ""
+            )
+        ),
+        new Tip(
+            "Inventory",
+            new Dialogue(
+                new string[] {
+                    "Tip: Items in your inventory can be seen in the",
+                    "bottom right of the screen.",
+                },
+                ""
+            )
+        ),
+        new Tip(
+            "Life",
+            new Dialogue(
+                new string[] {
+                    "Tip: Making too many steps in a dungeon will result in losing lives.",
+                    "The number of remaining steps is indicated in the bottom left of the",
+                    "screen, when this reaches zero, your last life will be lost!"
                 },
                 ""
             )
@@ -49,9 +81,7 @@ public class TipManager : MonoBehaviour
                 break;
             }
 
-            print("play " + tipName + " dialouge");
             DialogueManager.instance.StartDialogue(tip.dialogue);
-            
             tip.displayed = true;
             break;
         }

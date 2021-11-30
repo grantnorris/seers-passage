@@ -13,6 +13,8 @@ public class PlayerHealth : MonoBehaviour
     public void ReduceHealth() {
         health--;
 
+        TipManager.DisplayTip("Life");
+
         if (health <= 0) {
             GameManager.instance.StartDie();
         }

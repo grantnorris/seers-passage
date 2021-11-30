@@ -16,6 +16,7 @@ public class KeyInteractable : Interactable
         
         Inventory.instance.Add(item);
         AudioManager.instance.PlayOneShot("Key Pickup");
+        TipManager.DisplayTip("Keys");
         Remove();
     }
 
