@@ -77,6 +77,7 @@ public class PlayerInteraction : MonoBehaviour
         }
 
         interactNoticeScript.Open();
+        TipManager.DisplayTip("Interactables");
     }
 
     // Close interaction notice

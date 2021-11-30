@@ -69,6 +69,7 @@ public class GameManager : MonoBehaviour
     public void StartLevel() {
         EnablePlayerMove();
         levelStart.Invoke();
+        TipManager.DisplayTip("Movement");
     }
     
     // Disable player inputs for a given duration
