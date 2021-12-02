@@ -18,9 +18,7 @@ public class TipManager : MonoBehaviour
             "Interactables",
             new Dialogue(
                 new string[] {
-                    "Tip: Some objects can be interacted with, this will be indicated by an",
-                    "exclaimation mark above your head.",
-                    "To interact with an object, drag in it's direction."
+                    "To interact with an object, drag again in it's direction."
                 },
                 ""
             )
