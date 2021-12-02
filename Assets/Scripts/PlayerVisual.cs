@@ -57,7 +57,7 @@ public class PlayerVisual : MonoBehaviour
     }
 
     public void MoveSound() {
-        AudioManager.instance.PlayOneShot("Player Move");
+        // AudioManager.instance.PlayOneShot("Player Move");
     }
 
     public void MoveOutSound() {

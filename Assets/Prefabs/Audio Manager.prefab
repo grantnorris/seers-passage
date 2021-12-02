@@ -45,8 +45,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: Theme
-    volume: 1
-    clip: {fileID: 8300000, guid: ca5267aa8e9c54f148fbe1fbbd42fb9d, type: 3}
+    volume: 0.1
+    clip: {fileID: 8300000, guid: 0e7d57bf58ee243d5b3bec2dde651b80, type: 3}
     source: {fileID: 0}
     loop: 1
     oneShot: 0
@@ -81,13 +81,13 @@ MonoBehaviour:
     loop: 0
     oneShot: 1
   - name: Light Torch
-    volume: 0.03
+    volume: 0.06
     clip: {fileID: 8300000, guid: 8f32183da0eb149829083f4514dffb5c, type: 3}
     source: {fileID: 0}
     loop: 0
     oneShot: 1
   - name: Key Pickup
-    volume: 0.04
+    volume: 0.075
     clip: {fileID: 8300000, guid: 1dd248ffde0d040eab30403f3c8a2610, type: 3}
     source: {fileID: 0}
     loop: 0
@@ -112,7 +112,7 @@ MonoBehaviour:
     oneShot: 1
   - name: Heart Break
     volume: 0.075
-    clip: {fileID: 8300000, guid: 80006172cc53c47838247e0007502565, type: 3}
+    clip: {fileID: 8300000, guid: 1dd248ffde0d040eab30403f3c8a2610, type: 3}
     source: {fileID: 0}
     loop: 0
     oneShot: 1
@@ -129,8 +129,8 @@ MonoBehaviour:
     loop: 1
     oneShot: 0
   - name: Player Move In
-    volume: 0.01
-    clip: {fileID: 8300000, guid: 4d17364d6c5644ed19a08a86529d9ea0, type: 3}
+    volume: 0.025
+    clip: {fileID: 8300000, guid: ead4b7ecaf74b4f918127ce7e7ce541c, type: 3}
     source: {fileID: 0}
     loop: 0
     oneShot: 1
@@ -141,8 +141,8 @@ MonoBehaviour:
     loop: 0
     oneShot: 1
   - name: Player Move Out
-    volume: 0.01
-    clip: {fileID: 8300000, guid: 2add8027e7a464c4aada80226493ba87, type: 3}
+    volume: 0.025
+    clip: {fileID: 8300000, guid: ead4b7ecaf74b4f918127ce7e7ce541c, type: 3}
     source: {fileID: 0}
     loop: 0
     oneShot: 1
