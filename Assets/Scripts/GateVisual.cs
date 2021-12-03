@@ -12,7 +12,7 @@ public class GateVisual : MonoBehaviour
 
     public void StartSound() {
         AudioManager.instance.PlayOneShot("Grinding Start", gate.volume);
-        AudioManager.instance.PlayOneShot("Grinding", gate.volume);
+        AudioManager.instance.Play("Grinding", gate.volume);
     }
 
     public void StopSound() {
