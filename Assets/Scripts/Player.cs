@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public PlayerInteraction interaction;
     public PlayerSteps steps;
     public PlayerHealth health;
+    public PlayerVisual visual;
 
     public void SetInitialPosition(Vector3 pos) {
         transform.position = pos;

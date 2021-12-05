@@ -111,6 +111,7 @@ public class PlayerMove : MonoBehaviour
             foreach (Animator anim in anims) {
                 anim.SetInteger("directionFacing", directionInt);
                 anim.SetTrigger("startMoving");
+                player.visual.MoveAfterAnimation();
                 anim.SetBool("moving", true);
             }
 

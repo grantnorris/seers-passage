@@ -111,8 +111,8 @@ MonoBehaviour:
     loop: 0
     oneShot: 1
   - name: Heart Break
-    volume: 0.075
-    clip: {fileID: 8300000, guid: 1dd248ffde0d040eab30403f3c8a2610, type: 3}
+    volume: 0.05
+    clip: {fileID: 8300000, guid: 80006172cc53c47838247e0007502565, type: 3}
     source: {fileID: 0}
     loop: 0
     oneShot: 1
