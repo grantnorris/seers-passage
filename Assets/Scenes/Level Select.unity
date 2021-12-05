@@ -206,6 +206,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6722653900588308135, guid: bd1a2eea4a49f4f9b9b27b7d629d4691,
+        type: 3}
+      propertyPath: scrollRect
+      value: 
+      objectReference: {fileID: 1985604599}
     - target: {fileID: 6722653900588308158, guid: bd1a2eea4a49f4f9b9b27b7d629d4691,
         type: 3}
       propertyPath: m_Pivot.x
@@ -330,6 +335,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7001940798827953494, guid: bd1a2eea4a49f4f9b9b27b7d629d4691,
+        type: 3}
+      propertyPath: m_Inertia
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd1a2eea4a49f4f9b9b27b7d629d4691, type: 3}
@@ -820,5 +830,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d85c1c8f1f414c48a9dd685c9f0a749, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1985604599 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7001940798827953494, guid: bd1a2eea4a49f4f9b9b27b7d629d4691,
+    type: 3}
+  m_PrefabInstance: {fileID: 845932488}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985604590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e7ac4ea7f8104488a4daab6b5bd5544, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

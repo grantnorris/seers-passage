@@ -17,10 +17,27 @@ public class ScrollHighlight : MonoBehaviour
     GameObject closestItem;
     [SerializeField]
     GameObject selectedItem;
-    bool queueSnap = false;
+    bool watchMove = false;
+    Vector2 scrolPos = Vector2.zero;
+    Vector2 prevScrolPos = Vector2.zero;
+    [SerializeField]
+    CustomScrollRect scrollRect;
 
     void Start() {
         StartCoroutine("Init");
+    }
+
+    void LateUpdate() {
+        print(Mathf.Abs(scrolPos.y - prevScrolPos.y));
+        
+        if (Mathf.Abs(scrolPos.y - prevScrolPos.y) < .00025f && watchMove && !UserScrolling()) {
+            watchMove = false;
+            print("now snap");
+            scrollRect.inertia = false;
+            StartCoroutine(SnapToItem());
+        }
+
+        prevScrolPos = scrolPos;
     }
 
     IEnumerator Init() {
@@ -92,6 +109,9 @@ public class ScrollHighlight : MonoBehaviour
     }
 
     public void UpdateScroll(Vector2 pos) {
+        scrollRect.inertia = true;
+        scrolPos = pos;
+
         if (items.Count == 0) {
             return;
         }
@@ -143,11 +163,11 @@ public class ScrollHighlight : MonoBehaviour
         }
 
         // Stop if the user didn't trigger the scroll manually
-        if (!UserScrolling() || queueSnap) {
+        if (!UserScrolling()) {
             return;
         }
-        
-        StartCoroutine(SnapToItem());
+
+        watchMove = true;
     }
 
     // Focus a given item
@@ -185,14 +205,13 @@ public class ScrollHighlight : MonoBehaviour
 
     IEnumerator ScrollToItem(GameObject item) {
         float time = 0f;
-        float seconds = .5f;
+        float seconds = .25f;
         Vector2 startPos = contentRect.anchoredPosition;
         Vector2 endPos = new Vector2(startPos.x, ItemPosition(item));
 
         while (time <= 1f) {
             // Stop if the user starts scrolling
             if (UserScrolling()) {
-                queueSnap = false;
                 yield break;
             }
 
@@ -203,7 +222,6 @@ public class ScrollHighlight : MonoBehaviour
 
         contentRect.anchoredPosition = endPos;
         selectedItem = item;
-        queueSnap = false;
     }
 
     // Y position of a given item
@@ -214,26 +232,15 @@ public class ScrollHighlight : MonoBehaviour
     }
 
     IEnumerator SnapToItem() {
-        queueSnap = true;
-
-        while (UserScrolling()) {
-            // Wait for next frame
-            yield return null;
-        }
-
-        print("try snap to item");
-
-        print("snap to item");
+        // Wait for next frame
+        yield return null;
 
         if (closestItem == null || contentRect == null) {
-            queueSnap = false;
             yield break;
         }
 
         if (closestItem == selectedItem) {
-            print("closest item is already selected");
             float scrollDiff = (contentRect.anchoredPosition.y + viewportCenter) - ItemPosition(closestItem);
-            print("scrollDiff " + scrollDiff);
 
             if (Mathf.Abs(scrollDiff) > 50f) {
                 if (scrollDiff > 0) {
@@ -249,8 +256,6 @@ public class ScrollHighlight : MonoBehaviour
         }
 
         if (closestItem == null) {
-            queueSnap = false;
-            print("No closest item");
             yield break;
         }
 
