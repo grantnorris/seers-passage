@@ -12,6 +12,7 @@ public class ScrollHighlight : MonoBehaviour
     float viewportCenter;
     float viewportSize;
     float contentHeight;
+    GameObject closestItem;
 
     void Start() {
         StartCoroutine("Init");
@@ -90,6 +91,7 @@ public class ScrollHighlight : MonoBehaviour
         }
 
         float scrollPos = (1 - pos.y);
+        float closestDistance = 999f;
 
         foreach (ScrollHighlightItem item in items) {
             if (item.group == null) {
@@ -99,6 +101,11 @@ public class ScrollHighlight : MonoBehaviour
             if (scrollPos + viewportSize >= item.pos) {
                 float distanceFromCenter = Mathf.Abs((item.pos + (item.height / 2)) - (scrollPos + viewportCenter));
                 float alpha = 1 - (distanceFromCenter / viewportCenter);
+
+                if (distanceFromCenter < closestDistance) {
+                    closestDistance = distanceFromCenter;
+                    closestItem = item.gameobject;
+                }
 
                 if (alpha < 0) {
                     alpha = 0;
@@ -128,6 +135,13 @@ public class ScrollHighlight : MonoBehaviour
                 );
             }
         }
+
+        // Stop if the user didn't trigger the scroll manually
+        if (!UserScrolling()) {
+            return;
+        }
+        
+        StartCoroutine(SnapToItem());
     }
 
     // Focus a given item
@@ -138,23 +152,34 @@ public class ScrollHighlight : MonoBehaviour
     }
 
     // Animates focus to the next item
-    public IEnumerator FocusNextItem(GameObject curItem) {
+    public void FocusNextItem(GameObject curItem) {
         int curIndex = curItem.transform.GetSiblingIndex();
         Transform parent = curItem.transform.parent;
 
         if (parent == null || parent.childCount <= curIndex + 1) {
-            yield break;
+            return;
         }
   
         GameObject nextItem = parent.GetChild(curIndex + 1).gameObject;
+        StartCoroutine(ScrollToItem(nextItem));
+    }
+
+    IEnumerator ScrollToItem(GameObject item) {
+        print("scroll to item");
         RectTransform contentRect = content.GetComponent<RectTransform>();
         
         float time = 0f;
         float seconds = 1f;
         Vector2 startPos = contentRect.anchoredPosition;
-        Vector2 endPos = new Vector2(startPos.x, ItemPosition(nextItem));
+        Vector2 endPos = new Vector2(startPos.x, ItemPosition(item));
 
         while (time <= 1f) {
+            // Stop if the user starts scrolling
+            if (UserScrolling()) {
+                print("stop scrolling due to interaction");
+                yield break;
+            }
+
             time += Time.deltaTime / seconds;
             contentRect.anchoredPosition = Vector2.Lerp(startPos, endPos, Mathf.SmoothStep(0, 1, time));
             yield return null;
@@ -168,5 +193,32 @@ public class ScrollHighlight : MonoBehaviour
         RectTransform outerRect = GetComponent<RectTransform>();
         RectTransform currentItemRect = item.GetComponent<RectTransform>();
         return (currentItemRect.anchoredPosition.y * -1) - (outerRect.rect.height / 2) + (currentItemRect.rect.height / 2);
+    }
+
+    IEnumerator SnapToItem() {
+        // Wait for next frame
+        yield return null;
+
+        // Ensure the user is not still scrolling
+        if (UserScrolling()) {
+            yield break;
+        }
+
+        if (closestItem == null) {
+            yield break;
+        }
+
+        print("released");
+
+        StartCoroutine(ScrollToItem(closestItem));
+    }
+
+    // Whether or not the user is currently scrolling via interaction
+    bool UserScrolling() {
+        if (Input.GetMouseButton(0) || Input.touchCount > 0) {
+            return true;
+        }
+
+        return false;
     }
 }

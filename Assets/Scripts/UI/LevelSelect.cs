@@ -82,7 +82,7 @@ public class LevelSelect : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         if (SceneSwitcher.instance.prevLevel != null) {
-            StartCoroutine(scrollHighlight.FocusNextItem(item));
+            scrollHighlight.FocusNextItem(item);
         }
     }
 
