@@ -94,7 +94,7 @@ public class LevelSelect : MonoBehaviour
     IEnumerator TransitionOut(Level level) {
         anim.SetTrigger("Out");
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(.1f);
         SceneSwitcher.instance.LoadLevel(level);
     }
 }
