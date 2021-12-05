@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TipManager : MonoBehaviour
+public class TipManager
 {
     static List<Tip> tips = new List<Tip>() {
         new Tip(
@@ -67,8 +67,6 @@ public class TipManager : MonoBehaviour
     };
 
     public static void DisplayTip(string tipName) {
-        return;
-        
         for (int i = 0; i < tips.Count; i++) {
             Tip tip = tips[i];
 
