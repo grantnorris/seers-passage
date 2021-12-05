@@ -193,8 +193,13 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 6722653900588308133, guid: bd1a2eea4a49f4f9b9b27b7d629d4691,
         type: 3}
+      propertyPath: m_Inertia
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6722653900588308133, guid: bd1a2eea4a49f4f9b9b27b7d629d4691,
+        type: 3}
       propertyPath: m_ScrollSensitivity
-      value: 10
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6722653900588308135, guid: bd1a2eea4a49f4f9b9b27b7d629d4691,
         type: 3}

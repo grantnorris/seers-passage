@@ -12,7 +12,12 @@ public class ScrollHighlight : MonoBehaviour
     float viewportCenter;
     float viewportSize;
     float contentHeight;
+    RectTransform contentRect;
+    [SerializeField]
     GameObject closestItem;
+    [SerializeField]
+    GameObject selectedItem;
+    bool queueSnap = false;
 
     void Start() {
         StartCoroutine("Init");
@@ -39,7 +44,8 @@ public class ScrollHighlight : MonoBehaviour
         // Wait a frame for other UI scripts to initialise
         yield return null;
 
-        contentHeight = content.GetComponent<RectTransform>().sizeDelta.y - viewportHeight;
+        contentRect = content.GetComponent<RectTransform>();
+        contentHeight = contentRect.sizeDelta.y - viewportHeight;
         viewportSize = viewportHeight / contentHeight;
         viewportCenter = viewportSize / 2;
 
@@ -137,7 +143,7 @@ public class ScrollHighlight : MonoBehaviour
         }
 
         // Stop if the user didn't trigger the scroll manually
-        if (!UserScrolling()) {
+        if (!UserScrolling() || queueSnap) {
             return;
         }
         
@@ -147,36 +153,46 @@ public class ScrollHighlight : MonoBehaviour
     // Focus a given item
     public void FocusItem(GameObject item) {
         Canvas.ForceUpdateCanvases();
-        RectTransform contentRect = content.GetComponent<RectTransform>();
         contentRect.anchoredPosition = new Vector2(0, ItemPosition(item));
     }
 
     // Animates focus to the next item
     public void FocusNextItem(GameObject curItem) {
+        StartCoroutine(ScrollToItem(NextItem(curItem)));
+    }
+
+    GameObject NextItem(GameObject curItem) {
         int curIndex = curItem.transform.GetSiblingIndex();
         Transform parent = curItem.transform.parent;
 
         if (parent == null || parent.childCount <= curIndex + 1) {
-            return;
+            return null;
         }
   
-        GameObject nextItem = parent.GetChild(curIndex + 1).gameObject;
-        StartCoroutine(ScrollToItem(nextItem));
+        return parent.GetChild(curIndex + 1).gameObject;
+    }
+
+    GameObject PreviousItem(GameObject curItem) {
+        int curIndex = curItem.transform.GetSiblingIndex();
+        Transform parent = curItem.transform.parent;
+
+        if (parent == null || curIndex == 0) {
+            return null;
+        }
+  
+        return parent.GetChild(curIndex - 1).gameObject;
     }
 
     IEnumerator ScrollToItem(GameObject item) {
-        print("scroll to item");
-        RectTransform contentRect = content.GetComponent<RectTransform>();
-        
         float time = 0f;
-        float seconds = 1f;
+        float seconds = .5f;
         Vector2 startPos = contentRect.anchoredPosition;
         Vector2 endPos = new Vector2(startPos.x, ItemPosition(item));
 
         while (time <= 1f) {
             // Stop if the user starts scrolling
             if (UserScrolling()) {
-                print("stop scrolling due to interaction");
+                queueSnap = false;
                 yield break;
             }
 
@@ -186,6 +202,8 @@ public class ScrollHighlight : MonoBehaviour
         }
 
         contentRect.anchoredPosition = endPos;
+        selectedItem = item;
+        queueSnap = false;
     }
 
     // Y position of a given item
@@ -196,19 +214,45 @@ public class ScrollHighlight : MonoBehaviour
     }
 
     IEnumerator SnapToItem() {
-        // Wait for next frame
-        yield return null;
+        queueSnap = true;
 
-        // Ensure the user is not still scrolling
-        if (UserScrolling()) {
+        while (UserScrolling()) {
+            // Wait for next frame
+            yield return null;
+        }
+
+        print("try snap to item");
+
+        print("snap to item");
+
+        if (closestItem == null || contentRect == null) {
+            queueSnap = false;
             yield break;
+        }
+
+        if (closestItem == selectedItem) {
+            print("closest item is already selected");
+            float scrollDiff = (contentRect.anchoredPosition.y + viewportCenter) - ItemPosition(closestItem);
+            print("scrollDiff " + scrollDiff);
+
+            if (Mathf.Abs(scrollDiff) > 50f) {
+                if (scrollDiff > 0) {
+                    print("select next item");
+                    GameObject nextItem = NextItem(selectedItem);
+                    closestItem = nextItem != null ? nextItem : closestItem;
+                } else {
+                    print("select previous item");
+                    GameObject prevItem = PreviousItem(selectedItem);
+                    closestItem = prevItem != null ? prevItem : closestItem;
+                }
+            }
         }
 
         if (closestItem == null) {
+            queueSnap = false;
+            print("No closest item");
             yield break;
         }
-
-        print("released");
 
         StartCoroutine(ScrollToItem(closestItem));
     }

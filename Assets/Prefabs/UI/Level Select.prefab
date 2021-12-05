@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6722653900588308133}
   - component: {fileID: 6722653900588308135}
   - component: {fileID: 3951658310567783546}
+  - component: {fileID: 7001940798827953494}
   m_Layer: 5
   m_Name: Level Select
   m_TagString: Untagged
@@ -120,7 +121,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6722653900588308159}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
   m_Name: 
@@ -168,6 +169,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   content: {fileID: 6722653900972952005}
+  closestItem: {fileID: 0}
+  selectedItem: {fileID: 0}
 --- !u!114 &3951658310567783546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,6 +188,49 @@ MonoBehaviour:
     type: 3}
   itemPrefab: {fileID: 956322048417310928, guid: a63ab6c6b3ddd460fb65e2562a21b33d,
     type: 3}
+--- !u!114 &7001940798827953494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6722653900588308159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e7ac4ea7f8104488a4daab6b5bd5544, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Content: {fileID: 6722653900972952005}
+  m_ScrollFactor: 4
+  m_Horizontal: 0
+  m_Vertical: 1
+  m_MovementType: 1
+  m_Elasticity: 0.1
+  m_Inertia: 0
+  m_DecelerationRate: 0.135
+  m_ScrollSensitivity: 1
+  m_Viewport: {fileID: 0}
+  m_HorizontalScrollbar: {fileID: 0}
+  m_VerticalScrollbar: {fileID: 0}
+  m_HorizontalScrollbarVisibility: 0
+  m_VerticalScrollbarVisibility: 0
+  m_HorizontalScrollbarSpacing: 0
+  m_VerticalScrollbarSpacing: 0
+  m_OnValueChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6722653900588308135}
+        m_TargetAssemblyTypeName: ScrollHighlight, Assembly-CSharp
+        m_MethodName: UpdateScroll
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6722653900972952026
 GameObject:
   m_ObjectHideFlags: 0
