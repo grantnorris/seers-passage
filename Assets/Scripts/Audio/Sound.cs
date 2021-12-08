@@ -13,4 +13,6 @@ public class Sound
     public bool loop;
     [Tooltip("If true, a dedicated audio source will not be created for this sound")]
     public bool oneShot;
+    [Tooltip("The sound can be played as a theme and will be looped in the background")]
+    public bool theme;
 }

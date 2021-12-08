@@ -9,6 +9,7 @@ public class AudioManager : MonoBehaviour
     [HideInInspector]
     public float masterVolume = .8f;
     AudioSource oneShotSource;
+    Sound theme;
 
     // Start is called before the first frame update
     void Awake()
@@ -27,7 +28,7 @@ public class AudioManager : MonoBehaviour
         }
 
         CreateSources();
-        Play("Theme");
+        PlayTheme("Theme");
     }
 
     void CreateSources() {
@@ -44,15 +45,23 @@ public class AudioManager : MonoBehaviour
             sound.source.volume = sound.volume * masterVolume;
             sound.source.clip = sound.clip;
             sound.source.loop = sound.loop;
+
+            if (sound.theme) {
+                // All themes should be playing by default with only the active one having a volume above zero
+                // This allows us to fade in/out seamlessly
+                print(sound.name + " is a theme, play it");
+                sound.source.volume = 0;
+                sound.source.Play();
+            }
         }
 
         oneShotSource = gameObject.AddComponent<AudioSource>();
     }
 
     public void Play(string name, float playVolume = 1f) {
-        Sound sound = Array.Find(sounds, sound => sound.name == name);
+        Sound sound = GetSound(name);
 
-        if (sound == null || sound.source == null) {
+        if (sound == null) {
             return;
         }
 
@@ -61,7 +70,7 @@ public class AudioManager : MonoBehaviour
     }
 
     public void PlayOneShot(string name, float playVolume = 1f) {
-        Sound sound = Array.Find(sounds, sound => sound.name == name);
+        Sound sound = GetSound(name);
 
         if (sound == null) {
             return;
@@ -71,8 +80,26 @@ public class AudioManager : MonoBehaviour
         oneShotSource.PlayOneShot(sound.clip, oneShotVolume);
     }
 
+    // Only one theme can be playing at a given time
+    public void PlayTheme(string name) {
+        Sound sound = GetSound(name);
+
+        if (sound == null || !sound.theme) {
+            return;
+        }
+
+        if (theme != null) {
+            theme.volume = 0;
+        }
+
+        print("play theme " + sound.name);
+
+        sound.source.volume = sound.volume * masterVolume;
+        theme = sound;
+    }
+
     public void Stop(string name) {
-        Sound sound = Array.Find(sounds, sound => sound.name == name);
+        Sound sound = GetSound(name);
 
         if (sound == null) {
             return;
@@ -88,5 +115,15 @@ public class AudioManager : MonoBehaviour
         foreach (Sound sound in sounds) {
             sound.source.volume = sound.volume * masterVolume;
         }
+    }
+
+    Sound GetSound(string name) {
+        Sound sound = Array.Find(sounds, sound => sound.name == name);
+
+        if (sound == null || (!sound.oneShot && sound.source == null)) {
+            return null;
+        }
+
+        return sound;
     }
 }
