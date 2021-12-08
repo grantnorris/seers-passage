@@ -46,6 +46,9 @@ public class GameManager : MonoBehaviour
         } else if (Input.GetKeyDown(KeyCode.K)) {
             Debug.Log("try to delete progress");
             SaveSystem.DeleteProgress();
+        } else if (Input.GetKeyDown(KeyCode.Y)) {
+            Debug.Log("just die");
+            StartDie();
         }
     }
 

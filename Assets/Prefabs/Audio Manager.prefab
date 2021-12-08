@@ -50,6 +50,18 @@ MonoBehaviour:
     source: {fileID: 0}
     loop: 1
     oneShot: 0
+  - name: Theme 2
+    volume: 0.1
+    clip: {fileID: 8300000, guid: 3880dd11ae5244d79927a6a438463cd1, type: 3}
+    source: {fileID: 0}
+    loop: 1
+    oneShot: 0
+  - name: Theme 3
+    volume: 0.1
+    clip: {fileID: 8300000, guid: 3f5be082d577c49e8a8f95b72f850bd1, type: 3}
+    source: {fileID: 0}
+    loop: 1
+    oneShot: 0
   - name: Dialogue Open
     volume: 0.1
     clip: {fileID: 8300000, guid: 35ed9aa04bafa4f01ba6ee357c90f8f9, type: 3}

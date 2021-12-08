@@ -14,10 +14,10 @@ public class LoseUI : MonoBehaviour
 
     public void PlayDeathSound() {
         AudioManager.instance.Stop("Theme");
-        AudioManager.instance.Play("Death");
+        AudioManager.instance.Play("Theme 2");
     }
 
     public void PlayFlameSound() {
-        AudioManager.instance.Play("Flame Ambience");
+        // AudioManager.instance.Play("Flame Ambience");
     }
 }
