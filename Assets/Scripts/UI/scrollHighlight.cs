@@ -28,11 +28,8 @@ public class ScrollHighlight : MonoBehaviour
     }
 
     void LateUpdate() {
-        print(Mathf.Abs(scrolPos.y - prevScrolPos.y));
-        
         if (Mathf.Abs(scrolPos.y - prevScrolPos.y) < .00025f && watchMove && !UserScrolling()) {
             watchMove = false;
-            print("now snap");
             scrollRect.inertia = false;
             StartCoroutine(SnapToItem());
         }
@@ -244,11 +241,9 @@ public class ScrollHighlight : MonoBehaviour
 
             if (Mathf.Abs(scrollDiff) > 50f) {
                 if (scrollDiff > 0) {
-                    print("select next item");
                     GameObject nextItem = NextItem(selectedItem);
                     closestItem = nextItem != null ? nextItem : closestItem;
                 } else {
-                    print("select previous item");
                     GameObject prevItem = PreviousItem(selectedItem);
                     closestItem = prevItem != null ? prevItem : closestItem;
                 }
