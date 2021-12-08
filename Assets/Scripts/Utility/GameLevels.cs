@@ -17,8 +17,8 @@ public static class GameLevels
         new Chapter(
             "Chapter Two",
             new Level[] {
-                Resources.Load<Level>("Levels/Floor 1"),
-                Resources.Load<Level>("Levels/Floor 2"),
+                Resources.Load<Level>("Levels/Floor 5"),
+                Resources.Load<Level>("Levels/Floor 6"),
             }
         )
     };
