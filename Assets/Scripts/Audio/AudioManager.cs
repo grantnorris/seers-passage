@@ -91,8 +91,6 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        print("play theme " + sound.name);
-
         StartCoroutine(FadeSounds(theme, sound, fadeSpeed));
         theme = sound;
     }
