@@ -30,6 +30,8 @@ public class LevelSelect : MonoBehaviour
     }
     
     void Init() {
+        AudioManager.instance.PlayTheme("Theme 2");
+
         if (chapters.Length < 1 || content == null || itemPrefab == null) {
             return;
         }

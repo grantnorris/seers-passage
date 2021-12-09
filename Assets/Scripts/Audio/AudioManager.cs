@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using System;
 
@@ -31,6 +32,7 @@ public class AudioManager : MonoBehaviour
         PlayTheme("Theme");
     }
 
+    // Create audio sources for each relevant defined audio file
     void CreateSources() {
         if (sounds.Length == 0) {
             return;
@@ -49,7 +51,6 @@ public class AudioManager : MonoBehaviour
             if (sound.theme) {
                 // All themes should be playing by default with only the active one having a volume above zero
                 // This allows us to fade in/out seamlessly
-                print(sound.name + " is a theme, play it");
                 sound.source.volume = 0;
                 sound.source.Play();
             }
@@ -58,6 +59,7 @@ public class AudioManager : MonoBehaviour
         oneShotSource = gameObject.AddComponent<AudioSource>();
     }
 
+    // Play looping sound
     public void Play(string name, float playVolume = 1f) {
         Sound sound = GetSound(name);
 
@@ -69,6 +71,7 @@ public class AudioManager : MonoBehaviour
         sound.source.Play();
     }
 
+    // Play one shot sound effect
     public void PlayOneShot(string name, float playVolume = 1f) {
         Sound sound = GetSound(name);
 
@@ -81,23 +84,51 @@ public class AudioManager : MonoBehaviour
     }
 
     // Only one theme can be playing at a given time
-    public void PlayTheme(string name) {
+    public void PlayTheme(string name, float fadeSpeed = .5f) {
         Sound sound = GetSound(name);
 
         if (sound == null || !sound.theme) {
             return;
         }
 
-        if (theme != null) {
-            theme.volume = 0;
-        }
-
         print("play theme " + sound.name);
 
-        sound.source.volume = sound.volume * masterVolume;
+        StartCoroutine(FadeSounds(theme, sound, fadeSpeed));
         theme = sound;
     }
 
+    // Fade between sounds
+    IEnumerator FadeSounds(Sound current, Sound next, float seconds = .25f) {
+        if (current == null && next == null) {
+            yield break;
+        }
+
+        float time = 0f;
+
+        while (time < 1f) {
+            time += Time.deltaTime / seconds;
+
+            if (current != null) {
+                current.source.volume = (current.volume * masterVolume) * (1 - time);
+            }
+
+            if (next != null) {
+                next.source.volume = (next.volume * masterVolume) * time;
+            }
+            
+            yield return null;
+        }
+
+        if (current != null) {
+            current.source.volume = 0;
+        }
+
+        if (next != null) {
+            next.source.volume = next.volume * masterVolume;
+        }
+    }
+
+    // Stop a sound playing
     public void Stop(string name) {
         Sound sound = GetSound(name);
 
@@ -108,6 +139,7 @@ public class AudioManager : MonoBehaviour
         sound.source.Stop();
     }
 
+    // Update the master volume
     public void UpdateVolume(System.Single volume) {
         masterVolume = volume;
         PlayerPrefs.SetFloat("masterVolume", volume);
@@ -116,7 +148,8 @@ public class AudioManager : MonoBehaviour
             sound.source.volume = sound.volume * masterVolume;
         }
     }
-
+    
+    // Get a sound by name
     Sound GetSound(string name) {
         Sound sound = Array.Find(sounds, sound => sound.name == name);
 
