@@ -136,6 +136,11 @@ public class DialogueManager : MonoBehaviour
         int charCount = textInfo.characterCount;
 
         for (int i = 0; i < charCount; ++i) {
+            if (textInfo.meshInfo[0].mesh == null) {
+                // Dialogue box has been closed / destroyed, so stop here
+                yield break;
+            }
+
             TMP_CharacterInfo charInfo = textInfo.characterInfo[i];
             int index = charInfo.vertexIndex;
         
