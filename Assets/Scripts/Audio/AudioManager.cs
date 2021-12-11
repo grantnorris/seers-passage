@@ -143,6 +143,10 @@ public class AudioManager : MonoBehaviour
         PlayerPrefs.SetFloat("masterVolume", volume);
 
         foreach (Sound sound in sounds) {
+            if ((sound.theme && sound != theme) || sound.source == null) {
+                continue;
+            }
+
             sound.source.volume = sound.volume * masterVolume;
         }
     }
