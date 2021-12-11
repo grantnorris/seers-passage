@@ -84,12 +84,26 @@ public class TipManager
             break;
         }
     }
+
+    public static List<Tip> DisplayedTips() {
+        List<Tip> displayedTips = new List<Tip>();
+
+        for (int i = 0; i < tips.Count; i++) {
+            if (!tips[i].displayed) {
+                continue;
+            }
+
+            displayedTips.Add(tips[i]);
+        }
+
+        return displayedTips;
+    }
 }
 
 public class Tip {
     public string name; // This acts as an identifier so should be unique
     public Dialogue dialogue;
-    public bool displayed = false;
+    public bool displayed = true;
 
     public Tip(string newName, Dialogue newDialogue) {
         name = newName;

@@ -5,7 +5,10 @@ using TMPro;
 
 public class PauseUI : MonoBehaviour
 {
-    public TMP_Text subtitleTxt;
+    [SerializeField]
+    TMP_Text subtitleTxt;
+    [SerializeField]
+    GameObject tipsUI;
     Animator anim;
 
     void Start() {
@@ -39,5 +42,21 @@ public class PauseUI : MonoBehaviour
 
     public void Quit() {
         GameManager.instance.ReturnToLevelSelect();
+    }
+
+    public void OpenTipsUI() {
+        if (tipsUI == null) {
+            return;
+        }
+
+        tipsUI.SetActive(true);
+    }
+
+    public void HideTipsUI() {
+        if (tipsUI == null) {
+            return;
+        }
+
+        tipsUI.SetActive(false);
     }
 }
