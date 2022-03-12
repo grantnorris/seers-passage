@@ -39,7 +39,17 @@ public class TipListUI : MonoBehaviour
             }
 
             accordionItem.SetTitle(tips[i].name);
-            accordionItem.SetContent("Some text to go here.");
+            string content = "";
+
+            foreach (string sentence in tips[i].dialogue.sentences) {
+                if (content != "") {
+                    content += " ";
+                }
+
+                content += sentence;
+            }
+
+            accordionItem.SetContent(content);
             LayoutRebuilder.ForceRebuildLayoutImmediate(rect);
         }
     }
