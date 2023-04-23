@@ -199,4 +199,8 @@ public class PlayerMove : MonoBehaviour
 
         shadowAnim.SetBool("lowLight", false);
     }
+
+    public Vector3 TargetPos() {
+        return targetPos;
+    }
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerVisual : MonoBehaviour
 {
@@ -26,6 +24,11 @@ public class PlayerVisual : MonoBehaviour
         Logger.Send("Reset player moving flag and end the moving animation", "player");
 
         if (PlayerMove == null) {
+            return;
+        }
+
+        if (PlayerMove.TargetPos() != PlayerMove.transform.position) {
+            Logger.Send("Tried stopping the moving animation too early.", "player", "assertion");
             return;
         }
 
