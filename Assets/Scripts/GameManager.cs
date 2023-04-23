@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     }
 
     void Update() {
+        Debug.Log(paused);
         if (!paused) {
             time += Time.deltaTime;
         }
@@ -72,6 +73,7 @@ public class GameManager : MonoBehaviour
 
     // Invoke the levelStart unity event
     public void StartLevel() {
+        paused = false;
         EnablePlayerMove();
         levelStart.Invoke();
         TipManager.DisplayTip("Movement");
@@ -95,21 +97,21 @@ public class GameManager : MonoBehaviour
 
     // Disable player inputs
     public void DisablePlayerMove() {
+        paused = true;
+
         player.control.DisallowInput();
     }
 
     // Enable player inputs
     public void EnablePlayerMove() {
-        if (player.control == null) {
-            return;
-        }
+        paused = false;
 
         player.control.AllowInput();
     }
 
     // Start the death senquence
     public void StartDie() {
-        DisablePlayerMove();
+        paused = true;
         player.interaction.interactNoticeScript.Close();
         player.transform.Find("Visual").GetComponent<PlayerVisual>().StartDie();
     }

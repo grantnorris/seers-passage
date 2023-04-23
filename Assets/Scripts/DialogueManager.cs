@@ -207,7 +207,10 @@ public class DialogueManager : MonoBehaviour
         }
 
         dialogueParent.SetActive(false);
-        GameManager.instance.EnablePlayerMove();
+
+        if (GameManager.instance.uiController.heartbreakUI == null) {
+            GameManager.instance.EnablePlayerMove();
+        }
     }
 
     // Get dialogue type by name

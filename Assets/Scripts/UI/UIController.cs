@@ -20,7 +20,7 @@ public class UIController : MonoBehaviour
     TMP_Text floorNameUI;
     [SerializeField]
     GameObject healthUI;
-    GameObject heartbreakUI;
+    public GameObject heartbreakUI;
     [SerializeField]
     GameObject loseUI;
     [SerializeField]
@@ -176,6 +176,10 @@ public class UIController : MonoBehaviour
 
         if (GameManager.instance.player.health.Health() == 1) {
             playerStepCountTxt.GetComponent<Animator>().SetBool("Flash", true);
+        }
+
+        if (GameManager.instance.player.health.Health() > 0) {
+            GameManager.instance.EnablePlayerMove();
         }
     }
 
