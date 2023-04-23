@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     [Tooltip("Used for dev purposes if the level scene is played directly.")]
     Level fallbackLevel;
+    public bool enableLogs;
     float time = 0f;
     bool paused;
 

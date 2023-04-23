@@ -23,6 +23,8 @@ public class PlayerVisual : MonoBehaviour
 
     // Reset player moving flag and end the moving animation
     public void StopMovingAnimation() {
+        Logger.Send("Reset player moving flag and end the moving animation", "player");
+
         if (PlayerMove == null) {
             return;
         }

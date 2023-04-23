@@ -29,7 +29,7 @@ public class PlayerControl : MonoBehaviour
     }
 
     void TranslateInputs() {
-        if (allowInput) {
+        if (allowInput) {            
             if (Input.touchCount > 0) {
                 if (dragging) {
                     Drag();
@@ -45,6 +45,7 @@ public class PlayerControl : MonoBehaviour
             } else if (dragging) {
                 PlayerCamera.instance.UpdateOffset(Vector3.zero);
                 StopDragging();
+                Logger.Send("Stop Dragging", "player");
             } else if (Input.GetKeyDown("left")) {
                 player.move.Move("left");
             } else if (Input.GetKeyDown("right")) {
@@ -144,11 +145,13 @@ public class PlayerControl : MonoBehaviour
     }
 
     public void AllowInput() {
+        Logger.Send("allowed input", "player");
         allowInput = true;
         dragging = false;
     }
 
     public void DisallowInput() {
+        Logger.Send("disallowed input", "player");
         allowInput = false;
         dragging = false;
     }
