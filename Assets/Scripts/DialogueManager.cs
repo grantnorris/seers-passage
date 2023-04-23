@@ -17,6 +17,7 @@ public class DialogueManager : MonoBehaviour
     GameObject dialogueUI;
     DialogueUI dialogueScript;
     Queue<string> sentences = new Queue<string>();
+    bool typing = false;
 
     void Awake() {
         if (instance == null) {
@@ -26,7 +27,9 @@ public class DialogueManager : MonoBehaviour
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.Return)) {
-            DisplayNextSentence();
+            if (!typing) {
+                DisplayNextSentence();
+            }
         }
     }
 
@@ -128,6 +131,8 @@ public class DialogueManager : MonoBehaviour
             yield break;
         }
 
+        typing = true;
+
         txtUI.SetText(sentence);
         txtUI.color = new Color(204, 204, 204, 0);
         txtUI.ForceMeshUpdate();
@@ -158,6 +163,8 @@ public class DialogueManager : MonoBehaviour
             yield return new WaitForSeconds(.025f);
         }
         
+        typing = false;
+
         AllowContinue();
     }
 

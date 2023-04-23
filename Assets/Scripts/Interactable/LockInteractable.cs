@@ -18,7 +18,7 @@ public class LockInteractable : Interactable
         }
 
         if (!Inventory.instance.Use("Key")) {
-            DialogueManager.instance.StartDialogue(new Dialogue(new string[] {"There's a padlock here, the key must be around somewhere."}));
+            DialogueManager.instance.StartDialogue(new Dialogue(new string[] {"There's a padlock here, the key must be around somewhere."}, "player"));
             return;
         }
 
