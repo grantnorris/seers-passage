@@ -26,7 +26,7 @@ public class PlayerInteraction : MonoBehaviour
         player.move.finishMoving.AddListener(UpdateInteractionNotice);
     }
 
-    void UpdateInteractionNotice() {
+    public void UpdateInteractionNotice() {
         CheckForDestroyedColliders();
         
         if (interactionColliders.Count > 0) {

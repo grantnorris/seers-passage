@@ -57,5 +57,7 @@ public class Gate : MonoBehaviour
 
             active = false;
         }
+
+        GameManager.instance.player.interaction.UpdateInteractionNotice();
     }
 }
