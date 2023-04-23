@@ -28,20 +28,21 @@ public class TipListUI : MonoBehaviour
             return;
         }
         
-        List<Tip> tips = TipManager.DisplayedTips();
+        List<string> tips = SaveSystem.DisplayedTips();
 
         for (int i = 0; i < tips.Count; i++) {
             GameObject newItem = Instantiate(itemPrefab, transform);
             AccordionItem accordionItem = newItem.GetComponent<AccordionItem>();
+            Tip tip = TipManager.GetTip(tips[i]);
 
-            if (accordionItem == null) {
+            if (accordionItem == null || tip == null) {
                 continue;
             }
 
-            accordionItem.SetTitle(tips[i].name);
+            accordionItem.SetTitle(tip.name);
             string content = "";
 
-            foreach (string sentence in tips[i].dialogue.sentences) {
+            foreach (string sentence in tip.dialogue.sentences) {
                 if (content != "") {
                     content += " ";
                 }

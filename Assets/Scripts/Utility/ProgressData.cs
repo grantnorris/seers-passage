@@ -5,7 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class ProgressData
 {
-    public List<LevelScore> scores = new List<LevelScore>();
+    List<LevelScore> scores = new List<LevelScore>();
+    List<string> displayedTips = new List<string>();
 
     public void UpdateScore(LevelScore score) {
         LevelScore curScore = null;
@@ -40,5 +41,33 @@ public class ProgressData
         }
 
         return null;
+    }
+
+    public void AddTipToDisplayedList(string name) {
+        if (displayedTips.Contains(name)) {
+            return;
+        }
+
+        displayedTips.Add(name);
+    }
+
+    public List<string> GetDisplayedTips() {
+        return displayedTips;
+    }
+
+    public void Log() {
+        Logger.Send("---- Saved data ----", "save");
+
+        Logger.Send("---- Scores ----", "save");
+
+        for (int i = 0; i < scores.Count; i++) {
+            Logger.Send(scores[i].levelId + " = " + scores[i].Score(), "save");
+        }
+
+        Logger.Send("---- Displayed tips ----", "save");
+
+        for (int i = 0; i < displayedTips.Count; i++) {
+            Logger.Send(displayedTips[i], "save");
+        }
     }
 }

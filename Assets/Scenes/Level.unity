@@ -5555,6 +5555,7 @@ MonoBehaviour:
     type: 3}
   floorNameUI: {fileID: 723852040}
   healthUI: {fileID: 1581433530}
+  heartbreakUI: {fileID: 0}
   loseUI: {fileID: 1559640855}
   perfectStepColor: {r: 0.6862745, g: 0.9372549, b: 0.43529412, a: 1}
   goodStepColor: {r: 1, g: 0.5882353, b: 0.34509802, a: 1}
@@ -8336,7 +8337,8 @@ MonoBehaviour:
       m_Calls: []
   uiController: {fileID: 215396602}
   fallbackLevel: {fileID: 11400000, guid: df47884f7c5544da4b0eb2e9e7a6fdf9, type: 2}
-  enableLogs: 1
+  enablePlayerLogs: 0
+  enableSaveLogs: 1
 --- !u!4 &777035134
 Transform:
   m_ObjectHideFlags: 0

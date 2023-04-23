@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TipManager
 {
+    static List<string> displayedTips = new List<string>();
     static List<Tip> tips = new List<Tip>() {
         new Tip(
             "Movement",
@@ -18,7 +19,8 @@ public class TipManager
             "Interactables",
             new Dialogue(
                 new string[] {
-                    "To interact with an object, drag again in it's direction."
+                    "The speech bubble appears when an interactable object is nearby",
+                    "drag in its direction to interact with it."
                 },
                 ""
             )
@@ -27,7 +29,7 @@ public class TipManager
             "Light Sources",
             new Dialogue(
                 new string[] {
-                    "Tip: You'll be able to see much more of your surroundings when holding a lightsource,",
+                    "Tip: You'll be able to see much more of your surroundings when holding a light source,",
                     "they're worth searching for!",
                 },
                 ""
@@ -37,8 +39,8 @@ public class TipManager
             "Keys",
             new Dialogue(
                 new string[] {
-                    "Tip: Keys are single-use consumable items which can be used to",
-                    "reach blocked off areas!",
+                    "Tip: Keys are single-use consumable items which can be used to reach",
+                    "blocked off areas!",
                 },
                 ""
             )
@@ -67,6 +69,12 @@ public class TipManager
     };
 
     public static void DisplayTip(string tipName) {
+        List<string> displayedTips = SaveSystem.DisplayedTips();
+
+        if (displayedTips.Contains(tipName)) {
+            return;
+        }
+
         for (int i = 0; i < tips.Count; i++) {
             Tip tip = tips[i];
 
@@ -74,36 +82,28 @@ public class TipManager
                 continue;
             }
 
-            // Don't display the same tip agains
-            if (tip.displayed) {
-                break;
-            }
-
             DialogueManager.instance.StartDialogue(tip.dialogue);
-            tip.displayed = true;
+            SaveSystem.AddTipToDisplayedList(tipName);
             break;
         }
     }
 
-    public static List<Tip> DisplayedTips() {
-        List<Tip> displayedTips = new List<Tip>();
-
-        for (int i = 0; i < tips.Count; i++) {
-            if (!tips[i].displayed) {
+    public static Tip GetTip(string name) {
+        foreach (Tip tip in tips) {
+            if (tip.name != name) {
                 continue;
             }
 
-            displayedTips.Add(tips[i]);
+            return tip;
         }
 
-        return displayedTips;
+        return null;
     }
 }
 
 public class Tip {
     public string name; // This acts as an identifier so should be unique
     public Dialogue dialogue;
-    public bool displayed = true;
 
     public Tip(string newName, Dialogue newDialogue) {
         name = newName;

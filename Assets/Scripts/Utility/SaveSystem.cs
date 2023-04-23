@@ -8,12 +8,11 @@ public static class SaveSystem
 {
     static string path = Path.Combine(Application.persistentDataPath, "data.sp");
     static ProgressData progressData = LoadProgress();
-    static Chapter[] chapters = GameLevels.chapters;
+    // static Chapter[] chapters = GameLevels.chapters;
 
     public static void UpdateLevelScore(LevelScore score) {
-        Debug.Log("update level score");
+        Logger.Send("update level score", "save");
         progressData.UpdateScore(score);
-
         SaveProgress(progressData);
     }
 
@@ -23,6 +22,17 @@ public static class SaveSystem
         }
 
         return progressData.GetScore(level);
+    }
+
+    public static void AddTipToDisplayedList(string name) {
+        Logger.Send("Add tip to displayed list - " + name, "save");
+
+        progressData.AddTipToDisplayedList(name);
+        SaveProgress(progressData);
+    }
+
+    public static List<string> DisplayedTips() {
+        return progressData.GetDisplayedTips();
     }
 
     public static ProgressData ProgressData() {
@@ -36,14 +46,17 @@ public static class SaveSystem
         formatter.Serialize(stream, data);
         stream.Close();
         progressData = data;
+
+        Logger.Send("Saved data", "save");
+        data.Log();
     }
 
     // Load progress
     static ProgressData LoadProgress() {
-        Debug.Log("load progress");
+        Logger.Send("Load progress", "save");
 
         if (!File.Exists(path)) {
-            Debug.Log("no data found to load, create new data");
+            Logger.Send("No data found to load, creating new data", "save");
             return new ProgressData();
         }
 
@@ -52,18 +65,20 @@ public static class SaveSystem
             FileStream stream = new FileStream(path, FileMode.Open);
             ProgressData data = formatter.Deserialize(stream) as ProgressData;
             stream.Close();
-            Debug.Log("progress loaded");
+            Logger.Send("Progress loaded", "save");
+            data.Log();
+
             return data;
         } catch (System.Exception) {
-            Debug.LogWarning("Could NOT load data correctly. Creating new data instead.");
+            Debug.LogWarning("Could not load data correctly. Creating new data instead.");
             return new ProgressData();
             throw;
         }
     }
 
     public static void DeleteProgress() {
-        Debug.Log("delete saved data");
+        Logger.Send("Deleting saved data", "save");
         File.Delete(path);
-        progressData = new ProgressData();
+        // progressData = new ProgressData();
     }
 }
