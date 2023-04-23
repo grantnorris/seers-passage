@@ -8336,6 +8336,7 @@ MonoBehaviour:
       m_Calls: []
   uiController: {fileID: 215396602}
   fallbackLevel: {fileID: 11400000, guid: df47884f7c5544da4b0eb2e9e7a6fdf9, type: 2}
+  enableLogs: 1
 --- !u!4 &777035134
 Transform:
   m_ObjectHideFlags: 0

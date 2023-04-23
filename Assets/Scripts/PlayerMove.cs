@@ -33,7 +33,7 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {  
-        if (moving) {
+        if (moving && !GameManager.instance.Paused()) {
             Logger.Send("moving", "player");
 
             if (transform.position != targetPos) {

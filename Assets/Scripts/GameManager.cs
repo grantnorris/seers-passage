@@ -149,15 +149,17 @@ public class GameManager : MonoBehaviour
 
     // Pause game and display UI
     public void PauseGame() {
-        DisablePlayerMove();
         paused = true;
         uiController.DisplayPauseUI();
     }
 
     // Unpause game and hide UI
     public void UnpauseGame() {
-        EnablePlayerMove();
         paused = false;
         uiController.HidePauseUI();
+    }
+
+    public bool Paused() {
+        return paused;
     }
 }

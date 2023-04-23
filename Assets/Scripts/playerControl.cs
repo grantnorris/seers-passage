@@ -29,7 +29,7 @@ public class PlayerControl : MonoBehaviour
     }
 
     void TranslateInputs() {
-        if (allowInput) {            
+        if (allowInput && !GameManager.instance.Paused()) {            
             if (Input.touchCount > 0) {
                 if (dragging) {
                     Drag();
