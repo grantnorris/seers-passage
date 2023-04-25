@@ -33,8 +33,6 @@ public class ExitVisual : MonoBehaviour
                     break;
             }
 
-        Debug.Log("set direction of " + gameObject.name + " to " + direction);
-
         anim.SetInteger("directionFacing", directionInt);
     }
 }
