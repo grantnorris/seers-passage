@@ -106,14 +106,20 @@ public class PlayerMove : MonoBehaviour
 
             int directionInt = 0;
 
-            if (direction == "up") {
-                directionInt = 1;
-            } else if (direction == "right") {
-                directionInt = 2;
-            } else if (direction == "down") {
-                directionInt = 3;
-            } else if (direction == "left") {
-                directionInt = 4;
+            switch (direction)
+            {
+                case "up":
+                    directionInt = 1;
+                    break;
+                case "right":
+                    directionInt = 2;
+                    break;
+                case "down":
+                    directionInt = 3;
+                    break;
+                case "left":
+                    directionInt = 4;
+                    break;
             }
 
             player.control.DisallowInput();

@@ -6,7 +6,7 @@ public class PlayerSpawn : MonoBehaviour
 {
     public static PlayerSpawn instance;
     public GameObject player;
-    [Tooltip("up,down,left or right.\nDefaults to down.")]
+    [Tooltip("up, down, left or right.\nDefaults to down.")]
     public string initialDirection;
 
     void Start() {
