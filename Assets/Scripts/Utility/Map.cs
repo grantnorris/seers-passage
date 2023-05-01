@@ -192,7 +192,7 @@ public class Map : MonoBehaviour
         TileLocation curTile = GetTile(x, y);
 
         // Stop if tile at location exists and is the same type
-        if (curTile != null && PrefabUtility.GetCorrespondingObjectFromSource(curTile.obj) == colorMapping.prefab) {
+        if (curTile != null && curTile.type == colorMapping.name) {
             return;
         }
 
