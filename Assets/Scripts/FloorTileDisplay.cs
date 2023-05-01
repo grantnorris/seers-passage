@@ -34,10 +34,10 @@ public class FloorTileDisplay : TileDisplay
 
     public override void Initialise() {
         base.Initialise();
-        tileUpDisplay = (tileUp != null ? tileUp.GetComponent<FloorTileDisplay>() : null);
-        tileRightDisplay = (tileRight != null ? tileRight.GetComponent<FloorTileDisplay>() : null);
-        tileDownDisplay = (tileDown != null ? tileDown.GetComponent<FloorTileDisplay>() : null);
-        tileLeftDisplay = (tileLeft != null ? tileLeft.GetComponent<FloorTileDisplay>() : null);
+        tileUpDisplay = (tileUp != null ? tileUp.obj.GetComponent<FloorTileDisplay>() : null);
+        tileRightDisplay = (tileRight != null ? tileRight.obj.GetComponent<FloorTileDisplay>() : null);
+        tileDownDisplay = (tileDown != null ? tileDown.obj.GetComponent<FloorTileDisplay>() : null);
+        tileLeftDisplay = (tileLeft != null ? tileLeft.obj.GetComponent<FloorTileDisplay>() : null);
         hasDetails = false;
         hasPuddle = false;
         AssignDetails();
@@ -49,7 +49,7 @@ public class FloorTileDisplay : TileDisplay
         // Chance to create cobwebs
         if (Random.Range(0, 100) <= 25)  {
             for (int i = 0; i < 4; i++) {
-                GameObject adjacentTile = null;
+                TileLocation adjacentTile = null;
                 List<Sprite> sprites = new List<Sprite>();
                 
                 switch (i)
@@ -79,7 +79,7 @@ public class FloorTileDisplay : TileDisplay
                     break;
                 }
 
-                if (sprites.Count == 0 || adjacentTile == null || adjacentTile.tag != "Wall") {
+                if (sprites.Count == 0 || adjacentTile == null || adjacentTile.obj.tag != "Wall") {
                     continue;
                 }
 

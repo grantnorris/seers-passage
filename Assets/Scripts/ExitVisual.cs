@@ -6,7 +6,7 @@ public class ExitVisual : MonoBehaviour
 {
     [SerializeField]
     [Tooltip("up, down, left or right.\nDefaults to up.")]
-    string direction = "up";
+    public string direction = "up";
 
     public void Start() {
         Animator anim = GetComponent<Animator>();

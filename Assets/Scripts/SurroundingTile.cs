@@ -33,26 +33,26 @@ public class SurroundingTile : MonoBehaviour
             Map map = Map.instance;
             Vector2 position  = transform.position;
 
-            GameObject tileUp    = map.GetTile(position.x, position.y + 1);
-            GameObject tileDown  = map.GetTile(position.x, position.y - 1);
-            GameObject tileLeft  = map.GetTile(position.x - 1, position.y);
-            GameObject tileRight = map.GetTile(position.x + 1, position.y);
+            TileLocation tileUp = map.GetTile(position.x, position.y + 1);
+            TileLocation tileDown = map.GetTile(position.x, position.y - 1);
+            TileLocation tileLeft = map.GetTile(position.x - 1, position.y);
+            TileLocation tileRight = map.GetTile(position.x + 1, position.y);
 
             List<Sprite> sprites = new List<Sprite>();
 
-            if (tileUp != null && tileUp.tag == "Wall" && topEdgeSprites.Length > 0) {
+            if (tileUp != null && tileUp.obj.tag == "Wall" && topEdgeSprites.Length > 0) {
                 sprites.Add(topEdgeSprites[Random.Range(0, topEdgeSprites.Length)]);
             }
 
-            if (tileDown != null && tileDown.tag == "Wall" && bottomEdgeSprites.Length > 0) {
+            if (tileDown != null && tileDown.obj.tag == "Wall" && bottomEdgeSprites.Length > 0) {
                 sprites.Add(bottomEdgeSprites[Random.Range(0, bottomEdgeSprites.Length)]);
             }
 
-            if (tileLeft != null && tileLeft.tag == "Wall" && leftEdgeSprites.Length > 0) {
+            if (tileLeft != null && tileLeft.obj.tag == "Wall" && leftEdgeSprites.Length > 0) {
                 sprites.Add(leftEdgeSprites[Random.Range(0, leftEdgeSprites.Length)]);
             }
             
-            if (tileRight != null && tileRight.tag == "Wall" && rightEdgeSprites.Length > 0) {
+            if (tileRight != null && tileRight.obj.tag == "Wall" && rightEdgeSprites.Length > 0) {
                 sprites.Add(rightEdgeSprites[Random.Range(0, rightEdgeSprites.Length)]);
             }
 

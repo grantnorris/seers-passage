@@ -14,10 +14,10 @@ public class TileDisplay : MonoBehaviour
     public GameObject lightingLeft;
     public GameObject lightingRight;
 
-    protected GameObject tileUp;
-    protected GameObject tileDown;
-    protected GameObject tileLeft;
-    protected GameObject tileRight;
+    protected TileLocation tileUp;
+    protected TileLocation tileDown;
+    protected TileLocation tileLeft;
+    protected TileLocation tileRight;
 
     SpriteRenderer rend;
     bool isDownFacing = false;
@@ -59,23 +59,23 @@ public class TileDisplay : MonoBehaviour
         }
 
         // Check to see if a wall is above
-        if (tileUp != null && tileUp.tag == "Floor") {
+        if (tileUp != null && tileUp.obj.tag == "Floor") {
             lightingUp.SetActive(true);
         }
 
         // Check to see if a wall is below
-        if (tileDown != null && tileDown.tag == "Floor") {
+        if (tileDown != null && tileDown.obj.tag == "Floor") {
             lightingDown.SetActive(true);
             isDownFacing = true;
         }
 
         // Check to see if a wall is left
-        if (tileLeft != null && tileLeft.tag == "Floor") {
+        if (tileLeft != null && tileLeft.obj.tag == "Floor") {
             lightingLeft.SetActive(true);
         }
 
         // Check to see if a wall is right
-        if (tileRight != null && tileRight.tag == "Floor") {
+        if (tileRight != null && tileRight.obj.tag == "Floor") {
             lightingRight.SetActive(true);
         }
     }
