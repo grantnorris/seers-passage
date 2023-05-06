@@ -43,6 +43,16 @@ public class ProgressData
         return null;
     }
 
+    public int TotalScore() {
+        int score = 0;
+
+        for (int i = 0; i < scores.Count; i++) {
+            score += scores[i].hearts;
+        }
+
+        return score;
+    }
+
     public void AddTipToDisplayedList(string name) {
         if (displayedTips.Contains(name)) {
             return;

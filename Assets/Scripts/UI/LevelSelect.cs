@@ -45,15 +45,18 @@ public class LevelSelect : MonoBehaviour
         ProgressData progressData = SaveSystem.ProgressData();
         GameObject itemToFocus = null;
         Level levelJustPlayed = SceneSwitcher.instance != null ? SceneSwitcher.instance.prevLevel : null;
+        int totalScore = progressData.TotalScore();
         
         for (int c = 0; c < chapters.Length; c++) {
-            if (chapters[c].levels.Length > 0) {
+            Chapter chapter = chapters[c];
+
+            if (chapter.levels.Length > 0) {
                 GameObject subtitle = Instantiate(subtitlePrefab, content.transform);
-                subtitle.GetComponentInChildren<TMP_Text>().SetText(chapters[c].name);
+                subtitle.GetComponent<LevelSelectSubtitle>().Setup(chapter, totalScore);
             }
 
-            for (int l = 0; l < chapters[c].levels.Length; l++) {
-                Level level = chapters[c].levels[l];
+            for (int l = 0; l < chapter.levels.Length; l++) {
+                Level level = chapter.levels[l];
 
                 if (level == null) {
                     continue;
@@ -61,7 +64,7 @@ public class LevelSelect : MonoBehaviour
 
                 LevelScore score = progressData.GetScore(level);
                 GameObject item = Instantiate(itemPrefab, content.transform);
-                item.GetComponent<LevelSelectItem>().Setup(level);
+                item.GetComponent<LevelSelectItem>().Setup(level, chapter);
                 Level prevLevel = GameLevels.PreviousLevel(level);
                 bool prevLevelCompleted = SaveSystem.LevelScore(prevLevel) != null ? true : false;
 

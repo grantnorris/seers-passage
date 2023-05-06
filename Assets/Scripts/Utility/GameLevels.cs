@@ -12,15 +12,25 @@ public static class GameLevels
                 Resources.Load<Level>("Levels/Floor 2"),
                 Resources.Load<Level>("Levels/Floor 3"),
                 Resources.Load<Level>("Levels/Floor 4"),
-            }
+            },
+            0
         ),
         new Chapter(
             "Chapter Two",
             new Level[] {
                 Resources.Load<Level>("Levels/Floor 5"),
                 Resources.Load<Level>("Levels/Floor 6"),
-            }
-        )
+            },
+            50
+        ),
+        new Chapter(
+            "Chapter Three",
+            new Level[] {
+                Resources.Load<Level>("Levels/Floor 5"),
+                Resources.Load<Level>("Levels/Floor 6"),
+            },
+            100
+        ),
     };
 
     public static Level PreviousLevel(Level level) {
@@ -79,9 +89,15 @@ public static class GameLevels
 public class Chapter {
     public string name;
     public Level[] levels;
+    public int scoreToUnlock = 0;
 
-    public Chapter(string newName, Level[] newLevels) {
+    public Chapter(string newName, Level[] newLevels, int newScoreToUnlock) {
         name = newName;
         levels = newLevels;
+        scoreToUnlock = newScoreToUnlock;
+    }
+
+    public bool Unlocked() {
+        return SaveSystem.TotalScore() >= scoreToUnlock;
     }
 }

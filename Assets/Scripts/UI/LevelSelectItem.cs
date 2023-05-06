@@ -27,17 +27,26 @@ public class LevelSelectItem : MonoBehaviour
     bool levelComplete = false;
     LevelScore score;
 
-    // Start is called before the first frame update
-    public void Setup(Level lvl)
+    public void Setup(Level lvl, Chapter chapter)
     {
         if (lvl == null) {
             return;
         }
 
         level = lvl;
+        bool chapterUnlocked = chapter.Unlocked();
+
+        SetLevelName();
+        SetSubtitleText();
+
+        if (!chapterUnlocked) {
+            levelStats.gameObject.SetActive(false);
+            newFloorBtn.gameObject.SetActive(false);
+            return;
+        }
+        
         score = SaveSystem.LevelScore(level);
         levelComplete = SaveSystem.LevelScore(level) != null ? true : false;
-        
         Level prevLevel = GameLevels.PreviousLevel(level);
         bool prevLevelComplete = prevLevel != null && SaveSystem.LevelScore(prevLevel) != null ? true : false;
 
@@ -45,8 +54,6 @@ public class LevelSelectItem : MonoBehaviour
         levelStats.gameObject.SetActive(levelComplete);
         newFloorBtn.gameObject.SetActive(!levelComplete && (prevLevel == null || prevLevelComplete) ? true : false);
 
-        SetLevelName();
-        SetSubtitleText();
         SetButtonOnClick();
 
         if (score != null) {

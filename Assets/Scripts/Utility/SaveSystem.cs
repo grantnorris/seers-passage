@@ -24,6 +24,10 @@ public static class SaveSystem
         return progressData.GetScore(level);
     }
 
+    public static int TotalScore() {
+        return progressData.TotalScore();
+    }
+
     public static void AddTipToDisplayedList(string name) {
         Logger.Send("Add tip to displayed list - " + name, "save");
 
