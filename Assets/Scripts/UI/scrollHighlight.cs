@@ -28,7 +28,7 @@ public class ScrollHighlight : MonoBehaviour
     }
 
     void LateUpdate() {
-        if (Mathf.Abs(scrolPos.y - prevScrolPos.y) < .00025f && watchMove && !UserScrolling()) {
+        if (Mathf.Abs(scrolPos.y - prevScrolPos.y) < .0025f && watchMove && !UserScrolling()) {
             watchMove = false;
             scrollRect.inertia = false;
             StartCoroutine(SnapToItem());
@@ -94,7 +94,7 @@ public class ScrollHighlight : MonoBehaviour
     void CreateSubtitle(Transform item) {
         GameObject obj = item.gameObject;
         RectTransform rect = obj.GetComponent<RectTransform>();
-        float pos = (rect.anchoredPosition.y * -1) / contentHeight;
+        float pos = (rect.anchoredPosition.y * -1) / contentHeight - .01f;
         float height = rect.sizeDelta.y / contentHeight;
         ScrollHighlightSubtitle subtitle = item.GetComponent<ScrollHighlightSubtitle>();
 
