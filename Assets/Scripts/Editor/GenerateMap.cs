@@ -11,13 +11,13 @@ public class GenerateMap : Editor
     public override void OnInspectorGUI() {
         base.OnInspectorGUI();
 
-        map = (Map)target;
-
         if (GUILayout.Button("Build Map")) {
+            map = (Map)target;
             Build();
         }
 
         if (GUILayout.Button("Remove Map")) {
+            map = (Map)target;
             Remove();
         }
     }
@@ -117,7 +117,6 @@ public class GenerateMap : Editor
             if (map.tileParent == null) {
                 map.tileParent = new GameObject("Tiles").transform;
                 map.tileParent.SetParent(map.transform);
-                map.tileParent = map.tileParent;
             }
 
             // Loop through map pixels and place map.tiles

@@ -57,58 +57,60 @@ public class FloorTileDisplay : TileDisplay
                     // Up
                     case 0:
                     adjacentTile = tileUp;
-                    sprites = topDetailSprites;
                     break;
 
                     // Right
                     case 1:
                     adjacentTile = tileRight;
-                    sprites = rightDetailSprites;
                     break;
 
                     // Down
                     case 2:
                     adjacentTile = tileDown;
-                    sprites = downDetailSprites;
                     break;
 
                     // Left
                     case 3:
                     adjacentTile = tileLeft;
-                    sprites = leftDetailSprites;
                     break;
                 }
 
-                if (sprites.Count == 0 || adjacentTile == null || adjacentTile.obj.tag != "Wall") {
+                if (adjacentTile == null || adjacentTile.obj.tag != "Wall") {
                     continue;
                 }
 
                 hasDetails = true;
+                Debug.Log(gameObject.name + " has details");
             
                 switch (i)
                 {
                     // Up
                     case 0:
                     hasTopDetails = true;
+                    sprites = topDetailSprites;
                     break;
 
                     // Right
                     case 1:
                     hasRightDetails = true;
+                    sprites = rightDetailSprites;
                     break;
 
                     // Down
                     case 2:
                     hasBottomDetails = true;
+                    sprites = downDetailSprites;
                     break;
 
                     // Left
                     case 3:
                     hasLeftDetails = true;
+                    sprites = leftDetailSprites;
                     break;
                 }            
             }
         } else {
+            Debug.Log(gameObject.name + " give puddles");
             // Chance to create puddle
             int puddleChance = 50;
 
@@ -141,12 +143,14 @@ public class FloorTileDisplay : TileDisplay
 
                 GameObject detail = new GameObject();
                 Transform detailTransform = detail.transform;
-                detail.name = "Floor Detail";
+                detail.name = "Floor Detail " + gameObject.name;
                 detailTransform.SetParent(transform);
                 detailTransform.localPosition = Vector3.zero;
                 detail.AddComponent<SpriteRenderer>().sprite = sprite;
             }
-        } else {
+        } else if (hasPuddle) {
+            Debug.Log(gameObject.name + " has puddles");
+
             Sprite sprite = PuddleSprite();
 
             if (sprite == null) {
@@ -155,7 +159,7 @@ public class FloorTileDisplay : TileDisplay
 
             GameObject puddle = new GameObject();
             Transform detailTransform = puddle.transform;
-            puddle.name = "Puddle";
+            puddle.name = "Puddle " + gameObject.name;
             detailTransform.SetParent(transform);
             detailTransform.localPosition = Vector3.zero;
             SpriteRenderer rend = puddle.AddComponent<SpriteRenderer>();
