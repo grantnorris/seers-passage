@@ -22,11 +22,7 @@ public class AudioManager : MonoBehaviour
 
         instance = this;
         DontDestroyOnLoad(this.gameObject);
-        masterVolume = PlayerPrefs.GetFloat("masterVolume");
-
-        if (masterVolume == default) {
-            PlayerPrefs.SetFloat("masterVolume", masterVolume);
-        }
+        masterVolume = PlayerPrefs.GetFloat("masterVolume", .5f);
 
         CreateSources();
         PlayTheme("Theme");

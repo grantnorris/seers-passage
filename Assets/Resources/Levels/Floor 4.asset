@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b72fafb507f47558026b31d0e7ed71, type: 3}
   m_Name: Floor 4
   m_EditorClassIdentifier: 
-  prefab: {fileID: 2593904522363898433, guid: 8fdb582ff17cc4f5a83deaa5b3c227d8, type: 3}
+  prefab: {fileID: 130667570368573275, guid: fc2cd0bb81ee54311a4a4f41b13c26ad, type: 3}
   floorNumber: 4
   stepThreshold: 9
   id: 4

@@ -163,6 +163,8 @@ MonoBehaviour:
   mapSprite: {fileID: 0}
   mapTex: {fileID: 0}
   tileParent: {fileID: 0}
+  tiles: []
+  save: 0
 --- !u!1 &690041686923660981
 GameObject:
   m_ObjectHideFlags: 0
@@ -15952,6 +15954,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -2035945475809686306, guid: 9c22914d9e092415d8de807613f63010,
         type: 3}
+    - target: {fileID: 7704189222474437859, guid: 08c5d9c2d9f3f4efe9e0df8362fefd1e,
+        type: 3}
+      propertyPath: direction
+      value: right
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08c5d9c2d9f3f4efe9e0df8362fefd1e, type: 3}
 --- !u!4 &5085067435143076259 stripped

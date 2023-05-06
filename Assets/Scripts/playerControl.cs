@@ -91,6 +91,7 @@ public class PlayerControl : MonoBehaviour
                 direction = "right";
             }
 
+            player.move.FaceDirection(direction);
             dragUI.Display(xDif / dragThreshold, dragStart, direction);
             float camOffset = Mathf.Clamp(xDif / dragThreshold * (direction == "left" ? -1 : 1), -.25f, .25f);
             PlayerCamera.instance.UpdateOffset(new Vector3(camOffset, 0, 0));
@@ -108,6 +109,7 @@ public class PlayerControl : MonoBehaviour
                 direction = "up";
             }
 
+            player.move.FaceDirection(direction);
             dragUI.Display(yDif / dragThreshold, dragStart, direction);
             float camOffset = Mathf.Clamp(yDif / dragThreshold * (direction == "down" ? -1 : 1), -.25f, .25f);
             PlayerCamera.instance.UpdateOffset(new Vector3(0, camOffset, 0));
