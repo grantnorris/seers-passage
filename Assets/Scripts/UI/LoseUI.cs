@@ -17,6 +17,6 @@ public class LoseUI : MonoBehaviour
     }
 
     public void PlayFlameSound() {
-        // AudioManager.instance.Play("Flame Ambience");
+        AudioManager.instance.Play("Flame Ambience");
     }
 }

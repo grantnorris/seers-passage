@@ -45,22 +45,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: Theme
-    volume: 0.1
-    clip: {fileID: 8300000, guid: 8bce10ddf6577496f929b425d67535e4, type: 3}
+    volume: 0.25
+    clip: {fileID: 8300000, guid: b7ed85e6a31f3470fa9eba21cab40dd0, type: 3}
     source: {fileID: 0}
     loop: 1
     oneShot: 0
     theme: 1
   - name: Theme 2
-    volume: 0.1
-    clip: {fileID: 8300000, guid: 3880dd11ae5244d79927a6a438463cd1, type: 3}
+    volume: 0.25
+    clip: {fileID: 8300000, guid: df1019db4a2ad44f9aba3f449abe0fab, type: 3}
     source: {fileID: 0}
     loop: 1
     oneShot: 0
     theme: 1
   - name: Theme 3
-    volume: 0.1
-    clip: {fileID: 8300000, guid: 3f5be082d577c49e8a8f95b72f850bd1, type: 3}
+    volume: 0.25
+    clip: {fileID: 8300000, guid: df1019db4a2ad44f9aba3f449abe0fab, type: 3}
     source: {fileID: 0}
     loop: 1
     oneShot: 0
