@@ -30,15 +30,13 @@ public class LevelSelect : MonoBehaviour
     }
     
     void Init() {
-        Debug.Log("Init level select");
 
         if (AudioManager.instance != null) {
             AudioManager.instance.PlayTheme("Theme 2");
-            Debug.Log("Played theme");
         }
 
         if (chapters.Length < 1 || content == null || itemPrefab == null) {
-            Debug.Log("Cancel because something's not right");
+            Debug.LogWarning("Cancel because something's not right");
             return;
         }
 

@@ -37,15 +37,12 @@ public class LevelCompleteUI : MonoBehaviour
         }
 
         int counter = 0;
-        Debug.Log("Player health = " + playerHealth);
 
         foreach (Image img in hearts.GetComponentsInChildren<Image>()) {
             counter++;
-            Debug.Log("Check heart " + counter);
 
             if (playerHealth < counter) {
                 img.GetComponent<SpriteRenderer>().sprite = heartOutline;
-                Debug.Log(counter + " heart should be outline");
             }
 
             img.sprite = heartSolid;

@@ -27,7 +27,7 @@ public class CameraManager : MonoBehaviour
         GameObject player = GameManager.instance.player.gameObject;
 
         if (player == null) {
-            Debug.LogWarning("No player set in gamemanager");
+            Debug.LogWarning("No player set in game manager");
             return;
         }
 
