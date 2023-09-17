@@ -29,12 +29,11 @@ public class PlayerMove : MonoBehaviour
             shadowAnim.SetBool("lowLight", true);
         }
     }
-
     
     void Update()
     {  
         if (moving && !GameManager.instance.Paused()) {
-            Logger.Send("moving", "player");
+            Logger.Send("Moving", "player");
 
             if (transform.position != targetPos) {
                 transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * moveSpeed);
@@ -66,7 +65,7 @@ public class PlayerMove : MonoBehaviour
         float xAdjustment = 0;
         float yAdjustment = 0;
 
-        Logger.Send("move " + direction, "player");
+        Logger.Send("Move " + direction, "player");
         
         if (direction == "left") {
             raycastDirection = Vector2.left;
@@ -84,7 +83,7 @@ public class PlayerMove : MonoBehaviour
 
         // Nowhere to go
         if (raycastDirection == Vector2.zero) {
-            Logger.Send("nowhere to go", "player");
+            Logger.Send("Nowhere to go", "player");
             return;
         }
 
@@ -98,11 +97,11 @@ public class PlayerMove : MonoBehaviour
 
         // If the hit is not an adjacent tile, then move towards it
         if (hitDistance > 1f) {
-            Logger.Send("hit a distant tile, so move towards it", "player");
+            Logger.Send("Hit a distant tile, so move towards it", "player");
 
             targetPos = new Vector2(hitLocation.x + xAdjustment, hitLocation.y + yAdjustment);
 
-            Logger.Send("updated target position to " + targetPos, "player");
+            Logger.Send("Updated target position to " + targetPos, "player");
 
             int directionInt = 0;
 
@@ -126,7 +125,7 @@ public class PlayerMove : MonoBehaviour
             player.interaction.CloseInteractNotice();
             
             foreach (Animator anim in anims) {
-                Logger.Send("set player animation triggers", "player");
+                Logger.Send("Set player animation triggers", "player");
                 anim.SetInteger("directionFacing", directionInt);
                 anim.SetTrigger("startMoving");
                 player.visual.MoveAfterAnimation();
@@ -136,11 +135,11 @@ public class PlayerMove : MonoBehaviour
             Logger.Send("updated animations", "player");
 
             if (shadowAnim != null && !lowLight) {
-                Logger.Send("updated shadow animations", "player");
+                Logger.Send("Updated shadow animations", "player");
                 shadowAnim.SetBool("lowLight", true);
             }
         } else {
-            Logger.Send("hit adjacent tile, so just face that way", "player");
+            Logger.Send("Hit adjacent tile, so just face that way", "player");
             FaceDirection(direction);
 
             // If the hit tile is interactable

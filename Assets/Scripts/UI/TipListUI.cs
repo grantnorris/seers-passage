@@ -9,7 +9,6 @@ public class TipListUI : MonoBehaviour
     GameObject itemPrefab;
     RectTransform rect;
 
-    
     void Start()
     {
         rect = GetComponent<RectTransform>();

@@ -8,10 +8,9 @@ public static class SaveSystem
 {
     static string path = Path.Combine(Application.persistentDataPath, "data.sp");
     static ProgressData progressData = LoadProgress();
-    // static Chapter[] chapters = GameLevels.chapters;
 
     public static void UpdateLevelScore(LevelScore score) {
-        Logger.Send("update level score", "save");
+        Logger.Send("Update level score", "save");
         progressData.UpdateScore(score);
         SaveProgress(progressData);
     }

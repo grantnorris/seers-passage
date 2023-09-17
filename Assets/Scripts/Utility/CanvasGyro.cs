@@ -12,14 +12,12 @@ public class CanvasGyro : MonoBehaviour
     float velocity;
     float curOffset = 0f;
 
-    
     void Start()
     {
         gyro = Input.gyro;
         gyro.enabled = true;
         rect = GetComponent<RectTransform>();
     }
-
     
     void Update()
     {

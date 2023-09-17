@@ -6,5 +6,6 @@ public class Interactable : MonoBehaviour
 {
     public virtual void Interact() {
         Debug.Log("Interact");
+        // Inherited interactable class functionality happens here
     }
 }

@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     Level fallbackLevel;
     public bool enablePlayerLogs;
     public bool enableSaveLogs;
+    public bool enableGeneralLogs;
     float time = 0f;
     bool paused;
 

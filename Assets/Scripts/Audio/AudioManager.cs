@@ -12,7 +12,6 @@ public class AudioManager : MonoBehaviour
     AudioSource oneShotSource;
     Sound theme;
 
-    
     void Awake()
     {
         if (instance != null && instance != this) {

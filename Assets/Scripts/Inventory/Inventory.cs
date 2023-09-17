@@ -9,7 +9,6 @@ public class Inventory : MonoBehaviour
 
     List<InventoryItem> items = new List<InventoryItem>();
     
-    
     void Awake()
     {
         if (instance == null) {

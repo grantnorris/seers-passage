@@ -6,7 +6,6 @@ public class PostProcessing : MonoBehaviour
 {
     public static PostProcessing instance;
 
-    
     void Awake()
     {
         if (instance != null && instance != this) {

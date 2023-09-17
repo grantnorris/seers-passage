@@ -21,7 +21,6 @@ public class PlayerControl : MonoBehaviour
         dragUI = GameManager.instance.dragUI;
     }
 
-    
     void Update()
     {
         TranslateInputs();
@@ -146,13 +145,13 @@ public class PlayerControl : MonoBehaviour
     }
 
     public void AllowInput() {
-        Logger.Send("allowed input", "player");
+        Logger.Send("Allowed input", "player");
         allowInput = true;
         dragging = false;
     }
 
     public void DisallowInput() {
-        Logger.Send("disallowed input", "player");
+        Logger.Send("Disallowed input", "player");
         allowInput = false;
         dragging = false;
     }
