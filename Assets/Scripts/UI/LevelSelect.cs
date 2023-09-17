@@ -30,7 +30,6 @@ public class LevelSelect : MonoBehaviour
     }
     
     void Init() {
-
         if (AudioManager.instance != null) {
             AudioManager.instance.PlayTheme("Theme 2");
         }

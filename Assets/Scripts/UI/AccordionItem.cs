@@ -23,6 +23,7 @@ public class AccordionItem : MonoBehaviour
         }
     }
 
+    // Toggle accordion on/off
     public void Toggle() {
         if (content == null) {
             return;
@@ -36,15 +37,10 @@ public class AccordionItem : MonoBehaviour
             return;
         }
 
-        switch (expanded)
-        {
-            case true:
+        if (expanded) {
             icon.localScale = new Vector3(1, -1, 1);
-            break;
-            
-            case false:
+        } else {
             icon.localScale = new Vector3(1, 1, 1);
-            break;
         }
 
         AudioManager.instance.PlayOneShot("Dialogue Open");

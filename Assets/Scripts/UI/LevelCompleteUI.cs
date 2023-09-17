@@ -55,6 +55,7 @@ public class LevelCompleteUI : MonoBehaviour
         }
 
         string txt = null;
+        
         switch (playerHealth)
         {
         case 3:
