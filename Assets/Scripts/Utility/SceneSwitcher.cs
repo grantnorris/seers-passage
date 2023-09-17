@@ -26,8 +26,8 @@ public class SceneSwitcher : MonoBehaviour
         }
     }
 
-    public void LoadLevel(Level lvl) {
-        level = lvl;
+    public void LoadLevel(Level newLevel) {
+        level = newLevel;
         SceneManager.LoadScene("Level");
     }
 

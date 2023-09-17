@@ -12,7 +12,7 @@ public class AudioManager : MonoBehaviour
     AudioSource oneShotSource;
     Sound theme;
 
-    // Start is called before the first frame update
+    
     void Awake()
     {
         if (instance != null && instance != this) {

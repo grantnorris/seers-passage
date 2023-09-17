@@ -15,14 +15,13 @@ public class PlayerControl : MonoBehaviour
         player = GetComponent<Player>();
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         allowInput = false;
         dragUI = GameManager.instance.dragUI;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         TranslateInputs();

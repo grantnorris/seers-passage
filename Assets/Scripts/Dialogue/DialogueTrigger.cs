@@ -10,7 +10,7 @@ public class DialogueTrigger : MonoBehaviour
     public Dialogue onStartDialogue;
     public StepDialogueTrigger[] stepTriggers;
 
-    // Start is called before the first frame update
+    
     void Start()
     {
         if (instance == null) {

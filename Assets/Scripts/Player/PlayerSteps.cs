@@ -11,7 +11,6 @@ public class PlayerSteps : MonoBehaviour
     int stepCount = 0;
     int stepThreshold = 0;
 
-    // Start is called before the first frame update
     void Start()
     {
         if (GameManager.instance != null) {
@@ -45,7 +44,7 @@ public class PlayerSteps : MonoBehaviour
         }
     }
 
-    // Currentl player step score string
+    // Current player step score string
     public string StepScore() {
         switch (currentStepThreshold())
         {

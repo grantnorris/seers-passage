@@ -6,7 +6,7 @@ public class PostProcessing : MonoBehaviour
 {
     public static PostProcessing instance;
 
-    // Start is called before the first frame update
+    
     void Awake()
     {
         if (instance != null && instance != this) {

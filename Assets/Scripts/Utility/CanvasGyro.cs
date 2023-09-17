@@ -12,7 +12,7 @@ public class CanvasGyro : MonoBehaviour
     float velocity;
     float curOffset = 0f;
 
-    // Start is called before the first frame update
+    
     void Start()
     {
         gyro = Input.gyro;
@@ -20,7 +20,7 @@ public class CanvasGyro : MonoBehaviour
         rect = GetComponent<RectTransform>();
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         Normalise();

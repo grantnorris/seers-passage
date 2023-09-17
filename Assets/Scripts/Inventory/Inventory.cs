@@ -9,7 +9,7 @@ public class Inventory : MonoBehaviour
 
     List<InventoryItem> items = new List<InventoryItem>();
     
-    // Start is called before the first frame update
+    
     void Awake()
     {
         if (instance == null) {

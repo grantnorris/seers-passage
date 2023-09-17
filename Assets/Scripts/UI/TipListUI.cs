@@ -9,7 +9,7 @@ public class TipListUI : MonoBehaviour
     GameObject itemPrefab;
     RectTransform rect;
 
-    // Start is called before the first frame update
+    
     void Start()
     {
         rect = GetComponent<RectTransform>();

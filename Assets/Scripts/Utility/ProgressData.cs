@@ -67,7 +67,6 @@ public class ProgressData
 
     public void Log() {
         Logger.Send("---- Saved data ----", "save");
-
         Logger.Send("---- Scores ----", "save");
 
         for (int i = 0; i < scores.Count; i++) {

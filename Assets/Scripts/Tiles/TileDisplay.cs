@@ -21,7 +21,6 @@ public class TileDisplay : MonoBehaviour
     SpriteRenderer rend;
     bool isDownFacing = false;
 
-    // Start is called before the first frame update
     void Start()
     {
         if (rend == null) {
@@ -99,9 +98,9 @@ public class TileDisplay : MonoBehaviour
             rend.sharedMaterial.mainTexture = tile.mainSprite.texture;
 
             if (acceptsLight) {
-                lightingUp.GetComponent<SpriteRenderer>().sprite    = tile.lightSourceUp;
-                lightingDown.GetComponent<SpriteRenderer>().sprite  = tile.lightSourceDown;
-                lightingLeft.GetComponent<SpriteRenderer>().sprite  = tile.lightSourceLeft;
+                lightingUp.GetComponent<SpriteRenderer>().sprite = tile.lightSourceUp;
+                lightingDown.GetComponent<SpriteRenderer>().sprite = tile.lightSourceDown;
+                lightingLeft.GetComponent<SpriteRenderer>().sprite = tile.lightSourceLeft;
                 lightingRight.GetComponent<SpriteRenderer>().sprite = tile.lightSourceRight;
             }
         } else {

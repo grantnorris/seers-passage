@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     public float moveSpeed = 3f;
-    public bool moving     = false;
+    public bool moving = false;
     public Animator[] anims;
     public Animator shadowAnim;
     public bool lowLight = true;
@@ -30,7 +30,7 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
+    
     void Update()
     {  
         if (moving && !GameManager.instance.Paused()) {
@@ -90,7 +90,7 @@ public class PlayerMove : MonoBehaviour
 
         Vector2 raycastOrigin = new Vector2(transform.position.x, transform.position.y);
 
-        //Cast a ray in the direction specified in the inspector.
+        // Cast a ray in the direction specified in the inspector.
         RaycastHit2D hit = Physics2D.Raycast(raycastOrigin, raycastDirection);
 
         Vector2 hitLocation = hit.transform.position;

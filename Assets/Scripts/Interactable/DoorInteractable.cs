@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DoorInteractable : Interactable
 {
-    [Tooltip("up, down, left or right – this affects the tile the player will appear on when returning through this door.")]
+    [Tooltip("up, down, left or right - this affects the tile the player will appear on when returning through this door.")]
     public string direction;
     public DoorInteractable siblingDoor;
 

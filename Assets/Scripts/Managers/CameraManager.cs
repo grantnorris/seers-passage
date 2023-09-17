@@ -31,8 +31,6 @@ public class CameraManager : MonoBehaviour
             return;
         }
 
-        // playerCam = player.GetComponentInChildren<Camera>();
-
         if (playerCam != null) {
             renderTex = playerCam.targetTexture;
         }
