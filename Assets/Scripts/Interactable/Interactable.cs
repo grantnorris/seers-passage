@@ -5,6 +5,6 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     public virtual void Interact() {
-        Debug.Log("interact");
+        Debug.Log("Interact");
     }
 }

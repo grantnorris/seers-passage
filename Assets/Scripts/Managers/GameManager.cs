@@ -40,17 +40,18 @@ public class GameManager : MonoBehaviour
             time += Time.deltaTime;
         }
 
+        // Inputs for debugging
         if (Input.GetKeyDown(KeyCode.P)) {
-            Debug.Log("try to save");
+            Debug.Log("Try to save");
             // SaveSystem.SaveProgress(new ProgressData());
         } else if (Input.GetKeyDown(KeyCode.L)) {
-            Debug.Log("try to load");
+            Debug.Log("Try to load");
             // SaveSystem.LoadProgress();
         } else if (Input.GetKeyDown(KeyCode.K)) {
-            Debug.Log("try to delete progress");
+            Debug.Log("Try to delete progress");
             SaveSystem.DeleteProgress();
         } else if (Input.GetKeyDown(KeyCode.Y)) {
-            Debug.Log("just die");
+            Debug.Log("Just die");
             StartDie();
         }
     }

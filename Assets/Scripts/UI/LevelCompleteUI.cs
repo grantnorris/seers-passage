@@ -37,7 +37,7 @@ public class LevelCompleteUI : MonoBehaviour
         }
 
         int counter = 0;
-        Debug.Log("player health = " + playerHealth);
+        Debug.Log("Player health = " + playerHealth);
 
         foreach (Image img in hearts.GetComponentsInChildren<Image>()) {
             counter++;

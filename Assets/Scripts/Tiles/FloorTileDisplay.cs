@@ -80,7 +80,6 @@ public class FloorTileDisplay : TileDisplay
                 }
 
                 hasDetails = true;
-                Debug.Log(gameObject.name + " has details");
             
                 switch (i)
                 {
@@ -110,7 +109,6 @@ public class FloorTileDisplay : TileDisplay
                 }            
             }
         } else {
-            Debug.Log(gameObject.name + " give puddles");
             // Chance to create puddle
             int puddleChance = 50;
 
@@ -149,8 +147,6 @@ public class FloorTileDisplay : TileDisplay
                 detail.AddComponent<SpriteRenderer>().sprite = sprite;
             }
         } else if (hasPuddle) {
-            Debug.Log(gameObject.name + " has puddles");
-
             Sprite sprite = PuddleSprite();
 
             if (sprite == null) {
