@@ -17,7 +17,7 @@ public class CameraShake : MonoBehaviour
 
     void Start()
     {
-        lofiShader.SetVector("Vector2_6B378F0B", Vector2.zero);
+        lofiShader.SetVector("ChromaticAberration", Vector2.zero);
     }
 
     // Shake the camera by a given amount for a specified duration
@@ -28,8 +28,8 @@ public class CameraShake : MonoBehaviour
 
         if (lofiShader != null)
         {
-            lofiShader.SetVector("Vector2_6B378F0B", Vector2.zero);
-            lofiShader.SetVector("Vector2_6B378F0B", new Vector2(.0025f, 0));
+            lofiShader.SetVector("ChromaticAberration", Vector2.zero);
+            lofiShader.SetVector("ChromaticAberration", new Vector2(.0025f, 0));
         }
 
         while (duration > elapsed)
@@ -43,7 +43,7 @@ public class CameraShake : MonoBehaviour
 
         if (lofiShader != null)
         {
-            lofiShader.SetVector("Vector2_6B378F0B", Vector2.zero);
+            lofiShader.SetVector("ChromaticAberration", Vector2.zero);
         }
 
         transform.localPosition = originPos;
