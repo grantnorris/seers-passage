@@ -10,7 +10,7 @@ public class DoorInteractable : Interactable
 
     public override void Interact() {
         if (siblingDoor == null || siblingDoor.direction == null) {
-            Debug.LogWarning("No sibling door found for " + gameObject.name);
+            Logger.Send($"No sibling door found for {gameObject.name}.", "general", "assertion");
             return;
         }
 

@@ -104,7 +104,7 @@ public class TileDisplay : MonoBehaviour
                 lightingRight.GetComponent<SpriteRenderer>().sprite = tile.lightSourceRight;
             }
         } else {
-            Debug.Log("Error rendering tile, no tile assigned.");
+            Logger.Send("Error rendering tile, no tile assigned.", "general", "assertion");
         }
     }
 }

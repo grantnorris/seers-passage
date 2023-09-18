@@ -10,7 +10,7 @@ public static class SaveSystem
     static ProgressData progressData = LoadProgress();
 
     public static void UpdateLevelScore(LevelScore score) {
-        Logger.Send("Update level score", "save");
+        Logger.Send("Update level score.", "save");
         progressData.UpdateScore(score);
         SaveProgress(progressData);
     }
@@ -28,7 +28,7 @@ public static class SaveSystem
     }
 
     public static void AddTipToDisplayedList(string name) {
-        Logger.Send("Add tip to displayed list - " + name, "save");
+        Logger.Send($"Add tip to displayed list - name.", "save");
 
         progressData.AddTipToDisplayedList(name);
         SaveProgress(progressData);
@@ -50,16 +50,16 @@ public static class SaveSystem
         stream.Close();
         progressData = data;
 
-        Logger.Send("Saved data", "save");
+        Logger.Send("Saved data.", "save");
         data.Log();
     }
 
     // Load progress
     static ProgressData LoadProgress() {
-        Logger.Send("Load progress", "save");
+        Logger.Send("Load progress.", "save");
 
         if (!File.Exists(path)) {
-            Logger.Send("No data found to load, creating new data", "save");
+            Logger.Send("No data found to load, creating new data.", "save");
             return new ProgressData();
         }
 
@@ -68,20 +68,20 @@ public static class SaveSystem
             FileStream stream = new FileStream(path, FileMode.Open);
             ProgressData data = formatter.Deserialize(stream) as ProgressData;
             stream.Close();
-            Logger.Send("Progress loaded", "save");
+            Logger.Send("Progress loaded.", "save");
             data.Log();
 
             return data;
         } catch (System.Exception) {
-            Debug.LogWarning("Could not load data correctly. Creating new data instead.");
+            Logger.Send("Could not load data correctly. Creating new data instead.", "save", "warning");
+            
             return new ProgressData();
             throw;
         }
     }
 
     public static void DeleteProgress() {
-        Logger.Send("Deleting saved data", "save");
+        Logger.Send("Deleting saved data.", "save");
         File.Delete(path);
-        // progressData = new ProgressData();
     }
 }

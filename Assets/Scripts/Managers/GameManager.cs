@@ -18,9 +18,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     [Tooltip("Used for dev purposes if the level scene is played directly.")]
     Level fallbackLevel;
-    public bool enablePlayerLogs;
-    public bool enableSaveLogs;
-    public bool enableGeneralLogs;
     float time = 0f;
     bool paused;
 
@@ -42,17 +39,11 @@ public class GameManager : MonoBehaviour
         }
 
         // Inputs for debugging
-        if (Input.GetKeyDown(KeyCode.P)) {
-            Debug.Log("Try to save");
-            // SaveSystem.SaveProgress(new ProgressData());
-        } else if (Input.GetKeyDown(KeyCode.L)) {
-            Debug.Log("Try to load");
-            // SaveSystem.LoadProgress();
-        } else if (Input.GetKeyDown(KeyCode.K)) {
-            Debug.Log("Try to delete progress");
+        if (Input.GetKeyDown(KeyCode.K)) {
+            Logger.Send("Delete progress via key input.");
             SaveSystem.DeleteProgress();
         } else if (Input.GetKeyDown(KeyCode.Y)) {
-            Debug.Log("Just die");
+            Logger.Send("Die via key input.");
             StartDie();
         }
     }
@@ -65,7 +56,7 @@ public class GameManager : MonoBehaviour
         }
 
         if (SceneSwitcher.instance == null) {
-            // Create scene switcher if not present (via loading level scene directly [dev])
+            // Create scene switcher if not present (via loading level scene directly in editor)
             new GameObject("Scene Switcher").AddComponent<SceneSwitcher>().level = level;
         }
 

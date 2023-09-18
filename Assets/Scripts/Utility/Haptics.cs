@@ -14,7 +14,7 @@ public class Haptics : MonoBehaviour
     }
 
     public void Vibrate() {
-        Debug.Log("Vibrate");
+        Logger.Send("Vibrate.");
         // Handheld.Vibrate();
     }
 }

@@ -2,19 +2,32 @@ using UnityEngine;
 
 public static class Logger
 {
-    public static void Send(string txt, string type, string logType = "") {
-        if (GameManager.instance != null) {
-            switch (type)
+    // Enable / disable log sources to print
+    // Warnings and assertions are always printed
+    static bool enablePlayerLogs = false;
+    static bool enableSaveLogs = false;
+    static bool enableGeneralLogs = true;
+
+    public static void Send(string txt, string source = "general", string type = "") {
+        if (type != "warning" && type != "assertion") {
+            switch (source)
             {
                 case "player":
-                    if (!GameManager.instance.enablePlayerLogs) {
+                    if (!enablePlayerLogs) {
                         return;
                     }
                     
                     break;
 
                 case "save":
-                    if (!GameManager.instance.enableSaveLogs) {
+                    if (!enableSaveLogs) {
+                        return;
+                    }
+
+                    break;
+
+                case "general":
+                    if (!enableGeneralLogs) {
                         return;
                     }
 
@@ -24,10 +37,21 @@ public static class Logger
             }
         }
 
-        if (logType == "assertion") {
-            Debug.LogAssertion(txt + " - " + type);
-        } else {
-            Debug.Log(txt + " - " + type);
+        string log = $"{txt} - {source}";
+
+        switch (type)
+        {
+            case "warning":
+                Debug.LogWarning(log);
+                break;
+
+            case "assertion":
+                Debug.LogAssertion(log);
+                break;
+
+            default:
+                Debug.Log(log);
+                break;
         }
     }
 }

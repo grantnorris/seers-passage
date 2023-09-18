@@ -35,7 +35,7 @@ public class LevelSelect : MonoBehaviour
         }
 
         if (chapters.Length < 1 || content == null || itemPrefab == null) {
-            Debug.LogWarning("Cancel because something's not right");
+            Logger.Send("Cancel because something's not right.", "general", "assertion");
             return;
         }
 
@@ -95,7 +95,7 @@ public class LevelSelect : MonoBehaviour
     }
 
     public void SelectLevel(Level level) {
-        Debug.Log("Select level - " + level.name);
+        Logger.Send($"Select level - {level.name}.");
         StartCoroutine("TransitionOut", level);
     }
 

@@ -43,7 +43,7 @@ public class PlayerControl : MonoBehaviour
             } else if (dragging) {
                 PlayerCamera.instance.UpdateOffset(Vector3.zero);
                 StopDragging();
-                Logger.Send("Stop Dragging", "player");
+                Logger.Send("Stop Dragging.", "player");
             } else if (Input.GetKeyDown("left")) {
                 player.move.Move("left");
             } else if (Input.GetKeyDown("right")) {
@@ -145,13 +145,13 @@ public class PlayerControl : MonoBehaviour
     }
 
     public void AllowInput() {
-        Logger.Send("Allowed input", "player");
+        Logger.Send("Allowed input.", "player");
         allowInput = true;
         dragging = false;
     }
 
     public void DisallowInput() {
-        Logger.Send("Disallowed input", "player");
+        Logger.Send("Disallowed input.", "player");
         allowInput = false;
         dragging = false;
     }

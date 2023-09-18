@@ -153,7 +153,7 @@ public class GenerateMap : Editor
         }
 
         if (curTile != null) {
-            Debug.Log("Replace " + curTile.obj.name + " with " + colorMapping.name);
+            Logger.Send($"Replace {curTile.obj.name} with {colorMapping.name}.");
             map.tiles.Remove(curTile);
             DestroyImmediate(curTile.obj);
         }

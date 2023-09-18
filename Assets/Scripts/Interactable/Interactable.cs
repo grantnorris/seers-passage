@@ -5,7 +5,7 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     public virtual void Interact() {
-        Debug.Log("Interact");
+        Logger.Send("Interact.");
         // Inherited interactable class functionality happens here
     }
 }
