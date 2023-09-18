@@ -39,16 +39,21 @@ public class PlayerVisual : MonoBehaviour
         }
     }
 
+    // Trigger the die animation
     public void StartDie() {
         foreach (Animator anim in PlayerMove.anims) {
             anim.SetBool("dead", true);
         }
     }
 
+    // Trigger the lose UI via the GameManager script
+    // This is triggered by an animation
     public void Die() {
         GameManager.instance.EndDie();
     }
 
+    // Set the shadow animator trigger to be in low light
+    // This is triggered by an animation
     public void LowLight() {
         if (shadowAnim == null) {
             return;
@@ -57,14 +62,21 @@ public class PlayerVisual : MonoBehaviour
         shadowAnim.SetBool("lowLight", true);
     }
 
+    // Play the sound for when the player begins moving
+    // This is triggered by an animation
     public void MoveInSound() {
         AudioManager.instance.PlayOneShot("Player Move In");
     }
 
+    // Play the looping sound for while the player is moving
+    // This is triggered by an animation
     public void MoveSound() {
+        // Currently disabled as the sound isn't quite right and it becomes grating
         // AudioManager.instance.PlayOneShot("Player Move");
     }
 
+    // Play the sound for when the player finishes moving
+    // This is triggered by an animation
     public void MoveOutSound() {
         AudioManager.instance.PlayOneShot("Player Move Out");
     }

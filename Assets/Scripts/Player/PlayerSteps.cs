@@ -33,6 +33,7 @@ public class PlayerSteps : MonoBehaviour
         }
     }
 
+    // Initialise the step count dialogue if a new threshold has just been met
     public void StepCountDialogue() {
         int goodSteps = stepThreshold * 2;
         int badSteps = stepThreshold;
@@ -69,10 +70,12 @@ public class PlayerSteps : MonoBehaviour
         stepCount = stepThreshold * 3;
     }
 
+    // Retrieve the current step threshold the player is in
     public int StepThreshold() {
         return stepThreshold;
     }
 
+    // Set the current step threshold based on the number of steps the player has made
     public int currentStepThreshold() {
         if (stepCount >= stepThreshold * 2) {
             return 1;

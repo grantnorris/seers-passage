@@ -24,6 +24,7 @@ public class AccordionItem : MonoBehaviour
     }
 
     // Toggle accordion on/off
+    // This is triggered by a button click event
     public void Toggle() {
         if (content == null) {
             return;
@@ -46,6 +47,7 @@ public class AccordionItem : MonoBehaviour
         AudioManager.instance.PlayOneShot("Dialogue Open");
     }
 
+    // Set accordion item title UI text value
     public void SetTitle(string txt) {
         if (titleTxt == null) {
             return;
@@ -54,6 +56,7 @@ public class AccordionItem : MonoBehaviour
         titleTxt.SetText(txt);
     }
 
+    // Set accordion item content UI text value
     public void SetContent(string txt) {
         if (contentTxt == null) {
             return;

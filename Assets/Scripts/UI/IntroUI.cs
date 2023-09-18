@@ -12,6 +12,7 @@ public class IntroUI : MonoBehaviour
         SetTitleText();
     }
 
+    // Set intro title UI text value to level name
     void SetTitleText() {
         if (titletxt == null || SceneSwitcher.instance == null) {
             return;
@@ -20,6 +21,8 @@ public class IntroUI : MonoBehaviour
         titletxt.text = SceneSwitcher.instance.level.name;
     }
 
+    // Transition the game view in and hide the intro UI gameobject once the animation is complete
+    // Triggered via animation event
     public void AnimationComplete() {
         GameManager.instance.screenTransitions.StartTransitionViewIn();
         gameObject.SetActive(false);

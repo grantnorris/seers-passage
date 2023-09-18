@@ -19,7 +19,7 @@ public class PlayerSpawn : MonoBehaviour
         CreatePlayer();
     }
 
-    // Create player gameobject
+    // Create player gameobject and set it's initial position and facing direction based on editor option
     void CreatePlayer() {
         Player player = GameManager.instance.player;
         player.SetInitialPosition(transform.position);

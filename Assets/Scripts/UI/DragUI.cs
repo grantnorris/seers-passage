@@ -22,6 +22,7 @@ public class DragUI : MonoBehaviour
         defaultSprite = arrowImg.sprite;
     }
 
+    // Update the drag UI sprite based on the player's drag direction
     public void Display(float amount, Vector2 position, string direction) {
         if (arrowImg == null) {
             return;
@@ -55,14 +56,18 @@ public class DragUI : MonoBehaviour
             break;
         }
 
+        // Set the rotation of the sprite transform
+        arrowImg.transform.rotation = Quaternion.Euler(0, 0, rotation);
+
+        // Set the sprite and color based on drag distance
         arrowImg.sprite = sprites[spriteIndex - 1];
         arrowImg.color = new Color(arrowImg.color.r, arrowImg.color.g, arrowImg.color.b, amount);
-        arrowImg.transform.rotation = Quaternion.Euler(0, 0, rotation);
 
         if (anim == null) {
             return;
         }
 
+        // If the player has dragged enough to move the character lock the sprite so it doesn't change during animation
         if (spriteIndex == sprites.Length) {
             anim.SetBool("Locked", true);
         } else {
@@ -70,6 +75,7 @@ public class DragUI : MonoBehaviour
         }
     }
 
+    // Trigger the animation based on the direction the player dragged
     public void ApplyDirection(string direction) {
         if (direction == null) {
             return;
@@ -99,12 +105,15 @@ public class DragUI : MonoBehaviour
         anim.SetTrigger(animationTrigger);
     }
 
+    // Reset the drag UI sprite, color and rotation
     public void Reset() {
         ResetArrowSprite();
         transform.rotation = Quaternion.identity;
         anim.SetBool("Locked", false);
     }
 
+    // Reset the drag UI arrow sprite
+    // This is called by Reset() and triggered by an animation
     public void ResetArrowSprite() {
         arrowImg.sprite = defaultSprite;
     }

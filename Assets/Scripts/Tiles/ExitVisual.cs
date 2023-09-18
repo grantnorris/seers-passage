@@ -15,23 +15,27 @@ public class ExitVisual : MonoBehaviour
             return;
         }
 
+        SetAnimatorState();
+    }
+
+    // Set animator state based on direction set in editor
+    void SetAnimatorState() {
         int directionInt = 0;
 
-        switch (direction)
-            {
-                case "up":
-                    directionInt = 1;
-                    break;
-                case "right":
-                    directionInt = 2;
-                    break;
-                case "down":
-                    directionInt = 3;
-                    break;
-                case "left":
-                    directionInt = 4;
-                    break;
-            }
+        switch (direction) {
+            case "up":
+                directionInt = 1;
+                break;
+            case "right":
+                directionInt = 2;
+                break;
+            case "down":
+                directionInt = 3;
+                break;
+            case "left":
+                directionInt = 4;
+                break;
+        }
 
         anim.SetInteger("directionFacing", directionInt);
     }

@@ -26,6 +26,7 @@ public class PlayerInteraction : MonoBehaviour
         player.move.finishMoving.AddListener(UpdateInteractionNotice);
     }
 
+    // Check to see if there are still nearby interactables and update the notice accordingly
     public void UpdateInteractionNotice() {
         CheckForDestroyedColliders();
         
@@ -36,6 +37,7 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
+    // Check to see if any references to nearby interactable colliders have since been destroyed (ie interacted with)
     void CheckForDestroyedColliders() {
         if (interactionColliders.Count == 0) {
             return;
@@ -89,10 +91,12 @@ public class PlayerInteraction : MonoBehaviour
         interactNoticeScript.Close();
     }
 
+    // Stop watching for interactable changes (ie when moving)
     public void StopWatchingInteractableChanges() {
         watchingInteractableChanges = false;
     }
 
+    // Start watching for interactable changes (ie when stationery)
     public void StartWatchingInteractableChanges() {
         watchingInteractableChanges = true;
     }

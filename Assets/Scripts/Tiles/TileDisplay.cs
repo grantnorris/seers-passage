@@ -40,6 +40,7 @@ public class TileDisplay : MonoBehaviour
         AssignTile();
     }
 
+    // Set references to the surrounding tiles in the up, down, left and right directions
     void SurroundingTiles() {
         Vector2 position  = transform.position;
         Map map = Map.instance;
@@ -85,6 +86,7 @@ public class TileDisplay : MonoBehaviour
 
         // Get a tile visual 
         if (isDownFacing && downFacingTiles.Length > 0) {
+            // Down facing tiles look different to all others
             tile = downFacingTiles[Random.Range(0, downFacingTiles.Length)];
         } else if (neutralTiles.Length > 0) {
             tile = neutralTiles[Random.Range(0, neutralTiles.Length)];
@@ -97,6 +99,7 @@ public class TileDisplay : MonoBehaviour
             rend.sharedMaterial.mainTexture = tile.mainSprite.texture;
 
             if (acceptsLight) {
+                // Set tile lighting gameobject sprites
                 lightingUp.GetComponent<SpriteRenderer>().sprite = tile.lightSourceUp;
                 lightingDown.GetComponent<SpriteRenderer>().sprite = tile.lightSourceDown;
                 lightingLeft.GetComponent<SpriteRenderer>().sprite = tile.lightSourceLeft;

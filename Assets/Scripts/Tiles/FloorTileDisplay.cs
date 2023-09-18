@@ -18,7 +18,7 @@ public class FloorTileDisplay : TileDisplay
     public bool hasPuddle = false;
     string adjacentPuddles = "";
     [SerializeField]
-    bool hasDetails;
+    bool hasDetails = false;
     [HideInInspector]
     public bool hasTopDetails;
     [HideInInspector]
@@ -31,20 +31,25 @@ public class FloorTileDisplay : TileDisplay
     FloorTileDisplay tileRightDisplay;
     FloorTileDisplay tileDownDisplay;
     FloorTileDisplay tileLeftDisplay;
-
+    
     public override void Initialise() {
         base.Initialise();
-        tileUpDisplay = (tileUp != null ? tileUp.obj.GetComponent<FloorTileDisplay>() : null);
-        tileRightDisplay = (tileRight != null ? tileRight.obj.GetComponent<FloorTileDisplay>() : null);
-        tileDownDisplay = (tileDown != null ? tileDown.obj.GetComponent<FloorTileDisplay>() : null);
-        tileLeftDisplay = (tileLeft != null ? tileLeft.obj.GetComponent<FloorTileDisplay>() : null);
-        hasDetails = false;
-        hasPuddle = false;
+        
+        SetAdjacentTileReferences();
         AssignDetails();
         StartCoroutine(CreateDetails());
     }
 
-    // Determine which details should be present, if any
+    // Retrieve references to adjacent tiles
+    void SetAdjacentTileReferences() {
+        tileUpDisplay = (tileUp != null ? tileUp.obj.GetComponent<FloorTileDisplay>() : null);
+        tileRightDisplay = (tileRight != null ? tileRight.obj.GetComponent<FloorTileDisplay>() : null);
+        tileDownDisplay = (tileDown != null ? tileDown.obj.GetComponent<FloorTileDisplay>() : null);
+        tileLeftDisplay = (tileLeft != null ? tileLeft.obj.GetComponent<FloorTileDisplay>() : null);
+    }
+
+    // Determine which details should be present based on adjacent tiles and RNG
+    // Details include cobwebs or puddles (never both)
     void AssignDetails() {
         // Chance to create cobwebs
         if (Random.Range(0, 100) <= 25)  {
@@ -109,7 +114,7 @@ public class FloorTileDisplay : TileDisplay
                 }            
             }
         } else {
-            // Chance to create puddle
+            // Chance to create puddle if no wobwebs are present
             int puddleChance = 50;
 
             // More likely if adjacent tiles have already been assigned puddles

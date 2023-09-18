@@ -17,11 +17,11 @@ public class HealthUI : MonoBehaviour
     }
 
     void Start() {
-        Init();
+        FillHearts();
     }
 
     // Initialise UI by filling all hearts
-    void Init() {
+    void FillHearts() {
         foreach (Transform heart in transform) {
             heart.GetComponent<Image>().sprite = heartFullSprite;
         }

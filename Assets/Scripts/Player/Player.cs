@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public PlayerHealth health;
     public PlayerVisual visual;
 
+    // Set initial position of player transform
     public void SetInitialPosition(Vector3 pos) {
         transform.position = pos;
     }

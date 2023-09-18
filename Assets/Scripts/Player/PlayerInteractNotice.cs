@@ -25,6 +25,7 @@ public class PlayerInteractNotice : MonoBehaviour
         }
     }
 
+    // Disable the player interaction notice
     public void Disable() {
         gameObject.SetActive(false);
     }

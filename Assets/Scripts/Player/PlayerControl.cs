@@ -24,6 +24,8 @@ public class PlayerControl : MonoBehaviour
         TranslateInputs();
     }
 
+    // Translate player inputs
+    // Keycode inputs are also supported for dev
     void TranslateInputs() {
         if (allowInput && !GameManager.instance.Paused()) {            
             if (Input.touchCount > 0) {
@@ -54,6 +56,7 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+    // Update UI, player sprite and direction references based on player drag input
     void Drag() {
         Vector2 dragPos = Vector2.zero;
 
@@ -119,6 +122,7 @@ public class PlayerControl : MonoBehaviour
         moveDirection = direction;
     }
 
+    // Set beginning drag location reference
     void StartDragging() {
         dragging = true;
 
@@ -129,6 +133,7 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+    // Reset dragging UI and references, move the player if the input dragged far enough
     void StopDragging() {
         dragging = false;
 
@@ -142,12 +147,14 @@ public class PlayerControl : MonoBehaviour
         moveDirection = null;
     }
 
+    // Allow new inputs to be made
     public void AllowInput() {
         Logger.Send("Allowed input.", "player");
         allowInput = true;
         dragging = false;
     }
 
+    // Stop allowing new inputs
     public void DisallowInput() {
         Logger.Send("Disallowed input.", "player");
         allowInput = false;

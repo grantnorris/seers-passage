@@ -10,22 +10,27 @@ public class GateVisual : MonoBehaviour
         gate = GetComponentInParent<Gate>();
     }
 
+    // Begin the sound that plays alongside the gate animation
     public void StartSound() {
         AudioManager.instance.PlayOneShot("Grinding Start", gate.volume);
         AudioManager.instance.Play("Grinding", gate.volume);
     }
 
+    // Stop the sound that plays alongside the gate animation
     public void StopSound() {
         AudioManager.instance.Stop("Grinding");
         AudioManager.instance.PlayOneShot("Grinding End", gate.volume);
     }
 
+    // Finish unlocking gate
+    // This is triggered by an animation
     public void FinishUnlock() {
+        float animationDuration = .8f;
+
         // Run animation
         gate.Activate();
 
-        float animationDuration = .8f;
-
+        // Disable player input while the animation occurs
         StartCoroutine(GameManager.instance.DisablePlayerMoveForDuration(animationDuration));
         
         // Shake the camera

@@ -31,29 +31,42 @@ public class PlayerMove : MonoBehaviour
     }
     
     void Update() {  
-        if (moving && !GameManager.instance.Paused()) {
-            Logger.Send("Moving.", "player");
+        UpdatePlayerIfMoving();
+    }
 
+    // Update player position
+    void UpdatePlayerIfMoving() {
+        if (moving && !GameManager.instance.Paused()) {
             if (transform.position != targetPos) {
-                transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * moveSpeed);
+                Logger.Send("Moving.", "player");
+                MovePlayerTowardsTarget();
             } else {
                 Logger.Send("Stop moving.", "player");
-
-                foreach (Animator anim in anims) {
-                    anim.SetTrigger("stopMoving");
-                }
-
-                player.control.AllowInput();
-                moving = false;
-
-                if (shadowAnim != null && !lowLight) {
-                    shadowAnim.SetBool("lowLight", false);
-                }
-
-                if (finishMoving != null) {
-                    finishMoving.Invoke();
-                }
+                ResetPlayerMovingState();
             }
+        }
+    }
+
+    // Move player transform towards target
+    void MovePlayerTowardsTarget() {
+        transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * moveSpeed);
+    }
+
+    // Reset player moving state, allow inputs and set animation triggers
+    void ResetPlayerMovingState() {
+        foreach (Animator anim in anims) {
+            anim.SetTrigger("stopMoving");
+        }
+
+        player.control.AllowInput();
+        moving = false;
+
+        if (shadowAnim != null && !lowLight) {
+            shadowAnim.SetBool("lowLight", false);
+        }
+
+        if (finishMoving != null) {
+            finishMoving.Invoke();
         }
     }
 
@@ -204,6 +217,7 @@ public class PlayerMove : MonoBehaviour
         shadowAnim.SetBool("lowLight", false);
     }
 
+    // Current player target position
     public Vector3 TargetPos() {
         return targetPos;
     }

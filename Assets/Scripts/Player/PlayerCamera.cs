@@ -19,15 +19,17 @@ public class PlayerCamera : MonoBehaviour
     }
 
     void Start() {
-        Init();
+        SetReferences();
     }
 
-    void Init() {
+    // Set initial player and position references
+    void SetReferences() {
         player = GameManager.instance.player.gameObject.transform;
         targetPos = new Vector3(player.position.x, player.position.y, transform.position.z);
         transform.position = targetPos;
     }
 
+    // Smooth camera location in relation to player location/movement
     void LateUpdate() {
         if (player == null) {
             return;
@@ -37,6 +39,7 @@ public class PlayerCamera : MonoBehaviour
         transform.position = Vector3.SmoothDamp(transform.position, targetPos + offset, ref velocity, smoothSpeed);
     }
 
+    // Update camera offset
     public void UpdateOffset(Vector3 newOffset) {
         offset = newOffset;
     }
