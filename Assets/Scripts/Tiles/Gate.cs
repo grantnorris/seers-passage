@@ -21,7 +21,7 @@ public class Gate : MonoBehaviour
         }
     }
 
-    // Update sound effects volume based on distance from player
+    // Update sound effect volume based on distance from player
     void UpdateVolumeByPlayerDistance() {
         float playerDistance = Vector3.Distance(GameManager.instance.player.gameObject.transform.position, transform.position);
         volume = Mathf.Max(1 - ((playerDistance - 1f) * .1f), .25f);
@@ -30,7 +30,7 @@ public class Gate : MonoBehaviour
     // Toggle activated state of gate
     public void Activate() {
         float animationDuration = .8f;
-        
+
         if (!anim.isActiveAndEnabled) {
             anim.enabled = true;
         }

@@ -33,7 +33,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    // Start dialogue
+    // Open UI with a given dialogue
     public void StartDialogue(Dialogue dialogue) {
         sentences.Clear();
         GameManager.instance.DisablePlayerMove();
@@ -102,7 +102,7 @@ public class DialogueManager : MonoBehaviour
         DisplayNextSentence(false);
     }
 
-    // Display next sentence
+    // Display next sentence in a dialogue
     public void DisplayNextSentence(bool playSound = true) {
         if (sentences.Count == 0) {
             StartCoroutine("EndDialogue");
@@ -230,11 +230,4 @@ public class DialogueManager : MonoBehaviour
 
         return null;
     }
-}
-
-[System.Serializable]
-public class DialogueType {
-    public string name;
-    public Sprite ui;
-    public GameObject dialogueBoxPrefab;
 }

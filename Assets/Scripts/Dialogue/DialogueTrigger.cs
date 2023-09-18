@@ -14,7 +14,12 @@ public class DialogueTrigger : MonoBehaviour
         if (instance == null) {
             instance = this;
         }
+        
+        InitialiseOnStartDialogue();
+    }
 
+    // Add a listener to trigger the on start dialogue at the beginning of the level if present
+    void InitialiseOnStartDialogue() {
         if (onStartDialogue.sentences.Length > 0) {
             GameManager.instance.levelStart.AddListener(OnStartDialogue);
         }
@@ -37,10 +42,4 @@ public class DialogueTrigger : MonoBehaviour
             }
         }
     }
-}
-
-[System.Serializable]
-public class StepDialogueTrigger {
-    public int steps;
-    public Dialogue dialogue; 
 }

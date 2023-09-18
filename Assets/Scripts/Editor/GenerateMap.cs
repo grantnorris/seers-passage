@@ -22,6 +22,7 @@ public class GenerateMap : Editor
         }
     }
 
+    // A list of corresponding color and prefab pairs
     ColorToTile[] ColorMappings() {
         return new ColorToTile[] {
             new ColorToTile(
@@ -92,6 +93,7 @@ public class GenerateMap : Editor
         };
     }
 
+    // Retrieves a texture2D from the map sprite
     Texture2D texFromSprite() {
         Texture2D croppedTexture = new Texture2D((int)map.mapSprite.rect.width, (int)map.mapSprite.rect.height);
         Color[] pixels = map.mapSprite.texture.GetPixels(
@@ -100,12 +102,14 @@ public class GenerateMap : Editor
             (int)map.mapSprite.textureRect.width, 
             (int)map.mapSprite.textureRect.height
         );
+
         croppedTexture.SetPixels(pixels);
         croppedTexture.Apply();
+
         return croppedTexture;
     }
 
-    // Creates tile objects for a given map image
+    // Places a corresponding tile for each pixel in the texture based off the colorMappings
     public void Build() {
         ColorToTile[] mappings = ColorMappings();
         map.SetInstance();
@@ -126,11 +130,11 @@ public class GenerateMap : Editor
                 }
             }
 
-            TreatTiles();
+            SetUpTiles();
         }
     }
 
-    // Create a tile object at a given set of coordinates
+    // Create a tile object at a given set of coordinates based on the color of the pixel
     void PlaceTile(int x, int y) {
         Color pixelColor = map.mapTex.GetPixel(x, y);
 
@@ -172,52 +176,60 @@ public class GenerateMap : Editor
         ));
     }
 
-    void TreatTiles() {
+    // Set up tiles that require specific references being set
+    void SetUpTiles() {
         foreach (TileLocation tile in map.tiles) {
             Vector2 position = tile.obj.transform.position;
 
             switch (tile.type) {
                 case "Player Spawn":
-                    // Check map.tiles at surrounding locations to determine initial player direction
-
-                    if (map.GetTile(position.x, position.y + 1).type == "Entrance") {
-                        // Up
-                        tile.obj.GetComponent<PlayerSpawn>().initialDirection = "down";
-                    } else if (map.GetTile(position.x, position.y - 1).type == "Entrance") {
-                        // Down
-                        tile.obj.GetComponent<PlayerSpawn>().initialDirection = "up";
-                    } else if (map.GetTile(position.x - 1, position.y).type == "Entrance") {
-                        // Left
-                        tile.obj.GetComponent<PlayerSpawn>().initialDirection = "right";
-                    } else if (map.GetTile(position.x + 1, position.y).type == "Entrance") {
-                        // Right
-                        tile.obj.GetComponent<PlayerSpawn>().initialDirection = "right";
-                    }
-                    
+                    SetUpPlayerSpawnTile(tile, position);
                     break;
 
                 case "Door":
-                    // Check map.tiles at surrounding locations to determine initial player direction
-                    if (map.GetTile(position.x, position.y + 1).type == "Floor") {
-                        // Up
-                        tile.obj.GetComponent<DoorInteractable>().direction = "up";
-                        tile.obj.GetComponent<ExitVisual>().direction = "up";
-                    } else if (map.GetTile(position.x, position.y - 1).type == "Floor") {
-                        // Down
-                        tile.obj.GetComponent<DoorInteractable>().direction = "down";
-                        tile.obj.GetComponent<ExitVisual>().direction = "down";
-                    } else if (map.GetTile(position.x - 1, position.y).type == "Floor") {
-                        // Left
-                        tile.obj.GetComponent<DoorInteractable>().direction = "left";
-                        tile.obj.GetComponent<ExitVisual>().direction = "left";
-                    } else if (map.GetTile(position.x + 1, position.y).type == "Floor") {
-                        // Right
-                        tile.obj.GetComponent<DoorInteractable>().direction = "right";
-                        tile.obj.GetComponent<ExitVisual>().direction = "right";
-                    }
-
+                    SetUpDoorTile(tile, position);
                     break;
             }
+            
+            // More cases to add in the future to reduce manual set up 
+        }
+    }
+
+    // Check map tiles at surrounding locations to determine direction references
+    void SetUpPlayerSpawnTile(TileLocation tile, Vector2 position) {
+        if (map.GetTile(position.x, position.y + 1).type == "Entrance") {
+            // Up
+            tile.obj.GetComponent<PlayerSpawn>().initialDirection = "down";
+        } else if (map.GetTile(position.x, position.y - 1).type == "Entrance") {
+            // Down
+            tile.obj.GetComponent<PlayerSpawn>().initialDirection = "up";
+        } else if (map.GetTile(position.x - 1, position.y).type == "Entrance") {
+            // Left
+            tile.obj.GetComponent<PlayerSpawn>().initialDirection = "right";
+        } else if (map.GetTile(position.x + 1, position.y).type == "Entrance") {
+            // Right
+            tile.obj.GetComponent<PlayerSpawn>().initialDirection = "right";
+        }
+    }
+
+    // Check map tiles at surrounding locations to determine direction references
+    void SetUpDoorTile(TileLocation tile, Vector2 position) {
+        if (map.GetTile(position.x, position.y + 1).type == "Floor") {
+            // Up
+            tile.obj.GetComponent<DoorInteractable>().direction = "up";
+            tile.obj.GetComponent<ExitVisual>().direction = "up";
+        } else if (map.GetTile(position.x, position.y - 1).type == "Floor") {
+            // Down
+            tile.obj.GetComponent<DoorInteractable>().direction = "down";
+            tile.obj.GetComponent<ExitVisual>().direction = "down";
+        } else if (map.GetTile(position.x - 1, position.y).type == "Floor") {
+            // Left
+            tile.obj.GetComponent<DoorInteractable>().direction = "left";
+            tile.obj.GetComponent<ExitVisual>().direction = "left";
+        } else if (map.GetTile(position.x + 1, position.y).type == "Floor") {
+            // Right
+            tile.obj.GetComponent<DoorInteractable>().direction = "right";
+            tile.obj.GetComponent<ExitVisual>().direction = "right";
         }
     }
 

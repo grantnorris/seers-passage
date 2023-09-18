@@ -13,17 +13,21 @@ public class AudioManager : MonoBehaviour
     Sound theme;
 
     void Awake() {
+        SetInstanceOrDestroy();
+        DontDestroyOnLoad(this.gameObject);
+        masterVolume = PlayerPrefs.GetFloat("masterVolume", .5f);
+        CreateSources();
+        PlayTheme("Theme");
+    }
+
+    // Set this to be the instance of the script or destroy if one already exists
+    void SetInstanceOrDestroy() {
         if (instance != null && instance != this) {
             Destroy(this.gameObject);
             return;
         }
 
         instance = this;
-        DontDestroyOnLoad(this.gameObject);
-        masterVolume = PlayerPrefs.GetFloat("masterVolume", .5f);
-
-        CreateSources();
-        PlayTheme("Theme");
     }
 
     // Create audio sources for each relevant defined audio file
