@@ -8,33 +8,9 @@ public static class Logger
     static bool enableSaveLogs = false;
     static bool enableGeneralLogs = true;
 
-    public static void Send(string txt, string source = "general", string type = "") {
-        if (type != "warning" && type != "assertion") {
-            switch (source)
-            {
-                case "player":
-                    if (!enablePlayerLogs) {
-                        return;
-                    }
-                    
-                    break;
-
-                case "save":
-                    if (!enableSaveLogs) {
-                        return;
-                    }
-
-                    break;
-
-                case "general":
-                    if (!enableGeneralLogs) {
-                        return;
-                    }
-
-                    break;
-                default:
-                    return;
-            }
+    public static void Send(string txt, string source = "general", string type = "standard") {
+        if (!shouldMessageBeLogged(source, type)) {
+            return;
         }
 
         string log = $"{txt} - {source}";
@@ -52,6 +28,26 @@ public static class Logger
             default:
                 Debug.Log(log);
                 break;
+        }
+    }
+
+    static bool shouldMessageBeLogged(string source, string type) {
+        if (type == "warning" || type == "assertion") {
+            return true;
+        }
+
+        switch (source) {
+            case "player":
+                return enablePlayerLogs;
+
+            case "save":
+                return enableSaveLogs;
+
+            case "general":
+                return enableGeneralLogs;
+
+            default:
+                return false;
         }
     }
 }
