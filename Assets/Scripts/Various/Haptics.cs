@@ -18,7 +18,7 @@ public class Haptics : MonoBehaviour
         Logger.Send("Vibrate.");
 
         // Currently disabled as this doesn't feel great and we aren't offered much/any control over duration and intensity
-        // This should be an option in the settings if vibrations/haptics are kept
+        // This should be an option in the game settings if vibrations/haptics are kept
         // Handheld.Vibrate();
     }
 }

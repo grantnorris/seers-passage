@@ -32,6 +32,7 @@ public class Map : MonoBehaviour
         }
     }
 
+    // Set tile locations for each child gameobject
     void SetTiles() {
         if (tiles.Count > 0 || tileParent == null) {
             return;
@@ -52,20 +53,5 @@ public class Map : MonoBehaviour
         }
 
         return null;
-    }
-}
-
-[System.Serializable]
-public class TileLocation {
-    public GameObject obj;
-    public int x;
-    public int y;
-    public string type = "";
-
-    public TileLocation(GameObject newObj, int newX, int newY, string newType) {
-        obj  = newObj;
-        x    = newX;
-        y    = newY;
-        type = newType;
     }
 }

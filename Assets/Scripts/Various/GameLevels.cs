@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public static class GameLevels
-{
+{   
+    // List of playable chapters and their associated levels
     public static Chapter[] chapters = new Chapter[] {
         new Chapter(
             "Chapter One",
@@ -69,8 +70,10 @@ public static class GameLevels
                 }
 
                 if (l == chapters[c].levels.Length - 1 && c == chapters.Length - 1) {
+                    // This is the final level in the final chapter, so there's nothing to return
                     return null;
                 } else if (l == chapters[c].levels.Length - 1) {
+                    // This is the final level in the current chapter, so return the first level of the next chapter
                     Chapter nextChapter = chapters[c - 1];
 
                     if (nextChapter.levels.Length == 0) {
@@ -80,6 +83,7 @@ public static class GameLevels
                     return nextChapter.levels[0];
                 }
 
+                // Return the next level in this chapter
                 return chapters[c].levels[l + 1];
             }
         }

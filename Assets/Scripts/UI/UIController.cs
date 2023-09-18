@@ -33,10 +33,10 @@ public class UIController : MonoBehaviour
     PauseUI pauseUI;
 
     void Start() {
-        Init();
+        Initialise();
     }
 
-    void Init() {
+    void Initialise() {
         playerStepCountTxt.text = GameManager.instance.player.steps.StepCount().ToString();
 
         if (introUI != null) {

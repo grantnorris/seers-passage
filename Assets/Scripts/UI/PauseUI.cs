@@ -13,11 +13,11 @@ public class PauseUI : MonoBehaviour
 
     void Start() {
         anim = GetComponent<Animator>();
-        SetSubtitleTxt();
+        SetSubtitleText();
     }
 
     // Set pause subtitle text to reflect the current level name
-    void SetSubtitleTxt() {
+    void SetSubtitleText() {
         if (subtitleTxt == null) {
             return;
         }

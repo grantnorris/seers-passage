@@ -26,20 +26,24 @@ public class LevelSelect : MonoBehaviour
         anim = GetComponent<Animator>();
         scrollRect = GetComponent<ScrollRect>();
         scrollHighlight = GetComponent<ScrollHighlight>();
-        Init();
+        Initialise();
     }
     
-    void Init() {
-        if (AudioManager.instance != null) {
-            AudioManager.instance.PlayTheme("Theme 2");
-        }
-
+    void Initialise() {
         if (chapters.Length < 1 || content == null || itemPrefab == null) {
             Logger.Send("Cancel because something's not right.", "general", "assertion");
             return;
         }
 
+        PlayTheme();
         PopulateUI();
+    }
+
+    // Play level select audio theme
+    void PlayTheme() {
+        if (AudioManager.instance != null) {
+            AudioManager.instance.PlayTheme("Theme 2");
+        }
     }
 
     // Populate level select UI

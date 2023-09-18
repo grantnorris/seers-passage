@@ -9,6 +9,7 @@ public class Chapter {
         scoreToUnlock = newScoreToUnlock;
     }
 
+    // Whether or not the this chapter is unlocked based on required score
     public bool Unlocked() {
         return SaveSystem.TotalScore() >= scoreToUnlock;
     }

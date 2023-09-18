@@ -56,26 +56,31 @@ public class TileDisplay : MonoBehaviour
             return;
         }
 
-        // Check to see if a wall is above
-        if (tileUp != null && tileUp.obj.tag == "Floor") {
+        if (TileIsFloor(tileUp)) {
             lightingUp.SetActive(true);
         }
 
-        // Check to see if a wall is below
-        if (tileDown != null && tileDown.obj.tag == "Floor") {
+        if (TileIsFloor(tileDown)) {
             lightingDown.SetActive(true);
             isDownFacing = true;
         }
 
-        // Check to see if a wall is left
-        if (tileLeft != null && tileLeft.obj.tag == "Floor") {
+        if (TileIsFloor(tileLeft)) {
             lightingLeft.SetActive(true);
         }
 
-        // Check to see if a wall is right
-        if (tileRight != null && tileRight.obj.tag == "Floor") {
+        if (TileIsFloor(tileRight)) {
             lightingRight.SetActive(true);
         }
+    }
+
+    // Whether or not a given tile has the "floor" tag
+    bool TileIsFloor(TileLocation tileToCheck) {
+        if (tileToCheck == null) {
+            return false;
+        }
+
+        return tileToCheck.obj.tag == "Floor";
     }
 
     // Assign tile sprites based on surrounding tiles

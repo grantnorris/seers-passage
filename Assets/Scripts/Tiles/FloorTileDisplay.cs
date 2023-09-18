@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FloorTileDisplay : TileDisplay
 {
+    // TODO: there are a lot of ambiguous loops and switch statements here that could be tidied but would likely require larger refactoring
+
     [SerializeField]
     Sprite[] puddleSprites;
     [SerializeField]
@@ -232,8 +234,6 @@ public class FloorTileDisplay : TileDisplay
     // Retrieve puddle sprite based on surrounding puddle tiles
     Sprite PuddleSprite() {
         Sprite sprite = null;
-        adjacentPuddles = "";
-
         adjacentPuddles = tileUpDisplay != null && tileUpDisplay.hasPuddle ? "1" : "0";
         adjacentPuddles += tileRightDisplay != null && tileRightDisplay.hasPuddle ? "1" : "0";
         adjacentPuddles += tileDownDisplay != null && tileDownDisplay.hasPuddle ? "1" : "0";

@@ -18,28 +18,28 @@ public class ScrollHighlight : MonoBehaviour
     [SerializeField]
     GameObject selectedItem;
     bool watchMove = false;
-    Vector2 scrolPos = Vector2.zero;
-    Vector2 prevScrolPos = Vector2.zero;
+    Vector2 scrollPos = Vector2.zero;
+    Vector2 prevScrollPos = Vector2.zero;
     [SerializeField]
     CustomScrollRect scrollRect;
 
     void Start() {
-        StartCoroutine("Init");
+        StartCoroutine("Initialise");
     }
     
     void LateUpdate() {
         // Snap to the closest item if the scroll is still moving but the player is no longer scrolling
-        if (Mathf.Abs(scrolPos.y - prevScrolPos.y) < .0025f && watchMove && !UserScrolling()) {
+        if (Mathf.Abs(scrollPos.y - prevScrollPos.y) < .0025f && watchMove && !UserScrolling()) {
             watchMove = false;
             scrollRect.inertia = false;
             StartCoroutine(SnapToItem());
         }
 
-        prevScrolPos = scrolPos;
+        prevScrollPos = scrollPos;
     }
 
     // Initialise the scroll highlight UI
-    IEnumerator Init() {
+    IEnumerator Initialise() {
         items.Clear();
 
         // Wait a frame for other UI scripts to initialise
@@ -112,13 +112,13 @@ public class ScrollHighlight : MonoBehaviour
     // Update highlighted item and sticky chapter subtitle based on current scroll location
     public void UpdateScroll(Vector2 pos) {
         scrollRect.inertia = true;
-        scrolPos = pos;
+        scrollPos = pos;
 
         if (items.Count == 0) {
             return;
         }
 
-        float scrollPos = (1 - pos.y);
+        float relativeScrollPos = (1 - pos.y);
         float closestDistance = 999f;
 
         foreach (ScrollHighlightItem item in items) {
@@ -126,8 +126,8 @@ public class ScrollHighlight : MonoBehaviour
                 continue;
             }
             
-            if (scrollPos + viewportSize >= item.pos) {
-                float distanceFromCenter = Mathf.Abs((item.pos + (item.height / 2)) - (scrollPos + viewportCenter));
+            if (relativeScrollPos + viewportSize >= item.pos) {
+                float distanceFromCenter = Mathf.Abs((item.pos + (item.height / 2)) - (relativeScrollPos + viewportCenter));
                 float alpha = 1 - (distanceFromCenter / viewportCenter);
 
                 if (distanceFromCenter < closestDistance) {
@@ -146,20 +146,20 @@ public class ScrollHighlight : MonoBehaviour
         }
 
         foreach (ScrollHighlightSubtitle subtitle in subtitles) {
-            if (scrollPos < subtitle.stickStart) {
+            if (relativeScrollPos < subtitle.stickStart) {
                 subtitle.textObjRect.anchoredPosition = new Vector2(
                     subtitle.textObjRect.anchoredPosition.x,
                     0
                 );
-            } else if (subtitle.stickEnd != 0 && scrollPos > subtitle.stickEnd) {
+            } else if (subtitle.stickEnd != 0 && relativeScrollPos > subtitle.stickEnd) {
                 subtitle.textObjRect.anchoredPosition = new Vector2(
                     subtitle.textObjRect.anchoredPosition.x,
                     ((contentHeight * (subtitle.stickEnd - subtitle.pos)) + subtitle.textObjRect.rect.height) * -1
                 );
-            } else if (scrollPos >= subtitle.stickStart) {
+            } else if (relativeScrollPos >= subtitle.stickStart) {
                 subtitle.textObjRect.anchoredPosition = new Vector2(
                     subtitle.textObjRect.anchoredPosition.x,
-                    ((contentHeight * (scrollPos - subtitle.pos)) + subtitle.textObjRect.rect.height) * -1
+                    ((contentHeight * (relativeScrollPos - subtitle.pos)) + subtitle.textObjRect.rect.height) * -1
                 );
             }
         }
@@ -216,7 +216,7 @@ public class ScrollHighlight : MonoBehaviour
         Vector2 endPos = new Vector2(startPos.x, ItemPosition(item));
 
         while (time <= 1f) {
-            // Stop if the user starts scrolling
+            // Stop if the user starts scrolling during the transition
             if (UserScrolling()) {
                 yield break;
             }

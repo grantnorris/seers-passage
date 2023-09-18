@@ -15,8 +15,15 @@ public class CameraShake : MonoBehaviour
     }
 
     void Start() {
-        // Ensure chromatic aberration is reset
-        lofiShader.SetVector("ChromaticAberration", Vector2.zero);
+        // Ensure chromatic aberration amount is reset to zero
+        UpdateChromaticAberration(Vector2.zero);
+    }
+
+    // Update chromatic aberration value in render texture shader
+    void UpdateChromaticAberration(Vector2 value) {
+        if (lofiShader != null) {
+            lofiShader.SetVector("ChromaticAberration", value);
+        }
     }
 
     // Shake the camera by a given amount for a specified duration
@@ -24,9 +31,7 @@ public class CameraShake : MonoBehaviour
         Vector3 originPos = transform.position;
         float elapsed = 0f;
 
-        if (lofiShader != null) {
-            lofiShader.SetVector("ChromaticAberration", new Vector2(.0025f, 0));
-        }
+        UpdateChromaticAberration(new Vector2(.0025f, 0));
 
         while (duration > elapsed) {
             float xPos = Random.Range(-1f, 1f) * magnitude;
@@ -36,9 +41,7 @@ public class CameraShake : MonoBehaviour
             yield return null;
         }
 
-        if (lofiShader != null) {
-            lofiShader.SetVector("ChromaticAberration", Vector2.zero);
-        }
+        UpdateChromaticAberration(Vector2.zero);
 
         transform.localPosition = originPos;
     }

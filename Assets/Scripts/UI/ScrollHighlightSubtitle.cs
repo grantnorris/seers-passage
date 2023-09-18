@@ -18,6 +18,11 @@ public class ScrollHighlightSubtitle : MonoBehaviour
     public float stickEnd = 0;
 
     void Start() {
+        UpdateUISortingOrder();
+    }
+
+    // Update UI sorting order to display correctly
+    void UpdateUISortingOrder() {
         Canvas canvas = GetComponent<Canvas>();
 
         if (canvas != null) {

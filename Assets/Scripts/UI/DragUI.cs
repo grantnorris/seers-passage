@@ -40,19 +40,16 @@ public class DragUI : MonoBehaviour
         switch (direction) {
             case "up":
                 rotation = 0;
-            break;
-
+                break;
             case "right":
                 rotation = 270;
-            break;
-
+                break;
             case "down":
                 rotation = 180;
-            break;
-
+                break;
             case "left":
                 rotation = 90;
-            break;
+                break;
         }
 
         // Set the rotation of the sprite transform
