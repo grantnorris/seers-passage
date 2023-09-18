@@ -9,8 +9,13 @@ public class JournalInteractable : Interactable
     void Start() {
         anim = GetComponentInChildren<Animator>();
     }
- 
+    
     public override void Interact() {
+        OpenJournal();
+    }
+
+    // Triggers the open animation and dialogue
+    void OpenJournal() {
         if (anim == null) {
             return;
         }
@@ -33,6 +38,7 @@ public class JournalInteractable : Interactable
         DialogueManager.instance.dialogueEnded.AddListener(CloseJournal);
     }
 
+    // Resets the journal animator state and removes the dialogue listener
     public void CloseJournal() {
         anim.SetBool("Open", false);
         DialogueManager.instance.dialogueEnded.RemoveListener(CloseJournal);

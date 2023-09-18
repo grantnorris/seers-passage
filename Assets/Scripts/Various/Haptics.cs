@@ -13,6 +13,7 @@ public class Haptics : MonoBehaviour
         }
     }
 
+    // Vibrate the mobile device
     public void Vibrate() {
         Logger.Send("Vibrate.");
 

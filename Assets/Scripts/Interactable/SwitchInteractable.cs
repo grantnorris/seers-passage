@@ -13,20 +13,12 @@ public class SwitchInteractable : Interactable
         }
 
         if (target != null) {
+            // Activate target gate
             if (target.GetComponent<Gate>()) {
-                float animationDuration = .8f;
-
-                // Target is gate tile type
-                // Run animation
-                target.GetComponent<Gate>().Activate();
-
-                StartCoroutine(GameManager.instance.DisablePlayerMoveForDuration(animationDuration));
-                
-                // Shake the camera
-                if (CameraShake.instance != null) {
-                    StartCoroutine(CameraShake.instance.Shake(animationDuration, .05f));
-                }
+                target.GetComponent<Gate>().Activate();                
             }
+
+            // Other switch interactions to come in the future
         }
     }
 }

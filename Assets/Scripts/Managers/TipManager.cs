@@ -68,6 +68,7 @@ public class TipManager
         ),
     };
 
+    // Display a tip dialogue by name and then add it to the list of displayed tips
     public static void DisplayTip(string tipName) {
         List<string> displayedTips = SaveSystem.DisplayedTips();
 
@@ -88,6 +89,7 @@ public class TipManager
         }
     }
 
+    // Get a tip by name
     public static Tip GetTip(string name) {
         foreach (Tip tip in tips) {
             if (tip.name != name) {
@@ -98,15 +100,5 @@ public class TipManager
         }
 
         return null;
-    }
-}
-
-public class Tip {
-    public string name; // This acts as an identifier so should be unique
-    public Dialogue dialogue;
-
-    public Tip(string newName, Dialogue newDialogue) {
-        name = newName;
-        dialogue = newDialogue;
     }
 }

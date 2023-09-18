@@ -29,8 +29,17 @@ public class Gate : MonoBehaviour
     
     // Toggle activated state of gate
     public void Activate() {
+        float animationDuration = .8f;
+        
         if (!anim.isActiveAndEnabled) {
             anim.enabled = true;
+        }
+
+        StartCoroutine(GameManager.instance.DisablePlayerMoveForDuration(animationDuration));
+
+        // Shake the camera
+        if (CameraShake.instance != null) {
+            StartCoroutine(CameraShake.instance.Shake(animationDuration, .05f));
         }
     
         UpdateVolumeByPlayerDistance();

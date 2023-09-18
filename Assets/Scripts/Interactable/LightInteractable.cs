@@ -15,9 +15,11 @@ public class LightInteractable : Interactable
     }
 
     public override void Interact() {
-        gameObject.tag = "Untagged";
-        GameManager.instance.player.interaction.CloseInteractNotice();
+        Pickup();
+    }
 
+    // Adds the light to the player's inventory and trigger's the dialogue
+    void Pickup() {
         if (anim != null) {
             anim.SetTrigger("remove");
             AudioManager.instance.PlayOneShot("Light Torch");
@@ -34,15 +36,12 @@ public class LightInteractable : Interactable
         Remove();
     }
 
+    // Start player pickup dialogue
     void StartDialogue() {
         if (DialogueManager.instance == null) {
             return;
         }
 
         DialogueManager.instance.StartDialogue(pickupDialogue);
-    }
-
-    public void Remove() {
-        this.enabled = false;
     }
 }
