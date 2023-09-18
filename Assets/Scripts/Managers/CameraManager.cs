@@ -21,8 +21,7 @@ public class CameraManager : MonoBehaviour
         Init();
     }
 
-    public void Init()
-    {
+    public void Init() {
         mainCam = Camera.main;
         GameObject player = GameManager.instance.player.gameObject;
 

@@ -21,8 +21,7 @@ public class TileDisplay : MonoBehaviour
     SpriteRenderer rend;
     bool isDownFacing = false;
 
-    void Start()
-    {
+    void Start() {
         if (rend == null) {
             rend = GetComponent<SpriteRenderer>();
         }

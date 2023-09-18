@@ -85,15 +85,13 @@ Properties {
 }
 
 SubShader {
-    Tags
-    {
+    Tags {
         "Queue" = "Transparent"
         "IgnoreProjector" = "True"
         "RenderType" = "Transparent"
     }
 
-    Stencil
-    {
+    Stencil {
         Ref[_Stencil]
         Comp[_StencilComp]
         Pass[_StencilOp]

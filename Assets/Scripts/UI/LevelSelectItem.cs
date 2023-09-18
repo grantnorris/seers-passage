@@ -27,8 +27,7 @@ public class LevelSelectItem : MonoBehaviour
     bool levelComplete = false;
     LevelScore score;
 
-    public void Setup(Level lvl, Chapter chapter)
-    {
+    public void Setup(Level lvl, Chapter chapter) {
         if (lvl == null) {
             return;
         }

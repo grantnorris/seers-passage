@@ -18,8 +18,7 @@ public class PlayerCamera : MonoBehaviour
         }
     }
 
-    void Start()
-    {
+    void Start() {
         Init();
     }
 
@@ -29,8 +28,7 @@ public class PlayerCamera : MonoBehaviour
         transform.position = targetPos;
     }
 
-    void LateUpdate()
-    {
+    void LateUpdate() {
         if (player == null) {
             return;
         }

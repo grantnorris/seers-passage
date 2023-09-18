@@ -11,8 +11,7 @@ public class PlayerSteps : MonoBehaviour
     int stepCount = 0;
     int stepThreshold = 0;
 
-    void Start()
-    {
+    void Start() {
         if (GameManager.instance != null) {
             GameManager.instance.player.move.finishMoving.AddListener(IncrementStepCount);
             stepped.AddListener(GameManager.instance.uiController.StartUpdateStepCountUI);

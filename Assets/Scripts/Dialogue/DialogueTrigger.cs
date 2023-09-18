@@ -10,8 +10,7 @@ public class DialogueTrigger : MonoBehaviour
     public Dialogue onStartDialogue;
     public StepDialogueTrigger[] stepTriggers;
 
-    void Start()
-    {
+    void Start() {
         if (instance == null) {
             instance = this;
         }

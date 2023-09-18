@@ -15,14 +15,12 @@ public class PlayerControl : MonoBehaviour
         player = GetComponent<Player>();
     }
 
-    void Start()
-    {
+    void Start() {
         allowInput = false;
         dragUI = GameManager.instance.dragUI;
     }
 
-    void Update()
-    {
+    void Update() {
         TranslateInputs();
     }
 

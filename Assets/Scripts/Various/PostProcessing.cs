@@ -6,8 +6,7 @@ public class PostProcessing : MonoBehaviour
 {
     public static PostProcessing instance;
 
-    void Awake()
-    {
+    void Awake() {
         if (instance != null && instance != this) {
             Destroy(this.gameObject);
             return;

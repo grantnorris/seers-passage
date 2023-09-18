@@ -7,8 +7,7 @@ public class ScreenTransitions : MonoBehaviour
     public Material viewShaderMat;
 
     // Transition the level scene view in
-    public void StartTransitionViewIn()
-    {
+    public void StartTransitionViewIn() {
         viewShaderMat.SetFloat("NoiseAmount", -.1f);
         GameManager.instance.player.move.shadowAnim.SetTrigger("open");
         GameManager.instance.uiController.DisplayGameUI();

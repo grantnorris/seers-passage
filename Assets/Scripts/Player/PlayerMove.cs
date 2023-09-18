@@ -30,8 +30,7 @@ public class PlayerMove : MonoBehaviour
         }
     }
     
-    void Update()
-    {  
+    void Update() {  
         if (moving && !GameManager.instance.Paused()) {
             Logger.Send("Moving.", "player");
 

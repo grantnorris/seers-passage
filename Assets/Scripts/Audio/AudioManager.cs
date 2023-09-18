@@ -12,8 +12,7 @@ public class AudioManager : MonoBehaviour
     AudioSource oneShotSource;
     Sound theme;
 
-    void Awake()
-    {
+    void Awake() {
         if (instance != null && instance != this) {
             Destroy(this.gameObject);
             return;

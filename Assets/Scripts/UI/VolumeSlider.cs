@@ -7,8 +7,7 @@ public class VolumeSlider : MonoBehaviour
 {
     Slider slider;
 
-    void Start()
-    {
+    void Start() {
         slider = GetComponent<Slider>();
         SetHandlePosition();
         SetListener();
