@@ -117,8 +117,7 @@ public class PlayerMove : MonoBehaviour
 
             int directionInt = 0;
 
-            switch (direction)
-            {
+            switch (direction) {
                 case "up":
                     directionInt = 1;
                     break;

@@ -5,6 +5,7 @@ using UnityEngine;
 public class TipManager
 {
     static List<string> displayedTips = new List<string>();
+    // List of tips that can be displayed
     static List<Tip> tips = new List<Tip>() {
         new Tip(
             "Movement",

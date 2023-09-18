@@ -37,9 +37,8 @@ public class CameraManager : MonoBehaviour
         SetUpPlayerCam();
     }
 
-    // Set up player cam and render texture
+    // Set up player camera and render texture
     void SetUpPlayerCam() {
-
         if (mainCam == null || playerCam == null || renderTex == null || renderTexObj == null) {
             return;
         }

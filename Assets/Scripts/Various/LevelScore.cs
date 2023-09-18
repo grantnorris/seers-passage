@@ -16,16 +16,13 @@ public class LevelScore {
 
     // Stringified version of score
     public string Score() {
-        switch (hearts)
-        {
+        switch (hearts) {
             case 3 :
-            return "Perfect!";
-            
+                return "Perfect!";
             case 2 :
-            return "Great!";
-            
+                return "Great!";
             case 1 :
-            return "Good";
+                return "Good";
         }
 
         return null;

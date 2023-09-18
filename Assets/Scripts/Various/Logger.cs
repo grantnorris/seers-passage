@@ -15,16 +15,13 @@ public static class Logger
 
         string log = $"{txt} - {source}";
 
-        switch (type)
-        {
+        switch (type) {
             case "warning":
                 Debug.LogWarning(log);
                 break;
-
             case "assertion":
                 Debug.LogAssertion(log);
                 break;
-
             default:
                 Debug.Log(log);
                 break;
@@ -40,13 +37,10 @@ public static class Logger
         switch (source) {
             case "player":
                 return enablePlayerLogs;
-
             case "save":
                 return enableSaveLogs;
-
             case "general":
                 return enableGeneralLogs;
-
             default:
                 return false;
         }

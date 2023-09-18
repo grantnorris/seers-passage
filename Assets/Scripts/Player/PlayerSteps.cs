@@ -46,16 +46,13 @@ public class PlayerSteps : MonoBehaviour
 
     // Current player step score string
     public string StepScore() {
-        switch (currentStepThreshold())
-        {
+        switch (currentStepThreshold()) {
             case 2:
-            return "Good";
-
+                return "Good";
             case 3:
-            return "Bad";
-
+                return "Bad";
             default:
-            return"Perfect";
+                return"Perfect";
         }
     }
 

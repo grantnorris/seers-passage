@@ -24,8 +24,7 @@ public class DoorInteractable : Interactable
 
     // Retrieve a vector containing the offset related to the door direction
     public Vector3 DirectionVector() {
-        switch (direction)
-        {
+        switch (direction) {
             case "up":
                 return new Vector3(0, 1, 0);
             case "right":

@@ -41,11 +41,9 @@ public class LockInteractable : Interactable
             case 1:
                 dialogue = new string[] {"There's a padlock here, the key must be around somewhere."};
                 break;
-
             case 2:
                 dialogue = new string[] {"I should find the key to progress."};
                 break;
-
             default:
                 dialogue = new string[] {"I need to find a key for this."};
                 break;

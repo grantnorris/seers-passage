@@ -34,9 +34,7 @@ public class GameManager : MonoBehaviour
     }
 
     void Update() {
-        if (!paused) {
-            time += Time.deltaTime;
-        }
+        UpdateLevelTimePlayed();
 
         // Inputs for debugging
         if (Input.GetKeyDown(KeyCode.K)) {
@@ -48,7 +46,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Update the time played on the level unless paused
+    void UpdateLevelTimePlayed() {
+        if (!paused) {
+            time += Time.deltaTime;
+        }
+    }
+
+    // Retrieve and instantiate the relevant level
     void SetupLevel() {
+        // Get the level from the scene switcher or use the fallback level if not present (via loading level scene directly in editor)
         level = SceneSwitcher.instance != null ? SceneSwitcher.instance.level : fallbackLevel;
 
         if (level == null || level.prefab == null) {

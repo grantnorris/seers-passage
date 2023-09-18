@@ -37,22 +37,21 @@ public class DragUI : MonoBehaviour
             spriteIndex = sprites.Length;
         }
 
-        switch (direction)
-        {
+        switch (direction) {
             case "up":
-            rotation = 0;
+                rotation = 0;
             break;
 
             case "right":
-            rotation = 270;
+                rotation = 270;
             break;
 
             case "down":
-            rotation = 180;
+                rotation = 180;
             break;
 
             case "left":
-            rotation = 90;
+                rotation = 90;
             break;
         }
 
@@ -83,23 +82,19 @@ public class DragUI : MonoBehaviour
 
         string animationTrigger = "";
 
-        switch (direction)
-            {
+        switch (direction) {
             case "up":
-            animationTrigger = "ApplyUp";
-            break;
-
+                animationTrigger = "ApplyUp";
+                break;
             case "right":
-            animationTrigger = "ApplyRight";
-            break;
-
+                animationTrigger = "ApplyRight";
+                break;
             case "down":
-            animationTrigger = "ApplyDown";
-            break;
-
+                animationTrigger = "ApplyDown";
+                break;
             case "left":
-            animationTrigger = "ApplyLeft";
-            break;
+                animationTrigger = "ApplyLeft";
+                break;
         }
 
         anim.SetTrigger(animationTrigger);

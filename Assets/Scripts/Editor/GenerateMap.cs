@@ -185,7 +185,6 @@ public class GenerateMap : Editor
                 case "Player Spawn":
                     SetUpPlayerSpawnTile(tile, position);
                     break;
-
                 case "Door":
                     SetUpDoorTile(tile, position);
                     break;

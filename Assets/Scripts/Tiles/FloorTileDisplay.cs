@@ -57,27 +57,19 @@ public class FloorTileDisplay : TileDisplay
                 TileLocation adjacentTile = null;
                 List<Sprite> sprites = new List<Sprite>();
                 
-                switch (i)
-                {
-                    // Up
-                    case 0:
-                    adjacentTile = tileUp;
-                    break;
-
-                    // Right
-                    case 1:
-                    adjacentTile = tileRight;
-                    break;
-
-                    // Down
-                    case 2:
-                    adjacentTile = tileDown;
-                    break;
-
-                    // Left
-                    case 3:
-                    adjacentTile = tileLeft;
-                    break;
+                switch (i) {
+                    case 0: // Up
+                        adjacentTile = tileUp;
+                        break;
+                    case 1: // Right
+                        adjacentTile = tileRight;
+                        break;
+                    case 2: // Down
+                        adjacentTile = tileDown;
+                        break;
+                    case 3: // Left
+                        adjacentTile = tileLeft;
+                        break;
                 }
 
                 if (adjacentTile == null || adjacentTile.obj.tag != "Wall") {
@@ -86,31 +78,23 @@ public class FloorTileDisplay : TileDisplay
 
                 hasDetails = true;
             
-                switch (i)
-                {
-                    // Up
-                    case 0:
-                    hasTopDetails = true;
-                    sprites = topDetailSprites;
-                    break;
-
-                    // Right
-                    case 1:
-                    hasRightDetails = true;
-                    sprites = rightDetailSprites;
-                    break;
-
-                    // Down
-                    case 2:
-                    hasBottomDetails = true;
-                    sprites = downDetailSprites;
-                    break;
-
-                    // Left
-                    case 3:
-                    hasLeftDetails = true;
-                    sprites = leftDetailSprites;
-                    break;
+                switch (i) {
+                    case 0: // Up
+                        hasTopDetails = true;
+                        sprites = topDetailSprites;
+                        break;
+                    case 1: // Right
+                        hasRightDetails = true;
+                        sprites = rightDetailSprites;
+                        break;
+                    case 2: // Down
+                        hasBottomDetails = true;
+                        sprites = downDetailSprites;
+                        break;
+                    case 3: // Left
+                        hasLeftDetails = true;
+                        sprites = leftDetailSprites;
+                        break;
                 }            
             }
         } else {
@@ -175,80 +159,77 @@ public class FloorTileDisplay : TileDisplay
     Sprite DetailSprite(int edge) {
         Sprite sprite = null;
 
-        switch (edge)
-        {
-            // Up
-            case 0:
-            if (!hasTopDetails) {
+        switch (edge) {
+            case 0: // Up
+                if (!hasTopDetails) {
+                    break;
+                }
+
+                if (tileLeftDisplay != null && tileLeftDisplay.hasTopDetails && tileRightDisplay != null && tileRightDisplay.hasTopDetails) {
+                    sprite = topDetailSprites[2];
+                } else if (tileLeftDisplay != null && tileLeftDisplay.hasTopDetails) {
+                    sprite = topDetailSprites[3];
+                } else if (tileRightDisplay != null && tileRightDisplay.hasTopDetails) {
+                    sprite = topDetailSprites[1];
+                } else {
+                    sprite = topDetailSprites[0];
+                }
+
                 break;
-            }
+            case 1: // Right
+                if (!hasRightDetails) {
+                    break;
+                }
 
-            if (tileLeftDisplay != null && tileLeftDisplay.hasTopDetails && tileRightDisplay != null && tileRightDisplay.hasTopDetails) {
-                sprite = topDetailSprites[2];
-            } else if (tileLeftDisplay != null && tileLeftDisplay.hasTopDetails) {
-                sprite = topDetailSprites[3];
-            } else if (tileRightDisplay != null && tileRightDisplay.hasTopDetails) {
-                sprite = topDetailSprites[1];
-            } else {
-                sprite = topDetailSprites[0];
-            }
-            break;
+                if (tileUpDisplay != null && tileUpDisplay.hasRightDetails && tileDownDisplay != null && tileDownDisplay.hasRightDetails) {
+                    sprite = rightDetailSprites[2];
+                } else if (tileDownDisplay != null && tileDownDisplay.hasRightDetails) {
+                    sprite = rightDetailSprites[3];
+                } else if (tileUpDisplay != null && tileUpDisplay.hasRightDetails) {
+                    sprite = rightDetailSprites[1];
+                } else {
+                    sprite = rightDetailSprites[0];
+                }
 
-            // Right
-            case 1:
-            if (!hasRightDetails) {
                 break;
-            }
+            case 2: // Down
+                if (!hasBottomDetails) {
+                    break;
+                }
 
-            if (tileUpDisplay != null && tileUpDisplay.hasRightDetails && tileDownDisplay != null && tileDownDisplay.hasRightDetails) {
-                sprite = rightDetailSprites[2];
-            } else if (tileDownDisplay != null && tileDownDisplay.hasRightDetails) {
-                sprite = rightDetailSprites[3];
-            } else if (tileUpDisplay != null && tileUpDisplay.hasRightDetails) {
-                sprite = rightDetailSprites[1];
-            } else {
-                sprite = rightDetailSprites[0];
-            }
-            break;
+                if (tileLeftDisplay != null && tileLeftDisplay.hasBottomDetails && tileRightDisplay != null && tileRightDisplay.hasBottomDetails) {
+                    sprite = downDetailSprites[2];
+                } else if (tileLeftDisplay != null && tileLeftDisplay.hasBottomDetails) {
+                    sprite = downDetailSprites[3];
+                } else if (tileRightDisplay != null && tileRightDisplay.hasBottomDetails) {
+                    sprite = downDetailSprites[1];
+                } else {
+                    sprite = downDetailSprites[0];
+                }
 
-            // Down
-            case 2:
-            if (!hasBottomDetails) {
                 break;
-            }
+            case 3: // Left
+                if (!hasLeftDetails) {
+                    break;
+                }
 
-            if (tileLeftDisplay != null && tileLeftDisplay.hasBottomDetails && tileRightDisplay != null && tileRightDisplay.hasBottomDetails) {
-                sprite = downDetailSprites[2];
-            } else if (tileLeftDisplay != null && tileLeftDisplay.hasBottomDetails) {
-                sprite = downDetailSprites[3];
-            } else if (tileRightDisplay != null && tileRightDisplay.hasBottomDetails) {
-                sprite = downDetailSprites[1];
-            } else {
-                sprite = downDetailSprites[0];
-            }
-            break;
-
-            // Left
-            case 3:
-            if (!hasLeftDetails) {
+                if (tileUpDisplay != null && tileUpDisplay.hasLeftDetails && tileDownDisplay != null && tileDownDisplay.hasLeftDetails) {
+                    sprite = leftDetailSprites[2];
+                } else if (tileDownDisplay != null && tileDownDisplay.hasLeftDetails) {
+                    sprite = leftDetailSprites[3];
+                } else if (tileUpDisplay != null && tileUpDisplay.hasLeftDetails) {
+                    sprite = leftDetailSprites[1];
+                } else {
+                    sprite = leftDetailSprites[0];
+                }
+                
                 break;
-            }
-
-            if (tileUpDisplay != null && tileUpDisplay.hasLeftDetails && tileDownDisplay != null && tileDownDisplay.hasLeftDetails) {
-                sprite = leftDetailSprites[2];
-            } else if (tileDownDisplay != null && tileDownDisplay.hasLeftDetails) {
-                sprite = leftDetailSprites[3];
-            } else if (tileUpDisplay != null && tileUpDisplay.hasLeftDetails) {
-                sprite = leftDetailSprites[1];
-            } else {
-                sprite = leftDetailSprites[0];
-            }
-            break;
         }
 
         return sprite;
     }
 
+    // Retrieve puddle sprite based on surrounding puddle tiles
     Sprite PuddleSprite() {
         Sprite sprite = null;
         adjacentPuddles = "";
@@ -258,72 +239,55 @@ public class FloorTileDisplay : TileDisplay
         adjacentPuddles += tileDownDisplay != null && tileDownDisplay.hasPuddle ? "1" : "0";
         adjacentPuddles += tileLeftDisplay != null && tileLeftDisplay.hasPuddle ? "1" : "0";
 
-        switch (adjacentPuddles)
-        {
+        switch (adjacentPuddles) {
             case "0000":
-            // Don't display unconnected singular puddles
-            break;
-
+                // Don't display unconnected singular puddles
+                break;
             case "1000":
-            sprite = puddleSprites[1];
-            break;
-            
+                sprite = puddleSprites[1];
+                break;
             case "0100":
-            sprite = puddleSprites[2];
-            break;
-
+                sprite = puddleSprites[2];
+                break;
             case "0010":
-            sprite = puddleSprites[3];
-            break;
-
+                sprite = puddleSprites[3];
+                break;
             case "0001":
-            sprite = puddleSprites[4];
-            break;
-            
+                sprite = puddleSprites[4];
+                break;
             case "0110":
-            sprite = puddleSprites[5];
-            break;
-
+                sprite = puddleSprites[5];
+                break;
             case "0011":
-            sprite = puddleSprites[6];
-            break;
-
+                sprite = puddleSprites[6];
+                break;
             case "1100":
-            sprite = puddleSprites[7];
-            break;
-
+                sprite = puddleSprites[7];
+                break;
             case "1001":
-            sprite = puddleSprites[8];
-            break;
-
+                sprite = puddleSprites[8];
+                break;
             case "1111":
-            sprite = puddleSprites[9];
-            break;
-
+                sprite = puddleSprites[9];
+                break;
             case "1110":
-            sprite = puddleSprites[10];
-            break;
-
+                sprite = puddleSprites[10];
+                break;
             case "1101":
-            sprite = puddleSprites[11];
-            break;
-
+                sprite = puddleSprites[11];
+                break;
             case "1011":
-            sprite = puddleSprites[12];
-            break;
-
+                sprite = puddleSprites[12];
+                break;
             case "0111":
-            sprite = puddleSprites[13];
-            break;
-
+                sprite = puddleSprites[13];
+                break;
             case "1010":
-            sprite = puddleSprites[14];
-            break;
-
+                sprite = puddleSprites[14];
+                break;
             case "0101":
-            sprite = puddleSprites[15];
-            break;
-
+                sprite = puddleSprites[15];
+                break;
         }
 
         return sprite;

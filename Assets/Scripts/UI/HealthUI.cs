@@ -31,22 +31,21 @@ public class HealthUI : MonoBehaviour
     public void UpdateUI() {
         Animator anim = null;
 
-        switch (GameManager.instance.player.health.Health())
-        {
-        case 2:
-            anim = transform.GetChild(2).GetComponent<Animator>();
-            anim.SetTrigger("Remove");
-            break;
-        case 1:
-            anim = transform.GetChild(1).GetComponent<Animator>();
-            transform.GetChild(0).GetComponent<Animator>().SetBool("Flash", true);
-            anim.SetTrigger("Remove");
-            break;
-        case 0:
-            anim = transform.GetChild(0).GetComponent<Animator>();
-            transform.GetChild(0).GetComponent<Animator>().SetBool("Flash", false);
-            anim.SetTrigger("Remove");
-            break;
+        switch (GameManager.instance.player.health.Health()) {
+            case 2:
+                anim = transform.GetChild(2).GetComponent<Animator>();
+                anim.SetTrigger("Remove");
+                break;
+            case 1:
+                anim = transform.GetChild(1).GetComponent<Animator>();
+                transform.GetChild(0).GetComponent<Animator>().SetBool("Flash", true);
+                anim.SetTrigger("Remove");
+                break;
+            case 0:
+                anim = transform.GetChild(0).GetComponent<Animator>();
+                transform.GetChild(0).GetComponent<Animator>().SetBool("Flash", false);
+                anim.SetTrigger("Remove");
+                break;
         }
     }
 }
