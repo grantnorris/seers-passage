@@ -33,6 +33,7 @@ public static class GameLevels
         ),
     };
 
+    // Previous of a given level in the chapter list
     public static Level PreviousLevel(Level level) {
         for (int c = 0; c < chapters.Length; c++) {
             for (int l = 0; l < chapters[c].levels.Length; l++) {
@@ -59,6 +60,7 @@ public static class GameLevels
         return null;
     }
 
+    // Next of a given level in the chapter list
     public static Level NextLevel(Level level) {
         for (int c = 0; c < chapters.Length; c++) {
             for (int l = 0; l < chapters[c].levels.Length; l++) {
@@ -83,21 +85,5 @@ public static class GameLevels
         }
 
         return null;
-    }
-}
-
-public class Chapter {
-    public string name;
-    public Level[] levels;
-    public int scoreToUnlock = 0;
-
-    public Chapter(string newName, Level[] newLevels, int newScoreToUnlock) {
-        name = newName;
-        levels = newLevels;
-        scoreToUnlock = newScoreToUnlock;
-    }
-
-    public bool Unlocked() {
-        return SaveSystem.TotalScore() >= scoreToUnlock;
     }
 }

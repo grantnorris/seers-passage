@@ -14,6 +14,7 @@ public class LevelScore {
         levelId = newLevelId;
     }
 
+    // Stringified version of score
     public string Score() {
         switch (hearts)
         {

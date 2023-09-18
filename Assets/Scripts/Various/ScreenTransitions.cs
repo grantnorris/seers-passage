@@ -6,6 +6,7 @@ public class ScreenTransitions : MonoBehaviour
 {
     public Material viewShaderMat;
 
+    // Transition the level scene view in
     public void StartTransitionViewIn()
     {
         viewShaderMat.SetFloat("NoiseAmount", -.1f);
@@ -13,11 +14,12 @@ public class ScreenTransitions : MonoBehaviour
         GameManager.instance.uiController.DisplayGameUI();
     }
 
+    // Transition the level scene view in
     public void StartTransitionViewOut() {
         StartCoroutine("TransitionViewOut");
     }
 
-    // Transition view out
+    // Transition view of a level scene and back to the level select
     IEnumerator TransitionViewOut() {
         if (viewShaderMat == null) {
             yield break;
@@ -36,7 +38,7 @@ public class ScreenTransitions : MonoBehaviour
         GameManager.instance.ReturnToLevelSelect();
     }
 
-    // Transition door
+    // Transition and move player through a given door
     public IEnumerator TransitionDoor(DoorInteractable door) {
         if (viewShaderMat == null || door == null) {
             yield break;

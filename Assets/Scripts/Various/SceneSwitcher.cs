@@ -26,15 +26,18 @@ public class SceneSwitcher : MonoBehaviour
         }
     }
 
+    // Load the level scene with a given level asset
     public void LoadLevel(Level newLevel) {
         level = newLevel;
         SceneManager.LoadScene("Level");
     }
 
+    // Reload the current level scene
     public void ReloadLevel() {
         SceneManager.LoadScene("Level");
     }
 
+    // Load the level select scene
     public void LoadLevelSelect() {
         prevLevel = level;
         level = null;

@@ -12,7 +12,6 @@ public class Map : MonoBehaviour
     [HideInInspector]
     public Texture2D mapTex;
     public Transform tileParent;
-    // [HideInInspector]
     public List<TileLocation> tiles = new List<TileLocation>();
     [Tooltip("This value is used for nothing, this is simply a checkbox to trigger the prefab save.")]
     [SerializeField]
@@ -38,9 +37,10 @@ public class Map : MonoBehaviour
             return;
         }
 
-        foreach (Transform child in tileParent) {
+        // Currently commented out as updates are being made to this system
+        // foreach (Transform child in tileParent) {
             // tiles.Add(new TileLocation(child.gameObject, (int)child.position.x, (int)child.position.y));
-        }
+        // }
     }
 
     // Get the tile object residing at the given coordinates

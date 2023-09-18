@@ -6,6 +6,8 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public static class SaveSystem
 {
+    // TO DO: Currently both the saveSystem and progressData scripts have multiple similar methods, these need to be optimised so it's less ambiguous.
+    
     static string path = Path.Combine(Application.persistentDataPath, "data.sp");
     static ProgressData progressData = LoadProgress();
 
@@ -15,6 +17,7 @@ public static class SaveSystem
         SaveProgress(progressData);
     }
 
+    // Retrieve a level score from the current saved data
     public static LevelScore LevelScore(Level level) {
         if (level == null) {
             return null;
@@ -23,10 +26,12 @@ public static class SaveSystem
         return progressData.GetScore(level);
     }
 
+    // Retrieve the total score of all levels combined from the current saved data
     public static int TotalScore() {
         return progressData.TotalScore();
     }
 
+    // Flag a tip as displayed in the current saved data
     public static void AddTipToDisplayedList(string name) {
         Logger.Send($"Add tip to displayed list - name.", "save");
 
@@ -34,15 +39,17 @@ public static class SaveSystem
         SaveProgress(progressData);
     }
 
+    // Get all displayed tips from the current saved data
     public static List<string> DisplayedTips() {
         return progressData.GetDisplayedTips();
     }
 
+    // Retrieve all current saved data
     public static ProgressData ProgressData() {
         return progressData;
     }
 
-    // Save progress
+    // Save current saved data
     static void SaveProgress(ProgressData data) {
         BinaryFormatter formatter = new BinaryFormatter();
         FileStream stream = new FileStream(path, FileMode.Create);
@@ -54,7 +61,7 @@ public static class SaveSystem
         data.Log();
     }
 
-    // Load progress
+    // Load current saved data
     static ProgressData LoadProgress() {
         Logger.Send("Load progress.", "save");
 
@@ -80,6 +87,7 @@ public static class SaveSystem
         }
     }
 
+    // Delete current saved data
     public static void DeleteProgress() {
         Logger.Send("Deleting saved data.", "save");
         File.Delete(path);

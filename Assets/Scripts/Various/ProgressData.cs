@@ -8,6 +8,7 @@ public class ProgressData
     List<LevelScore> scores = new List<LevelScore>();
     List<string> displayedTips = new List<string>();
 
+    // Update progress with a new level score if it's better than the current one
     public void UpdateScore(LevelScore score) {
         LevelScore curScore = null;
 
@@ -27,6 +28,7 @@ public class ProgressData
         }
     }
 
+    // Get the saved score of a given level
     public LevelScore GetScore(Level level) {
         if (scores.Count == 0 || level == null) {
             return null;
@@ -43,6 +45,7 @@ public class ProgressData
         return null;
     }
 
+    // Total saved score of all completed levels
     public int TotalScore() {
         int score = 0;
 
@@ -53,6 +56,7 @@ public class ProgressData
         return score;
     }
 
+    // Flag 'tip' name as displayed so it doesn't appear again
     public void AddTipToDisplayedList(string name) {
         if (displayedTips.Contains(name)) {
             return;
@@ -61,10 +65,12 @@ public class ProgressData
         displayedTips.Add(name);
     }
 
+    // Get a list of all displayed tip named
     public List<string> GetDisplayedTips() {
         return displayedTips;
     }
 
+    // Log progress data for debugging
     public void Log() {
         Logger.Send("---- Saved data ----", "save");
         Logger.Send("---- Scores ----", "save");

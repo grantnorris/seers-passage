@@ -31,6 +31,7 @@ public static class Logger
         }
     }
 
+    // Whether or not the current message should be logged based on source and type
     static bool shouldMessageBeLogged(string source, string type) {
         if (type == "warning" || type == "assertion") {
             return true;
