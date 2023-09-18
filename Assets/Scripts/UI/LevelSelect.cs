@@ -39,19 +39,28 @@ public class LevelSelect : MonoBehaviour
             return;
         }
 
+        PopulateUI();
+    }
+
+    // Populate level select UI
+    void PopulateUI() {
         ProgressData progressData = SaveSystem.ProgressData();
         GameObject itemToFocus = null;
         Level levelJustPlayed = SceneSwitcher.instance != null ? SceneSwitcher.instance.prevLevel : null;
         int totalScore = progressData.TotalScore();
         
+        // Loop through all chapters
         for (int c = 0; c < chapters.Length; c++) {
             Chapter chapter = chapters[c];
 
-            if (chapter.levels.Length > 0) {
-                GameObject subtitle = Instantiate(subtitlePrefab, content.transform);
-                subtitle.GetComponent<LevelSelectSubtitle>().Setup(chapter, totalScore);
+            if (chapter.levels.Length == 0) {
+                continue;
             }
 
+            GameObject subtitle = Instantiate(subtitlePrefab, content.transform);
+            subtitle.GetComponent<LevelSelectSubtitle>().Setup(chapter, totalScore);
+
+            // Loop through all levels in the chapter
             for (int l = 0; l < chapter.levels.Length; l++) {
                 Level level = chapter.levels[l];
 
@@ -59,6 +68,7 @@ public class LevelSelect : MonoBehaviour
                     continue;
                 }
 
+                // Instantiate and initialise item
                 LevelScore score = progressData.GetScore(level);
                 GameObject item = Instantiate(itemPrefab, content.transform);
                 item.GetComponent<LevelSelectItem>().Setup(level, chapter);
@@ -66,12 +76,14 @@ public class LevelSelect : MonoBehaviour
                 bool prevLevelCompleted = SaveSystem.LevelScore(prevLevel) != null ? true : false;
 
                 if (levelJustPlayed == level || (levelJustPlayed == null && prevLevel != null && prevLevelCompleted)) {
+                    // Set this item as the one to focus if we've just played the previous level or this level is the first uncompleted one
                     itemToFocus = item;
                 }
             }
         }
         
         if (itemToFocus != null) {
+            // Focus the intended item
             StartCoroutine("FocusLevel", itemToFocus);
         }
     }
@@ -94,6 +106,7 @@ public class LevelSelect : MonoBehaviour
         }
     }
 
+    // Start the outward transition animation and load the given level
     public void SelectLevel(Level level) {
         Logger.Send($"Select level - {level.name}.");
         StartCoroutine("TransitionOut", level);

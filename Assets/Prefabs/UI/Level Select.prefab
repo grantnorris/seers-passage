@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6722653900588308154}
   - component: {fileID: 6722653900588308155}
   - component: {fileID: 6722653900588308133}
-  - component: {fileID: 6722653900588308135}
+  - component: {fileID: 650442276559640466}
   - component: {fileID: 3951658310567783546}
   - component: {fileID: 7001940798827953494}
   m_Layer: 5
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6722653900588308135}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: scrollHighlight, Assembly-CSharp
         m_MethodName: UpdateScroll
         m_Mode: 0
@@ -156,7 +156,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &6722653900588308135
+--- !u!114 &650442276559640466
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -171,6 +171,7 @@ MonoBehaviour:
   content: {fileID: 6722653900972952005}
   closestItem: {fileID: 0}
   selectedItem: {fileID: 0}
+  scrollRect: {fileID: 7001940798827953494}
 --- !u!114 &3951658310567783546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,7 +220,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6722653900588308135}
+      - m_Target: {fileID: 650442276559640466}
         m_TargetAssemblyTypeName: ScrollHighlight, Assembly-CSharp
         m_MethodName: UpdateScroll
         m_Mode: 0

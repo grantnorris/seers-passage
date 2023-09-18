@@ -15,12 +15,14 @@ public class TipListUI : MonoBehaviour
         Populate();
     }
 
+    // Empty the tips UI
     void Empty() {
         foreach (Transform child in transform) {
             Destroy(child.gameObject);
         }
     }
 
+    // Populate tips UI with the tips that the player has already seen
     void Populate() {
         if (itemPrefab == null) {
             return;

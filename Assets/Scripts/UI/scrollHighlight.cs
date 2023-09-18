@@ -26,8 +26,9 @@ public class ScrollHighlight : MonoBehaviour
     void Start() {
         StartCoroutine("Init");
     }
-
+    
     void LateUpdate() {
+        // Snap to the closest item if the scroll is still moving but the player is no longer scrolling
         if (Mathf.Abs(scrolPos.y - prevScrolPos.y) < .0025f && watchMove && !UserScrolling()) {
             watchMove = false;
             scrollRect.inertia = false;
@@ -37,6 +38,7 @@ public class ScrollHighlight : MonoBehaviour
         prevScrolPos = scrolPos;
     }
 
+    // Initialise the scroll highlight UI
     IEnumerator Init() {
         items.Clear();
 
@@ -77,6 +79,7 @@ public class ScrollHighlight : MonoBehaviour
         }
     }
 
+    // Create a new scroll highlight item with position references to a given UI transform
     void CreateItem(Transform item) {
         GameObject obj = item.gameObject;
         RectTransform rect = obj.GetComponent<RectTransform>();
@@ -91,6 +94,7 @@ public class ScrollHighlight : MonoBehaviour
         ));
     }
 
+    // Create a chapter subtitle with position references to the UI transform it should appear before
     void CreateSubtitle(Transform item) {
         GameObject obj = item.gameObject;
         RectTransform rect = obj.GetComponent<RectTransform>();
@@ -105,6 +109,7 @@ public class ScrollHighlight : MonoBehaviour
         subtitles.Add(subtitle);
     }
 
+    // Update highlighted item and sticky chapter subtitle based on current scroll location
     public void UpdateScroll(Vector2 pos) {
         scrollRect.inertia = true;
         scrolPos = pos;
@@ -172,12 +177,14 @@ public class ScrollHighlight : MonoBehaviour
         Canvas.ForceUpdateCanvases();
         contentRect.anchoredPosition = new Vector2(0, ItemPosition(item));
     }
+    
 
     // Animates focus to the next item
     public void FocusNextItem(GameObject curItem) {
         StartCoroutine(ScrollToItem(NextItem(curItem)));
     }
 
+    // Retrieve the next item after a given one
     GameObject NextItem(GameObject curItem) {
         int curIndex = curItem.transform.GetSiblingIndex();
         Transform parent = curItem.transform.parent;
@@ -189,6 +196,7 @@ public class ScrollHighlight : MonoBehaviour
         return parent.GetChild(curIndex + 1).gameObject;
     }
 
+    // Retrieve the previous item before a given one
     GameObject PreviousItem(GameObject curItem) {
         int curIndex = curItem.transform.GetSiblingIndex();
         Transform parent = curItem.transform.parent;
@@ -200,6 +208,7 @@ public class ScrollHighlight : MonoBehaviour
         return parent.GetChild(curIndex - 1).gameObject;
     }
 
+    // Scroll to a given item
     IEnumerator ScrollToItem(GameObject item) {
         float time = 0f;
         float seconds = .25f;
@@ -228,6 +237,7 @@ public class ScrollHighlight : MonoBehaviour
         return (currentItemRect.anchoredPosition.y * -1) - (outerRect.rect.height / 2) + (currentItemRect.rect.height / 2);
     }
 
+    // Snap to the closest item
     IEnumerator SnapToItem() {
         // Wait for next frame
         yield return null;

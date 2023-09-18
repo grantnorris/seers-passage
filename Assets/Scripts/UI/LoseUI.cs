@@ -12,11 +12,8 @@ public class LoseUI : MonoBehaviour
         }
     }
 
+    // Play death theme over pause UI
     public void PlayDeathSound() {
         AudioManager.instance.PlayTheme("Theme 3", 1f);
-    }
-
-    public void PlayFlameSound() {
-        AudioManager.instance.Play("Flame Ambience");
     }
 }

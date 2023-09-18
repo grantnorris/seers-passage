@@ -50,12 +50,14 @@ public class UIController : MonoBehaviour
         SetFloorNameUI();
     }
 
+    // Display game UI object
     public void DisplayGameUI() {
         if (gameUI != null) {
             gameUI.SetActive(true);
         }
     }
 
+    // Set floor name text in game UI
     void SetFloorNameUI() {
         if (floorNameUI == null || SceneSwitcher.instance == null) {
             return;
@@ -95,6 +97,7 @@ public class UIController : MonoBehaviour
             txtColor = badStepColor;
         }
 
+        // Animate number roll over 1 second
         while (time <= 1f) {
             time += Time.unscaledDeltaTime / seconds;
             float smoothTime = Mathf.SmoothStep(0f, 1f, time);
@@ -111,7 +114,7 @@ public class UIController : MonoBehaviour
         playerStepCountTxt.color = txtColor;
     }
 
-    // Display heartbreak animation
+    // Display the beginning of the heart break animation
     public void StartBreakHeart() {
         if (heartbreakPrefab == null) {
             return;
@@ -131,7 +134,7 @@ public class UIController : MonoBehaviour
         float time = 0f;
         float seconds = .25f;
 
-        // Animate ui
+        // Animate UI over 1 second
         while (time <= 1f) {
             time += Time.deltaTime / seconds;
             uiRect.sizeDelta = Vector2.Lerp(Vector2.zero, uiRectSize, time);
@@ -142,6 +145,7 @@ public class UIController : MonoBehaviour
         DialogueManager.instance.dialogueEnded.AddListener(EndBreakHeart);
     }
 
+    // Display the end of heart break animation
     public void EndBreakHeart() {
         DialogueManager.instance.dialogueEnded.RemoveListener(EndBreakHeart);
         StartCoroutine("EndBreakHeartAnimation");
@@ -183,6 +187,7 @@ public class UIController : MonoBehaviour
         }
     }
 
+    // Display a dialogue popup based on the current number of lives/steps
     public void StepCountDialogue() {
         Dialogue dialogue = null;
 
@@ -204,6 +209,7 @@ public class UIController : MonoBehaviour
         DialogueManager.instance.StartDialogue(dialogue);
     }
 
+    // Display the win state UI after level completion
     public void DisplayOutroCard() {
         StartCoroutine("TransitionToOutro");
     }
@@ -216,6 +222,7 @@ public class UIController : MonoBehaviour
         outroUI.SetActive(true);
     }
 
+    // Display the lose state after level loss
     public void DisplayLoseUI() {
         StartCoroutine("TransitionLoseUI");
     }
@@ -226,6 +233,7 @@ public class UIController : MonoBehaviour
         loseUI.SetActive(true);
     }
 
+    // Display pause UI
     public void DisplayPauseUI() {
         if (pauseUI == null) {
             return;
@@ -234,6 +242,7 @@ public class UIController : MonoBehaviour
         pauseUI.TransitionIn();
     }
 
+    // Hide pause UI
     public void HidePauseUI() {
         if (pauseUI == null) {
             return;

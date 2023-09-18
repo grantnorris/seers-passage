@@ -27,6 +27,7 @@ public class LevelSelectItem : MonoBehaviour
     bool levelComplete = false;
     LevelScore score;
 
+    // Set initial state of level select item UI based on level and chapter
     public void Setup(Level lvl, Chapter chapter) {
         if (lvl == null) {
             return;
@@ -62,6 +63,7 @@ public class LevelSelectItem : MonoBehaviour
         }
     }
 
+    // Set the level name UI text value based on the level floor number
     void SetLevelName() {
         if (floorNumTxt == null) {
             return;
@@ -70,6 +72,7 @@ public class LevelSelectItem : MonoBehaviour
         floorNumTxt.SetText(level.floorNumber);
     }
 
+    // Set the subtitle UI text value based on the current completion status
     void SetSubtitleText() {
         if (subtitleTxt == null) {
             return;
@@ -79,6 +82,7 @@ public class LevelSelectItem : MonoBehaviour
         subtitleTxt.SetText(txt);
     }
 
+    // Set the score UI text value based on the current score
     void SetScoreText() {
         if (scoreTxt == null) {
             return;
@@ -87,6 +91,7 @@ public class LevelSelectItem : MonoBehaviour
         scoreTxt.SetText(score.Score());
     }
 
+    // Set the steps UI text value based on the current score
     void SetStepsText() {
         if (stepsTxt == null) {
             return;
@@ -95,6 +100,7 @@ public class LevelSelectItem : MonoBehaviour
         stepsTxt.SetText(score.steps.ToString());
     }
 
+    // Set the steps UI text value based on the current score
     void SetTimeText() {
         if (timeTxt == null) {
             return;
@@ -103,6 +109,7 @@ public class LevelSelectItem : MonoBehaviour
         timeTxt.SetText(score.FormattedTime());
     }
 
+    // Set relevant button listener to open the correlating level based on level completion status
     void SetButtonOnClick() {
         if (LevelSelect.instance == null) {
             return;

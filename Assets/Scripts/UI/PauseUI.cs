@@ -16,6 +16,7 @@ public class PauseUI : MonoBehaviour
         SetSubtitleTxt();
     }
 
+    // Set pause subtitle text to reflect the current level name
     void SetSubtitleTxt() {
         if (subtitleTxt == null) {
             return;
@@ -24,10 +25,12 @@ public class PauseUI : MonoBehaviour
         subtitleTxt.SetText(GameManager.instance.level.name);
     }
 
+    // Transition the pause menu UI in
     public void TransitionIn() {
         gameObject.SetActive(true);
     }
 
+    // Transition the pause menu UI out
     public void TransitionOut() {
         if (anim == null) {
             return;
@@ -36,14 +39,17 @@ public class PauseUI : MonoBehaviour
         anim.SetTrigger("Transition Out");
     }
 
+    // Hide the pause menu UI
     public void Hide() {
         gameObject.SetActive(false);
     }
 
+    // Quit the current level via pause UI
     public void Quit() {
         GameManager.instance.ReturnToLevelSelect();
     }
 
+    // Open the pause menu tips UI
     public void OpenTipsUI() {
         if (tipsUI == null) {
             return;
@@ -52,6 +58,7 @@ public class PauseUI : MonoBehaviour
         tipsUI.SetActive(true);
     }
 
+    // Hide the pause menu tips UI
     public void HideTipsUI() {
         if (tipsUI == null) {
             return;
