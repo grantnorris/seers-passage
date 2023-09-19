@@ -26,7 +26,7 @@ public class SurroundingTile : MonoBehaviour
 
     // Set tile sprites based on surrounding walls 
     void GetSprites() {
-        if (neutralSprites.Length > 0) {
+        if (neutralSprites.Length == 0) {
             return;
         }
 
