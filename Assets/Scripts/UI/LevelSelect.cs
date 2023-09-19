@@ -22,16 +22,17 @@ public class LevelSelect : MonoBehaviour
             instance = this;
         }
 
-        chapters = GameLevels.chapters;
-        anim = GetComponent<Animator>();
-        scrollRect = GetComponent<ScrollRect>();
-        scrollHighlight = GetComponent<ScrollHighlight>();
         Initialise();
     }
     
     void Initialise() {
+        chapters = GameLevels.chapters;
+        anim = GetComponent<Animator>();
+        scrollRect = GetComponent<ScrollRect>();
+        scrollHighlight = GetComponent<ScrollHighlight>();
+
         if (chapters.Length < 1 || content == null || itemPrefab == null) {
-            Logger.Send("Cancel because something's not right.", "general", "assertion");
+            Logger.Send("Stop setting up level select as we're missing references.", "general", "assertion");
             return;
         }
 
@@ -61,10 +62,10 @@ public class LevelSelect : MonoBehaviour
                 continue;
             }
 
-            GameObject subtitle = Instantiate(subtitlePrefab, content.transform);
-            subtitle.GetComponent<LevelSelectSubtitle>().Setup(chapter, totalScore);
+            // Create a subtitle for the chapter
+            CreateSubtitle(chapter, totalScore);
 
-            // Loop through all levels in the chapter
+            // Create items for every level in the chapter
             for (int l = 0; l < chapter.levels.Length; l++) {
                 Level level = chapter.levels[l];
 
@@ -72,15 +73,9 @@ public class LevelSelect : MonoBehaviour
                     continue;
                 }
 
-                // Instantiate and initialise item
-                LevelScore score = progressData.GetScore(level);
-                GameObject item = Instantiate(itemPrefab, content.transform);
-                item.GetComponent<LevelSelectItem>().Setup(level, chapter);
-                Level prevLevel = GameLevels.PreviousLevel(level);
-                bool prevLevelCompleted = SaveSystem.LevelScore(prevLevel) != null ? true : false;
+                GameObject item = CreateLevelItem(level, levelJustPlayed, progressData, chapter);
 
-                if (levelJustPlayed == level || (levelJustPlayed == null && prevLevel != null && prevLevelCompleted)) {
-                    // Set this item as the one to focus if we've just played the previous level or this level is the first uncompleted one
+                if (IsItemToFocus(item, level, levelJustPlayed)) {
                     itemToFocus = item;
                 }
             }
@@ -88,12 +83,40 @@ public class LevelSelect : MonoBehaviour
         
         if (itemToFocus != null) {
             // Focus the intended item
-            StartCoroutine("FocusLevel", itemToFocus);
+            StartCoroutine("FocusLevelItem", itemToFocus);
         }
     }
 
+    // Instantiate and initialise subtitle prefab
+    void CreateSubtitle(Chapter chapter, int totalScore) {
+        GameObject subtitle = Instantiate(subtitlePrefab, content.transform);
+        subtitle.GetComponent<LevelSelectSubtitle>().Setup(chapter, totalScore);
+    }
+
+    // Instantiate and initialise level item prefab
+    GameObject CreateLevelItem(Level level, Level levelJustPlayed, ProgressData progressData, Chapter chapter) {
+        LevelScore score = progressData.GetScore(level);
+        GameObject item = Instantiate(itemPrefab, content.transform);
+        item.GetComponent<LevelSelectItem>().Setup(level, chapter);
+
+        return item;
+    }
+
+    // Whether or not a given item should be focused
+    bool IsItemToFocus(GameObject item, Level itemLevel, Level levelJustPlayed) {
+        Level prevLevel = GameLevels.PreviousLevel(itemLevel);
+        bool prevLevelCompleted = SaveSystem.LevelScore(prevLevel) != null ? true : false;
+
+        if (levelJustPlayed == itemLevel || (levelJustPlayed == null && prevLevel != null && prevLevelCompleted)) {
+            // Set this item as the one to focus if we've just played the previous level or this level is the first uncompleted one
+            return true;
+        }
+
+        return false;
+    }
+
     // Focus level after build
-    IEnumerator FocusLevel(GameObject item) {
+    IEnumerator FocusLevelItem(GameObject item) {
         if (item == null || scrollRect == null) {
             yield break;
         }
