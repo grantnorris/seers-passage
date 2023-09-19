@@ -140,7 +140,7 @@ MonoBehaviour:
   - {fileID: -7666916292299984040, guid: 77c4487e43bce44e88369494dc3bce6e, type: 3}
   - {fileID: 7005373858723738637, guid: 77c4487e43bce44e88369494dc3bce6e, type: 3}
   - {fileID: -4002224618045634154, guid: 77c4487e43bce44e88369494dc3bce6e, type: 3}
-  downDetailSprites:
+  bottomDetailSprites:
   - {fileID: 8759417108937311763, guid: 77c4487e43bce44e88369494dc3bce6e, type: 3}
   - {fileID: -1833023420836153847, guid: 77c4487e43bce44e88369494dc3bce6e, type: 3}
   - {fileID: 7052396841142161002, guid: 77c4487e43bce44e88369494dc3bce6e, type: 3}

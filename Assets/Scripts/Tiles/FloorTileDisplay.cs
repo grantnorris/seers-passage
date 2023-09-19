@@ -13,7 +13,7 @@ public class FloorTileDisplay : TileDisplay
     [SerializeField]
     List<Sprite> rightDetailSprites = new List<Sprite>();
     [SerializeField]
-    List<Sprite> downDetailSprites = new List<Sprite>();
+    List<Sprite> bottomDetailSprites = new List<Sprite>();
     [SerializeField]
     List<Sprite> leftDetailSprites = new List<Sprite>();
     [HideInInspector]
@@ -107,7 +107,7 @@ public class FloorTileDisplay : TileDisplay
                     break;
                 case 2:
                     hasBottomDetails = true;
-                    sprites = downDetailSprites;
+                    sprites = bottomDetailSprites;
                     break;
                 case 3:
                     hasLeftDetails = true;
@@ -204,76 +204,63 @@ public class FloorTileDisplay : TileDisplay
 
     // Detail sprite based on edge and adjacent tiles
     Sprite DetailSprite(int edge) {
-        Sprite sprite = null;
-
         switch (edge) {
-            case 0: // Up
+            case 0:
                 if (!hasTopDetails) {
                     break;
                 }
 
-                if (tileLeftDisplay != null && tileLeftDisplay.hasTopDetails && tileRightDisplay != null && tileRightDisplay.hasTopDetails) {
-                    sprite = topDetailSprites[2];
-                } else if (tileLeftDisplay != null && tileLeftDisplay.hasTopDetails) {
-                    sprite = topDetailSprites[3];
-                } else if (tileRightDisplay != null && tileRightDisplay.hasTopDetails) {
-                    sprite = topDetailSprites[1];
-                } else {
-                    sprite = topDetailSprites[0];
-                }
-
-                break;
-            case 1: // Right
+                return DetailSpriteForEdge(
+                    topDetailSprites,
+                    tileLeftDisplay != null && tileLeftDisplay.hasTopDetails,
+                    tileRightDisplay != null && tileRightDisplay.hasTopDetails
+                );
+            case 1:
                 if (!hasRightDetails) {
                     break;
                 }
 
-                if (tileUpDisplay != null && tileUpDisplay.hasRightDetails && tileDownDisplay != null && tileDownDisplay.hasRightDetails) {
-                    sprite = rightDetailSprites[2];
-                } else if (tileDownDisplay != null && tileDownDisplay.hasRightDetails) {
-                    sprite = rightDetailSprites[3];
-                } else if (tileUpDisplay != null && tileUpDisplay.hasRightDetails) {
-                    sprite = rightDetailSprites[1];
-                } else {
-                    sprite = rightDetailSprites[0];
-                }
-
-                break;
-            case 2: // Down
+                return DetailSpriteForEdge(
+                    rightDetailSprites,
+                    tileUpDisplay != null && tileUpDisplay.hasRightDetails,
+                    tileDownDisplay != null && tileDownDisplay.hasRightDetails
+                );
+            case 2:
                 if (!hasBottomDetails) {
                     break;
                 }
 
-                if (tileLeftDisplay != null && tileLeftDisplay.hasBottomDetails && tileRightDisplay != null && tileRightDisplay.hasBottomDetails) {
-                    sprite = downDetailSprites[2];
-                } else if (tileLeftDisplay != null && tileLeftDisplay.hasBottomDetails) {
-                    sprite = downDetailSprites[3];
-                } else if (tileRightDisplay != null && tileRightDisplay.hasBottomDetails) {
-                    sprite = downDetailSprites[1];
-                } else {
-                    sprite = downDetailSprites[0];
-                }
-
-                break;
-            case 3: // Left
+                return DetailSpriteForEdge(
+                    bottomDetailSprites,
+                    tileLeftDisplay != null && tileLeftDisplay.hasBottomDetails,
+                    tileRightDisplay != null && tileRightDisplay.hasBottomDetails
+                );
+            case 3:
                 if (!hasLeftDetails) {
                     break;
                 }
 
-                if (tileUpDisplay != null && tileUpDisplay.hasLeftDetails && tileDownDisplay != null && tileDownDisplay.hasLeftDetails) {
-                    sprite = leftDetailSprites[2];
-                } else if (tileDownDisplay != null && tileDownDisplay.hasLeftDetails) {
-                    sprite = leftDetailSprites[3];
-                } else if (tileUpDisplay != null && tileUpDisplay.hasLeftDetails) {
-                    sprite = leftDetailSprites[1];
-                } else {
-                    sprite = leftDetailSprites[0];
-                }
-                
-                break;
+                return DetailSpriteForEdge(
+                    leftDetailSprites,
+                    tileUpDisplay != null && tileUpDisplay.hasLeftDetails,
+                    tileDownDisplay != null && tileDownDisplay.hasLeftDetails
+                );
         }
 
-        return sprite;
+        return null;
+    }
+
+    // Detail sprite for a given edge based on whether adjacent tiles also have details
+    Sprite DetailSpriteForEdge(List<Sprite> detailSprites, bool adjacentTile1HasDetails, bool adjacentTile2HasDetails) {
+        if (adjacentTile1HasDetails && adjacentTile2HasDetails) {
+            return detailSprites[2];
+        } else if (adjacentTile1HasDetails) {
+            return detailSprites[3];
+        } else if (adjacentTile2HasDetails) {
+            return detailSprites[1];
+        }
+
+        return detailSprites[0];
     }
 
     // Retrieve puddle sprite based on surrounding puddle tiles
