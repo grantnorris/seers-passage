@@ -11,6 +11,7 @@ public class ScrollHighlight : MonoBehaviour
     Transform content;
     float viewportCenter;
     float viewportSize;
+    float viewportHeight;
     float contentHeight;
     RectTransform contentRect;
     [SerializeField]
@@ -39,6 +40,7 @@ public class ScrollHighlight : MonoBehaviour
     }
 
     // Initialise the scroll highlight UI
+    // Waits a few times for other scripts and UI objects to initialise
     IEnumerator Initialise() {
         items.Clear();
 
@@ -49,33 +51,43 @@ public class ScrollHighlight : MonoBehaviour
             yield break;
         }
 
-        float viewportHeight = GetComponent<RectTransform>().rect.height;
+        SetInitialReferencesAndSpacing();
+
+        // Wait a frame for other UI scripts to initialise
+        yield return null;
+
+        SetContentAndViewportSizes();
+        CreateSubtitlesAndItems();
+        SetSubtitleEndStickingPoints();
+    }
+
+    // Set initial UI size and spacings
+    void SetInitialReferencesAndSpacing() {
+        viewportHeight = GetComponent<RectTransform>().rect.height;
         int topPadding = Mathf.RoundToInt((viewportHeight / 2) - (content.GetChild(0).GetComponent<RectTransform>().sizeDelta.y / 2));
         int bottomPadding = Mathf.RoundToInt((viewportHeight / 2) - (content.GetChild(content.childCount - 1).GetComponent<RectTransform>().sizeDelta.y / 2));
         int spacing = topPadding;
         VerticalLayoutGroup contentLayout = content.GetComponent<VerticalLayoutGroup>();
         contentLayout.padding = new RectOffset(0, 0, topPadding, bottomPadding);
         contentLayout.spacing = spacing;
+    }
 
-        // Wait a frame for other UI scripts to initialise
-        yield return null;
-
+    // Set content UI and viewport size references for later use
+    void SetContentAndViewportSizes() {
         contentRect = content.GetComponent<RectTransform>();
         contentHeight = contentRect.sizeDelta.y - viewportHeight;
         viewportSize = viewportHeight / contentHeight;
         viewportCenter = viewportSize / 2;
+    }
 
+    // Create new scroll subtitles and items based on UI transform children
+    void CreateSubtitlesAndItems() {
         foreach (Transform child in content) {
             if (child.GetComponent<ScrollHighlightSubtitle>() != null) {
                 CreateSubtitle(child);
             } else {
                 CreateItem(child);
             }
-        }
-
-        // Add the end sticking point for each subtitle (based on the next subtitle after it)
-        for (int i = 0; i < subtitles.Count - 1; i++) {
-            subtitles[i].stickEnd = subtitles[i + 1].stickStart - subtitles[i].height;
         }
     }
 
@@ -109,6 +121,13 @@ public class ScrollHighlight : MonoBehaviour
         subtitles.Add(subtitle);
     }
 
+    // Add the end sticking point for each subtitle based on the next subtitle after it
+    void SetSubtitleEndStickingPoints() {
+        for (int i = 0; i < subtitles.Count - 1; i++) {
+            subtitles[i].stickEnd = subtitles[i + 1].stickStart - subtitles[i].height;
+        }
+    }
+
     // Update highlighted item and sticky chapter subtitle based on current scroll location
     public void UpdateScroll(Vector2 pos) {
         scrollRect.inertia = true;
@@ -119,6 +138,21 @@ public class ScrollHighlight : MonoBehaviour
         }
 
         float relativeScrollPos = (1 - pos.y);
+        
+        SetItemOpacities(relativeScrollPos);
+        SetChapterSubtitlePositions(relativeScrollPos);
+
+        // Stop if the user didn't trigger the scroll manually
+        if (!UserScrolling()) {
+            return;
+        }
+
+        watchMove = true;
+    }
+
+    // Set item opacities based on current scroll location
+    void SetItemOpacities(float relativeScrollPos) {
+        // A large number that there will definitely be an item closer than
         float closestDistance = 999f;
 
         foreach (ScrollHighlightItem item in items) {
@@ -144,7 +178,10 @@ public class ScrollHighlight : MonoBehaviour
                 item.group.alpha = 0;
             }
         }
+    }
 
+    // Update chapter subtitle positions based on current scroll location
+    void SetChapterSubtitlePositions(float relativeScrollPos) {
         foreach (ScrollHighlightSubtitle subtitle in subtitles) {
             if (relativeScrollPos < subtitle.stickStart) {
                 subtitle.textObjRect.anchoredPosition = new Vector2(
@@ -163,13 +200,6 @@ public class ScrollHighlight : MonoBehaviour
                 );
             }
         }
-
-        // Stop if the user didn't trigger the scroll manually
-        if (!UserScrolling()) {
-            return;
-        }
-
-        watchMove = true;
     }
 
     // Focus a given item
