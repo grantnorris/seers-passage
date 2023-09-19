@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameUI : MonoBehaviour
 {
     // Start the current level once the UI is visible
-    // Triggered via animation event
+    // This is triggered by an animation
     void UIVisible() {
         GameManager.instance.StartLevel();
     }

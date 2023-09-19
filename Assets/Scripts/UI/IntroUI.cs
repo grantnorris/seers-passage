@@ -22,7 +22,7 @@ public class IntroUI : MonoBehaviour
     }
 
     // Transition the game view in and hide the intro UI gameobject once the animation is complete
-    // Triggered via animation event
+    // This is triggered by an animation
     public void AnimationComplete() {
         GameManager.instance.screenTransitions.StartTransitionViewIn();
         gameObject.SetActive(false);

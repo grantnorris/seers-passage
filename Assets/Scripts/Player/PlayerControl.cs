@@ -58,13 +58,7 @@ public class PlayerControl : MonoBehaviour
 
     // Update UI, player sprite and direction references based on player drag input
     void Drag() {
-        Vector2 dragPos = Vector2.zero;
-
-        if (Input.touchCount > 0) {
-            dragPos = Camera.main.ScreenToWorldPoint(Input.touches[0].position);
-        } else {
-            dragPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        }
+        Vector2 dragPos = CurrentDragLocation();
 
         if (dragPos == Vector2.zero) {
             return;
@@ -72,64 +66,62 @@ public class PlayerControl : MonoBehaviour
 
         float minDrag = .25f;
         float dragThreshold = 1.5f;
-        float xDif = Mathf.Abs(dragStart.x - dragPos.x);
-        float yDif = Mathf.Abs(dragStart.y - dragPos.y);
+        float xDistance = Mathf.Abs(dragStart.x - dragPos.x);
+        float yDistance = Mathf.Abs(dragStart.y - dragPos.y);
         string direction;
+        Vector3 cameraOffset;
+        float maxCameraOffset = .25f;
+        float distance = xDistance > yDistance ? xDistance : yDistance;
 
-        if (xDif < minDrag && yDif < minDrag) {
+        if (xDistance < minDrag && yDistance < minDrag) {
+            // Reset drag UI if dragging a minimal amount
             dragUI.Reset();
             return;
         }
 
-        if (xDif > yDif) {
-            if (dragStart.x > dragPos.x) {
-                // Dragging left
-                direction = "left";
-            } else {
-                // Dragging right
-                direction = "right";
-            }
-
-            player.move.FaceDirection(direction);
-            dragUI.Display(xDif / dragThreshold, dragStart, direction);
-            float camOffset = Mathf.Clamp(xDif / dragThreshold * (direction == "left" ? -1 : 1), -.25f, .25f);
-            PlayerCamera.instance.UpdateOffset(new Vector3(camOffset, 0, 0));
-
-            if (xDif <= dragThreshold) {
-                moveDirection = null;
-                return;
-            }
+        if (xDistance > yDistance) {
+            direction = dragStart.x > dragPos.x ? "left" : "right";
+            cameraOffset = new Vector3(
+                Mathf.Clamp(distance / dragThreshold * (direction == "left" ? -1 : 1), -maxCameraOffset, maxCameraOffset),
+                0,
+                0
+            );
         } else {
-            if (dragStart.y > dragPos.y) {
-                // Dragging down
-                direction = "down";
-            } else {
-                // Dragging top
-                direction = "up";
-            }
-
-            player.move.FaceDirection(direction);
-            dragUI.Display(yDif / dragThreshold, dragStart, direction);
-            float camOffset = Mathf.Clamp(yDif / dragThreshold * (direction == "down" ? -1 : 1), -.25f, .25f);
-            PlayerCamera.instance.UpdateOffset(new Vector3(0, camOffset, 0));
-
-            if (yDif <= dragThreshold) {
-                moveDirection = null;
-                return;
-            }
+            direction = dragStart.y > dragPos.y ? "down" : "up";
+            cameraOffset = new Vector3(
+                0,
+                Mathf.Clamp(distance / dragThreshold * (direction == "down" ? -1 : 1), -maxCameraOffset, maxCameraOffset),
+                0
+            );
         }
 
+        player.move.FaceDirection(direction);
+        dragUI.Display(distance / dragThreshold, dragStart, direction);
+        PlayerCamera.instance.UpdateOffset(cameraOffset);
+
+        if (distance <= dragThreshold) {
+            moveDirection = null;
+            return;
+        }
+
+        // Set the move direction that should be applied if the player releases the drag
         moveDirection = direction;
     }
 
     // Set beginning drag location reference
     void StartDragging() {
         dragging = true;
+        dragStart = CurrentDragLocation();
+    }
 
+    // Get the current location of the drag
+    Vector2 CurrentDragLocation() {
         if (Input.touchCount > 0) {
-            dragStart = Camera.main.ScreenToWorldPoint(Input.touches[0].position);
+            // Is touch
+            return Camera.main.ScreenToWorldPoint(Input.touches[0].position);
         } else {
-            dragStart = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            // Is mouse (dev)
+            return Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
     }
 
