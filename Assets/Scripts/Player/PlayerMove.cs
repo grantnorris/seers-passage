@@ -21,11 +21,8 @@ public class PlayerMove : MonoBehaviour
     }
 
     void Start() {
-        if (DialogueTrigger.instance != null && DialogueTrigger.instance.stepTriggers.Length > 0) {
-            finishMoving.AddListener(DialogueTrigger.instance.StepTriggers);
-        }
-
         if (shadowAnim != null) {
+            // Set initial state of shadow animation
             shadowAnim.SetBool("lowLight", true);
         }
     }

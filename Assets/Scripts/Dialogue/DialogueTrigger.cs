@@ -16,12 +16,20 @@ public class DialogueTrigger : MonoBehaviour
         }
         
         InitialiseOnStartDialogue();
+        InitialiseStepTriggerDialogue();
     }
 
     // Add a listener to trigger the on start dialogue at the beginning of the level if present
     void InitialiseOnStartDialogue() {
         if (onStartDialogue.sentences.Length > 0) {
             GameManager.instance.levelStart.AddListener(OnStartDialogue);
+        }
+    }
+
+    // Add player moved listener for step triggers
+    void InitialiseStepTriggerDialogue() {
+        if (stepTriggers.Length > 0) {
+            GameManager.instance.player.move.finishMoving.AddListener(DialogueTrigger.instance.StepTriggers);
         }
     }
 
