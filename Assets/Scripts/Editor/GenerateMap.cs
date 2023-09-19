@@ -197,16 +197,16 @@ public class GenerateMap : Editor
     // Check map tiles at surrounding locations to determine direction references
     void SetUpPlayerSpawnTile(TileLocation tile, Vector2 position) {
         if (map.GetTile(position.x, position.y + 1).type == "Entrance") {
-            // Up
+            // Entrance is up
             tile.obj.GetComponent<PlayerSpawn>().initialDirection = "down";
         } else if (map.GetTile(position.x, position.y - 1).type == "Entrance") {
-            // Down
+            // Entrance is down
             tile.obj.GetComponent<PlayerSpawn>().initialDirection = "up";
         } else if (map.GetTile(position.x - 1, position.y).type == "Entrance") {
-            // Left
+            // Entrance is left
             tile.obj.GetComponent<PlayerSpawn>().initialDirection = "right";
         } else if (map.GetTile(position.x + 1, position.y).type == "Entrance") {
-            // Right
+            // Entrance is right
             tile.obj.GetComponent<PlayerSpawn>().initialDirection = "right";
         }
     }
@@ -214,19 +214,19 @@ public class GenerateMap : Editor
     // Check map tiles at surrounding locations to determine direction references
     void SetUpDoorTile(TileLocation tile, Vector2 position) {
         if (map.GetTile(position.x, position.y + 1).type == "Floor") {
-            // Up
+            // Doors are up facing
             tile.obj.GetComponent<DoorInteractable>().direction = "up";
             tile.obj.GetComponent<ExitVisual>().direction = "up";
         } else if (map.GetTile(position.x, position.y - 1).type == "Floor") {
-            // Down
+            // Doors are down facing
             tile.obj.GetComponent<DoorInteractable>().direction = "down";
             tile.obj.GetComponent<ExitVisual>().direction = "down";
         } else if (map.GetTile(position.x - 1, position.y).type == "Floor") {
-            // Left
+            // Doors are left facing
             tile.obj.GetComponent<DoorInteractable>().direction = "left";
             tile.obj.GetComponent<ExitVisual>().direction = "left";
         } else if (map.GetTile(position.x + 1, position.y).type == "Floor") {
-            // Right
+            // Doors are right facing
             tile.obj.GetComponent<DoorInteractable>().direction = "right";
             tile.obj.GetComponent<ExitVisual>().direction = "right";
         }

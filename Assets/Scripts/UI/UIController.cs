@@ -191,19 +191,16 @@ public class UIController : MonoBehaviour
     public void StepCountDialogue() {
         Dialogue dialogue = null;
 
-        switch (GameManager.instance.player.steps.currentStepThreshold())
-        {
+        switch (GameManager.instance.player.steps.currentStepThreshold()){
             case 1:
-            dialogue = new Dialogue(new string[] {"An uneasy presence washes over you."});
-            break;
-
+                dialogue = new Dialogue(new string[] {"An uneasy presence washes over you."});
+                break;
             case 2:
-            dialogue = new Dialogue(new string[] {"A pressuring presence weighs on you."});
-            break;
-
+                dialogue = new Dialogue(new string[] {"A pressuring presence weighs on you."});
+                break;
             case 3:
-            dialogue = new Dialogue(new string[] {"A suffocating presence consumes you."});
-            break;
+                dialogue = new Dialogue(new string[] {"A suffocating presence consumes you."});
+                break;
         }
 
         DialogueManager.instance.StartDialogue(dialogue);

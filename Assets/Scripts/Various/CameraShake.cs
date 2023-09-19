@@ -8,8 +8,7 @@ public class CameraShake : MonoBehaviour
     public Material lofiShader;
 
     void Awake() {
-        if (instance == null)
-        {
+        if (instance == null) {
             instance = this;
         }
     }

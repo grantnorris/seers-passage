@@ -39,17 +39,9 @@ public class TipListUI : MonoBehaviour
                 continue;
             }
 
+            string content = string.Join(" ", tip.dialogue.sentences);
+
             accordionItem.SetTitle(tip.name);
-            string content = "";
-
-            foreach (string sentence in tip.dialogue.sentences) {
-                if (content != "") {
-                    content += " ";
-                }
-
-                content += sentence;
-            }
-
             accordionItem.SetContent(content);
             LayoutRebuilder.ForceRebuildLayoutImmediate(rect);
         }

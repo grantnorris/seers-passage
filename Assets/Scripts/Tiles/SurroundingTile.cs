@@ -39,26 +39,20 @@ public class SurroundingTile : MonoBehaviour
         Map map = Map.instance;
         Vector2 position  = transform.position;
 
-        TileLocation tileUp = map.GetTile(position.x, position.y + 1);
-        TileLocation tileDown = map.GetTile(position.x, position.y - 1);
-        TileLocation tileLeft = map.GetTile(position.x - 1, position.y);
-        TileLocation tileRight = map.GetTile(position.x + 1, position.y);
+        // Add one sprite for each edge if the adjacent tile is a wall
+        AddEdgeSpriteToList(map.GetTile(position.x, position.y + 1), topEdgeSprites);
+        AddEdgeSpriteToList(map.GetTile(position.x, position.y - 1), bottomEdgeSprites);
+        AddEdgeSpriteToList(map.GetTile(position.x - 1, position.y), leftEdgeSprites);
+        AddEdgeSpriteToList(map.GetTile(position.x + 1, position.y), rightEdgeSprites);
+    }
 
-        if (tileUp != null && tileUp.obj.tag == "Wall" && topEdgeSprites.Length > 0) {
-            sprites.Add(topEdgeSprites[Random.Range(0, topEdgeSprites.Length)]);
+    // Add a sprite for a given edge to the list
+    void AddEdgeSpriteToList(TileLocation adjacentTile, Sprite[] edgeSprites) {
+        if (adjacentTile == null || adjacentTile.obj.tag != "Wall" || edgeSprites.Length == 0) {
+            return;
         }
 
-        if (tileDown != null && tileDown.obj.tag == "Wall" && bottomEdgeSprites.Length > 0) {
-            sprites.Add(bottomEdgeSprites[Random.Range(0, bottomEdgeSprites.Length)]);
-        }
-
-        if (tileLeft != null && tileLeft.obj.tag == "Wall" && leftEdgeSprites.Length > 0) {
-            sprites.Add(leftEdgeSprites[Random.Range(0, leftEdgeSprites.Length)]);
-        }
-        
-        if (tileRight != null && tileRight.obj.tag == "Wall" && rightEdgeSprites.Length > 0) {
-            sprites.Add(rightEdgeSprites[Random.Range(0, rightEdgeSprites.Length)]);
-        }
+        sprites.Add(edgeSprites[Random.Range(0, edgeSprites.Length)]);
     }
 
     // Create gameobjects for each sprite
