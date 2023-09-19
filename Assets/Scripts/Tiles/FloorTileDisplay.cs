@@ -39,7 +39,7 @@ public class FloorTileDisplay : TileDisplay
         
         SetAdjacentTileReferences();
         AssignDetails();
-        StartCoroutine(CreateDetails());
+        CreateDetails();
     }
 
     // Retrieve references to adjacent tiles
@@ -51,110 +51,155 @@ public class FloorTileDisplay : TileDisplay
     }
 
     // Determine which details should be present based on adjacent tiles and RNG
-    // Details include cobwebs or puddles (never both)
+    // Details include details or puddles (never both)
     void AssignDetails() {
-        // Chance to create cobwebs
-        if (Random.Range(0, 100) <= 25)  {
-            for (int i = 0; i < 4; i++) {
-                TileLocation adjacentTile = null;
-                List<Sprite> sprites = new List<Sprite>();
-                
-                switch (i) {
-                    case 0: // Up
-                        adjacentTile = tileUp;
-                        break;
-                    case 1: // Right
-                        adjacentTile = tileRight;
-                        break;
-                    case 2: // Down
-                        adjacentTile = tileDown;
-                        break;
-                    case 3: // Left
-                        adjacentTile = tileLeft;
-                        break;
-                }
-
-                if (adjacentTile == null || adjacentTile.obj.tag != "Wall") {
-                    continue;
-                }
-
-                hasDetails = true;
-            
-                switch (i) {
-                    case 0: // Up
-                        hasTopDetails = true;
-                        sprites = topDetailSprites;
-                        break;
-                    case 1: // Right
-                        hasRightDetails = true;
-                        sprites = rightDetailSprites;
-                        break;
-                    case 2: // Down
-                        hasBottomDetails = true;
-                        sprites = downDetailSprites;
-                        break;
-                    case 3: // Left
-                        hasLeftDetails = true;
-                        sprites = leftDetailSprites;
-                        break;
-                }            
-            }
+        // Chance to create details
+        if (CanHaveDetails())  {
+            MaybeAssignDetailSprites();
         } else {
-            // Chance to create puddle if no wobwebs are present
-            int puddleChance = 50;
-
-            // More likely if adjacent tiles have already been assigned puddles
-            if ((tileUpDisplay != null && tileUpDisplay.hasPuddle) || (tileLeftDisplay != null && tileLeftDisplay.hasPuddle)) {
-                puddleChance = 25;
-            }
-
-            if (Random.Range(0, 100) <= puddleChance) {
-                hasPuddle = true;
-            }
+            MaybeAssignPuddle();
         }
     }
 
-    // Create various details
-    IEnumerator CreateDetails() {
-        if (!hasDetails && !hasPuddle) {
-            yield break;
+    // Whether or not the tile can have details, based on chance
+    bool CanHaveDetails() {
+        int percentChanceToHaveDetails = 25;
+
+        return Random.Range(0, 100) <= percentChanceToHaveDetails;
+    }
+
+    // Assign detail sprites if adjacent tiles are walls
+    void MaybeAssignDetailSprites() {
+        for (int i = 0; i < 4; i++) {
+            TileLocation adjacentTile = null;
+            List<Sprite> sprites = new List<Sprite>();
+            
+            switch (i) {
+                case 0:
+                    adjacentTile = tileUp;
+                    break;
+                case 1:
+                    adjacentTile = tileRight;
+                    break;
+                case 2:
+                    adjacentTile = tileDown;
+                    break;
+                case 3:
+                    adjacentTile = tileLeft;
+                    break;
+            }
+
+            if (adjacentTile == null || adjacentTile.obj.tag != "Wall") {
+                // Ignore this face of the tile if the adjacent tile isn't a wall
+                continue;
+            }
+
+            hasDetails = true;
+        
+            switch (i) {
+                case 0:
+                    hasTopDetails = true;
+                    sprites = topDetailSprites;
+                    break;
+                case 1:
+                    hasRightDetails = true;
+                    sprites = rightDetailSprites;
+                    break;
+                case 2:
+                    hasBottomDetails = true;
+                    sprites = downDetailSprites;
+                    break;
+                case 3:
+                    hasLeftDetails = true;
+                    sprites = leftDetailSprites;
+                    break;
+            }            
+        }
+    }
+
+    // Assign puddle based on chance
+    void MaybeAssignPuddle() {
+        // Chance to create puddle if no wobwebs are present
+        // More likely if adjacent tiles have puddles
+        int percentChanceToHavePuddle = AdjacentTilesHavePuddles() ? 80 : 40;
+
+        if (Random.Range(0, 100) <= percentChanceToHavePuddle) {
+            hasPuddle = true;
+        }
+    }
+
+    // Whether or not puddles are present in adjacent tiles
+    bool AdjacentTilesHavePuddles() {
+        if (tileUpDisplay != null && tileUpDisplay.hasPuddle) {
+            return true;
+        }
+        
+        if (tileDownDisplay != null && tileDownDisplay.hasPuddle) {
+            return true;
         }
 
-        yield return null;
+        if (tileLeftDisplay != null && tileLeftDisplay.hasPuddle) {
+            return true;
+        }
+
+        if (tileRightDisplay != null && tileRightDisplay.hasPuddle) {
+            return true;
+        }
+
+        return false;
+    }
+
+    // Create various details
+    void CreateDetails() {
+        if (!hasDetails && !hasPuddle) {
+            return;
+        }
 
         if (hasDetails) {
-            for (int i = 0; i < 4; i++) {
-                Sprite sprite = DetailSprite(i);
-
-                if (sprite == null) {
-                    continue;
-                }
-
-                GameObject detail = new GameObject();
-                Transform detailTransform = detail.transform;
-                detail.name = "Floor Detail " + gameObject.name;
-                detailTransform.SetParent(transform);
-                detailTransform.localPosition = Vector3.zero;
-                detail.AddComponent<SpriteRenderer>().sprite = sprite;
-            }
+            CreateDetailSprites();
         } else if (hasPuddle) {
-            Sprite sprite = PuddleSprite();
+            CreatePuddleSprite();
+        }
+    }
+
+    // Create and set up detail sprite gameobjects
+    void CreateDetailSprites() {
+        for (int i = 0; i < 4; i++) {
+            Sprite sprite = DetailSprite(i);
 
             if (sprite == null) {
-                yield break;
+                continue;
             }
 
-            GameObject puddle = new GameObject();
-            Transform detailTransform = puddle.transform;
-            puddle.name = "Puddle " + gameObject.name;
+            GameObject detail = new GameObject();
+            Transform detailTransform = detail.transform;
+            
+            detail.name = "Floor detail " + gameObject.name;
             detailTransform.SetParent(transform);
             detailTransform.localPosition = Vector3.zero;
-            SpriteRenderer rend = puddle.AddComponent<SpriteRenderer>();
-            SpriteMask spriteMask = puddle.AddComponent<SpriteMask>();
-            rend.sprite = sprite;
-            rend.sortingOrder = -2;
-            spriteMask.sprite = sprite;
+            detail.AddComponent<SpriteRenderer>().sprite = sprite;
         }
+    }
+
+    // Create and set up puddle sprite gameobject
+    void CreatePuddleSprite() {
+        Sprite sprite = PuddleSprite();
+
+        if (sprite == null) {
+            return;
+        }
+
+        GameObject puddle = new GameObject();
+        Transform detailTransform = puddle.transform;
+        SpriteRenderer rend = puddle.AddComponent<SpriteRenderer>();
+        SpriteMask spriteMask = puddle.AddComponent<SpriteMask>();
+
+        puddle.name = "Puddle " + gameObject.name;
+        detailTransform.SetParent(transform);
+        detailTransform.localPosition = Vector3.zero;
+        rend.sprite = sprite;
+        rend.sortingOrder = -2;
+        spriteMask.sprite = sprite;
     }
 
     // Detail sprite based on edge and adjacent tiles
