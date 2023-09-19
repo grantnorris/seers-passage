@@ -71,116 +71,118 @@ public class PlayerMove : MonoBehaviour
     }
 
     // Move in a given direction
-    public void Move(string direction) {
+    public void MoveInDirection(string direction) {
         Vector2 raycastDirection = Vector2.zero;
+        Vector2 targetOffset = Vector2.zero;
 
-        float xAdjustment = 0;
-        float yAdjustment = 0;
+        Logger.Send($"Move in {direction}.", "player");
 
-        Logger.Send($"Move {direction}", "player");
-        
-        if (direction == "left") {
-            raycastDirection = Vector2.left;
-            xAdjustment = 1f;
-        } else if (direction == "right") {
-            raycastDirection = Vector2.right;
-            xAdjustment = -1f;
-        } else if (direction == "up") {
-            raycastDirection = Vector2.up;
-            yAdjustment = -1f;
-        } else if (direction == "down") {
-            raycastDirection = Vector2.down;
-            yAdjustment = 1f;
+        switch (direction) {
+            case "left":
+                raycastDirection = Vector2.left;
+                targetOffset = Vector2.right;
+                break;
+            case "right":
+                raycastDirection = Vector2.right;
+                targetOffset = Vector2.left;
+                break;
+            case "up":
+                raycastDirection = Vector2.up;
+                targetOffset = Vector2.down;
+                break;
+            case "down":
+                raycastDirection = Vector2.down;
+                targetOffset = Vector2.up;
+                break;
+            default:
+                Logger.Send("Moving in an invalid direction", "player");
+                return;
         }
 
-        // Nowhere to go
-        if (raycastDirection == Vector2.zero) {
-            Logger.Send("Nowhere to move.", "player");
-            return;
-        }
-
+        // Cast a ray in the given direction to see how far to move until we hit a tile that would stop us
         Vector2 raycastOrigin = new Vector2(transform.position.x, transform.position.y);
-
-        // Cast a ray in the direction specified in the inspector.
         RaycastHit2D hit = Physics2D.Raycast(raycastOrigin, raycastDirection);
-
         Vector2 hitLocation = hit.transform.position;
         float hitDistance = Vector2.Distance(raycastOrigin, hitLocation);
 
         // If the hit is not an adjacent tile, then move towards it
         if (hitDistance > 1f) {
             Logger.Send("Hit a distant tile, so move towards it.", "player");
-
-            targetPos = new Vector2(hitLocation.x + xAdjustment, hitLocation.y + yAdjustment);
-
-            Logger.Send($"Updated target position to {targetPos}.", "player");
-
-            int directionInt = 0;
-
-            switch (direction) {
-                case "up":
-                    directionInt = 1;
-                    break;
-                case "right":
-                    directionInt = 2;
-                    break;
-                case "down":
-                    directionInt = 3;
-                    break;
-                case "left":
-                    directionInt = 4;
-                    break;
-            }
-
-            player.control.DisallowInput();
-            player.interaction.CloseInteractNotice();
-            
-            foreach (Animator anim in anims) {
-                Logger.Send("Set player animation triggers.", "player");
-                anim.SetInteger("directionFacing", directionInt);
-                anim.SetTrigger("startMoving");
-                player.visual.MoveAfterAnimation();
-                anim.SetBool("moving", true);
-            }
-
-            Logger.Send("updated animations", "player");
-
-            if (shadowAnim != null && !lowLight) {
-                shadowAnim.SetBool("lowLight", true);
-                Logger.Send("Updated shadow animations.", "player");
-            }
+            MovePlayer(direction, hitLocation + targetOffset);
         } else {
-            Logger.Send("Hit adjacent tile, so just face that way.", "player");
+            Logger.Send("Hit adjacent tile, so face that way and maybe interact with it.", "player");
             FaceDirection(direction);
+            HitOrInteractWithAdjacentTile(hit);
+        }
+    }
 
+    // Set player target position and trigger animations
+    void MovePlayer(string direction, Vector2 pos) {
+        int directionInt = DirectionToInt(direction);
+
+        // Stop new player inputs
+        player.control.DisallowInput();
+        // Close any open interaction notices
+        player.interaction.CloseInteractNotice();
+        
+        foreach (Animator anim in anims) {
+            // Update player animators
+            Logger.Send("Set player animation triggers.", "player");
+            anim.SetInteger("directionFacing", directionInt);
+            anim.SetTrigger("startMoving");
+            player.visual.MoveAfterAnimation();
+            anim.SetBool("moving", true);
+        }
+
+        Logger.Send("updated animations", "player");
+
+        if (shadowAnim != null && !lowLight) {
+            // Update shadow animations
+            shadowAnim.SetBool("lowLight", true);
+            Logger.Send("Updated shadow animations.", "player");
+        }
+
+        // Set the target position of the player
+        targetPos = pos;
+
+        Logger.Send($"Updated target position to {targetPos}.", "player");
+    }
+
+    // Does something with adjacent tile we're moving into
+    void HitOrInteractWithAdjacentTile(RaycastHit2D hit) {
+        Interactable hitInteractable = (hit.transform.tag == "Interactable" ? hit.transform.gameObject.GetComponent<Interactable>() : null);
+
+        if (hitInteractable != null) {
             // If the hit tile is interactable
-            Interactable hitInteractable = (hit.transform.tag == "Interactable" ? hit.transform.gameObject.GetComponent<Interactable>() : null);
-
-            if (hitInteractable != null) {
-                hitInteractable.Interact();
-            } else {
-                // We are moving into a wall, shake the camera
-                if (CameraShake.instance != null) {
-                    AudioManager.instance.PlayOneShot("Movement Failed");
-                    StartCoroutine(CameraShake.instance.Shake(.1f, .1f));
-                }
+            hitInteractable.Interact();
+        } else {
+            // We are moving into a wall, shake the camera
+            if (CameraShake.instance != null) {
+                AudioManager.instance.PlayOneShot("Movement Failed");
+                StartCoroutine(CameraShake.instance.Shake(.1f, .1f));
             }
         }
     }
 
+    // Direction string to integer for animation triggers
+    int DirectionToInt(string direction) {
+        switch (direction) {
+            case "up":
+                return 1;
+            case "right":
+                return 2;
+            case "down":
+                return 3;
+            case "left":
+                return 4;
+        }
+
+        return 0;
+    }
+
     // Face direction without moving
     public void FaceDirection(string direction) {
-        int directionInt = 0;
-
-        if (direction == "up") {
-            directionInt = 1;
-        } else if (direction == "right") {
-            directionInt = 2;
-        } else if (direction == "down") {
-            directionInt = 3;
-        } else if (direction == "left") {
-            directionInt = 4;
-        }
+        int directionInt = DirectionToInt(direction);
 
         foreach (Animator anim in anims) {
             anim.SetInteger("directionFacing", directionInt);

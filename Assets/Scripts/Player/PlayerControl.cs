@@ -45,13 +45,13 @@ public class PlayerControl : MonoBehaviour
                 StopDragging();
                 Logger.Send("Stop Dragging.", "player");
             } else if (Input.GetKeyDown("left")) {
-                player.move.Move("left");
+                player.move.MoveInDirection("left");
             } else if (Input.GetKeyDown("right")) {
-                player.move.Move("right");
+                player.move.MoveInDirection("right");
             } else if (Input.GetKeyDown("up")) {
-                player.move.Move("up");
+                player.move.MoveInDirection("up");
             } else if (Input.GetKeyDown("down")) {
-                player.move.Move("down");
+                player.move.MoveInDirection("down");
             }
         }
     }
@@ -135,7 +135,7 @@ public class PlayerControl : MonoBehaviour
         }
 
         dragUI.ApplyDirection(moveDirection);
-        player.move.Move(moveDirection);
+        player.move.MoveInDirection(moveDirection);
         moveDirection = null;
     }
 
