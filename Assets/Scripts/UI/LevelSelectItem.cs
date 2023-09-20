@@ -37,18 +37,20 @@ public class LevelSelectItem : MonoBehaviour
         bool chapterUnlocked = chapter.Unlocked();
 
         SetLevelName();
-        SetSubtitleText();
 
         if (!chapterUnlocked) {
             levelStats.gameObject.SetActive(false);
             newFloorBtn.gameObject.SetActive(false);
+            SetSubtitleText();
             return;
         }
         
         score = SaveSystem.LevelScore(level);
-        levelComplete = SaveSystem.LevelScore(level) != null ? true : false;
+        levelComplete = score != null ? true : false;
         Level prevLevel = GameLevels.PreviousLevel(level);
         bool prevLevelComplete = prevLevel != null && SaveSystem.LevelScore(prevLevel) != null ? true : false;
+        
+        SetSubtitleText();
 
         // Enable relevant button based on if the level has already been completed
         levelStats.gameObject.SetActive(levelComplete);
