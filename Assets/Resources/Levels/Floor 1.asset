@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 130667570368573275, guid: adedb1632445a4a36a51f3b973f4ed8e, type: 3}
   floorNumber: 1
-  stepThreshold: 10
+  stepThreshold: 25
   id: 1

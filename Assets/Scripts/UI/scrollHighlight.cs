@@ -68,6 +68,7 @@ public class ScrollHighlight : MonoBehaviour
         int bottomPadding = Mathf.RoundToInt((viewportHeight / 2) - (content.GetChild(content.childCount - 1).GetComponent<RectTransform>().sizeDelta.y / 2));
         int spacing = topPadding;
         VerticalLayoutGroup contentLayout = content.GetComponent<VerticalLayoutGroup>();
+        
         contentLayout.padding = new RectOffset(0, 0, topPadding, bottomPadding);
         contentLayout.spacing = spacing;
     }
@@ -98,6 +99,7 @@ public class ScrollHighlight : MonoBehaviour
         float pos = (rect.anchoredPosition.y * -1) / contentHeight;
         float height = rect.sizeDelta.y / contentHeight;
         CanvasGroup group = item.GetComponent<CanvasGroup>();
+
         items.Add(new ScrollHighlightItem(
             obj,
             pos,
@@ -253,6 +255,7 @@ public class ScrollHighlight : MonoBehaviour
 
             time += Time.deltaTime / seconds;
             contentRect.anchoredPosition = Vector2.Lerp(startPos, endPos, Mathf.SmoothStep(0, 1, time));
+
             yield return null;
         }
 
@@ -264,6 +267,7 @@ public class ScrollHighlight : MonoBehaviour
     float ItemPosition(GameObject item) {
         RectTransform outerRect = GetComponent<RectTransform>();
         RectTransform currentItemRect = item.GetComponent<RectTransform>();
+
         return (currentItemRect.anchoredPosition.y * -1) - (outerRect.rect.height / 2) + (currentItemRect.rect.height / 2);
     }
 

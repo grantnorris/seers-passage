@@ -73,8 +73,13 @@ public static class GameLevels
                     // This is the final level in the final chapter, so there's nothing to return
                     return null;
                 } else if (l == chapters[c].levels.Length - 1) {
+                    if (c == chapters.Length - 1) {
+                        // This is the last chapter, there is no next level
+                        return null;
+                    }
+
                     // This is the final level in the current chapter, so return the first level of the next chapter
-                    Chapter nextChapter = chapters[c - 1];
+                    Chapter nextChapter = chapters[c + 1];
 
                     if (nextChapter.levels.Length == 0) {
                         return null;

@@ -75,7 +75,7 @@ public class LevelSelect : MonoBehaviour
 
                 GameObject item = CreateLevelItem(level, levelJustPlayed, progressData, chapter);
 
-                if (IsItemToFocus(item, level, levelJustPlayed)) {
+                if (!itemToFocus || IsItemToFocus(item, level, levelJustPlayed)) {
                     itemToFocus = item;
                 }
             }
