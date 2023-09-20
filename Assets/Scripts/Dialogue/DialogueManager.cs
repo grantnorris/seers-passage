@@ -117,9 +117,7 @@ public class DialogueManager : MonoBehaviour
         dialogueParent.GetComponent<Button>().enabled = false;
         dialogueUI.SetActive(true);
         dialogueScript.arrow.SetActive(false);
-
-        string sentence = sentences.Dequeue();
-        StartCoroutine("TypeSentence", sentence);
+        StartCoroutine("TypeSentence", sentences.Dequeue());
     }
 
     // Type sentence into dialogue box

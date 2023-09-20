@@ -8,6 +8,7 @@ public static class Logger
     static bool enableSaveLogs = false;
     static bool enableGeneralLogs = true;
 
+    // Send string to be logged to the console if conditions are met
     public static void Send(string txt, string source = "general", string type = "standard") {
         if (!shouldMessageBeLogged(source, type)) {
             return;

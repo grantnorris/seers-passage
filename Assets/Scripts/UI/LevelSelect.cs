@@ -22,7 +22,8 @@ public class LevelSelect : MonoBehaviour
 
         Initialise();
     }
-    
+        
+    // Initialise by setting references, playing theme and populating UI
     void Initialise() {
         chapters = GameLevels.chapters;
         anim = GetComponent<Animator>();

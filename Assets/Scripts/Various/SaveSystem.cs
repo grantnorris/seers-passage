@@ -12,7 +12,6 @@ public static class SaveSystem
 
     public static void UpdateLevelScore(LevelScore score) {
         Logger.Send("Update level score.", "save");
-
         progressData.UpdateScore(score);
         SaveProgress(progressData);
     }
@@ -34,7 +33,6 @@ public static class SaveSystem
     // Flag a tip as displayed in the current saved data
     public static void AddTipToDisplayedList(string name) {
         Logger.Send($"Add tip to displayed list - name.", "save");
-
         progressData.AddTipToDisplayedList(name);
         SaveProgress(progressData);
     }

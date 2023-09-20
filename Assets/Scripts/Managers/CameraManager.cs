@@ -19,6 +19,7 @@ public class CameraManager : MonoBehaviour
         Initialise();
     }
 
+    // Initialise by setting references and setting up player camera
     public void Initialise() {
         mainCam = Camera.main;
         GameObject player = GameManager.instance.player.gameObject;

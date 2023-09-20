@@ -36,6 +36,7 @@ public class UIController : MonoBehaviour
         Initialise();
     }
 
+    // Initialise by setting player step count and UI active states
     void Initialise() {
         playerStepCountTxt.text = GameManager.instance.player.steps.StepCount().ToString();
 
