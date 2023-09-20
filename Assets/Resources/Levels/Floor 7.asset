@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4b72fafb507f47558026b31d0e7ed71, type: 3}
-  m_Name: Floor 6
+  m_Name: Floor 7
   m_EditorClassIdentifier: 
   prefab: {fileID: 2593904522363898433, guid: 8fdb582ff17cc4f5a83deaa5b3c227d8, type: 3}
-  floorNumber: 6
+  floorNumber: 7
   stepThreshold: 9
-  id: 6
+  id: 7
