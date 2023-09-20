@@ -12,13 +12,13 @@ public static class GameLevels
                 Resources.Load<Level>("Levels/Floor 1"),
                 Resources.Load<Level>("Levels/Floor 2"),
                 Resources.Load<Level>("Levels/Floor 3"),
-                Resources.Load<Level>("Levels/Floor 4"),
             },
             0
         ),
         new Chapter(
             "Chapter Two",
             new Level[] {
+                Resources.Load<Level>("Levels/Floor 4"),
                 Resources.Load<Level>("Levels/Floor 5"),
                 Resources.Load<Level>("Levels/Floor 6"),
             },
