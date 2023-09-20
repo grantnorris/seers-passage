@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -13,7 +11,7 @@ public class PauseUI : MonoBehaviour
 
     void Start() {
         anim = GetComponent<Animator>();
-        
+
         SetSubtitleText();
     }
 

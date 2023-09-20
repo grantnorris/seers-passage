@@ -1,5 +1,4 @@
 using UnityEngine;
-using Unity.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -13,7 +12,7 @@ public static class SaveSystem
 
     public static void UpdateLevelScore(LevelScore score) {
         Logger.Send("Update level score.", "save");
-        
+
         progressData.UpdateScore(score);
         SaveProgress(progressData);
     }

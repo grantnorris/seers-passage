@@ -1,5 +1,3 @@
-using UnityEngine;
-
 [System.Serializable]
 public class LevelScore {
     public int hearts;

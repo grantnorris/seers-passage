@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PostProcessing : MonoBehaviour
@@ -9,7 +7,7 @@ public class PostProcessing : MonoBehaviour
     void Awake() {
         if (instance != null && instance != this) {
             Destroy(this.gameObject);
-            
+
             return;
         }
 
