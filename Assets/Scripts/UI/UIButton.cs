@@ -10,6 +10,10 @@ public class UIButton : MonoBehaviour
     void Start() {
         btn = GetComponent<Button>();
 
+        AddAudioOnClickListener();
+    }
+
+    void AddAudioOnClickListener() {
         if (btn != null) {
             btn.onClick.AddListener(delegate {AudioManager.instance.PlayOneShot("Dialogue Open");});
         }

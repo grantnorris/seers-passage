@@ -13,6 +13,7 @@ public class PauseUI : MonoBehaviour
 
     void Start() {
         anim = GetComponent<Animator>();
+        
         SetSubtitleText();
     }
 

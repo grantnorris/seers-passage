@@ -11,6 +11,7 @@ public class TipListUI : MonoBehaviour
 
     void Start() {
         rect = GetComponent<RectTransform>();
+        
         Empty();
         Populate();
     }

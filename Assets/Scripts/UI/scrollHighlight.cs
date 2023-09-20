@@ -33,6 +33,7 @@ public class ScrollHighlight : MonoBehaviour
         if (Mathf.Abs(scrollPos.y - prevScrollPos.y) < .0025f && watchMove && !UserScrolling()) {
             watchMove = false;
             scrollRect.inertia = false;
+            
             StartCoroutine(SnapToItem());
         }
 

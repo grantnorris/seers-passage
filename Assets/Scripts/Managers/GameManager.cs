@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     public void Start() {
         screenTransitions = GetComponent<ScreenTransitions>();
         AudioManager.instance.PlayTheme("Theme", 1f);
+        
         SetupLevel();
     }
 

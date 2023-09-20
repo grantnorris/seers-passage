@@ -6,14 +6,19 @@ public class LockInteractable : Interactable
 
     void Start() {
         gate = GetComponent<Gate>();
-
-        if (gate != null && gate.anim != null) {
-            gate.anim.SetBool("locked", true);
-        }  
+        
+        SetGateToLocked();
     }
 
     public override void Interact() {
         OpenGate();
+    }
+
+    // Set gate to locked state until unlocked
+    void SetGateToLocked() {
+        if (gate != null && gate.anim != null) {
+            gate.anim.SetBool("locked", true);
+        }
     }
 
     // Uses a key from the inventory to open the associated gate

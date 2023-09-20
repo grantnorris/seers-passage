@@ -232,6 +232,7 @@ public class GenerateMap : Editor
         }
     }
 
+    // Get mapped ColorToTile by color
     ColorToTile ColorMapping(Color color) {
         if (color == null) {
             return null;
